@@ -1,0 +1,8 @@
+{
+  "author": "Peter T Bosse II <ptb@ioutime.com> (http://ptb2.me/)",
+  "license": "Apache-2.0",
+  "main": "index.js",
+  "name": "amory",
+  "repository": "git@github.com:ptb/amory.git",
+  "version": "0.0.1"
+}
