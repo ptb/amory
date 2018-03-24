@@ -5,6 +5,9 @@
   },
   "license": "Apache-2.0",
   "name": "amory",
+  "publishConfig": {
+    "access": "public"
+  },
   "repository": "https://github.com/ptb/amory.git",
-  "version": "2018.3.24"
+  "version": "2018.3.24-0"
 }
