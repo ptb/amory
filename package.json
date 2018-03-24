@@ -1,8 +1,10 @@
 {
   "author": "Peter T Bosse II <ptb@ioutime.com> (http://ptb2.me/)",
+  "devDependencies": {
+    "lerna": "^2.9.0"
+  },
   "license": "Apache-2.0",
-  "main": "index.js",
   "name": "amory",
-  "repository": "git@github.com:ptb/amory.git",
-  "version": "0.0.1"
+  "repository": "https://github.com/ptb/amory.git",
+  "version": "2018.3.24"
 }
