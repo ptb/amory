@@ -9,5 +9,5 @@
   "main": "index.js",
   "name": "@ptb/merge-json",
   "repository": "https://github.com/ptb/amory/tree/master/packages/merge-json",
-  "version": "2018.3.24"
+  "version": "2018.3.24-1"
 }
