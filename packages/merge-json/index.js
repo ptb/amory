@@ -37,5 +37,5 @@ const m = JSON.stringify (sort (j), null, 2)
 const n = m[m.length - 1] === "\n" ? m : `${m}\n`
 
 if (h[0] !== n) {
-  writeFileSync (process.argv[2], l, "utf8")
+  writeFileSync (process.argv[2], n, "utf8")
 }
