@@ -1,4 +1,7 @@
 {
+  "dependencies": {
+    "gatsby": "^1.x"
+  },
   "scripts": {
     "gatsby:develop": "gatsby develop",
     "gatsby:build": "chokidar 'src/**' -i '/node_modules/' -c 'gatsby build' -d 5000 -t 2000"
