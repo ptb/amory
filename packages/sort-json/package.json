@@ -1,16 +1,15 @@
 {
   "author": "Peter T Bosse II <ptb@ioutime.com> (http://ptb2.me/)",
   "dependencies": {
-    "chokidar-cli": "^1.x",
-    "prettier": "^1.x",
-    "prettier-eslint-cli": "^4.x"
+    "@ptb/merge-json": "latest",
+    "chokidar-cli": "^1.x"
   },
   "license": "Apache-2.0",
-  "name": "@ptb/prettier-eslint",
+  "name": "@ptb/sort-json",
   "publishConfig": {
     "access": "public"
   },
-  "repository": "https://github.com/ptb/amory/tree/master/packages/prettier-eslint",
+  "repository": "https://github.com/ptb/amory/tree/master/packages/sort-json",
   "scripts": {
     "postinstall": "npx -p @ptb/merge-json -c 'merge-json ../../../package.json ./.amory/package.json'"
   },

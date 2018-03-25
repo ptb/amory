@@ -1,0 +1,5 @@
+{
+  "scripts": {
+    "json:sort": "chokidar '**/*.json' -i '/node_modules|public/' -c 'merge-json {path}'"
+  }
+}
