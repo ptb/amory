@@ -1,0 +1,6 @@
+{
+  "devtool": false,
+  "output": {
+    "hashDigestLength": 6
+  }
+}
