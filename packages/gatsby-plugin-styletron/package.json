@@ -1,15 +1,14 @@
 {
   "author": "Peter T Bosse II <ptb@ioutime.com> (http://ptb2.me/)",
   "dependencies": {
-    "chokidar-cli": "^1.x",
-    "gatsby": "^1.x"
+    "gatsby-plugin-styletron": "^2.x"
   },
   "license": "Apache-2.0",
-  "name": "@ptb/gatsby",
+  "name": "@ptb/gatsby-plugin-styletron",
   "publishConfig": {
     "access": "public"
   },
-  "repository": "https://github.com/ptb/amory/tree/master/packages/gatsby",
+  "repository": "https://github.com/ptb/amory/tree/master/packages/gatsby-plugin-styletron",
   "scripts": {
     "postinstall": "npx npm-run-all 'postinstall:*'",
     "postinstall:merge": "find '.amory' -maxdepth 1 -name '*.json' -exec npx -p @ptb/merge-json -c 'merge-json ../../../$(basename '{}') '{}' \\;",

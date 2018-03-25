@@ -14,5 +14,5 @@
   "scripts": {
     "postinstall": "npx -p @ptb/merge-json -c 'merge-json ../../../package.json ./.amory/package.json'"
   },
-  "version": "2018.3.25-26"
+  "version": "2018.3.25-27"
 }
