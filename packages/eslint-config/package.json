@@ -20,9 +20,12 @@
   "license": "Apache-2.0",
   "main": ".eslintrc.js",
   "name": "@ptb/eslint-config",
+  "scripts": {
+    "postinstall": "npx @ptb/merge-json ./package.json ./node_modules/@ptb/eslint-config/.amory/package.json"
+  },
   "publishConfig": {
     "access": "public"
   },
   "repository": "https://github.com/ptb/amory/tree/master/packages/eslint-config",
-  "version": "2018.3.25-1"
+  "version": "2018.3.25-2"
 }
