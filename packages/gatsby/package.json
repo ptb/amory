@@ -12,8 +12,8 @@
   "repository": "https://github.com/ptb/amory/tree/master/packages/gatsby",
   "scripts": {
     "postinstall": "npx npm-run-all 'postinstall:*'",
-    "postinstall:merge": "find '.amory' -maxdepth 1 -name '*.json' -exec npx -p @ptb/merge-json -c 'merge-json ../../../$(basename '{}') '{}' \\;",
+    "postinstall:merge": "find '.amory' -maxdepth 1 -name '*.json' -exec npx -p @ptb/merge-json -c 'merge-json ../../../$(basename '{}') \\'{}\\'' \\;",
     "postinstall:setup": "find '.amory' -maxdepth 1 -not -name '.amory' -not -name '*.json' -exec cp -R '{}' '../../../' \\;"
   },
-  "version": "2018.3.25-27"
+  "version": "2018.3.25-28"
 }
