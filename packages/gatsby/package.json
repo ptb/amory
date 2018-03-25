@@ -1,6 +1,7 @@
 {
   "author": "Peter T Bosse II <ptb@ioutime.com> (http://ptb2.me/)",
   "dependencies": {
+    "caniuse-db": "^1.x",
     "chokidar-cli": "^1.x",
     "gatsby": "^1.x"
   },
@@ -12,8 +13,8 @@
   "repository": "https://github.com/ptb/amory/tree/master/packages/gatsby",
   "scripts": {
     "postinstall": "npx npm-run-all 'postinstall:*'",
-    "postinstall:merge": "find '.amory' -maxdepth 1 -name '*.json' -exec npx -p @ptb/merge-json -c \"merge-json ../../../$(basename '{}') '{}'\" \\;",
+    "postinstall:merge": "find '.amory' -maxdepth 1 -name '*.json' -print0 | xargs -0 -I {} -n1 basename '{}' | xargs -I {} -n1 npx -p @ptb/merge-json -c 'merge-json ../../../{} {}'",
     "postinstall:setup": "find '.amory' -maxdepth 1 -not -name '.amory' -not -name '*.json' -exec cp -R '{}' '../../../' \\;"
   },
-  "version": "2018.3.25-30"
+  "version": "2018.3.25-31"
 }
