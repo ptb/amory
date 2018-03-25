@@ -1,5 +1,5 @@
 {
   "scripts": {
-    "http:serve": "http-server public -g -o -p 8080"
+    "http:serve": "http-server public -g -o -p 8000"
   }
 }
