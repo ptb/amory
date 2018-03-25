@@ -31,7 +31,13 @@ const sort = (e) => {
 
 const h = process.argv
   .slice (2)
-  .map (i => readFileSync (i, { "encoding": "utf8" }))
+  .map (i => {
+    try {
+      return readFileSync (i, { "encoding": "utf8" })
+    } catch (_) {
+      return "{}"
+    }
+  })
 const j = h.reduce ((k, l) => merge (k, JSON.parse (l)), {})
 const m = JSON.stringify (sort (j), null, 2)
 const n = m[m.length - 1] === "\n" ? m : `${m}\n`
