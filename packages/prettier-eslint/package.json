@@ -1,6 +1,7 @@
 {
   "author": "Peter T Bosse II <ptb@ioutime.com> (http://ptb2.me/)",
   "dependencies": {
+    "chokidar-cli": "^1.x",
     "prettier": "^1.x",
     "prettier-eslint-cli": "^4.x"
   },
@@ -13,5 +14,5 @@
   "scripts": {
     "postinstall": "npx -p @ptb/merge-json -c 'merge-json ../../../package.json ./.amory/package.json'"
   },
-  "version": "2018.3.25-15"
+  "version": "2018.3.25-16"
 }
