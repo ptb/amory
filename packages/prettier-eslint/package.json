@@ -1,0 +1,17 @@
+{
+  "author": "Peter T Bosse II <ptb@ioutime.com> (http://ptb2.me/)",
+  "dependencies": {
+    "prettier": "^1.x",
+    "prettier-eslint-cli": "^4.x"
+  },
+  "license": "Apache-2.0",
+  "name": "@ptb/prettier-eslint",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": "https://github.com/ptb/amory/tree/master/packages/prettier-eslint",
+  "scripts": {
+    "postinstall": "npx -p @ptb/merge-json -c 'merge-json ../../../package.json ./.amory/package.json'"
+  },
+  "version": "2018.3.25-15"
+}
