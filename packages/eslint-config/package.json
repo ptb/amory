@@ -21,11 +21,11 @@
   "main": ".eslintrc.js",
   "name": "@ptb/eslint-config",
   "scripts": {
-    "postinstall": "npx -p @ptb/merge-json -c 'merge-json package.json node_modules/@ptb/eslint-config/.amory/package.json'"
+    "postinstall": "npx -p @ptb/merge-json -c 'merge-json ../../package.json ./.amory/package.json'"
   },
   "publishConfig": {
     "access": "public"
   },
   "repository": "https://github.com/ptb/amory/tree/master/packages/eslint-config",
-  "version": "2018.3.25-6"
+  "version": "2018.3.25-7"
 }
