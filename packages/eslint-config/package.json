@@ -21,11 +21,11 @@
   "main": ".eslintrc.js",
   "name": "@ptb/eslint-config",
   "scripts": {
-    "postinstall": "ls -al"
+    "postinstall": "echo $_ $0 $1"
   },
   "publishConfig": {
     "access": "public"
   },
   "repository": "https://github.com/ptb/amory/tree/master/packages/eslint-config",
-  "version": "2018.3.25-8"
+  "version": "2018.3.25-9"
 }
