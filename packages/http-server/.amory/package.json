@@ -1,0 +1,5 @@
+{
+  "scripts": {
+    "http:serve": "http-server public -g -o -p 8080"
+  }
+}

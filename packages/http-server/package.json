@@ -1,15 +1,14 @@
 {
   "author": "Peter T Bosse II <ptb@ioutime.com> (http://ptb2.me/)",
   "dependencies": {
-    "@ptb/merge-json": "latest",
-    "chokidar-cli": "^1.x"
+    "http-server": "latest"
   },
   "license": "Apache-2.0",
-  "name": "@ptb/sort-json",
+  "name": "@ptb/http-server",
   "publishConfig": {
     "access": "public"
   },
-  "repository": "https://github.com/ptb/amory/tree/master/packages/sort-json",
+  "repository": "https://github.com/ptb/amory/tree/master/packages/http-server",
   "scripts": {
     "postinstall": "npx -p @ptb/merge-json -c 'merge-json ../../../package.json ./.amory/package.json'"
   },
