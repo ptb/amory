@@ -12,8 +12,8 @@
   "repository": "https://github.com/ptb/amory/tree/master/packages/gatsby",
   "scripts": {
     "postinstall": "npx npm-run-all 'postinstall:*'",
-    "postinstall:copy": "cp -R './amory/*~*package.json' ../../../",
+    "postinstall:copy": "find '.amory' -maxdepth 1 -not -name '.amory' -not -name 'package.json' -exec cp -R '{}' '../../../' \\;",
     "postinstall:patch": "npx -p @ptb/merge-json -c 'merge-json ../../../package.json ./.amory/package.json'"
   },
-  "version": "2018.3.25-25"
+  "version": "2018.3.25-26"
 }
