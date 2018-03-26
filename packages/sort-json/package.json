@@ -11,7 +11,8 @@
   },
   "repository": "https://github.com/ptb/amory/tree/master/packages/sort-json",
   "scripts": {
-    "postinstall": "npx -p @ptb/merge-json -c 'merge-json ../../../package.json ./.amory/package.json'"
+    "postinstall": "npx npm-run-all 'postinstall:*'",
+    "postinstall:merge": "find '.amory' -maxdepth 1 -name '*.json' -print0 | xargs -0 -I {} -n1 basename '{}' | xargs -I {} -n1 npx -p @ptb/merge-json -c 'merge-json ../../../{} .amory/{}'"
   },
-  "version": "2018.3.25-32"
+  "version": "2018.3.26-0"
 }

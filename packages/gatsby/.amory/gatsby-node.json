@@ -1,6 +1,7 @@
 {
   "devtool": false,
   "output": {
-    "hashDigestLength": 6
+    "hashDigestLength": 6,
+    "publicPath": ""
   }
 }
