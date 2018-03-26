@@ -1,6 +1,11 @@
 import instance from "@ptb/gatsby-plugin-styletron/instance"
+import o from "../../gatsby-config.json"
 
-const i = instance ()
+const options = o.plugins
+  .map ((a) => (a.resolve === "@ptb/gatsby-plugin-styletron" ? a.options : {}))
+  .filter ((b) => Object.keys (b).length !== 0)[0]
+
+const i = instance (options)
 
 export default {
   "css": (a) => i.renderStyle (a),
