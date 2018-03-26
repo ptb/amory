@@ -14,3 +14,5 @@ exports.wrapRootComponent = ({ Root }, options) => () => {
     )
   )
 }
+
+module.exports.context = StyletronContext

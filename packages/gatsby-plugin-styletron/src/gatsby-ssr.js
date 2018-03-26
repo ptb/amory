@@ -39,3 +39,5 @@ exports.replaceRenderer = ({
 
   setHeadComponents (head)
 }
+
+module.exports.context = StyletronContext
