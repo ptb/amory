@@ -1,15 +1,14 @@
 {
   "author": "Peter T Bosse II <ptb@ioutime.com> (http://ptb2.me/)",
   "dependencies": {
-    "@ptb/merge-json": "latest",
-    "chokidar-cli": "^1.x"
+    "babel-plugin-transform-react-pug": "^5.x"
   },
   "license": "Apache-2.0",
-  "name": "@ptb/sort-json",
+  "name": "@ptb/gatsby-plugin-pug",
   "publishConfig": {
     "access": "public"
   },
-  "repository": "https://github.com/ptb/amory/tree/master/packages/sort-json",
+  "repository": "https://github.com/ptb/amory/tree/master/packages/gatsby-plugin-pug",
   "scripts": {
     "postinstall": "npx npm-run-all 'postinstall:*'",
     "postinstall:merge": "find '.amory' -maxdepth 1 -name '*.json' -print0 | xargs -0 -I {} -n1 basename '{}' | xargs -I {} -n1 npx -p @ptb/merge-json -c 'merge-json ../../../{} .amory/{}'"
