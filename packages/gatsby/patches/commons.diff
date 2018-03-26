@@ -35,7 +35,7 @@
      page.layoutComponentChunkName,
 --- node_modules/gatsby/dist/utils/webpack.config.js
 +++ node_modules/gatsby/dist/utils/webpack.config.js
-@@ -329,7 +329,7 @@
+@@ -329,8 +329,8 @@
                      // Extract "commons" chunk from the app entry and all
                      // page components.
                      new _webpack2.default.optimize.CommonsChunkPlugin({
