@@ -1,0 +1,44 @@
+--- node_modules/gatsby/cache-dir/default-html.js
++++ node_modules/gatsby/cache-dir/default-html.js
+@@ -3,7 +3,7 @@
+ let stylesStr
+ if (process.env.NODE_ENV === `production`) {
+   try {
+-    stylesStr = require(`!raw-loader!../public/styles.css`)
++    stylesStr = require(`!raw-loader!../public/css/styles.css`)
+   } catch (e) {
+     console.log(e)
+   }
+--- node_modules/gatsby/dist/commands/build-css.js
++++ node_modules/gatsby/dist/commands/build-css.js
+@@ -35,14 +35,14 @@
+
+                 // We don't want any javascript produced by this step in the process.
+                 try {
+-                  fs.unlinkSync(`${directory}/public/bundle-for-css.js`);
++                  fs.unlinkSync(`${directory}/public/css/bundle-for-css.js`);
+                 } catch (e) {}
+                 // ignore.
+
+
+                 // Ensure there's a styles.css file in public so tools that expect it
+                 // can find it.
+-                fs.ensureFile(`${directory}/public/styles.css`, function (err) {
++                fs.ensureFile(`${directory}/public/css/styles.css`, function (err) {
+                   resolve(err);
+                 });
+               });
+--- node_modules/gatsby/dist/utils/webpack.config.js
++++ node_modules/gatsby/dist/utils/webpack.config.js
+@@ -446,9 +446,9 @@
+                   // Webpack will always generate a resultant javascript file.
+                   // But we don't want it for this step. Deleted by build-css.js.
+                   return {
+-                    path: directoryPath(`public`),
++                    path: directoryPath(`public/css`),
+                     filename: `bundle-for-css.js`,
+-                    publicPath: program.prefixPaths ? `${store.getState().config.pathPrefix}/` : `/`
++                    publicPath: program.prefixPaths ? `${store.getState().config.pathPrefix}/` : `/css/`
+                   };
+                 case `build-html`:
+                 case `develop-html`:

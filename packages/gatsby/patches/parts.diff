@@ -1,0 +1,68 @@
+--- node_modules/gatsby/cache-dir/loader.js
++++ node_modules/gatsby/cache-dir/loader.js
+@@ -73,9 +73,9 @@
+   } else {
+     // Find resource
+     let resourceFunction
+-    if (resourceName.slice(0, 12) === `component---`) {
++    if (resourceName.slice(0, 7) === `js/c/c-`) {
+       resourceFunction = asyncRequires.components[resourceName]
+-    } else if (resourceName.slice(0, 9) === `layout---`) {
++    } else if (resourceName.slice(0, 7) === `js/l/l-`) {
+       resourceFunction = asyncRequires.layouts[resourceName]
+     } else {
+       resourceFunction = asyncRequires.json[resourceName]
+--- node_modules/gatsby/cache-dir/static-entry.js
++++ node_modules/gatsby/cache-dir/static-entry.js
+@@ -26,7 +26,7 @@
+
+ const pathChunkName = path => {
+   const name = path === `/` ? `index` : kebabCase(path)
+-  return `path---${name}`
++  return `js/p/p-${name}`
+ }
+
+ const getPage = path => pages.find(page => page.path === path)
+--- node_modules/gatsby/dist/redux/actions.js
++++ node_modules/gatsby/dist/redux/actions.js
+@@ -333,7 +333,7 @@
+   var id = layout.id || path.parse(layout.component).name;
+   // Add a "machine" id as a universal ID to differentiate layout from
+   // page components.
+-  var machineId = `layout---${id}`;
++  var machineId = `js/l/l-${id}`;
+   var componentWrapperPath = joinPath(store.getState().program.directory, `.cache`, `layouts`, `${id}.js`);
+
+   var internalLayout = {
+--- node_modules/gatsby/dist/utils/js-chunk-names.js
++++ node_modules/gatsby/dist/utils/js-chunk-names.js
+@@ -1,5 +1,11 @@
+ "use strict";
+
++var crypto = require("crypto");
++
++var shahex = function shahex(name) {
++  return crypto.createHash("sha").update(name).digest("hex").slice(0,8);
++}
++
+ var _lodash = require("lodash");
+
+ var _lodash2 = _interopRequireDefault(_lodash);
+@@ -13,7 +19,7 @@
+
+ var generatePathChunkName = function generatePathChunkName(path) {
+   var name = path === `/` ? `index` : _lodash2.default.kebabCase(path);
+-  return `path---${name}`;
++  return `js/p/p-${shahex(name)}`;
+ };
+
+ var generateComponentChunkName = function generateComponentChunkName(componentPath) {
+@@ -23,7 +29,7 @@
+     directory = program.directory;
+   }
+   var name = path.relative(directory, componentPath);
+-  return `component---${_lodash2.default.kebabCase(name)}`;
++  return `js/c/c-${shahex(_lodash2.default.kebabCase(name))}`;
+ };
+
+ exports.generatePathChunkName = generatePathChunkName;

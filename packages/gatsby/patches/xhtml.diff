@@ -1,0 +1,33 @@
+--- node_modules/gatsby/cache-dir/develop-static-entry.js
++++ node_modules/gatsby/cache-dir/develop-static-entry.js
+@@ -18,7 +18,7 @@
+
+ module.exports = (locals, callback) => {
+   let headComponents = []
+-  let htmlAttributes = {}
++  let htmlAttributes = {"xmlns": "http://www.w3.org/1999/xhtml"}
+   let bodyAttributes = {}
+   let preBodyComponents = []
+   let postBodyComponents = []
+--- node_modules/gatsby/cache-dir/static-entry.js
++++ node_modules/gatsby/cache-dir/static-entry.js
+@@ -47,7 +47,7 @@
+
+   let bodyHtml = ``
+   let headComponents = []
+-  let htmlAttributes = {}
++  let htmlAttributes = {"xmlns": "http://www.w3.org/1999/xhtml"}
+   let bodyAttributes = {}
+   let preBodyComponents = []
+   let postBodyComponents = []
+--- node_modules/gatsby-module-loader/patch.js
++++ node_modules/gatsby-module-loader/patch.js
+@@ -67,7 +67,7 @@
+   function onError(callback) {
+     var script = head.lastChild;
+
+-    if (script.tagName !== "SCRIPT") {
++    if (script.tagName.toUpperCase() !== "SCRIPT") {
+       if (typeof console !== "undefined" && console.warn) {
+         console.warn("Script is not a script", script);
+       }
