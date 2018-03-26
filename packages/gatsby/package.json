@@ -3,7 +3,9 @@
   "dependencies": {
     "caniuse-db": "^1.x",
     "chokidar-cli": "^1.x",
-    "gatsby": "^1.x"
+    "gatsby": "^1.x",
+    "react": "^16.x",
+    "react-dom": "^16.x"
   },
   "license": "Apache-2.0",
   "name": "@ptb/gatsby",
@@ -17,5 +19,5 @@
     "postinstall:patch": "patch -d ../../../ -p0 < patch.diff",
     "postinstall:setup": "find '.amory' -maxdepth 1 -not -name '.amory' -not -name '*.json' -exec cp -R '{}' '../../../' \\;"
   },
-  "version": "2018.3.26-2"
+  "version": "2018.3.26-3"
 }
