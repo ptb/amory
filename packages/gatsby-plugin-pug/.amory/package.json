@@ -8,6 +8,9 @@
     "extends": [
       "plugin:react-pug/all"
     ],
+    "globals": {
+      "pug": true
+    },
     "plugins": [
       "react-pug"
     ]

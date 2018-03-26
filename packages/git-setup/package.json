@@ -1,18 +1,14 @@
 {
+  "name": "@ptb/git-setup",
   "author": "Peter T Bosse II <ptb@ioutime.com> (http://ptb2.me/)",
-  "dependencies": {
-    "@ptb/merge-json": "latest",
-    "chokidar-cli": "^1.x"
-  },
   "license": "Apache-2.0",
-  "name": "@ptb/sort-json",
   "publishConfig": {
     "access": "public"
   },
   "repository": "https://github.com/ptb/amory/tree/master/packages/sort-json",
   "scripts": {
     "postinstall": "npx npm-run-all 'postinstall:*'",
-    "postinstall:merge": "find '.amory' -maxdepth 1 -name '*.json' -print0 | xargs -0 -I {} -n1 basename '{}' | xargs -I {} -n1 npx -p @ptb/merge-json -c 'merge-json ../../../{} .amory/{}'"
+    "postinstall:setup": "source autokeep.command 0 && cd ../../../ && autokeep"
   },
   "version": "2018.3.26-11"
 }
