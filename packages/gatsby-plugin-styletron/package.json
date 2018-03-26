@@ -1,10 +1,28 @@
 {
-  "author": "Peter T Bosse II <ptb@ioutime.com> (http://ptb2.me/)",
+  "authors": [
+    "Nadiia Dmytrenko <nadiia.dmytrenko@gmail.com>",
+    "Peter T Bosse II <ptb@ioutime.com> (http://ptb2.me/)"
+  ],
   "dependencies": {
+    "babel-runtime": "^6.x",
+    "create-react-context": "latest",
     "gatsby": "^1.x",
-    "gatsby-plugin-styletron": "^2.x",
-    "react": "^16.x"
+    "react": "^16.x",
+    "react-dom": "^16.x",
+    "styletron-engine-atomic": "^1",
+    "styletron-react": "^4",
+    "styletron-react-core": "^1",
+    "styletron-standard": "^1"
   },
+  "description": "A Gatsby plugin for styletron with built-in server-side rendering support",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "cross-env": "^5.0.5"
+  },
+  "keywords": [
+    "gatsby",
+    "gatsby-plugin"
+  ],
   "license": "Apache-2.0",
   "name": "@ptb/gatsby-plugin-styletron",
   "publishConfig": {
@@ -12,9 +30,12 @@
   },
   "repository": "https://github.com/ptb/amory/tree/master/packages/gatsby-plugin-styletron",
   "scripts": {
+    "build": "babel src --out-dir . --ignore __tests__",
     "postinstall": "npx npm-run-all 'postinstall:*'",
     "postinstall:merge": "find '.amory' -maxdepth 1 -name '*.json' -print0 | xargs -0 -I {} -n1 basename '{}' | xargs -I {} -n1 npx -p @ptb/merge-json -c 'merge-json ../../../{} .amory/{}'",
-    "postinstall:setup": "find '.amory' -maxdepth 1 -not -name '.amory' -not -name '*.json' -exec cp -R '{}' '../../../' \\;"
+    "postinstall:setup": "find '.amory' -maxdepth 1 -not -name '.amory' -not -name '*.json' -exec cp -R '{}' '../../../' \\;",
+    "prepare": "cross-env NODE_ENV=production npm run build",
+    "watch": "babel -w src --out-dir . --ignore __tests__"
   },
-  "version": "2018.3.26-11"
+  "version": "2018.3.26-12"
 }
