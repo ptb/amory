@@ -3,5 +3,10 @@
     "plugins": [
       "transform-react-pug"
     ]
+  },
+  "eslintConfig": {
+    "extends": [
+      "eslint-plugin-react-pug"
+    ]
   }
 }
