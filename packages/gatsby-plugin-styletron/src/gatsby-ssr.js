@@ -1,5 +1,5 @@
 import { createElement as h } from "react"
-import Context from "./styletron-context.js"
+import Context from "./context.js"
 import { Provider as StyletronProvider } from "styletron-react"
 import { renderToString } from "react-dom/server"
 
@@ -8,9 +8,9 @@ exports.replaceRenderer = ({
   setHeadComponents,
   replaceBodyHTMLString
 }, options) => {
-  const StyletronContext = Context (options).Consumer
+  const Styletron = Context (options)
 
-  const body = h (StyletronContext, {}, (styletron) =>
+  const body = h (Styletron.Consumer, {}, (styletron) =>
     h (StyletronProvider, { "value": styletron },
       bodyComponent
     )
@@ -18,7 +18,7 @@ exports.replaceRenderer = ({
 
   replaceBodyHTMLString (renderToString (body))
 
-  const head = h (StyletronContext, {}, (styletron) => {
+  const head = h (Styletron.Consumer, {}, (styletron) => {
     const stylesheets = styletron.getStylesheets ()
 
     return stylesheets[0].css ?

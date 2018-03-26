@@ -1,5 +1,5 @@
 import createContext from "create-react-context"
-import createInstance from "./styletron-instance.js"
+import createInstance from "./instance.js"
 
 let styletron
 
