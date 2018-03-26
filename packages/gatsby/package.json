@@ -19,5 +19,5 @@
     "postinstall:patch": "patch -d ../../../ -p0 < patch.diff",
     "postinstall:setup": "find '.amory' -maxdepth 1 -not -name '.amory' -not -name '*.json' -exec cp -R '{}' '../../../' \\;"
   },
-  "version": "2018.3.26-15"
+  "version": "2018.3.26-16"
 }
