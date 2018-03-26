@@ -1,9 +1,9 @@
 import instance from "@ptb/gatsby-plugin-styletron/instance"
 
-const styletron = instance ()
+const i = instance ()
 
 export default {
-  "css": (a) => styletron.renderStyle (a),
-  "fnt": (b) => styletron.renderFontFace (b),
-  "key": (c) => styletron.renderKeyframes (c)
+  "css": (a) => i.renderStyle (a),
+  "fnt": (b) => i.renderFontFace (b),
+  "key": (c) => i.renderKeyframes (c)
 }
