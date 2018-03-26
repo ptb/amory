@@ -1,15 +1,15 @@
 import { Client, Server } from "styletron-engine-atomic"
 
-let styletron
+let instance
 
 export default (options) => {
-  if (!styletron) {
+  if (!instance) {
     if (typeof window !== "undefined" && window.document.createElement) {
       const styles = document.getElementsByClassName ("_styletron_hydrate_")
-      styletron = new Client ({ "hydrate": styles, ... options })
+      instance = new Client ({ "hydrate": styles, ... options })
     } else {
-      styletron = new Server (options)
+      instance = new Server (options)
     }
   }
-  return styletron
+  return instance
 }
