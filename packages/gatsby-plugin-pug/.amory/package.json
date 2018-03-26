@@ -6,7 +6,10 @@
   },
   "eslintConfig": {
     "extends": [
-      "eslint-plugin-react-pug"
+      "plugin:react-pug/all"
+    ],
+    "plugins": [
+      "react-pug"
     ]
   }
 }
