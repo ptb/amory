@@ -3,14 +3,12 @@ import Context from "./context.js"
 import { Provider as StyletronProvider } from "styletron-react"
 import { renderToString } from "react-dom/server"
 
-let StyletronContext
-
 exports.replaceRenderer = ({
   bodyComponent,
   setHeadComponents,
   replaceBodyHTMLString
 }, options) => {
-  StyletronContext = Context (options).Consumer
+  const StyletronContext = Context (options).Consumer
 
   const body = h (StyletronContext, {}, (styletron) =>
     h (StyletronProvider, { "value": styletron },
@@ -39,5 +37,3 @@ exports.replaceRenderer = ({
 
   setHeadComponents (head)
 }
-
-module.exports.context = StyletronContext

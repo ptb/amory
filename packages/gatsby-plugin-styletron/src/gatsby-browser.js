@@ -2,10 +2,8 @@ import { createElement as h } from "react"
 import Context from "./context.js"
 import { Provider as StyletronProvider } from "styletron-react"
 
-let StyletronContext
-
 exports.wrapRootComponent = ({ Root }, options) => () => {
-  StyletronContext = Context (options).Consumer
+  const StyletronContext = Context (options).Consumer
   StyletronContext.displayName = "StyletronContext"
 
   return h (StyletronContext, {}, (styletron) =>
@@ -14,5 +12,3 @@ exports.wrapRootComponent = ({ Root }, options) => () => {
     )
   )
 }
-
-module.exports.context = StyletronContext
