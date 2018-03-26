@@ -1,0 +1,11 @@
+--- node_modules/gatsby/dist/utils/webpack.config.js
++++ node_modules/gatsby/dist/utils/webpack.config.js
+@@ -408,7 +408,7 @@
+               switch (stage) {
+                 case `develop`:
+                   return {
+-                    commons: [require.resolve(`react-hot-loader/patch`), `${require.resolve(`webpack-hot-middleware/client`)}?path=${program.ssl ? `https` : `http`}://${program.host}:${webpackPort}/__webpack_hmr&reload=true&overlay=false`, directoryPath(`.cache/app`)]
++                    commons: [require.resolve(`react-hot-loader/patch`), `${require.resolve(`webpack-hot-middleware/client`)}?path=/__webpack_hmr&reload=true&overlay=false`, directoryPath(`.cache/app`)]
+                   };
+                 case `develop-html`:
+                   return {
