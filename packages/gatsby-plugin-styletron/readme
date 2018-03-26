@@ -1,7 +1,0 @@
-import { createElement as h } from "react"
-import styletron from "@ptb/gatsby-plugin-styletron/instance"
-
-const css = styletron ()
-
-export default () =>
-  h ("div", { "className": css.renderStyle ({ "color": "red" }) }, "Hi")
