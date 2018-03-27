@@ -10,5 +10,5 @@
     "postinstall": "npx npm-run-all 'postinstall:*'",
     "postinstall:setup": "source autokeep.command 0 && cd ../../../ && autokeep"
   },
-  "version": "2018.3.27-9"
+  "version": "2018.3.27-10"
 }

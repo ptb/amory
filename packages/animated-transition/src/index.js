@@ -111,7 +111,7 @@ export default class extends Component {
           "key": this.props.location.key,
           "location": this.props.location,
           "timeout": 375
-        }, this.props.children ()))
+        }, this.props.children))
   }
 
   shouldComponentUpdate (b) {

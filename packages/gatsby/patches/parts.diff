@@ -5,10 +5,10 @@
      // Find resource
      let resourceFunction
 -    if (resourceName.slice(0, 12) === `component---`) {
-+    if (resourceName.slice(0, 7) === `js/c/c-`) {
++    if (resourceName.slice(0, 8) === `/js/c/c-`) {
        resourceFunction = asyncRequires.components[resourceName]
 -    } else if (resourceName.slice(0, 9) === `layout---`) {
-+    } else if (resourceName.slice(0, 7) === `js/l/l-`) {
++    } else if (resourceName.slice(0, 8) === `/js/l/l-`) {
        resourceFunction = asyncRequires.layouts[resourceName]
      } else {
        resourceFunction = asyncRequires.json[resourceName]
@@ -19,7 +19,7 @@
  const pathChunkName = path => {
    const name = path === `/` ? `index` : kebabCase(path)
 -  return `path---${name}`
-+  return `js/p/p-${name}`
++  return `/js/p/p-${name}`
  }
 
  const getPage = path => pages.find(page => page.path === path)
@@ -30,7 +30,7 @@
    // Add a "machine" id as a universal ID to differentiate layout from
    // page components.
 -  var machineId = `layout---${id}`;
-+  var machineId = `js/l/l-${id}`;
++  var machineId = `/js/l/l-${id}`;
    var componentWrapperPath = joinPath(store.getState().program.directory, `.cache`, `layouts`, `${id}.js`);
 
    var internalLayout = {
@@ -53,7 +53,7 @@
  var generatePathChunkName = function generatePathChunkName(path) {
    var name = path === `/` ? `index` : _lodash2.default.kebabCase(path);
 -  return `path---${name}`;
-+  return `js/p/p-${shahex(name)}`;
++  return `/js/p/p-${shahex(name)}`;
  };
 
  var generateComponentChunkName = function generateComponentChunkName(componentPath) {
@@ -62,7 +62,7 @@
    }
    var name = path.relative(directory, componentPath);
 -  return `component---${_lodash2.default.kebabCase(name)}`;
-+  return `js/c/c-${shahex(_lodash2.default.kebabCase(name))}`;
++  return `/js/c/c-${shahex(_lodash2.default.kebabCase(name))}`;
  };
 
  exports.generatePathChunkName = generatePathChunkName;
