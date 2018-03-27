@@ -37,8 +37,8 @@
     "build": "babel src --out-dir . --ignore __tests__",
     "postinstall": "npx npm-run-all 'postinstall:*'",
     "postinstall:merge": "find '.amory' -maxdepth 1 -name '*.json' -print0 | xargs -0 -I {} -n1 basename '{}' | xargs -I {} -n1 npx -p @ptb/merge-json -c 'merge-json ../../../{} .amory/{}'",
-    "postinstall:setup": "mkdir -p '../../../src/parts' && cp -R '.amory/style.js' '../../../src/parts/style.js'",
+    "postinstall:setup": "find '.amory' -maxdepth 1 -not -name '.amory' -not -name '*.json' -exec cp -R '{}' '../../../' \\;",
     "watch": "babel -w src --out-dir . --ignore __tests__"
   },
-  "version": "2018.3.27-4"
+  "version": "2018.3.27-5"
 }
