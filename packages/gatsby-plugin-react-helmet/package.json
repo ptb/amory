@@ -1,18 +1,15 @@
 {
   "author": "Peter T Bosse II <ptb@ioutime.com> (http://ptb2.me/)",
   "dependencies": {
-    "caniuse-db": "^1.x",
-    "chokidar-cli": "^1.x",
-    "gatsby": "^1.x",
-    "react": "^16.x",
-    "react-dom": "^16.x"
+    "gatsby-plugin-react-helmet": "^2.x",
+    "react-helmet": "^5.x"
   },
   "license": "Apache-2.0",
-  "name": "@ptb/gatsby",
+  "name": "@ptb/gatsby-plugin-react-helmet",
   "publishConfig": {
     "access": "public"
   },
-  "repository": "https://github.com/ptb/amory/tree/master/packages/gatsby",
+  "repository": "https://github.com/ptb/amory/tree/master/packages/gatsby-plugin-react-helmet",
   "scripts": {
     "postinstall": "npx npm-run-all 'postinstall:*'",
     "postinstall:merge": "find '.amory' -maxdepth 1 -name '*.json' -print0 | xargs -0 -I {} -n1 basename '{}' | xargs -I {} -n1 npx -p @ptb/merge-json -c 'merge-json ../../../{} .amory/{}'",
