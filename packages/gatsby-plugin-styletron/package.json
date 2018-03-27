@@ -13,11 +13,7 @@
   },
   "dependencies": {
     "babel-runtime": "^6.x",
-    "create-react-context": "latest",
     "gatsby": "^1.x",
-    "prop-types": "^15.x",
-    "react": "^16.x",
-    "react-dom": "^16.x",
     "styletron-engine-atomic": "^1",
     "styletron-react": "^4",
     "styletron-react-core": "^1",
@@ -48,5 +44,5 @@
     "postinstall:setup": "find '.amory' -maxdepth 1 -not -name '.amory' -not -name '*.json' -exec cp -R '{}' '../../../' \\;",
     "watch": "babel -w src --out-dir . --ignore __tests__"
   },
-  "version": "2018.3.26-31"
+  "version": "2018.3.27-0"
 }
