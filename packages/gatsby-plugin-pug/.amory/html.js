@@ -9,6 +9,6 @@ export default (a) => pug `
       = a.headComponents
     body(...a.bodyAttributes)
       = a.preBodyComponents
-      #root(key="body" dangerouslySetInnerHTML={ "__html": a.body })
+      #root(key="body" dangerouslySetInnerHTML=({ "__html": a.body }))
       = a.postBodyComponents
 `

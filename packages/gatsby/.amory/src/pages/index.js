@@ -9,9 +9,9 @@ export default () =>
 // export default () =>
 //   h ("div", { "className": css ({ "color": "#000" }) }, "Hi")
 
+// import React, { Fragment } from "react"
 // import { css } from "@ptb/gatsby-plugin-styletron/style"
 // import Link from "gatsby-link"
-// import React, { Fragment } from "react"
 
 // export default () => pug `
 //   Fragment
