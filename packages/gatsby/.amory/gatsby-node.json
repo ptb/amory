@@ -2,6 +2,6 @@
   "devtool": false,
   "output": {
     "hashDigestLength": 6,
-    "publicPath": ""
+    "publicPath": "/"
   }
 }
