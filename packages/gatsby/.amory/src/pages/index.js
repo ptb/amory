@@ -11,14 +11,16 @@ export default () =>
 
 // import { css } from "@ptb/gatsby-plugin-styletron/style"
 // import Link from "gatsby-link"
-// import React from "react"
+// import React, { Fragment } from "react"
 
 // export default () => pug `
-//   Link(to="/page-2/") To Page 2
-//   div(class=css ({ "color": "#000" })) Hi
+//   Fragment
+//     Link(to="/page-2/") To Page 2
+//     div(class=css ({ "color": "#000" })) Hi
 // `
 
 // export default () => pug `
-//   Link(to={ "pathname": "/", "state": { "dir": "back" } }) To Index
-//   div(class=css ({ "color": "#000" })) Hi
+//   Fragment
+//     Link(to={ "pathname": "/", "state": { "dir": "back" } }) To Index
+//     div(class=css ({ "color": "#000" })) Hi
 // `
