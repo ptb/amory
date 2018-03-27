@@ -21,6 +21,6 @@ export default () =>
 
 // export default () => pug `
 //   Fragment
-//     Link(to={ "pathname": "/", "state": { "dir": "back" } }) To Index
+//     Link(to=({ "pathname": "/", "state": { "dir": "back" } })) To Index
 //     div(class=css ({ "color": "#000" })) Hi
 // `

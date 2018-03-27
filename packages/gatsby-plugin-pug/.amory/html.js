@@ -3,7 +3,7 @@ import React from "react"
 export default (a) => pug `
   html(...a.htmlAttributes)
     head
-      meta(charset="utf-8")/
+      meta(charSet="utf-8")/
       meta(content="ie=edge" httpEquiv="x-ua-compatible")/
       meta(content="initial-scale=1,shrink-to-fit=no,width=device-width" name="viewport")/
       = a.headComponents
