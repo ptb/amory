@@ -1,5 +1,4 @@
-/context.js
 /gatsby-browser.js
-/gatsby-node.js
 /gatsby-ssr.js
 /instance.js
+/style.js

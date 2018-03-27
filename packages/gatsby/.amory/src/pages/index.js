@@ -17,8 +17,8 @@ export default () =>
 //     div(className=${css ({ "color": "#000" })}) Hi
 //   `
 
-// import { css } from "../parts/style.js"
+// import { css } from "@ptb/gatsby-plugin-styletron/style"
 // import { createElement as h } from "react"
 
 // export default () =>
-//   h ("p", { "className": css ({ "color": "#ff0" }) }, "He")
+//   h ("p", { "className": css ({ "color": "#f00" }) }, "Hi")

@@ -1,4 +1,4 @@
-import instance from "@ptb/gatsby-plugin-styletron/instance"
+import instance from "./instance.js"
 
 export default {
   "css": (a) => instance.renderStyle (a),
