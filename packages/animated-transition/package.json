@@ -1,0 +1,33 @@
+{
+  "author": "Peter T Bosse II <ptb@ioutime.com> (http://ptb2.me/)",
+  "babel": {
+    "plugins": [
+      "babel-plugin-transform-object-rest-spread"
+    ],
+    "presets": [
+      "env"
+    ]
+  },
+  "dependencies": {
+    "@ptb/gatsby-plugin-styletron": "latest",
+    "react-transition-group": "^2.x"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.x",
+    "babel-plugin-transform-object-rest-spread": "latest",
+    "babel-preset-env": "latest",
+    "cross-env": "^5.x"
+  },
+  "license": "Apache-2.0",
+  "main": "index.js",
+  "name": "@ptb/animated-transition",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": "https://github.com/ptb/amory/tree/master/packages/animated-transition",
+  "scripts": {
+    "build": "babel src --out-dir . --ignore __tests__",
+    "watch": "babel -w src --out-dir . --ignore __tests__"
+  },
+  "version": "2018.3.27-9"
+}

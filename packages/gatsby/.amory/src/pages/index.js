@@ -1,24 +1,18 @@
 import { createElement as h } from "react"
 
 export default () =>
-  h ("div")
+  h ("div", {}, "Hi")
 
-// import { css } from "../parts/style.js"
+// import { css } from "@ptb/gatsby-plugin-styletron/style"
 // import { createElement as h } from "react"
 
 // export default () =>
-//   h ("div", css ({ "background-color": "#ccc" }), "Hi")
+//   h ("div", { "className": css ({ "color": "#000" }) }, "Hi")
 
-// import { css } from "../parts/style.js"
+// import { css } from "@ptb/gatsby-plugin-styletron/style"
 // import React from "react"
 
 // export default () =>
 //   pug `
 //     div(className=${css ({ "color": "#000" })}) Hi
 //   `
-
-// import { css } from "@ptb/gatsby-plugin-styletron/style"
-// import { createElement as h } from "react"
-
-// export default () =>
-//   h ("p", { "className": css ({ "color": "#f00" }) }, "Hi")
