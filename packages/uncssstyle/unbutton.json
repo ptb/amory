@@ -1,0 +1,40 @@
+{
+  "-moz-appearance": "none",
+  "-moz-user-select": "auto",
+  "-webkit-appearance": "none",
+  "-webkit-logical-height": "auto",
+  "-webkit-logical-width": "auto",
+  ":active": {
+    "-webkit-text-decoration-color": "inherit",
+    "-webkit-text-emphasis-color": "inherit",
+    "-webkit-text-fill-color": "inherit",
+    "-webkit-text-stroke-color": "inherit",
+    "border": "0",
+    "color": "inherit",
+    "column-rule-color": "inherit",
+    "outline": "0"
+  },
+  ":focus": {
+    "column-rule-color": "inherit",
+    "outline": "0"
+  },
+  "align-items": "inherit",
+  "background-color": "inherit",
+  "block-size": "auto",
+  "border": "0",
+  "box-sizing": "inherit",
+  "cursor": "inherit",
+  "display": "inline",
+  "font-family": "inherit",
+  "font-size": "inherit",
+  "height": "auto",
+  "inline-size": "auto",
+  "line-height": "inherit",
+  "margin": "0",
+  "min-block-size": "0",
+  "min-height": "0",
+  "padding": "0",
+  "place-items": "inherit",
+  "text-align": "inherit",
+  "width": "auto"
+}
