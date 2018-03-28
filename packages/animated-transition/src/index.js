@@ -7,7 +7,7 @@ const slide = [
   {
     "animation-duration": "375ms",
     "animation-fill-mode": "forwards",
-    "background-color": "#fff",
+    "background-color": "inherit",
     "pointer-events": "none",
     "position": "absolute",
     "will-change": "transform"
@@ -19,12 +19,12 @@ const slide = [
     "z-index": "0"
   },
   {
-    "box-shadow": "rgba(0,0,0,.2) -12px 0 14px -12px"
+    "box-shadow": "-8px 0 8px -2px rgba(0,0,0,.2)"
   },
   {
     "background-color": "rgba(0,0,0,.1)",
     "bottom": "0",
-    "content": "",
+    "content": "' '",
     "left": "0",
     "opacity": "0",
     "position": "absolute",
@@ -47,32 +47,36 @@ const slide = [
     "to": {
       "transform": `translate3d(${d},0,0)`
     }
-  })
+  }),
+  {
+    "overflow": "hidden",
+    "position": "relative"
+  }
 ]
 
 const classNames = {
   "slide": {
     "back": {
-      "exit": css ({
+      "exit": {
         ... slide[0],
         ... slide[1],
         ... slide[3],
         "animation-name": key (slide[6] ("0", "100%"))
-      }),
-      "next": css ({
+      },
+      "next": {
         ... slide[0],
         ... slide[2],
         ":after": {
           ... slide[0],
-          ... slide[2],
+          ... slide[1],
           ... slide[4],
           "animation-name": key (slide[5] ("1", "0"))
         },
         "animation-name": key (slide[6] ("-20%", "0"))
-      })
+      }
     },
     "fore": {
-      "exit": css ({
+      "exit": {
         ... slide[0],
         ... slide[2],
         ":after": {
@@ -82,16 +86,18 @@ const classNames = {
           "animation-name": key (slide[5] ("0", "1"))
         },
         "animation-name": key (slide[6] ("0", "-20%"))
-      }),
-      "next": css ({
+      },
+      "next": {
         ... slide[0],
         ... slide[1],
         ... slide[3],
         "animation-name": key (slide[6] ("100%", "0"))
-      })
+      }
     }
   }
 }
+
+export { classNames }
 
 export default class extends Component {
   render () {
@@ -101,10 +107,10 @@ export default class extends Component {
       {
         "childFactory": (a) =>
           cloneElement (a, { "classNames": {
-            "enterActive": classNames[anim][dir].next,
-            "exitActive": classNames[anim][dir].exit
+            "enterActive": css (classNames[anim][dir].next),
+            "exitActive": css (classNames[anim][dir].exit)
           } }),
-        "component": Fragment
+        "className": css (slide[7])
       },
       h (CSSTransition,
         {
