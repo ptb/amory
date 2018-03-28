@@ -1,7 +1,39 @@
 {
   "author": "Peter T Bosse II <ptb@ioutime.com> (http://ptb2.me/)",
   "devDependencies": {
+    "@ptb/eslint-config": "latest",
     "lerna": "^2.9.0"
+  },
+  "eslintConfig": {
+    "extends": [
+      "@ptb/eslint-config"
+    ],
+    "rules": {
+      "better/explicit-return": "off",
+      "better/no-ifs": "off",
+      "better/no-instanceofs": "off",
+      "better/no-new": "off",
+      "fp/no-arguments": "off",
+      "fp/no-class": "off",
+      "fp/no-delete": "off",
+      "fp/no-events": "off",
+      "fp/no-get-set": "off",
+      "fp/no-let": "off",
+      "fp/no-loops": "off",
+      "fp/no-mutating-assign": "off",
+      "fp/no-mutating-methods": "off",
+      "fp/no-mutation": "off",
+      "fp/no-nil": "off",
+      "fp/no-proxy": "off",
+      "fp/no-rest-parameters": "off",
+      "fp/no-this": "off",
+      "fp/no-throw": "off",
+      "fp/no-unused-expression": "off",
+      "fp/no-valueof-field": "off",
+      "import/export": "off",
+      "import/no-amd": "off",
+      "import/no-commonjs": "off"
+    }
   },
   "license": "Apache-2.0",
   "name": "amory",
@@ -10,6 +42,7 @@
   },
   "repository": "https://github.com/ptb/amory.git",
   "scripts": {
+    "js:lint": "chokidar '**/*.js' -i '/node_modules|public/' -c 'eslint --fix {path}'",
     "start": "yarn init -y && yarn add @ptb/animated-transition && yarn add @ptb/eslint-config && yarn add @ptb/gatsby && yarn add @ptb/gatsby-plugin-pug && yarn add @ptb/gatsby-plugin-react-helmet && yarn add @ptb/gatsby-plugin-styletron && yarn add @ptb/git-setup && yarn add @ptb/http-server && yarn add @ptb/prettier-eslint && yarn add @ptb/sort-json && yarn add @ptb/uncssstyle && yarn add react react-dom && for f in node_modules/@ptb/gatsby/patches/*; do patch -p0 < $f; done"
   }
 }
