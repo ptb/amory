@@ -1,4 +1,5 @@
 {
   "min-height": "100vh",
-  "overflow": "hidden"
+  "overflow": "hidden",
+  "position": "relative"
 }
