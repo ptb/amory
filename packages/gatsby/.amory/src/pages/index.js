@@ -12,15 +12,16 @@ export default () =>
 // import React, { Fragment } from "react"
 // import { css } from "@ptb/gatsby-plugin-styletron/style"
 // import Link from "gatsby-link"
+// import unroot from "@ptb/uncssstyle/unroot.json"
 
 // export default () => pug `
-//   Fragment
+//   div(class=css (unroot))
 //     Link(to="/page-2/") To Page 2
 //     div(class=css ({ "color": "#000" })) Hi
 // `
 
 // export default () => pug `
-//   Fragment
+//   div(class=css (unroot))
 //     Link(to=({ "pathname": "/", "state": { "dir": "back" } })) To Index
 //     div(class=css ({ "color": "#000" })) Hi
 // `
