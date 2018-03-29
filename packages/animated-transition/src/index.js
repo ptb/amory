@@ -1,47 +1,49 @@
 import { cloneElement, Component, createElement as h } from "react"
-import { css, key } from "@ptb/gatsby-plugin-styletron/style"
 import styles, { slide, view } from "./styles.json"
+import { css } from "@ptb/gatsby-plugin-styletron/style"
 import CSSTransition from "react-transition-group/CSSTransition"
+import { driver } from "styletron-standard"
+import instance from "@ptb/gatsby-plugin-styletron/instance"
 import TransitionGroup from "react-transition-group/TransitionGroup"
 
 const classNames = {
   "slide": {
-    "back": {
-      "exit": {
+    "exit": {
+      "back": {
         ... slide[0],
         ... slide[1],
         ... slide[3],
-        "animation-name": key (slide[5])
+        "animationName": slide[5]
       },
-      "next": {
+      "fore": {
         ... slide[0],
         ... slide[2],
         ":after": {
           ... slide[0],
           ... slide[1],
           ... slide[4],
-          "animation-name": key (slide[6])
+          "animationName": slide[6]
         },
-        "animation-name": key (slide[7])
+        "animationName": slide[7]
       }
     },
-    "fore": {
-      "exit": {
+    "next": {
+      "back": {
         ... slide[0],
         ... slide[2],
         ":after": {
           ... slide[0],
           ... slide[1],
           ... slide[4],
-          "animation-name": key (slide[8])
+          "animationName": slide[8]
         },
-        "animation-name": key (slide[9])
+        "animationName": slide[9]
       },
-      "next": {
+      "fore": {
         ... slide[0],
         ... slide[1],
         ... slide[3],
-        "animation-name": key (slide[10])
+        "animationName": slide[10]
       }
     }
   }
@@ -53,7 +55,7 @@ export { classNames, styles, View }
 
 export default class extends Component {
   render () {
-    const { anim = "slide", dir = "fore" } = { ... this.props.location.state }
+    const { anim = "slide", dir } = { ... this.props.location.state }
 
     return h (
       TransitionGroup,
@@ -61,8 +63,8 @@ export default class extends Component {
         "childFactory": (a) =>
           cloneElement (a, {
             "classNames": {
-              "enterActive": css (classNames[anim][dir].next),
-              "exitActive": css (classNames[anim][dir].exit)
+              "enterActive": driver (classNames[anim].next[dir], instance),
+              "exitActive": driver (classNames[anim].exit[dir], instance)
             }
           }),
         "className": this.props.className

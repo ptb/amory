@@ -1,7 +1,5 @@
 {
   "body": {
-    "-moz-text-size-adjust": "100%",
-    "-ms-text-size-adjust": "100%",
     "-webkit-text-size-adjust": "100%",
     "box-sizing": "border-box",
     "margin": "0",
@@ -46,22 +44,6 @@
     },
     {
       "0%": {
-        "opacity": "1"
-      },
-      "to": {
-        "opacity": "0"
-      }
-    },
-    {
-      "0%": {
-        "transform": "translate3d(-20%,0,0)"
-      },
-      "to": {
-        "transform": "translate3d(0,0,0)"
-      }
-    },
-    {
-      "0%": {
         "opacity": "0"
       },
       "to": {
@@ -74,6 +56,22 @@
       },
       "to": {
         "transform": "translate3d(-20%,0,0)"
+      }
+    },
+    {
+      "0%": {
+        "opacity": "1"
+      },
+      "to": {
+        "opacity": "0"
+      }
+    },
+    {
+      "0%": {
+        "transform": "translate3d(-20%,0,0)"
+      },
+      "to": {
+        "transform": "translate3d(0,0,0)"
       }
     },
     {
