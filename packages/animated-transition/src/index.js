@@ -3,19 +3,20 @@ import styles, { slide, view } from "./styles.json"
 import { css } from "@ptb/gatsby-plugin-styletron/style"
 import CSSTransition from "react-transition-group/CSSTransition"
 import { driver } from "styletron-standard"
+import get from "lodash.get"
 import instance from "@ptb/gatsby-plugin-styletron/instance"
 import TransitionGroup from "react-transition-group/TransitionGroup"
 
 const classNames = {
   "slide": {
-    "exit": {
-      "back": {
+    "back": {
+      "exit": {
         ... slide[0],
         ... slide[1],
         ... slide[3],
         "animationName": slide[5]
       },
-      "fore": {
+      "next": {
         ... slide[0],
         ... slide[2],
         ":after": {
@@ -27,8 +28,8 @@ const classNames = {
         "animationName": slide[7]
       }
     },
-    "next": {
-      "back": {
+    "fore": {
+      "exit": {
         ... slide[0],
         ... slide[2],
         ":after": {
@@ -39,7 +40,7 @@ const classNames = {
         },
         "animationName": slide[9]
       },
-      "fore": {
+      "next": {
         ... slide[0],
         ... slide[1],
         ... slide[3],
@@ -55,7 +56,7 @@ export { classNames, styles, View }
 
 export default class extends Component {
   render () {
-    const { anim = "slide", dir } = { ... this.props.location.state }
+    const { anim } = { ... this.props.location.state }
 
     return h (
       TransitionGroup,
@@ -63,9 +64,10 @@ export default class extends Component {
         "childFactory": (a) =>
           cloneElement (a, {
             "classNames": {
-              "enterActive": driver (classNames[anim].next[dir], instance),
-              "exitActive": driver (classNames[anim].exit[dir], instance)
-            }
+              "enterActive": driver (get (classNames, `${anim}.next`), instance),
+              "exitActive": driver (get (classNames, `${anim}.exit`), instance)
+            },
+            "timeout": anim ? 375 : 0
           }),
         "className": this.props.className
       },
@@ -73,8 +75,7 @@ export default class extends Component {
         CSSTransition,
         {
           "key": this.props.location.key,
-          "location": this.props.location,
-          "timeout": dir ? 375 : 0
+          "location": this.props.location
         },
         this.props.children
       )
