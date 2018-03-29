@@ -16,7 +16,7 @@ export default () =>
 
 // export default () => pug `
 //   View(style=({ "background-color": "rgba(255,204,204,0.8)" }))
-//     Link(to="/page-2/") To Page 2
+//     Link(to=({ "pathname": "/page-2/", "state": { "dir": "fore" } })) To Page 2
 //     div(class=css ({ "color": "#000" })) Hi
 // `
 

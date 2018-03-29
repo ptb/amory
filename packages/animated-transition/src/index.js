@@ -74,7 +74,7 @@ export default class extends Component {
         {
           "key": this.props.location.key,
           "location": this.props.location,
-          "timeout": 375
+          "timeout": dir ? 375 : 0
         },
         this.props.children
       )
