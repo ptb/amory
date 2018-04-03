@@ -89,8 +89,13 @@ class GatsbyImage extends Component {
 
     // If this image has already been loaded before then we can assume it's
     // already in the browser cache so it's cheap to just show directly.
+    if (!isCached (props) && typeof window !== "undefined" && canObserve ()) {
+      isLoaded = false
+      isVisible = false
+    }
+
     // Always don't render image while server rendering
-    if (typeof window === "undefined" || !isCached (props)) {
+    if (typeof window === "undefined") {
       isLoaded = false
       isVisible = false
     }
