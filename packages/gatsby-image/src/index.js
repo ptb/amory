@@ -283,12 +283,6 @@ class GatsbyImage extends Component {
           this.getProps ().inner (className, fluid, img, style),
           fluid && h (Tag, this.getProps ().ratio (img)),
 
-          // Show the original image during server-side rendering,
-          // or if JavaScript is disabled
-          h ("noscript", {},
-            h ("img",
-              this.getProps ().image (alt, img, fluid, 2, imgStyle, title))),
-
           // Show the blurry base64 image.
           img.base64 &&
             h ("img", this.getProps ()
@@ -307,7 +301,13 @@ class GatsbyImage extends Component {
           // Once the image is visible, start downloading the image
           this.state.isVisible &&
             h ("img",
-              this.getProps ().image (alt, img, fluid, 1, imgStyle, title))
+              this.getProps ().image (alt, img, fluid, 1, imgStyle, title)),
+
+          // Show the original image during server-side rendering,
+          // or if JavaScript is disabled
+          h ("noscript", {},
+            h ("img",
+              this.getProps ().image (alt, img, fluid, 2, imgStyle, title)))
         )
       )
     }
