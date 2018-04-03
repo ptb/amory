@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>_</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=IntersectionObserver,Object.assign&flags=always,gated"></script>
+    <script type="module">
+      /* <![CDATA[ */
+
+      import { createElement as h, render } from "./react.js"
+      import GatsbyImage from "./GatsbyImage.js"
+
+      const resolutions = {
+        "base64": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAACXBIWXMAACfyAAAn8gGjrXr+AAAEdElEQVQ4y21UfUxbVRS/dE0c6BiFQh0fG6F9lLLyNVqY8SP+MYMZfiRGQ8iSRaLJZH+YGN0/zhDYgDmdsg0HZayQbUzAgchIQCDTZThYSGbmjM7EOWMiX33vvtfXDxil7x7vfY/SdfMmJzn3fN1zzv2dg9BDBx+3bvDSebtOaMzTMV5o5PbiZuvLKt9k1QNA1Kc5F/3vEY5aNIMmLkmoMz/HeIDX4jx7UQLucHhwV9k7MfZHuEpqm675crHBMBXgz/LjVGU9Z8GuXf/wJ54tYXe+rqAK7jjBP2UdUe8HjRn4jOOW2Fl6Yy4ebVL9qW8kIZqRxkiDL6jlLdXkZHkHHCR42xLyjVn3e+rLW2DODKF5Q5hvKN0ndjpmQdgF8oj9kFZFtS6SmNhhWw/aaDHEZHzWeROC6RC+awDflXR5+Yc0CF5PVnxDGavB6R0AK0kgf1fwNrNdKN/8lGef4UmaWEK0H43WalrCt96BnfulSyWviy5bb/hqFvgGU0JetwGwawvBbYlEOpcM8mWjsnwtFcSOPLdwqqxf+tqxgF0lc0IDV7kRkK/aRBvvnIelIgBvEvgnTYrUaSJCazzxDiElMI1IYAYpjBdaEwjVKQ+GswEwzfZ+LuCzu6tZnMBscRwSjtn0atCPsgukntL7yzPbQereRoRTNNgoUpZ/QSTMa7R8BxF5jAY9HU+krvQ1hbYkcCPnY62XdaxSXSx0motqvW4z4NNGBV9Eiv9HRFZ+QyQ0pxHj/dcQYTqx1QiS27zC1zuPew7Z90Q/4Ji1ArvLaygsroTmDKtyb2ZYaNlKxD6k+K7SrH5G5MFdjRjPZFRHK0gk8gVa9j0OYNYJuL30b4rHF9kUVDLgwq9OgH/N4OvZAcLJRAX30PJGaUbXEQnOauSf0mT4Ei2bPir3ZSrhpSQITFt/ErvKD9NpekvN0vOqLoGvK6zmj5S1SOdyJKktBYROpEgDWgDfpEaMlwZpdlSHv0qhn5Oj4C+KDsb2jc6rQkeM8f6J3KrVm2ngPW9a47/crAgXaK/6tSCMxG9oMCqjOuK9aFL8E2YQ3Y4Z/l3jtnX46ZHUtVP9GU/z8zY6HUEG6NBINkidacRzIp7wLlpet0oqz2Te7lQlOG4CCCYBmxo2itpPry8NoS5nN53fe74hB33ReUtsyx/2T6QRuTeVAjqZCC2JlLYQqT0ZfAPGUGg8C8Q2W688bK9hI0iHYpoti+hPN3EG4WiufamWM7O7t7+wigGcYVK+nAWB8VQlMPo0+IYzguTPrQBSFs2qbDTiP29C+sjmQfjTx/eZPGQ/AHwxiN2O3/mm4vdCi0lrDAGehrKT/knu/bU/OJD6HIHFyjQDwOG4KARzI7vNwlaQThrboyppCWO43fkX/0Gmuuj8U3nfw20n8J8UvKHan3mmgs7vIv/h9hQ10Of5cfjRnRhZkjR1Iy3/TQ+H9BtryV1ei12lC0tO9ATAAc2+3vIStU18eDk/dnAz98go5uk1ufUV+mDFOjR08khhtMwWW4zPfxgcxKgwJJa9AAAAAElFTkSuQmCC",
+        "height": 125,
+        "src": "/static/sun-b2709ec4693a57fbb3dd1ef478fa9b77-810d7.jpg",
+        "srcSet": "/static/sun-b2709ec4693a57fbb3dd1ef478fa9b77-810d7.jpg 1x,\n/static/sun-b2709ec4693a57fbb3dd1ef478fa9b77-9cb13.jpg 1.5x,\n/static/sun-b2709ec4693a57fbb3dd1ef478fa9b77-99b01.jpg 2x,\n/static/sun-b2709ec4693a57fbb3dd1ef478fa9b77-1c57d.jpg 3x",
+        "srcSetWebp": "/static/sun-b2709ec4693a57fbb3dd1ef478fa9b77-fcdc5.webp 1x,\n/static/sun-b2709ec4693a57fbb3dd1ef478fa9b77-0111d.webp 1.5x,\n/static/sun-b2709ec4693a57fbb3dd1ef478fa9b77-c82d4.webp 2x,\n/static/sun-b2709ec4693a57fbb3dd1ef478fa9b77-af755.webp 3x",
+        "srcWebp": "/static/sun-b2709ec4693a57fbb3dd1ef478fa9b77-fcdc5.webp",
+        "tracedSVG": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='125' height='125' viewBox='0 0 125 125' version='1'%3E%3Cpath d='M61 3c-4 5-6 10-8 17l-1 6-6-5c-7-4-12-9-12-12l-1-1c-3 0-3 15 0 23l1 5-9-1c-6 0-10-1-12-3-4-3-4-3-3 2 2 6 6 12 12 16l3 4-8 3c-4 2-7 3-11 3-6 1-6 1-2 5 4 3 11 6 18 7 3 1 6 3 3 3l-4 6c-3 5-7 9-11 10-2 1-2 1-1 2 4 3 17 2 24-2l3-1-1 8c0 5-1 9-3 12l-2 6 5-2c4-1 7-3 12-8l7-5 3 7c3 5 3 8 3 12v5l4-3c4-4 7-10 8-17l1-6 4 3 7 5 6 7 1 4 2-3c2-5 1-16-2-24-1-2-1-2 2-1a531 531 0 0 0 18 4l4 2v-2c0-4-4-11-10-17l-5-5 7-3 12-4h6l-3-3c-4-4-10-7-17-8l-6-1 3-4a467 467 0 0 0 12-13l3-2c0-3-15-3-23 0l-5 2 1-6c0-8 2-14 4-17s2-3 0-3c-4 0-12 5-18 11l-5 4-3-8c-3-5-3-8-3-12l-1-5-3 3m-3 42c-4 4-1 12 5 12 3 0 7-4 7-8-2-6-8-8-12-4' fill='lightgray' fill-rule='evenodd'/%3E%3C/svg%3E",
+        "width": 125
+      }
+
+      const query = `
+        query GatsbyImageSunQuery {
+          file(relativePath: {eq: "sun.png"}) {
+            childImageSharp {
+              resolutions(toFormat: JPG, width: 125, height: 125, quality: 80) {
+                base64
+                height
+                src
+                srcSet
+                srcSetWebp
+                srcWebp
+                tracedSVG
+                width
+              }
+            }
+          }
+        }
+      `
+
+      render (
+        h (GatsbyImage, { "backgroundColor": "#fff", "resolutions": resolutions }),
+          document.getElementById ("root")
+      )
+
+      /* ]]> */
+    </script>
+  </body>
+</html>
