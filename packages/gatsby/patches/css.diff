@@ -30,7 +30,7 @@
                });
 --- node_modules/gatsby/dist/utils/webpack.config.js
 +++ node_modules/gatsby/dist/utils/webpack.config.js
-@@ -446,9 +446,9 @@
+@@ -449,9 +449,9 @@
                    // Webpack will always generate a resultant javascript file.
                    // But we don't want it for this step. Deleted by build-css.js.
                    return {

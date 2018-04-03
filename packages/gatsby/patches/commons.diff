@@ -46,7 +46,7 @@
                        // The more page components there are, the higher we raise the bar
                        // for merging in page-specific JS libs into the commons chunk. The
                        // two principles here is a) keep the TTI (time to interaction) as
-@@ -408,7 +408,7 @@
+@@ -411,7 +411,7 @@
                switch (stage) {
                  case `develop`:
                    return {
@@ -55,7 +55,7 @@
                    };
                  case `develop-html`:
                    return {
-@@ -424,7 +424,7 @@
+@@ -427,7 +427,7 @@
                    };
                  case `build-javascript`:
                    return {
