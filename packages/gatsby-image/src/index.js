@@ -138,8 +138,6 @@ class GatsbyImage extends Component {
             "left": "0",
             "objectFit": "cover",
             "objectPosition": "center",
-            "opacity":
-              this.state.isLoaded || this.props.fadeIn === false ? 1 : 0,
             "position": "absolute",
             "top": "0",
             "transitionProperty": "opacity",
@@ -149,8 +147,15 @@ class GatsbyImage extends Component {
             "opacity": this.state.isLoaded ? 0 : 1,
             "transitionDelay": ".25s"
           },
-          td === 1 && { "transitionDuration": ".5s" },
-          td === 2 && { "transitionDelay": ".5s" },
+          td === 1 && {
+            "opacity":
+              this.state.isLoaded || this.props.fadeIn === false ? 1 : 0,
+            "transitionDuration": ".5s"
+          },
+          td === 2 && {
+            "opacity": "1",
+            "transitionDelay": ".5s"
+          },
           style
         ),
       "inner": (fluid, img, style) => {
