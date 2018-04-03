@@ -1,6 +1,6 @@
 /* eslint no-magic-numbers: "off" */ /* global window */
 
-import { Component, createElement as h } from "react.js"
+import { Component, createElement as h } from "react"
 
 // Handle legacy names for image queries.
 const convertProps = (props) => {
