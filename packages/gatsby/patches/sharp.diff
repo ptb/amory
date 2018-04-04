@@ -1,0 +1,51 @@
+--- node_modules/gatsby-plugin-sharp/index.js
++++ node_modules/gatsby-plugin-sharp/index.js
+@@ -270,7 +270,7 @@
+             }).src;
+             srcSet = images.map(function (image) {
+               return `${image.src} ${Math.round(image.width)}w`;
+-            }).join(`,\n`);
++            }).join(`,`);
+             originalName = file.base;
+             return _context4.abrupt("return", {
+               base64: base64Image.src,
+@@ -327,9 +327,7 @@
+             sizes = [];
+ 
+             sizes.push(options.width);
+-            sizes.push(options.width * 1.5);
+             sizes.push(options.width * 2);
+-            sizes.push(options.width * 3);
+             dimensions = getImageSize(file);
+             filteredSizes = sizes.filter(function (size) {
+               return size <= dimensions.width;
+@@ -395,7 +393,7 @@
+                 default:
+               }
+               return `${image.src} ${resolution}`;
+-            }).join(`,\n`);
++            }).join(`,`);
+             originalName = file.base;
+             return _context5.abrupt("return", {
+               base64: base64Image.src,
+@@ -855,8 +853,9 @@
+ 
+   var argsDigestShort = argsDigest.substr(argsDigest.length - 5);
+ 
+-  var imgSrc = `/${file.name}-${file.internal.contentDigest}-${argsDigestShort}.${fileExtension}`;
+-  var filePath = path.join(process.cwd(), `public`, `static`, imgSrc);
++  var imgSrc = `/${file.internal.contentDigest.slice(0,5)}-${argsDigestShort}.${fileExtension}`;
++  fs.mkdirSync(process.cwd(), `public`, `img`, file.name);
++  var filePath = path.join(process.cwd(), `public`, `img`, file.name, imgSrc);
+ 
+   // Create function to call when the image is finished.
+   var outsideResolve = void 0,
+@@ -901,7 +900,7 @@
+   queueJob(job, reporter);
+ 
+   // Prefix the image src.
+-  var prefixedSrc = options.pathPrefix + `/static` + imgSrc;
++  var prefixedSrc = path.join(options.pathPrefix, `img`, file.name, imgSrc);
+ 
+   return {
+     src: prefixedSrc,
