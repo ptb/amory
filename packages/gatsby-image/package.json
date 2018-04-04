@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@ptb/gatsby-plugin-styletron": "latest",
-    "babel-runtime": "^6",
+    "gatsby-image": "^1",
     "gatsby-plugin-sharp": "^1",
     "gatsby-source-filesystem": "^1",
     "gatsby-transformer-sharp": "^1"
@@ -45,5 +45,5 @@
     "prepare": "cross-env NODE_ENV=production npm run build",
     "watch": "babel -w src/index.js --out-file index.js --ignore __tests__"
   },
-  "version": "2018.4.4-11"
+  "version": "2018.4.4-12"
 }
