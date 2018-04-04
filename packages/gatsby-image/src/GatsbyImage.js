@@ -90,7 +90,7 @@ class GatsbyImage extends Component {
     // If this image has already been loaded before then we can assume it's
     // already in the browser cache so it's cheap to just show directly.
     // Always don't render image while server rendering
-    if (typeof window === "undefined" || !isCached (props)) {
+    if ((!isCached (props) && canObserve ()) || typeof window === "undefined") {
       isLoaded = false
       isVisible = false
     }
@@ -107,13 +107,13 @@ class GatsbyImage extends Component {
 
   getStyle () {
     return {
-      "color": (bgColor, fluid, img) =>
+      "color": (bgColor, fluid, img, isLoaded) =>
         Object.assign (
           {
             "backgroundColor": bgColor,
             "height": img.height,
-            "opacity": this.state.isLoaded ? 0 : 1,
-            "transitionDelay": ".35s",
+            "opacity": isLoaded ? 0 : 1,
+            "transitionDuration": ".35s",
             "width": img.width
           },
           fluid
@@ -126,34 +126,36 @@ class GatsbyImage extends Component {
             }
             : {}
         ),
-      "image": (td, style) =>
+      "image": (td, isLoaded, style) =>
         Object.assign (
           {
             "height": "100%",
             "left": "0",
             "objectFit": "cover",
             "objectPosition": "center",
-            "opacity":
-              this.state.isLoaded || this.props.fadeIn === false ? 1 : 0,
             "position": "absolute",
             "top": "0",
+            "transitionDuration": ".35s",
             "transitionProperty": "opacity",
             "width": "100%"
           },
           td === 0 && {
-            "opacity": this.state.isLoaded ? 0 : 1,
-            "transitionDelay": ".25s"
+            "opacity": isLoaded ? 0 : 1
           },
-          td === 1 && { "transitionDuration": ".5s" },
-          td === 2 && { "transitionDelay": ".5s" },
+          td === 1 && {
+            "opacity": isLoaded || this.props.fadeIn === false ? 1 : 0
+          },
+          td === 2 && {
+            "opacity": "1"
+          },
           style
         ),
       "inner": (fluid, img, style) => {
         const fixed = Object.assign (
           {
             "display": "inline-block",
-            "height": img.height,
-            "width": img.width
+            "height": `${img.height}px`,
+            "width": `${img.width}px`
           },
           style
         )
@@ -170,10 +172,6 @@ class GatsbyImage extends Component {
           fluid ? style : fixed
         )
       },
-      "outer": (style) => ({
-        // Let users set component to be absolutely positioned.
-        "position": style.position === "absolute" ? "initial" : "relative"
-      }),
       "ratio": (img) => ({
         // Preserve the aspect ratio.
         "paddingBottom": `${100 / img.aspectRatio}%`,
@@ -184,20 +182,20 @@ class GatsbyImage extends Component {
 
   getProps () {
     return {
-      "color": (bg, img, fluid, title) => {
+      "color": (bg, img, fluid, isLoaded, title) => {
         const bgColor = typeof bg === "boolean" ? "lightgray" : bg
 
         return {
           "style": this.getStyle ().color (
             bgColor,
+            fluid,
             img,
-            this.state.isLoaded,
-            fluid
+            isLoaded
           ),
           "title": title
         }
       },
-      "image": (alt, img, fluid, td, style, title) => ({
+      "image": (alt, img, fluid, td, isLoaded, style, title) => ({
         "alt": alt,
         "height": img.height,
         "onLoad": () => {
@@ -207,7 +205,7 @@ class GatsbyImage extends Component {
         "sizes": fluid ? img.sizes : null,
         "src": img.src,
         "srcSet": img.srcSet,
-        "style": this.getStyle ().image (td, style),
+        "style": this.getStyle ().image (td, isLoaded, style),
         "title": title,
         "width": img.width
       }),
@@ -218,16 +216,10 @@ class GatsbyImage extends Component {
         "ref": this.handleRef,
         "style": this.getStyle ().inner (fluid, img, style)
       }),
-      "outer": (className, style) => ({
-        "className": [className, "gatsby-image-outer-wrapper"]
-          .filter (Boolean)
-          .join (" "),
-        "style": this.getStyle ().outer (style)
-      }),
-      "proxy": (alt, src, style, title) => ({
+      "proxy": (alt, src, isLoaded, style, title) => ({
         "alt": alt,
         "src": src,
-        "style": this.getStyle ().image (0, style),
+        "style": this.getStyle ().image (0, isLoaded, style),
         "title": title
       }),
       "ratio": (img) => ({
@@ -250,7 +242,6 @@ class GatsbyImage extends Component {
       backgroundColor,
       className,
       imgStyle = {},
-      outerWrapperClassName,
       resolutions,
       sizes,
       style = {},
@@ -269,41 +260,40 @@ class GatsbyImage extends Component {
         img.srcSet = img.srcSetWebp ? img.srcSetWebp : img.srcSet
       }
 
-      // The outer div is necessary to reset the z-index to 0.
       return h (
         Tag,
-        this.getProps ().outer (outerWrapperClassName, style),
-        h (
-          Tag,
-          this.getProps ().inner (className, fluid, img, style),
-          fluid && h (Tag, this.getProps ().ratio (img)),
+        this.getProps ().inner (className, fluid, img, style),
 
-          // Show the blurry base64 image.
-          img.base64 &&
-            h ("img", this.getProps ()
-              .proxy (alt, img.base64, imgStyle, title)),
+        fluid && h (Tag, this.getProps ().ratio (img)),
 
-          // Show the traced SVG image.
-          img.tracedSVG &&
-            h ("img",
-              this.getProps ().proxy (alt, img.tracedSVG, imgStyle, title)),
+        // Show the blurry base64 image.
+        img.base64 &&
+          h ("img", this.getProps ()
+            .proxy (alt, img.base64, this.state.isLoaded, imgStyle, title)),
 
-          // Show a solid background color.
-          backgroundColor &&
-            h (Tag, this.getProps ()
-              .color (backgroundColor, img, fluid, title)),
+        // Show the traced SVG image.
+        img.tracedSVG &&
+          h ("img",
+            this.getProps ()
+              .proxy (alt, img.tracedSVG, this.state.isLoaded, imgStyle, title)),
 
-          // Once the image is visible, start downloading the image
-          this.state.isVisible &&
-            h ("img",
-              this.getProps ().image (alt, img, fluid, 1, imgStyle, title)),
+        // Show a solid background color.
+        backgroundColor &&
+          h (Tag, this.getProps ()
+            .color (backgroundColor, img, fluid, this.state.isLoaded, title)),
 
-          // Show the original image during server-side rendering,
-          // or if JavaScript is disabled
-          h ("noscript", {},
-            h ("img",
-              this.getProps ().image (alt, img, fluid, 2, imgStyle, title)))
-        )
+        // Once the image is visible, start downloading the image
+        this.state.isVisible &&
+          h ("img",
+            this.getProps ()
+              .image (alt, img, fluid, 1, this.state.isLoaded, imgStyle, title)),
+
+        // Show the original image during server-side rendering,
+        // or if JavaScript is disabled
+        h ("noscript", {},
+          h ("img",
+            this.getProps ()
+              .image (alt, img, fluid, 2, false, imgStyle, title)))
       )
     }
     return null

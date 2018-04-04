@@ -155,8 +155,8 @@ class GatsbyImage extends Component {
         const fixed = Object.assign (
           {
             "display": "inline-block",
-            "height": img.height,
-            "width": img.width
+            "height": `${img.height}px`,
+            "width": `${img.width}px`
           },
           style
         )
