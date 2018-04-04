@@ -86,3 +86,11 @@
  
    return {
      src: prefixedSrc,
+@@ -929,7 +941,6 @@
+ function encodeOptimizedSVGDataUri(svgString) {
+   var uriPayload = encodeURIComponent(svgString) // encode URL-unsafe characters
+   .replace(/%0A/g, ``) // remove newlines
+-  .replace(/%20/g, ` `) // put spaces back in
+   .replace(/%3D/g, `=`) // ditto equals signs
+   .replace(/%3A/g, `:`) // ditto colons
+   .replace(/%2F/g, `/`) // ditto slashes
