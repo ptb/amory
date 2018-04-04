@@ -211,9 +211,10 @@ class GatsbyImage extends Component {
         "width": img.width
       }),
       "inner": (className, fluid, img, style) => ({
-        "className": [className, "gatsby-image-wrapper", css (this.getStyle ().inner (fluid, img, style))]
-          .filter (Boolean)
-          .join (" "),
+        "className": [
+          className,
+          css (this.getStyle ().inner (fluid, img, style))
+        ].filter (Boolean).join (" "),
         "ref": this.handleRef
       }),
       "proxy": (alt, src, isLoaded, style, title) => ({
@@ -293,7 +294,9 @@ class GatsbyImage extends Component {
         h ("noscript", {},
           h ("img",
             this.getProps ()
-              .image (alt, img, fluid, 2, false, imgStyle, title)))
+              .image (alt, img, fluid, 2, false, imgStyle, title))),
+
+        this.props.children
       )
     }
     return null
