@@ -28,19 +28,20 @@
              originalName = file.base;
              return _context5.abrupt("return", {
                base64: base64Image.src,
-@@ -855,8 +853,9 @@
+@@ -855,8 +853,10 @@
  
    var argsDigestShort = argsDigest.substr(argsDigest.length - 5);
  
 -  var imgSrc = `/${file.name}-${file.internal.contentDigest}-${argsDigestShort}.${fileExtension}`;
 -  var filePath = path.join(process.cwd(), `public`, `static`, imgSrc);
 +  var imgSrc = `/${file.internal.contentDigest.slice(0,5)}-${argsDigestShort}.${fileExtension}`;
-+  fs.mkdirSync(process.cwd(), `public`, `img`, file.name);
++  fs.mkdirSync(path.join(process.cwd(), `public`, `img`));
++  fs.mkdirSync(path.join(process.cwd(), `public`, `img`, file.name));
 +  var filePath = path.join(process.cwd(), `public`, `img`, file.name, imgSrc);
  
    // Create function to call when the image is finished.
    var outsideResolve = void 0,
-@@ -901,7 +900,7 @@
+@@ -901,7 +901,7 @@
    queueJob(job, reporter);
  
    // Prefix the image src.

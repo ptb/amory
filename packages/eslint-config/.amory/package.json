@@ -1,8 +1,15 @@
 {
   "eslintConfig": {
+    "env": {
+      "browser": true,
+      "node": true
+    },
     "extends": [
       "@ptb/eslint-config"
     ],
+    "globals": {
+      "graphql": true
+    },
     "rules": {
       "better/explicit-return": "off",
       "better/no-ifs": "off",
