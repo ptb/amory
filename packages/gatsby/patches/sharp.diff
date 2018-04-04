@@ -61,8 +61,8 @@
 -  var imgSrc = `/${file.name}-${file.internal.contentDigest}-${argsDigestShort}.${fileExtension}`;
 -  var filePath = path.join(process.cwd(), `public`, `static`, imgSrc);
 +  var imgSrc = `/${file.internal.contentDigest.slice(0,5)}-${argsDigestShort}.${fileExtension}`;
-+  mkdirp(path.join(process.cwd(), `public`, `img`, `${file.name}`))
-+  var filePath = path.join(process.cwd(), `public`, `img`, `${file.name}`, imgSrc);
++  mkdirp(path.join(process.cwd(), `public`, `img`, `${file.relativeDirectory}`, `${file.name}`))
++  var filePath = path.join(process.cwd(), `public`, `img`, `${file.relativeDirectory}`, `${file.name}`, imgSrc);
  
    // Create function to call when the image is finished.
    var outsideResolve = void 0,
@@ -71,7 +71,7 @@
  
    // Prefix the image src.
 -  var prefixedSrc = options.pathPrefix + `/static` + imgSrc;
-+  var prefixedSrc = options.pathPrefix + `/img/` + file.name + imgSrc;
++  var prefixedSrc = options.pathPrefix + `/img/` + file.relativeDirectory + `/` + file.name + imgSrc;
  
    return {
      src: prefixedSrc,
