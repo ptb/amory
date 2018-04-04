@@ -1,6 +1,7 @@
 /* eslint no-magic-numbers: "off" */ /* global window */
 
 import { Component, createElement as h } from "react"
+import { css } from "@ptb/gatsby-plugin-styletron/style"
 
 // Handle legacy names for image queries.
 const convertProps = (props) => {
@@ -186,17 +187,18 @@ class GatsbyImage extends Component {
         const bgColor = typeof bg === "boolean" ? "lightgray" : bg
 
         return {
-          "style": this.getStyle ().color (
+          "className": css (this.getStyle ().color (
             bgColor,
             fluid,
             img,
             isLoaded
-          ),
+          )),
           "title": title
         }
       },
       "image": (alt, img, fluid, td, isLoaded, style, title) => ({
         "alt": alt,
+        "className": css (this.getStyle ().image (td, isLoaded, style)),
         "height": img.height,
         "onLoad": () => {
           this.setState ({ "isLoaded": true })
@@ -205,25 +207,23 @@ class GatsbyImage extends Component {
         "sizes": fluid ? img.sizes : null,
         "src": img.src,
         "srcSet": img.srcSet,
-        "style": this.getStyle ().image (td, isLoaded, style),
         "title": title,
         "width": img.width
       }),
       "inner": (className, fluid, img, style) => ({
-        "className": [className, "gatsby-image-wrapper"]
+        "className": [className, "gatsby-image-wrapper", css (this.getStyle ().inner (fluid, img, style))]
           .filter (Boolean)
           .join (" "),
-        "ref": this.handleRef,
-        "style": this.getStyle ().inner (fluid, img, style)
+        "ref": this.handleRef
       }),
       "proxy": (alt, src, isLoaded, style, title) => ({
         "alt": alt,
+        "className": css (this.getStyle ().image (0, isLoaded, style)),
         "src": src,
-        "style": this.getStyle ().image (0, isLoaded, style),
         "title": title
       }),
       "ratio": (img) => ({
-        "style": this.getStyle ().ratio (img)
+        "className": css (this.getStyle ().ratio (img))
       })
     }
   }
