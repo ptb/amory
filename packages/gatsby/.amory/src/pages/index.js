@@ -41,14 +41,7 @@ export default () =>
 //     hero: file(relativePath: {eq: "sun.png"}) {
 //       childImageSharp {
 //         desktop: resolutions(width: 125, height: 125, quality: 80) {
-//           base64
-//           height
-//           src
-//           srcSet
-//           srcSetWebp
-//           srcWebp
-//           tracedSVG
-//           width
+//           ...GatsbyImageSharpResolutions_withWebp_tracedSVG
 //         }
 //       }
 //     }
