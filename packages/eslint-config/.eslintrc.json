@@ -382,6 +382,7 @@
       "warn",
       "all",
       {
+        "enforceForArrowConditionals": false,
         "returnAssign": false
       }
     ],

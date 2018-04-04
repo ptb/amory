@@ -127,11 +127,13 @@ class GatsbyImage extends Component {
             }
             : {}
         ),
-      "image": (td, isLoaded, style) =>
+      "image": (td, img, isLoaded, style) =>
         Object.assign (
           {
             "height": "100%",
             "left": "0",
+            "maxHeight": img ? `${img.height}px` : null,
+            "maxWidth": img ? `${img.width}px` : null,
             "objectFit": "cover",
             "objectPosition": "center",
             "position": "absolute",
@@ -155,8 +157,8 @@ class GatsbyImage extends Component {
         const fixed = Object.assign (
           {
             "display": "inline-block",
-            "height": `${img.height}px`,
-            "width": `${img.width}px`
+            "maxHeight": `${img.height}px`,
+            "maxWidth": `${img.width}px`
           },
           style
         )
@@ -198,7 +200,7 @@ class GatsbyImage extends Component {
       },
       "image": (alt, img, fluid, td, isLoaded, style, title) => ({
         "alt": alt,
-        "className": css (this.getStyle ().image (td, isLoaded, style)),
+        "className": css (this.getStyle ().image (td, img, isLoaded, style)),
         "height": img.height,
         "onLoad": () => {
           this.setState ({ "isLoaded": true })
@@ -219,7 +221,7 @@ class GatsbyImage extends Component {
       }),
       "proxy": (alt, src, isLoaded, style, title) => ({
         "alt": alt,
-        "className": css (this.getStyle ().image (0, isLoaded, style)),
+        "className": css (this.getStyle ().image (0, null, isLoaded, style)),
         "src": src,
         "title": title
       }),
