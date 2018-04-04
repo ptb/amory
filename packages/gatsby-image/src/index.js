@@ -112,10 +112,10 @@ class GatsbyImage extends Component {
         Object.assign (
           {
             "backgroundColor": bgColor,
-            "height": img.height,
+            "height": `${img.height}px`,
             "opacity": isLoaded ? 0 : 1,
             "transitionDuration": ".35s",
-            "width": img.width
+            "width": `${img.width}px`
           },
           fluid
             ? {
