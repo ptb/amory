@@ -89,13 +89,8 @@ class GatsbyImage extends Component {
 
     // If this image has already been loaded before then we can assume it's
     // already in the browser cache so it's cheap to just show directly.
-    if (!isCached (props) && typeof window !== "undefined" && canObserve ()) {
-      isLoaded = false
-      isVisible = false
-    }
-
     // Always don't render image while server rendering
-    if (typeof window === "undefined") {
+    if ((!isCached (props) && canObserve ()) || typeof window === "undefined") {
       isLoaded = false
       isVisible = false
     }
@@ -112,13 +107,13 @@ class GatsbyImage extends Component {
 
   getStyle () {
     return {
-      "color": (bgColor, fluid, img) =>
+      "color": (bgColor, fluid, img, isLoaded) =>
         Object.assign (
           {
             "backgroundColor": bgColor,
             "height": img.height,
-            "opacity": this.state.isLoaded ? 0 : 1,
-            "transitionDelay": ".35s",
+            "opacity": isLoaded ? 0 : 1,
+            "transitionDuration": ".35s",
             "width": img.width
           },
           fluid
@@ -140,21 +135,18 @@ class GatsbyImage extends Component {
             "objectPosition": "center",
             "position": "absolute",
             "top": "0",
+            "transitionDuration": ".35s",
             "transitionProperty": "opacity",
             "width": "100%"
           },
           td === 0 && {
-            "opacity": isLoaded ? 0 : 1,
-            "transitionDelay": ".25s"
+            "opacity": isLoaded ? 0 : 1
           },
           td === 1 && {
-            "opacity":
-              isLoaded || this.props.fadeIn === false ? 1 : 0,
-            "transitionDuration": ".5s"
+            "opacity": isLoaded || this.props.fadeIn === false ? 1 : 0
           },
           td === 2 && {
-            "opacity": "1",
-            "transitionDelay": ".5s"
+            "opacity": "1"
           },
           style
         ),
@@ -190,15 +182,15 @@ class GatsbyImage extends Component {
 
   getProps () {
     return {
-      "color": (bg, img, fluid, title) => {
+      "color": (bg, img, fluid, isLoaded, title) => {
         const bgColor = typeof bg === "boolean" ? "lightgray" : bg
 
         return {
           "style": this.getStyle ().color (
             bgColor,
+            fluid,
             img,
-            this.state.isLoaded,
-            fluid
+            isLoaded
           ),
           "title": title
         }
@@ -271,6 +263,7 @@ class GatsbyImage extends Component {
       return h (
         Tag,
         this.getProps ().inner (className, fluid, img, style),
+
         fluid && h (Tag, this.getProps ().ratio (img)),
 
         // Show the blurry base64 image.
@@ -287,7 +280,7 @@ class GatsbyImage extends Component {
         // Show a solid background color.
         backgroundColor &&
           h (Tag, this.getProps ()
-            .color (backgroundColor, img, fluid, title)),
+            .color (backgroundColor, img, fluid, this.state.isLoaded, title)),
 
         // Once the image is visible, start downloading the image
         this.state.isVisible &&

@@ -34,14 +34,13 @@ export default () =>
 
 // export default (a) =>
 //   h ("div", {},
-//     h (Img, { "resolutions": a.data.hero.childImageSharp.desktop }),
-//     h ("div", {}, JSON.stringify (a.data.hero.childImageSharp.desktop)))
+//     h (Img, { "resolutions": a.data.hero.childImageSharp.desktop }))
 
 // export const query = graphql `
 //   query GatsbyImageSunQuery {
 //     hero: file(relativePath: {eq: "sun.png"}) {
 //       childImageSharp {
-//         desktop: resolutions(toFormat: JPG, width: 125, height: 125, quality: 80) {
+//         desktop: resolutions(width: 125, height: 125, quality: 80) {
 //           base64
 //           height
 //           src
