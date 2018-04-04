@@ -1,35 +1,32 @@
 --- node_modules/gatsby-plugin-sharp/index.js
 +++ node_modules/gatsby-plugin-sharp/index.js
-@@ -12,6 +12,28 @@
+@@ -12,6 +12,25 @@
  
  var _asyncToGenerator3 = _interopRequireDefault(_asyncToGenerator2);
  
-+function mkDirByPathSync(targetDir, {isRelativeToScript = false} = {}) {
-+  const sep = path.sep;
-+  const initDir = path.isAbsolute(targetDir) ? sep : '';
-+  const baseDir = isRelativeToScript ? __dirname : '.';
-+
-+  targetDir.split(sep).reduce((parentDir, childDir) => {
-+    const curDir = path.resolve(baseDir, parentDir, childDir);
-+    try {
-+      fs.mkdirSync(curDir);
-+      console.log(`Directory ${curDir} created!`);
-+    } catch (err) {
-+      if (err.code !== 'EEXIST') {
-+        throw err;
-+      }
-+
-+      console.log(`Directory ${curDir} already exists!`);
++function mkdirp (p, made) {
++  var mode = parseInt('0777', 8) & (~process.umask());
++  if (!made) made = null;
++  p = path.resolve(p);
++  try {
++    fs.mkdirSync(p, mode);
++    made = made || p;
++  }
++  catch (err0) {
++    switch (err0.code) {
++      case 'ENOENT' :
++        made = mkdirp(path.dirname(p), made);
++        mkdirp(p, made);
++        break;
 +    }
-+
-+    return curDir;
-+  }, initDir);
-+}
++  }
++  return made;
++};
 +
  var notMemoizedbase64 = function () {
    var _ref4 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee2(_ref3) {
      var file = _ref3.file,
-@@ -270,7 +292,7 @@
+@@ -270,7 +289,7 @@
              }).src;
              srcSet = images.map(function (image) {
                return `${image.src} ${Math.round(image.width)}w`;
@@ -38,7 +35,7 @@
              originalName = file.base;
              return _context4.abrupt("return", {
                base64: base64Image.src,
-@@ -327,9 +349,7 @@
+@@ -327,9 +346,7 @@
              sizes = [];
  
              sizes.push(options.width);
@@ -48,7 +45,7 @@
              dimensions = getImageSize(file);
              filteredSizes = sizes.filter(function (size) {
                return size <= dimensions.width;
-@@ -395,7 +415,7 @@
+@@ -395,7 +412,7 @@
                  default:
                }
                return `${image.src} ${resolution}`;
@@ -57,19 +54,19 @@
              originalName = file.base;
              return _context5.abrupt("return", {
                base64: base64Image.src,
-@@ -855,8 +875,9 @@
+@@ -855,8 +872,9 @@
  
    var argsDigestShort = argsDigest.substr(argsDigest.length - 5);
  
 -  var imgSrc = `/${file.name}-${file.internal.contentDigest}-${argsDigestShort}.${fileExtension}`;
 -  var filePath = path.join(process.cwd(), `public`, `static`, imgSrc);
 +  var imgSrc = `/${file.internal.contentDigest.slice(0,5)}-${argsDigestShort}.${fileExtension}`;
-+  mkDirByPathSync(path.join(process.cwd(), `public`, `img`, file.name));
-+  var filePath = path.join(process.cwd(), `public`, `img`, file.name, imgSrc);
++  mkdirp(path.join(process.cwd(), `public`, `img`, `${file.name}`))
++  var filePath = path.join(process.cwd(), `public`, `img`, `${file.name}`, imgSrc);
  
    // Create function to call when the image is finished.
    var outsideResolve = void 0,
-@@ -901,7 +922,7 @@
+@@ -901,7 +919,7 @@
    queueJob(job, reporter);
  
    // Prefix the image src.
