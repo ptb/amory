@@ -4,8 +4,8 @@
     "gatsby-transformer-sharp",
     {
       "options": {
-        "name": "images",
-        "path": "src/images/"
+        "name": "img",
+        "path": "src/img/"
       },
       "resolve": "gatsby-source-filesystem"
     }

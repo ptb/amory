@@ -45,7 +45,18 @@
              dimensions = getImageSize(file);
              filteredSizes = sizes.filter(function (size) {
                return size <= dimensions.width;
-@@ -395,7 +412,7 @@
+@@ -384,18 +401,12 @@
+                   resolution = `1x`;
+                   break;
+                 case 1:
+-                  resolution = `1.5x`;
+-                  break;
+-                case 2:
+                   resolution = `2x`;
+                   break;
+-                case 3:
+-                  resolution = `3x`;
+-                  break;
                  default:
                }
                return `${image.src} ${resolution}`;
@@ -54,24 +65,24 @@
              originalName = file.base;
              return _context5.abrupt("return", {
                base64: base64Image.src,
-@@ -855,8 +872,9 @@
+@@ -855,8 +866,9 @@
  
    var argsDigestShort = argsDigest.substr(argsDigest.length - 5);
  
 -  var imgSrc = `/${file.name}-${file.internal.contentDigest}-${argsDigestShort}.${fileExtension}`;
 -  var filePath = path.join(process.cwd(), `public`, `static`, imgSrc);
 +  var imgSrc = `/${file.internal.contentDigest.slice(0,5)}-${argsDigestShort}.${fileExtension}`;
-+  mkdirp(path.join(process.cwd(), `public`, `img`, `${file.relativeDirectory}`, `${file.name}`))
-+  var filePath = path.join(process.cwd(), `public`, `img`, `${file.relativeDirectory}`, `${file.name}`, imgSrc);
++  mkdirp(path.join(process.cwd(), `public`, `img`, file.relativeDirectory ? file.relativeDirectory : ".", file.name))
++  var filePath = path.join(process.cwd(), `public`, `img`, file.relativeDirectory ? file.relativeDirectory : ".", file.name, imgSrc);
  
    // Create function to call when the image is finished.
    var outsideResolve = void 0,
-@@ -901,7 +919,7 @@
+@@ -901,7 +913,7 @@
    queueJob(job, reporter);
  
    // Prefix the image src.
 -  var prefixedSrc = options.pathPrefix + `/static` + imgSrc;
-+  var prefixedSrc = options.pathPrefix + `/img/` + file.relativeDirectory + `/` + file.name + imgSrc;
++  var prefixedSrc = options.pathPrefix + `/img/` + (file.relativeDirectory ? `${file.relativeDirectory}/` : "") + file.name + imgSrc;
  
    return {
      src: prefixedSrc,
