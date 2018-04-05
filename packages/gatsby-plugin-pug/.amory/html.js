@@ -1,15 +1,33 @@
 import React from "react"
 
-export default (a) => pug `
-  html(...a.htmlAttributes)
+const styles = pug `
+  :sass(outputStyle="compressed")
+    \:root
+      box-sizing: border-box
+    body
+      -webkit-text-size-adjust: 100%
+      margin: 0
+      min-height: 100vh
+      overflow-x: hidden
+    #root
+      display: flex
+      flex-direction: column
+      min-height: 100vh
+    *, *::after, *::before
+      box-sizing: inherit
+`.trim ()
+
+export default (props) => pug `
+  html(...props.htmlAttributes)
     head
       meta(charset="utf-8")/
       meta(content="ie=edge" httpEquiv="x-ua-compatible")/
-      meta(content="initial-scale=1,shrink-to-fit=no,width=device-width" name="viewport")/
-      = a.headComponents
-    body(...a.bodyAttributes)
-      = a.preBodyComponents
-      #root(key="body" dangerouslySetInnerHTML=({ "__html": a.body }))
+      meta(content="initial-scale=1,width=device-width" name="viewport")/
+      style= styles
+      = props.headComponents
+    body(...props.bodyAttributes)
+      = props.preBodyComponents
+      #root(key="body")= props.body
       script(src="https://cdn.polyfill.io/v2/polyfill.min.js?features=IntersectionObserver")
-      = a.postBodyComponents
+      = props.postBodyComponents
 `
