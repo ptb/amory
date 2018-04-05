@@ -234,7 +234,7 @@ class GatsbyImage extends Component {
   handleRef (ref) {
     if (this.state.canObserve && ref) {
       listenToIntersections (ref, () => {
-        this.setState ({ "isLoaded": false, "isVisible": true })
+        this.setState ({ "isVisible": true })
       })
     }
   }

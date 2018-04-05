@@ -126,11 +126,13 @@ class GatsbyImage extends Component {
             }
             : {}
         ),
-      "image": (td, isLoaded, style) =>
+      "image": (td, img, isLoaded, style) =>
         Object.assign (
           {
             "height": "100%",
             "left": "0",
+            "maxHeight": img ? `${img.height}px` : null,
+            "maxWidth": img ? `${img.width}px` : null,
             "objectFit": "cover",
             "objectPosition": "center",
             "position": "absolute",
@@ -205,7 +207,7 @@ class GatsbyImage extends Component {
         "sizes": fluid ? img.sizes : null,
         "src": img.src,
         "srcSet": img.srcSet,
-        "style": this.getStyle ().image (td, isLoaded, style),
+        "style": this.getStyle ().image (td, img, isLoaded, style),
         "title": title,
         "width": img.width
       }),
@@ -219,7 +221,7 @@ class GatsbyImage extends Component {
       "proxy": (alt, src, isLoaded, style, title) => ({
         "alt": alt,
         "src": src,
-        "style": this.getStyle ().image (0, isLoaded, style),
+        "style": this.getStyle ().image (0, null, isLoaded, style),
         "title": title
       }),
       "ratio": (img) => ({
@@ -231,7 +233,7 @@ class GatsbyImage extends Component {
   handleRef (ref) {
     if (this.state.canObserve && ref) {
       listenToIntersections (ref, () => {
-        this.setState ({ "isLoaded": false, "isVisible": true })
+        this.setState ({ "isVisible": true })
       })
     }
   }
@@ -293,7 +295,9 @@ class GatsbyImage extends Component {
         h ("noscript", {},
           h ("img",
             this.getProps ()
-              .image (alt, img, fluid, 2, false, imgStyle, title)))
+              .image (alt, img, fluid, 2, false, imgStyle, title))),
+
+        this.props.children
       )
     }
     return null
