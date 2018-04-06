@@ -1,10 +1,8 @@
 import { cloneElement, Component, createElement as h } from "react"
-import styles, { slide, view } from "./styles.json"
-import { css } from "@ptb/gatsby-plugin-styletron/style"
+import styles, { slide } from "./styles.json"
 import CSSTransition from "react-transition-group/CSSTransition"
-import { driver } from "styletron-standard"
 import get from "lodash.get"
-import instance from "@ptb/gatsby-plugin-styletron/instance"
+import styletron from "@ptb/gatsby-plugin-styletron"
 import TransitionGroup from "react-transition-group/TransitionGroup"
 
 const classNames = {
@@ -50,13 +48,12 @@ const classNames = {
   }
 }
 
-const View = (a) => h ("div", { "className": css (view), ... a }, a.children)
-
-export { classNames, styles, View }
+export { classNames, styles }
 
 export default class extends Component {
   render () {
     const { anim } = { ... this.props.location.state }
+    const css = styletron ().css
 
     return h (
       TransitionGroup,
@@ -64,8 +61,8 @@ export default class extends Component {
         "childFactory": (a) =>
           cloneElement (a, {
             "classNames": {
-              "enterActive": driver (get (classNames, `${anim}.next`), instance),
-              "exitActive": driver (get (classNames, `${anim}.exit`), instance)
+              "enterActive": css (get (classNames, `${anim}.next`)),
+              "exitActive": css (get (classNames, `${anim}.exit`))
             },
             "timeout": anim ? 375 : 0
           }),
