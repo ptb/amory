@@ -2,7 +2,10 @@
 
 import { Component, createElement as h } from "react"
 import styletron from "@ptb/gatsby-plugin-styletron"
-import "intersection-observer"
+
+if (typeof window !== "undefined") {
+  require ("intersection-observer")
+}
 
 // Handle legacy names for image queries.
 const convertProps = (props) => {
