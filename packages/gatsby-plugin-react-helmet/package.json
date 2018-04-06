@@ -1,9 +1,9 @@
 {
   "author": "Peter T Bosse II <ptb@ioutime.com> (http://ptb2.me/)",
   "dependencies": {
-    "gatsby": "^1.x",
-    "gatsby-plugin-react-helmet": "^2.x",
-    "react-helmet": "^5.x"
+    "gatsby": "^1",
+    "gatsby-plugin-react-helmet": "^2",
+    "react-helmet": "^5"
   },
   "license": "Apache-2.0",
   "name": "@ptb/gatsby-plugin-react-helmet",
@@ -16,5 +16,5 @@
     "postinstall:merge": "find '.amory' -maxdepth 1 -name '*.json' -print0 | xargs -0 -I {} -n1 basename '{}' | xargs -I {} -n1 npx -p @ptb/merge-json -c 'merge-json ../../../{} .amory/{}'",
     "postinstall:setup": "find '.amory' -maxdepth 1 -not -name '.amory' -not -name '*.json' -exec cp -R '{}' '../../../' \\;"
   },
-  "version": "2018.4.5-3"
+  "version": "2018.4.6-0"
 }

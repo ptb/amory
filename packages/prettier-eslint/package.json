@@ -1,9 +1,9 @@
 {
   "author": "Peter T Bosse II <ptb@ioutime.com> (http://ptb2.me/)",
   "dependencies": {
-    "chokidar-cli": "^1.x",
-    "prettier": "^1.x",
-    "prettier-eslint-cli": "^4.x"
+    "chokidar-cli": "^1",
+    "prettier": "^1",
+    "prettier-eslint-cli": "^4"
   },
   "license": "Apache-2.0",
   "name": "@ptb/prettier-eslint",
@@ -15,5 +15,5 @@
     "postinstall": "npx npm-run-all 'postinstall:*'",
     "postinstall:merge": "find '.amory' -maxdepth 1 -name '*.json' -print0 | xargs -0 -I {} -n1 basename '{}' | xargs -I {} -n1 npx -p @ptb/merge-json -c 'merge-json ../../../{} .amory/{}'"
   },
-  "version": "2018.4.5-3"
+  "version": "2018.4.6-0"
 }

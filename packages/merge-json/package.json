@@ -4,9 +4,9 @@
     "merge-json": "./index.js"
   },
   "dependencies": {
-    "lodash.isequal": "^4.x",
-    "lodash.mergewith": "^4.x",
-    "lodash.uniqwith": "^4.x"
+    "lodash.isequal": "^4",
+    "lodash.mergewith": "^4",
+    "lodash.uniqwith": "^4"
   },
   "license": "Apache-2.0",
   "main": "index.js",
@@ -15,5 +15,5 @@
     "access": "public"
   },
   "repository": "https://github.com/ptb/amory/tree/master/packages/merge-json",
-  "version": "2018.4.5-3"
+  "version": "2018.4.6-0"
 }
