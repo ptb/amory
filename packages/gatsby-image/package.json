@@ -16,7 +16,8 @@
     "gatsby-image": "^1",
     "gatsby-plugin-sharp": "^1",
     "gatsby-source-filesystem": "^1",
-    "gatsby-transformer-sharp": "^1"
+    "gatsby-transformer-sharp": "^1",
+    "intersection-observer": "latest"
   },
   "description": "Lazy-loading React image component with optional support for the blur-up effect.",
   "devDependencies": {
@@ -45,5 +46,5 @@
     "prepare": "cross-env NODE_ENV=production npm run build",
     "watch": "babel -w src/index.js --out-file index.js --ignore __tests__"
   },
-  "version": "2018.4.6-4"
+  "version": "2018.4.6-5"
 }

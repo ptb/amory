@@ -28,6 +28,5 @@ export default (props) => pug `
     body(...props.bodyAttributes)
       = props.preBodyComponents
       #root(dangerouslySetInnerHTML=({ "__html": props.body }) key="body")
-      script(src="https://cdn.polyfill.io/v2/polyfill.min.js?features=IntersectionObserver")
       = props.postBodyComponents
 `
