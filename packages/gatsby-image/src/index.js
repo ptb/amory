@@ -1,7 +1,7 @@
 /* eslint no-magic-numbers: "off" */ /* global window */
 
 import { Component, createElement as h } from "react"
-import { css } from "@ptb/gatsby-plugin-styletron/style"
+import styletron from "@ptb/gatsby-plugin-styletron"
 
 // Handle legacy names for image queries.
 const convertProps = (props) => {
@@ -184,6 +184,8 @@ class GatsbyImage extends Component {
   }
 
   getProps () {
+    const css = styletron ().css
+
     return {
       "color": (bg, img, fluid, isLoaded, title) => {
         const bgColor = typeof bg === "boolean" ? "lightgray" : bg

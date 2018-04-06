@@ -1,4 +1,3 @@
 /gatsby-browser.js
 /gatsby-ssr.js
-/instance.js
-/style.js
+/index.js
