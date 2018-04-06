@@ -43,6 +43,6 @@
   "repository": "https://github.com/ptb/amory.git",
   "scripts": {
     "js:lint": "chokidar '**/*.js' -i '/node_modules|public/' -c 'eslint --fix {path}'",
-    "start": "yarn init -y && yarn add react react-dom && yarn add @ptb/animated-transition && yarn add @ptb/eslint-config && yarn add @ptb/gatsby && yarn add @ptb/gatsby-plugin-styletron && yarn add @ptb/gatsby-image && yarn add @ptb/gatsby-plugin-pug && yarn add @ptb/gatsby-plugin-react-helmet && yarn add @ptb/git-setup && yarn add @ptb/http-server && yarn add @ptb/prettier-eslint && yarn add @ptb/sort-json && for f in node_modules/@ptb/gatsby/patches/*; do patch -p0 < $f; done"
+    "start": "yarn init -y && yarn add react react-dom && yarn add @ptb/gatsby && yarn add @ptb/animated-transition && yarn add @ptb/eslint-config && yarn add @ptb/gatsby-plugin-styletron && yarn add @ptb/gatsby-image && yarn add @ptb/gatsby-plugin-pug && yarn add @ptb/gatsby-plugin-react-helmet && yarn add @ptb/http-server && yarn add @ptb/prettier-eslint && yarn add @ptb/sort-json && yarn add @ptb/git-setup && for f in node_modules/@ptb/gatsby/patches/*; do patch -p0 < $f; done && mv html.js src/" 
   }
 }

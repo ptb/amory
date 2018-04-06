@@ -67,13 +67,31 @@ import {styled, withStyle} from "styletron-react"
 import styletron from "gatsby-plugin-styletron"
 
 const fancyStyles = {
-  fontSize: '36px',
-  '@media (max-width: 768px)': {
-    fontSize: '24px'
+  ":hover": {
+    backgroundColor: "papayawhip"
   },
-  ':hover': {
-    backgroundColor: 'papayawhip'
-  }
+  "@media (max-width: 768px)": {
+    ":hover": {
+      animationDuration: "3s",
+      animationFillMode: "forwards",
+      animationName: {
+        "0%": {
+          transform: "translate3d(0,0,0)"
+        },
+        "to": {
+          transform: "translate3d(100%,0,0)"
+        }
+      },
+      willChange: "transform"
+    },
+    fontFamily: {
+      fontStyle: "normal",
+      fontWeight: "normal",
+      src: "url(https://fonts.gstatic.com/s/inconsolata/v16/QldKNThLqRwH-OJ1UHjlKGlW5qhExfHwNJU.woff2) format(woff2)"
+    },
+    fontSize: "24px"
+  },
+  fontSize: "36px"
 }
 
 const divStyles = {
@@ -85,10 +103,11 @@ const FancyAnchor = withStyle(RedAnchor, {fontFamily: "cursive"})
 
 export default () => {
   const css = styletron().css
+
   return (
-    <div className={css ({backgroundColor: "#cff", ...divStyles})}>
-      <FancyAnchor className={css (fancyStyles)}>Hi!</FancyAnchor>
-      <div className={css (fancyStyles)}>Cool huh?</div>
+    <div className={css({ backgroundColor: "#cff", ...divStyles, ...fancyStyles })}>
+      <FancyAnchor>Hi!</FancyAnchor>
+      <div className={css(fancyStyles)}>Cool huh?</div>
     </div>
   )
 }
