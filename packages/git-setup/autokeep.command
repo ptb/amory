@@ -143,6 +143,7 @@ autokeep_launchagent () {
       "ProgramArguments" "-array-add" "--allow-empty-message" \
       "ProgramArguments" "-array-add" "--message=" \
       "RunAtLoad" "-bool" "true" \
+      "ThrottleInterval" "-int" "300" \
       "WatchPaths" "-array-add" "${a}" \
       "WorkingDirectory" "-string" "${a}" \
     | while IFS="$(printf '\t')" read e f g; do
