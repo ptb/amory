@@ -5,7 +5,7 @@
  module.exports = (locals, callback) => {
    let headComponents = []
 -  let htmlAttributes = {}
-+  let htmlAttributes = {"xmlns": "http://www.w3.org/1999/xhtml"}
++  let htmlAttributes = {"lang": "en", "xmlns": "http://www.w3.org/1999/xhtml"}
    let bodyAttributes = {}
    let preBodyComponents = []
    let postBodyComponents = []
@@ -16,7 +16,7 @@
    let bodyHtml = ``
    let headComponents = []
 -  let htmlAttributes = {}
-+  let htmlAttributes = {"xmlns": "http://www.w3.org/1999/xhtml"}
++  let htmlAttributes = {"lang": "en", "xmlns": "http://www.w3.org/1999/xhtml"}
    let bodyAttributes = {}
    let preBodyComponents = []
    let postBodyComponents = []

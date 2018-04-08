@@ -20,10 +20,12 @@ exports.replaceRenderer = (
           `style`,
           {
             className: `_styletron_hydrate_`,
+            dangerouslySetInnerHTML: {
+              __html: sheet.css
+            },
             key: index,
             media: sheet.attrs.media,
-          },
-          sheet.css
+          }
         )
       )
     : null
