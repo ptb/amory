@@ -160,9 +160,9 @@ class GatsbyImage extends Component {
       "inner": (fluid, img, style) => {
         const fixed = Object.assign (
           {
-            "display": "inline-block",
-            "height": `${img.height}px`,
-            "width": `${img.width}px`
+            "maxWidth": `${img.width}px`,
+            "minHeight": `${img.height}px`,
+            "width": "100%"
           },
           style
         )
@@ -214,7 +214,7 @@ class GatsbyImage extends Component {
         },
         "sizes": fluid ? img.sizes : null,
         "src": img.src,
-        "srcSet": img.srcSet,
+        "srcset": img.srcSet,
         "title": title,
         "width": img.width
       }),
