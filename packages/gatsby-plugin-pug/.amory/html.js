@@ -2,10 +2,10 @@ import React from "react"
 
 const styles = pug `
   :sass(outputStyle="compressed")
-    \:root
-      box-sizing: border-box
     body
+      // -webkit-font-smoothing: antialiased
       -webkit-text-size-adjust: 100%
+      box-sizing: border-box
       margin: 0
       min-height: 100vh
       overflow-x: hidden
