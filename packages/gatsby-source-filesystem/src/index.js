@@ -1,5 +1,3 @@
-/* eslint-env node */
-
 const fs = require ("fs-extra")
 
 exports.createFilePath = require ("./create-file-path.js")

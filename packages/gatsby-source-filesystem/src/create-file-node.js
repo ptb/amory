@@ -1,10 +1,8 @@
-/* eslint-env node */
-
 const crypto = require ("crypto")
 const fs = require ("fs-extra")
 const mime = require ("mime")
 const path = require ("path")
-const md5File = require ("bluebird").promisify (require ("md5-file"))
+const md5File = require ("md5-file/promise")
 const prettyBytes = require ("pretty-bytes")
 const slash = require ("slash")
 
@@ -26,8 +24,6 @@ const createFileNode = async (src, opts = {}) => {
     ... path.parse (node.absolutePath),
     ... stats,
     "absPath": slash (path.resolve (node.absolutePath)),
-    "isDir": stats.isDirectory (),
-    "isFile": stats.isFile (),
     "relativePath": slash (path.relative (node.cwd, node.absolutePath)) }
 
   node = { ... node,
@@ -35,7 +31,7 @@ const createFileNode = async (src, opts = {}) => {
     "birthTime": node.birthtime,
     "changeTime": node.ctime,
     "extension": node.ext.slice (1).toLowerCase (),
-    "internal": node.isDir
+    "internal": stats.isDirectory ()
       ? {
         "contentDigest": crypto
           .createHash ("md5")
@@ -48,7 +44,7 @@ const createFileNode = async (src, opts = {}) => {
       }
       : {
         "contentDigest": await md5File (node.absolutePath),
-        "mediaType": mime.lookup (node.ext),
+        "mediaType": mime.getType (node.ext),
         "type": "File"
       },
     "modifiedTime": node.mtime,
@@ -56,11 +52,11 @@ const createFileNode = async (src, opts = {}) => {
     "relativeDirectory": path.relative (node.cwd, node.dir) }
 
   node = { ... node,
-    "allFiles": node.isDir
+    "allFiles": stats.isDirectory ()
       ? await fs
         .readdir (node.absolutePath)
         .map ((file) => path.join (node.absolutePath, file))
-        .filter ((file) => fs.stat (file).isFile ())
+        .filter ((file) => fs.statSync (file).isFile ())
         .map ((file) => createFileNode (file, opts))
       : [] }
 

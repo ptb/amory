@@ -1,7 +1,6 @@
-/* eslint-env node */
-
 const chokidar = require ("chokidar")
 const fs = require ("fs")
+const path = require ("path")
 
 const { createId, createFileNode } = require ("./create-file-node.js")
 
@@ -50,15 +49,11 @@ exports.sourceNodes = ({ boundActionCreators, getNode, reporter }, opts) => {
     const q = queue.add (noop, action, src)
 
     if (ready) {
+      q.forEach ((e) => {
+        reporter.info (`${e.action} at "${e.src}"`)
+        createFileNode (e.src, opts).then (createNode)
+      })
       queue.add ()
-      return Promise.all (
-        q.map ((e) => {
-          reporter.info (`${e.action} at ${e.src}`)
-          return createFileNode (e.src, opts)
-            .then (createNode)
-            .catch ((err) => reporter.error (err))
-        })
-      )
     }
   }
 
@@ -96,7 +91,7 @@ exports.sourceNodes = ({ boundActionCreators, getNode, reporter }, opts) => {
 
   validateOpts ()
 
-  const watcher = chokidar
+  chokidar
     .watch (opts.path, {
       "ignored": [
         "../**/dist/**",
@@ -109,22 +104,22 @@ exports.sourceNodes = ({ boundActionCreators, getNode, reporter }, opts) => {
       ]
     })
     .on ("add", (src) => addNode (false, "added file", src))
-    .on ("change", (src) => addNode (false, "changed file", src))
+    .on ("change", (src) => {
+      addNode (false, "changed file", src)
+      addNode (false, "changed directory", path.dirname (src))
+    })
     .on ("unlink", (src) => delNode (false, "deleted file", src))
     .on ("addDir", (src) => addNode (false, "added directory", src))
     .on ("unlinkDir", (src) => delNode (false, "deleted directory", src))
-
-  return new Promise ((resolve, reject) => {
-    watcher.on ("ready", () => {
+    .on ("ready", () => {
       if (ready) {
         return
       }
 
       ready = true
-      addNode (true).then (resolve, reject)
+      addNode (true)
       delNode (true)
     })
-  })
 }
 
 exports.setFieldsOnGraphQLNodeType = require ("./extend-file-node.js")
