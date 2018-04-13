@@ -1,4 +1,4 @@
-/* eslint-env commonjs */
+/* eslint-env node */
 
 const fs = require ("fs-extra")
 

@@ -1,14 +1,16 @@
+/* eslint-env node */
+
 const crypto = require ("crypto")
 const fs = require ("fs-extra")
 const mime = require ("mime")
 const path = require ("path")
-const md5File = require ("md5-file").sync
+const md5File = require ("bluebird").promisify (require ("md5-file"))
 const prettyBytes = require ("pretty-bytes")
 const slash = require ("slash")
 
 const createId = (src) => `${slash (src)} absPath of file`
 
-const createFileNode = (src, opts = {}) => {
+const createFileNode = async (src, opts = {}) => {
   let node = {
     "absolutePath": slash (src),
     "children": [],
@@ -18,11 +20,14 @@ const createFileNode = (src, opts = {}) => {
     "sourceInstanceName": opts.name || "__PROGRAMATTIC__"
   }
 
+  const stats = await fs.stat (node.absolutePath)
+
   node = { ... node,
     ... path.parse (node.absolutePath),
-    ... fs.statSync (node.absolutePath),
+    ... stats,
     "absPath": slash (path.resolve (node.absolutePath)),
-    "isDir": fs.statSync (node.absolutePath).isDirectory (),
+    "isDir": stats.isDirectory (),
+    "isFile": stats.isFile (),
     "relativePath": slash (path.relative (node.cwd, node.absolutePath)) }
 
   node = { ... node,
@@ -34,12 +39,15 @@ const createFileNode = (src, opts = {}) => {
       ? {
         "contentDigest": crypto
           .createHash ("md5")
-          .update (JSON.stringify (node.mtime))
+          .update (JSON.stringify ({
+            "absolutePath": node.absolutePath,
+            "stats": stats
+          }))
           .digest ("hex"),
         "type": "Directory"
       }
       : {
-        "contentDigest": md5File (node.absolutePath),
+        "contentDigest": await md5File (node.absolutePath),
         "mediaType": mime.lookup (node.ext),
         "type": "File"
       },
@@ -49,10 +57,10 @@ const createFileNode = (src, opts = {}) => {
 
   node = { ... node,
     "allFiles": node.isDir
-      ? fs
-        .readdirSync (node.absolutePath)
+      ? await fs
+        .readdir (node.absolutePath)
         .map ((file) => path.join (node.absolutePath, file))
-        .filter ((file) => fs.statSync (file).isFile ())
+        .filter ((file) => fs.stat (file).isFile ())
         .map ((file) => createFileNode (file, opts))
       : [] }
 

@@ -1,3 +1,5 @@
+/* eslint-env node */
+
 const chokidar = require ("chokidar")
 const fs = require ("fs")
 
@@ -48,11 +50,15 @@ exports.sourceNodes = ({ boundActionCreators, getNode, reporter }, opts) => {
     const q = queue.add (noop, action, src)
 
     if (ready) {
-      q.forEach ((e) => {
-        reporter.info (`${e.action} at ${e.src}`)
-        createNode (createFileNode (e.src, opts))
-      })
       queue.add ()
+      return Promise.all (
+        q.map ((e) => {
+          reporter.info (`${e.action} at ${e.src}`)
+          return createFileNode (e.src, opts)
+            .then (createNode)
+            .catch ((err) => reporter.error (err))
+        })
+      )
     }
   }
 
@@ -90,7 +96,7 @@ exports.sourceNodes = ({ boundActionCreators, getNode, reporter }, opts) => {
 
   validateOpts ()
 
-  chokidar
+  const watcher = chokidar
     .watch (opts.path, {
       "ignored": [
         "../**/dist/**",
@@ -107,15 +113,18 @@ exports.sourceNodes = ({ boundActionCreators, getNode, reporter }, opts) => {
     .on ("unlink", (src) => delNode (false, "deleted file", src))
     .on ("addDir", (src) => addNode (false, "added directory", src))
     .on ("unlinkDir", (src) => delNode (false, "deleted directory", src))
-    .on ("ready", () => {
+
+  return new Promise ((resolve, reject) => {
+    watcher.on ("ready", () => {
       if (ready) {
         return
       }
 
       ready = true
-      addNode (true)
+      addNode (true).then (resolve, reject)
       delNode (true)
     })
+  })
 }
 
 exports.setFieldsOnGraphQLNodeType = require ("./extend-file-node.js")
