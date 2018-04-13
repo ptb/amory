@@ -126,7 +126,7 @@
     "dot-notation": [
       "warn",
       {
-        "allowKeywords": false
+        "allowKeywords": true
       }
     ],
     "eol-last": [
