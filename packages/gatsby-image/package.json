@@ -46,5 +46,5 @@
     "prepare": "cross-env NODE_ENV=production npm run build",
     "watch": "babel -w src/index.js --out-file index.js --ignore __tests__"
   },
-  "version": "2018.4.13-2"
+  "version": "2018.4.17-0"
 }
