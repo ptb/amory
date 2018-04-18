@@ -55,16 +55,14 @@ const createFileNode = async (src, createNodeId, opts = {}) => {
     "relativeDirectory": path.relative (node.cwd, node.dir)
   }
 
-  node = {
-    ... node,
-    "allFile": {
-      "edges": stats.isDirectory ()
-        ? await fs
-          .readdir (node.absolutePath)
-          .map ((file) => path.join (node.absolutePath, file))
-          .filter ((file) => fs.statSync (file).isFile ())
-          .map ((file) => ({ "node___NODE": createNodeId (file) }))
-        : []
+  if (stats.isDirectory()) {
+    node = {
+      ... node,
+      "files___NODE": await fs
+        .readdir (node.absolutePath)
+        .map ((file) => path.join (node.absolutePath, file))
+        .filter ((file) => fs.statSync (file).isFile ())
+        .map ((file) => createNodeId (file))
     }
   }
 
