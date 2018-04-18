@@ -1,7 +1,7 @@
-import { createElement as h } from "react"
-import { Provider } from "styletron-react"
-import { renderToString } from "react-dom/server"
-import styletron from "./index.js"
+const h = require ("react").createElement
+const Provider = require ("styletron-react").Provider
+const renderToString = require ("react-dom/server").renderToString
+const styletron = require ("./index.js")
 
 exports.replaceRenderer = (
   { bodyComponent, setHeadComponents, replaceBodyHTMLString },

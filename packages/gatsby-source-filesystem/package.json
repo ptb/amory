@@ -44,5 +44,5 @@
     "prepare": "cross-env NODE_ENV=production npm run build",
     "watch": "babel -w src --out-dir . --ignore __tests__"
   },
-  "version": "2018.4.18-0"
+  "version": "2018.4.18-1"
 }

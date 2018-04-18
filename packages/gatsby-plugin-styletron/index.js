@@ -1,5 +1,5 @@
-import { Client, Server } from "styletron-engine-atomic"
-import { driver } from "styletron-standard"
+const { Client, Server } = require ("styletron-engine-atomic")
+const driver = require ("styletron-standard").driver
 
 let instance
 
