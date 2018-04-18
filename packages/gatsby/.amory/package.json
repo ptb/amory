@@ -1,8 +1,8 @@
 {
   "dependencies": {
-    "gatsby": "^1.x",
-    "react": "^16.x",
-    "react-dom": "^16.x"
+    "gatsby": "canary",
+    "react": "^16",
+    "react-dom": "^16"
   },
   "scripts": {
     "gatsby:develop": "gatsby develop",

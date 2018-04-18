@@ -1,0 +1,28 @@
+{
+  "babel": {
+    "presets": [
+      [
+        "@babel/preset-env",
+        {
+          "modules": false,
+          "shippedProposals": true,
+          "targets": {
+            "node": "current"
+          },
+          "useBuiltIns": "entry"
+        }
+      ],
+      "@babel/preset-flow"
+    ]
+  },
+  "devDependencies": {
+    "@babel/cli": "latest",
+    "@babel/core": "latest",
+    "@babel/preset-env": "latest",
+    "@babel/preset-flow": "latest"
+  },
+  "scripts": {
+    "babel:build": "babel . -d . --ignore 'node_modules,public,__tests__' --minified --no-comments -x .es,.es6,.flow,.jsx,.mjs",
+    "babel:watch": "babel . -d . --ignore 'node_modules,public,__tests__' -w -x .es,.es6,.flow,.jsx,.mjs"
+  }
+}

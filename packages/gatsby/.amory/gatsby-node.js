@@ -1,8 +1,9 @@
-/* eslint-env commonjs */
-
-const options = require ("./gatsby-node.json")
-
-exports.modifyWebpackConfig = ({ config, _stage }) => {
-  config.merge (options)
-  return config
+exports.onCreateWebpackConfig = ({ actions }) => {
+  actions.setWebpackConfig ({
+    "devtool": false,
+    "output": {
+      "hashDigestLength": 6,
+      "publicPath": "/"
+    }
+  })
 }
