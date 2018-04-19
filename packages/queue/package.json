@@ -1,0 +1,15 @@
+{
+  "author": "Peter T Bosse II <ptb@ioutime.com> (http://ptb2.me/)",
+  "dependencies": {
+    "better-queue": "^3",
+    "chokidar": "^1"
+  },
+  "license": "Apache-2.0",
+  "main": "index.js",
+  "name": "@ptb/queue",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": "https://github.com/ptb/amory/tree/master/packages/queue",
+  "version": "2018.4.19-0"
+}
