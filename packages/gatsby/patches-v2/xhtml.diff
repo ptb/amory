@@ -1,0 +1,33 @@
+--- node_modules/gatsby/cache-dir/develop-static-entry.js
++++ node_modules/gatsby/cache-dir/develop-static-entry.js
+@@ -28,7 +28,7 @@
+ 
+ export default (locals, callback) => {
+   let headComponents = []
+-  let htmlAttributes = {}
++  let htmlAttributes = {"lang": "en", "xmlns": "http://www.w3.org/1999/xhtml"}
+   let bodyAttributes = {}
+   let preBodyComponents = []
+   let postBodyComponents = []
+--- node_modules/gatsby/cache-dir/static-entry.js
++++ node_modules/gatsby/cache-dir/static-entry.js
+@@ -61,7 +61,7 @@
+ 
+   let bodyHtml = ``
+   let headComponents = []
+-  let htmlAttributes = {}
++  let htmlAttributes = {"lang": "en", "xmlns": "http://www.w3.org/1999/xhtml"}
+   let bodyAttributes = {}
+   let preBodyComponents = []
+   let postBodyComponents = []
+--- node_modules/react-dom/cjs/react-dom-server.node.development.js
++++ node_modules/react-dom/cjs/react-dom-server.node.development.js
+@@ -1133,7 +1133,7 @@
+   cellpadding: 'cellPadding',
+   cellspacing: 'cellSpacing',
+   challenge: 'challenge',
+-  charset: 'charSet',
++  charset: 'charset',
+   checked: 'checked',
+   children: 'children',
+   cite: 'cite',

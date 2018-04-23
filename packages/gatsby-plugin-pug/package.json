@@ -1,7 +1,13 @@
 {
   "author": "Peter T Bosse II <ptb@ioutime.com> (http://ptb2.me/)",
   "dependencies": {
-    "@ptb/transform-react-pug": "^5",
+    "@babel/core": "latest",
+    "@babel/plugin-proposal-class-properties": "latest",
+    "@babel/plugin-syntax-dynamic-import": "latest",
+    "@babel/preset-env": "latest",
+    "@babel/preset-flow": "latest",
+    "@babel/preset-react": "latest",
+    "@ptb/transform-react-pug": "latest",
     "eslint-plugin-react-pug": "latest",
     "jstransformer-sass": "^1"
   },
@@ -16,5 +22,5 @@
     "postinstall:merge": "find '.amory' -maxdepth 1 -name '*.json' -print0 | xargs -0 -I {} -n1 basename '{}' | xargs -I {} -n1 npx -p @ptb/merge-json -c 'merge-json ../../../{} .amory/{}'",
     "postinstall:setup": "find '.amory' -maxdepth 1 -not -name '.amory' -not -name '*.json' -exec cp -R '{}' '../../../' \\;"
   },
-  "version": "2018.4.23-0"
+  "version": "2018.4.23-4"
 }

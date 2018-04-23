@@ -1,7 +1,24 @@
 {
   "babel": {
     "plugins": [
-      "transform-react-pug"
+      "@babel/plugin-proposal-class-properties",
+      "@babel/plugin-syntax-dynamic-import",
+      "@ptb/transform-react-pug"
+    ],
+    "presets": [
+      [
+        "@babel/preset-env",
+        {
+          "modules": false,
+          "shippedProposals": true,
+          "targets": {
+            "node": "current"
+          },
+          "useBuiltIns": "entry"
+        }
+      ],
+      "@babel/preset-react",
+      "@babel/preset-flow"
     ]
   },
   "eslintConfig": {

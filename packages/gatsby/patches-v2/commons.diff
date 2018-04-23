@@ -1,0 +1,81 @@
+--- node_modules/gatsby/cache-dir/develop-static-entry.js
++++ node_modules/gatsby/cache-dir/develop-static-entry.js
+@@ -77,7 +77,7 @@
+     ]),
+     preBodyComponents,
+     postBodyComponents: postBodyComponents.concat([
+-      <script key={`commons`} src="/commons.js" />,
++      <script key={`commons`} src="/js/commons.js" />,
+     ]),
+   })
+   htmlStr = renderToStaticMarkup(htmlElement)
+--- node_modules/gatsby/cache-dir/root.js
++++ node_modules/gatsby/cache-dir/root.js
+@@ -16,7 +16,7 @@
+ // Report runtime errors
+ ErrorOverlay.startReportingRuntimeErrors({
+   onError: () => {},
+-  filename: `/commons.js`,
++  filename: `/js/commons.js`,
+ })
+ ErrorOverlay.setEditorHandler(errorLocation =>
+   window.fetch(
+--- node_modules/gatsby/cache-dir/static-entry.js
++++ node_modules/gatsby/cache-dir/static-entry.js
+@@ -169,15 +169,15 @@
+   const page = pages.find(page => page.path === locals.path)
+   let runtimeScript
+   const scriptsAndStyles = flatten(
+-    [`app`, page.componentChunkName].map(s => {
++    [`js/app`, page.componentChunkName].map(s => {
+       const fetchKey = `assetsByChunkName[${s}]`
+ 
+       let chunks = get(stats, fetchKey)
+ 
+       // Remove the runtime as we always inline that instead
+       // of loading it.
+-      if (s === `app`) {
+-        runtimeScript = chunks[0]
++      if (s === `js/app`) {
++        runtimeScript = `/${chunks[0]}`
+       }
+ 
+       if (!chunks) {
+@@ -191,7 +191,7 @@
+         if (chunk.slice(0, 15) === `webpack-runtime`) {
+           return null
+         }
+-        return chunk
++        return `/${chunk}`
+       })
+     })
+   ).filter(s => isString(s))
+--- node_modules/gatsby/dist/utils/webpack.config.js
++++ node_modules/gatsby/dist/utils/webpack.config.js
+@@ -94,7 +94,7 @@
+       switch (stage) {
+         case `develop`:
+           return {
+-            path: directory,
++            path: `${directory}/js`,
+             filename: `[name].js`,
+             publicPath: `http://${program.host}:${webpackPort}/`,
+             // Add /* filename */ comments to generated require()s in the output.
+@@ -134,7 +134,7 @@
+       switch (stage) {
+         case `develop`:
+           return {
+-            commons: [`${require.resolve(`webpack-hot-middleware/client`)}?path=http://${program.host}:${webpackPort}/__webpack_hmr&reload=true&overlay=false`, directoryPath(`.cache/app`)]
++            "js/commons": [`${require.resolve(`webpack-hot-middleware/client`)}?path=/__webpack_hmr&reload=true&overlay=false`, directoryPath(`.cache/app`)]
+           };
+ 
+         case `develop-html`:
+@@ -149,7 +149,7 @@
+ 
+         case `build-javascript`:
+           return {
+-            app: directoryPath(`.cache/production-app`)
++            "js/app": directoryPath(`.cache/production-app`)
+           };
+ 
+         default:
