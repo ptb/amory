@@ -3,12 +3,10 @@ const driver = require ("styletron-standard").driver
 
 let instance
 
-export default (() => (options) => {
+module.exports = (() => (options) => {
   if (!instance) {
     if (typeof window !== `undefined` && window.document.createElement) {
-      const styleElements = document.getElementsByClassName (
-        "_styletron_hydrate_"
-      )
+      const styleElements = document.getElementsByClassName ("rehydrate")
 
       instance = new Client ({ "hydrate": styleElements, ... options })
     } else {

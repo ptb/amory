@@ -17,7 +17,7 @@ exports.replaceRenderer = (
   const headComponents = stylesheets[0].css
     ? stylesheets.map ((sheet, index) =>
       h ("style", {
-        "className": "_styletron_hydrate_",
+        "className": "rehydrate",
         "dangerouslySetInnerHTML": {
           "__html": sheet.css
         },
