@@ -5,9 +5,9 @@
     {
       "options": {
         "name": "images",
-        "path": "src/images/"
+        "path": "src/images"
       },
-      "resolve": "gatsby-source-filesystem"
+      "resolve": "@ptb/gatsby-source-filesystem"
     }
   ]
 }
