@@ -1,0 +1,69 @@
+--- node_modules/gatsby/cache-dir/develop-static-entry.js
++++ node_modules/gatsby/cache-dir/develop-static-entry.js
+@@ -73,7 +73,7 @@
+     body: ``,
+     headComponents: headComponents.concat([
+       <script key={`io`} src="/socket.io/socket.io.js" />,
+-      <link key={`style`} rel="stylesheet" href="/commons.css" />,
++      <link key={`style`} rel="stylesheet" href="/js/commons.css" />,
+     ]),
+     preBodyComponents,
+     postBodyComponents: postBodyComponents.concat([
+--- node_modules/gatsby/dist/utils/webpack-utils.js
++++ node_modules/gatsby/dist/utils/webpack-utils.js
+@@ -31,7 +31,7 @@
+     stage,
+     program
+   }) {
+-    const assetRelativeRoot = `static/`;
++    const assetRelativeRoot = `assets/`;
+     const vendorRegex = /(node_modules|bower_components)/;
+     const supportedBrowsers = program.browserlist;
+     const PRODUCTION = !stage.includes(`develop`);
+@@ -89,7 +89,7 @@
+             sourceMap: !PRODUCTION,
+             camelCase: `dashesOnly`,
+             // https://github.com/webpack-contrib/css-loader/issues/406
+-            localIdentName: `[name]--[local]--[hash:base64:5]`
++            localIdentName: `[sha256:hash:base52:6]`
+           }, options)
+         };
+       },
+@@ -127,7 +127,7 @@
+         return {
+           loader: require.resolve(`url-loader`),
+           options: Object.assign({
+-            name: `${assetRelativeRoot}[name]-[hash].[ext]`
++            name: `${assetRelativeRoot}[name]-[sha256:hash:base52:6].[ext]`
+           }, options)
+         };
+       },
+@@ -136,7 +136,7 @@
+           loader: require.resolve(`url-loader`),
+           options: Object.assign({
+             limit: 10000,
+-            name: `${assetRelativeRoot}[name]-[hash].[ext]`
++            name: `${assetRelativeRoot}[name]-[sha256:hash:base52:6].[ext]`
+           }, options)
+         };
+       },
+@@ -251,7 +251,7 @@
+           modules: true
+         }));
+         delete rule.exclude;
+-        rule.test = /\.module\.css$/;
++        rule.test = /\.css$/;
+         return rule;
+       };
+ 
+@@ -314,8 +314,8 @@
+ 
+ 
+     plugins.extractText = options => new MiniCssExtractPlugin(Object.assign({
+-      filename: `[name].[chunkhash].css`,
+-      chunkFilename: `[name].[chunkhash].css`
++      filename: `css/[name]-[chunkhash].css`,
++      chunkFilename: `[name]-[chunkhash].css`
+     }, options));
+ 
+     plugins.moment = () => plugins.ignore(/^\.\/locale$/, /moment$/);

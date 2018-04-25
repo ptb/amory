@@ -1,3 +1,14 @@
+--- node_modules/gatsby/cache-dir/develop-static-entry.js
++++ node_modules/gatsby/cache-dir/develop-static-entry.js
+@@ -77,7 +77,7 @@
+     ]),
+     preBodyComponents,
+     postBodyComponents: postBodyComponents.concat([
+-      <script key={`commons`} src="/commons.js" />,
++      <script key={`commons`} src="/js/commons.js" />,
+     ]),
+   })
+   htmlStr = renderToStaticMarkup(htmlElement)
 --- node_modules/gatsby/cache-dir/loader.js
 +++ node_modules/gatsby/cache-dir/loader.js
 @@ -20,7 +20,7 @@
@@ -5,7 +16,7 @@
    // Find resource
    let resourceFunction
 -  if (resourceName.slice(0, 12) === `component---`) {
-+  if (resourceName.slice(0, 7) === `js/c/c-`) {
++  if (resourceName.slice(0, 4) === `c/c-`) {
      resourceFunction = asyncRequires.components[resourceName]
    } else {
      resourceFunction = () =>
@@ -14,27 +25,65 @@
            resolve(jsonStore[resourceName])
          } else {
 -          const url = `${pathPrefix ? pathPrefix : `/`}static/d/${
-+          const url = `${pathPrefix ? pathPrefix : `/`}js/d/${
++          const url = `${pathPrefix ? pathPrefix : `/`}js/p/${
              asyncRequires.json[resourceName]
            }.json`
            var req = new XMLHttpRequest()
+--- node_modules/gatsby/cache-dir/root.js
++++ node_modules/gatsby/cache-dir/root.js
+@@ -16,7 +16,7 @@
+ // Report runtime errors
+ ErrorOverlay.startReportingRuntimeErrors({
+   onError: () => {},
+-  filename: `/commons.js`,
++  filename: `/js/commons.js`,
+ })
+ ErrorOverlay.setEditorHandler(errorLocation =>
+   window.fetch(
 --- node_modules/gatsby/cache-dir/static-entry.js
 +++ node_modules/gatsby/cache-dir/static-entry.js
+@@ -11,7 +11,7 @@
+ const staticDataPaths = require(`./static-data-paths.json`)
+ 
+ const stats = JSON.parse(
+-  fs.readFileSync(`${process.cwd()}/public/webpack.stats.json`, `utf-8`)
++  fs.readFileSync(`${process.cwd()}/public/js/webpack.stats.json`, `utf-8`)
+ )
+ 
+ // const testRequireError = require("./test-require-error")
 @@ -122,7 +122,7 @@
            page.jsonName in staticDataPaths
              ? JSON.parse(
                  fs.readFileSync(
 -                  `${process.cwd()}/public/static/d/${
-+                  `${process.cwd()}/public/js/d/${
++                  `${process.cwd()}/public/js/p/${
                      staticDataPaths[page.jsonName]
                    }.json`
                  )
+@@ -177,7 +177,7 @@
+       // Remove the runtime as we always inline that instead
+       // of loading it.
+       if (s === `app`) {
+-        runtimeScript = chunks[0]
++        runtimeScript = `/js/${chunks[0]}`
+       }
+ 
+       if (!chunks) {
+@@ -191,7 +191,7 @@
+         if (chunk.slice(0, 15) === `webpack-runtime`) {
+           return null
+         }
+-        return chunk
++        return `/js/${chunk}`
+       })
+     })
+   ).filter(s => isString(s))
 @@ -228,7 +228,7 @@
      })
  
    if (page.jsonName in staticDataPaths) {
 -    const dataPath = `${pathPrefix}static/d/${
-+    const dataPath = `${pathPrefix}js/d/${
++    const dataPath = `${pathPrefix}js/p/${
        staticDataPaths[page.jsonName]
      }.json`
      // Insert json data path after app
@@ -54,18 +103,21 @@
      initCache(); // Ensure the public/static directory is created.
  
 -    yield fs.ensureDirSync(`${program.directory}/public/static/d`); // Copy our site files to the root of the site.
-+    yield fs.ensureDirSync(`${program.directory}/public/js/d`); // Copy our site files to the root of the site.
++    yield fs.ensureDirSync(`${program.directory}/public/js/p`); // Copy our site files to the root of the site.
  
      activity = report.activityTimer(`copy gatsby files`);
      activity.start();
 --- node_modules/gatsby/dist/internal-plugins/query-runner/query-runner.js
 +++ node_modules/gatsby/dist/internal-plugins/query-runner/query-runner.js
-@@ -68,7 +68,8 @@
-     const resultHash = require("crypto").createHash("sha1").update(resultJSON).digest("base64") // Remove potentially unsafe characters. This increases chances of collisions
+@@ -65,10 +65,10 @@
+ 
+     const resultJSON = JSON.stringify(result);
+ 
+-    const resultHash = require("crypto").createHash("sha1").update(resultJSON).digest("base64") // Remove potentially unsafe characters. This increases chances of collisions
++    const resultHash = require("crypto").createHash("sha1").update(resultJSON).digest("hex") // Remove potentially unsafe characters. This increases chances of collisions
      // slightly but it should still be very safe + we get a shorter
      // url vs hex.
 -    .replace(/[^a-zA-Z0-9-_]/g, "");
-+    .replace(/[^a-zA-Z0-9-_]/g, "")
 +    .slice(0, 6)
  
      let dataPath;
@@ -75,10 +127,10 @@
  
      if (resultHashes[queryJob.id] !== resultHash) {
 -      resultHashes[queryJob.id] = resultHash; // Always write file to public/static/d/ folder.
-+      resultHashes[queryJob.id] = resultHash; // Always write file to public/js/d/ folder.
++      resultHashes[queryJob.id] = resultHash; // Always write file to public/js/p/ folder.
  
 -      const resultPath = path.join(program.directory, `public`, `static`, `d`, `${dataPath}.json`);
-+      const resultPath = path.join(program.directory, `public`, `js`, `d`, `${dataPath}.json`);
++      const resultPath = path.join(program.directory, `public`, `js`, `p`, `${dataPath}.json`);
        yield fs.writeFile(resultPath, resultJSON);
        store.dispatch({
          type: `SET_JSON_DATA_PATH`,
@@ -117,8 +169,8 @@
  
 +var crypto = require("crypto");
 +
-+var shahex = function shahex(name) {
-+  return crypto.createHash("sha").update(name).digest("hex").slice(0,6);
++var shahash = function shahash(name) {
++  return crypto.createHash("sha1").update(name).digest("hex").slice(0,6);
 +}
 +
  var _lodash = _interopRequireDefault(require("lodash"));
@@ -129,7 +181,7 @@
  const generatePathChunkName = path => {
    const name = path === `/` ? `index` : _lodash.default.kebabCase(path);
 -  return `path---${name}`;
-+  return `p-${shahex(name)}`;
++  return `p-${shahash(name)}`;
  };
  
  const generateComponentChunkName = componentPath => {
@@ -138,10 +190,53 @@
  
    const name = path.relative(directory, componentPath);
 -  return `component---${_lodash.default.kebabCase(name)}`;
-+  return `js/c/c-${shahex(_lodash.default.kebabCase(name))}`;
++  return `c/c-${shahash(_lodash.default.kebabCase(name))}`;
  };
  
  exports.generatePathChunkName = generatePathChunkName;
+--- node_modules/gatsby/dist/utils/webpack.config.js
++++ node_modules/gatsby/dist/utils/webpack.config.js
+@@ -94,9 +94,9 @@
+       switch (stage) {
+         case `develop`:
+           return {
+-            path: directory,
++            path: `${directory}/js`,
+             filename: `[name].js`,
+-            publicPath: `http://${program.host}:${webpackPort}/`,
++            publicPath: `/`,
+             // Add /* filename */ comments to generated require()s in the output.
+             pathinfo: true,
+             // Point sourcemap entries to original disk location (format as URL on Windows)
+@@ -121,8 +121,8 @@
+           return {
+             filename: `[name]-[chunkhash].js`,
+             chunkFilename: `[name]-[chunkhash].js`,
+-            path: directoryPath(`public`),
+-            publicPath: program.prefixPaths ? `${store.getState().config.pathPrefix}/` : `/`
++            path: directoryPath(`public/js`),
++            publicPath: program.prefixPaths ? `${store.getState().config.pathPrefix}/js/` : `/js/`
+           };
+ 
+         default:
+@@ -134,7 +134,7 @@
+       switch (stage) {
+         case `develop`:
+           return {
+-            commons: [`${require.resolve(`webpack-hot-middleware/client`)}?path=http://${program.host}:${webpackPort}/__webpack_hmr&reload=true&overlay=false`, directoryPath(`.cache/app`)]
++            "js/commons": [`${require.resolve(`webpack-hot-middleware/client`)}?path=/__webpack_hmr&reload=true&overlay=false`, directoryPath(`.cache/app`)]
+           };
+ 
+         case `develop-html`:
+@@ -238,7 +238,7 @@
+                     }
+                   }
+ 
+-                  fs.writeFile(path.join(`public`, `webpack.stats.json`), JSON.stringify({
++                  fs.writeFile(path.join(`public`, `js`, `webpack.stats.json`), JSON.stringify({
+                     assetsByChunkName: assets
+                   }), done);
+                 });
 --- node_modules/gatsby/dist/utils/websocket-manager.js
 +++ node_modules/gatsby/dist/utils/websocket-manager.js
 @@ -15,7 +15,7 @@
@@ -149,7 +244,7 @@
    const dataPath = jsonDataPaths[page.jsonName];
    if (typeof dataPath === `undefined`) return undefined;
 -  const filePath = path.join(directory, `public`, `static`, `d`, `${dataPath}.json`);
-+  const filePath = path.join(directory, `public`, `js`, `d`, `${dataPath}.json`);
++  const filePath = path.join(directory, `public`, `js`, `p`, `${dataPath}.json`);
    const result = JSON.parse(fs.readFileSync(filePath, `utf-8`));
    return {
      result,

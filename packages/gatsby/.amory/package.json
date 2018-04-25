@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "gatsby": "canary",
+    "gatsby": "2.0.0-alpha.e9c3027b",
     "react": "^16",
     "react-dom": "^16"
   },

@@ -31,3 +31,13 @@
            : void 0,
          () => {
            apiRunner(`onInitialClientRender`)
+--- node_modules/history/PathUtils.js
++++ node_modules/history/PathUtils.js
+@@ -2,6 +2,7 @@
+ 
+ exports.__esModule = true;
+ var addLeadingSlash = exports.addLeadingSlash = function addLeadingSlash(path) {
++  path = path.replace(/^\/+/, "/")
+   return path.charAt(0) === '/' ? path : '/' + path;
+ };
+ 
