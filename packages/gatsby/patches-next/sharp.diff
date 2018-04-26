@@ -1,3 +1,5 @@
+--- node_modules/gatsby-plugin-sharp/index.js
++++ node_modules/gatsby-plugin-sharp/index.js
 @@ -4,6 +4,25 @@
  
  var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime/helpers/asyncToGenerator"));

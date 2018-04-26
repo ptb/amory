@@ -5,8 +5,6 @@ import styletron from "@ptb/gatsby-plugin-styletron"
 
 if (typeof window !== "undefined") {
   require ("intersection-observer")
-  require ("picturefill")
-  require ("picturefill/dist/plugins/mutation/pf.mutation.min")
 }
 
 // Handle legacy names for image queries.
@@ -198,12 +196,9 @@ class GatsbyImage extends Component {
         const bgColor = typeof bg === "boolean" ? "lightgray" : bg
 
         return {
-          "className": css (this.getStyle ().color (
-            bgColor,
-            fluid,
-            img,
-            isLoaded
-          )),
+          "className": css (
+            this.getStyle ().color (bgColor, fluid, img, isLoaded)
+          ),
           "title": title
         }
       },
@@ -223,15 +218,14 @@ class GatsbyImage extends Component {
       }),
       "inner": (className, fluid, img, style) => ({
         "className": [
-          className,
-          css (this.getStyle ().inner (fluid, img, style))
+          className, css (this.getStyle ().inner (fluid, img, style))
         ].filter (Boolean).join (" "),
         "ref": this.handleRef
       }),
       "proxy": (alt, src, isLoaded, style, title) => ({
         "alt": alt,
         "className": css (this.getStyle ().image (0, null, isLoaded, style)),
-        "src": src,
+        "srcset": src,
         "title": title
       }),
       "ratio": (img) => ({
@@ -272,51 +266,65 @@ class GatsbyImage extends Component {
         img.srcSet = img.srcSetWebp ? img.srcSetWebp : img.srcSet
       }
 
-      const retina = Object.assign ({}, img)
-      const stdimg = Object.assign ({}, img)
-
-      delete retina.src
-      delete stdimg.srcSet
-
       return h (
-        "picture",
+        Tag,
         this.getProps ().inner (className, fluid, img, style),
 
         fluid && h (Tag, this.getProps ().ratio (img)),
 
         // Show the blurry base64 image.
         img.base64 &&
-          h ("source", this.getProps ()
-            .proxy (alt, img.base64, this.state.isLoaded, imgStyle, title)),
+          h (
+            "img",
+            this.getProps ().proxy (
+              alt,
+              img.base64,
+              this.state.isLoaded,
+              imgStyle,
+              title
+            )
+          ),
 
         // Show the traced SVG image.
         img.tracedSVG &&
-          h ("source",
-            this.getProps ()
-              .proxy (alt, img.tracedSVG, this.state.isLoaded, imgStyle, title)),
+          h (
+            "img",
+            this.getProps ().proxy (
+              alt,
+              img.tracedSVG,
+              this.state.isLoaded,
+              imgStyle,
+              title
+            )
+          ),
 
         // Show a solid background color.
         backgroundColor &&
-          h ("div", this.getProps ()
-            .color (backgroundColor, img, fluid, this.state.isLoaded, title)),
+          h (
+            "div",
+            this.getProps ().color (
+              backgroundColor,
+              img,
+              fluid,
+              this.state.isLoaded,
+              title
+            )
+          ),
 
         // Once the image is visible, start downloading the image
         this.state.isVisible &&
-          h ("source",
-            this.getProps ()
-              .image (alt, retina, fluid, 1, this.state.isLoaded, imgStyle, title )),
-
-        this.state.isVisible &&
-          h ("img",
-            this.getProps ()
-              .image (alt, stdimg, fluid, 1, this.state.isLoaded, imgStyle, title)),
-
-        // Show the original image during server-side rendering,
-        // or if JavaScript is disabled
-        h ("noscript", {},
-          h ("img",
-            this.getProps ()
-              .image (alt, img, fluid, 2, false, imgStyle, title))),
+          h (
+            "img",
+            this.getProps ().image (
+              alt,
+              img,
+              fluid,
+              1,
+              this.state.isLoaded,
+              imgStyle,
+              title
+            )
+          ),
 
         this.props.children
       )
