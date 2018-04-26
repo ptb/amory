@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "gatsby": "2.0.0-alpha.e9c3027b",
+    "gatsby": "2.0.0-alpha.20",
     "react": "^16",
     "react-dom": "^16"
   },

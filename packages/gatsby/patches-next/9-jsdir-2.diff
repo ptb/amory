@@ -1,0 +1,34 @@
+
+--- node_modules/gatsby/cache-dir/static-entry.js
++++ node_modules/gatsby/cache-dir/static-entry.js
+@@ -172,7 +172,7 @@
+       // Remove the runtime as we always inline that instead
+       // of loading it.
+       if (s === `app`) {
+-        runtimeScript = chunks[0]
++        runtimeScript = `/js/${chunks[0]}`
+       }
+ 
+       if (!chunks) {
+@@ -186,7 +186,7 @@
+         if (chunk.slice(0, 15) === `webpack-runtime`) {
+           return null
+         }
+-        return chunk
++        return `/js/${chunk}`
+       })
+     })
+   ).filter(s => isString(s))
+--- node_modules/gatsby/dist/utils/webpack.config.js
++++ node_modules/gatsby/dist/utils/webpack.config.js
+@@ -119,8 +119,8 @@
+           return {
+             filename: `[name]-[chunkhash].js`,
+             chunkFilename: `[name]-[chunkhash].js`,
+-            path: directoryPath(`public`),
+-            publicPath: program.prefixPaths ? `${store.getState().config.pathPrefix}/` : `/`
++            path: directoryPath(`public/js`),
++            publicPath: program.prefixPaths ? `${store.getState().config.pathPrefix}/js/` : `/js/`
+           };
+ 
+         default:

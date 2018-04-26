@@ -11,7 +11,7 @@
      postBodyComponents: postBodyComponents.concat([
 --- node_modules/gatsby/dist/utils/webpack-utils.js
 +++ node_modules/gatsby/dist/utils/webpack-utils.js
-@@ -31,7 +31,7 @@
+@@ -33,7 +33,7 @@
      stage,
      program
    }) {
@@ -20,7 +20,7 @@
      const vendorRegex = /(node_modules|bower_components)/;
      const supportedBrowsers = program.browserlist;
      const PRODUCTION = !stage.includes(`develop`);
-@@ -89,7 +89,7 @@
+@@ -98,7 +98,7 @@
              sourceMap: !PRODUCTION,
              camelCase: `dashesOnly`,
              // https://github.com/webpack-contrib/css-loader/issues/406
@@ -29,7 +29,7 @@
            }, options)
          };
        },
-@@ -127,7 +127,7 @@
+@@ -136,7 +136,7 @@
          return {
            loader: require.resolve(`url-loader`),
            options: Object.assign({
@@ -38,7 +38,7 @@
            }, options)
          };
        },
-@@ -136,7 +136,7 @@
+@@ -145,7 +145,7 @@
            loader: require.resolve(`url-loader`),
            options: Object.assign({
              limit: 10000,
@@ -47,7 +47,7 @@
            }, options)
          };
        },
-@@ -251,7 +251,7 @@
+@@ -279,7 +279,7 @@
            modules: true
          }));
          delete rule.exclude;
@@ -56,7 +56,7 @@
          return rule;
        };
  
-@@ -314,8 +314,8 @@
+@@ -342,8 +342,8 @@
  
  
      plugins.extractText = options => new MiniCssExtractPlugin(Object.assign({

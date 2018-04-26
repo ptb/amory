@@ -1,0 +1,23 @@
+--- node_modules/gatsby/cache-dir/loader.js
++++ node_modules/gatsby/cache-dir/loader.js
+@@ -20,7 +20,7 @@
+ const fetchResource = resourceName => {
+   // Find resource
+   let resourceFunction
+-  if (resourceName.slice(0, 12) === `component---`) {
++  if (resourceName.slice(0, 4) === `c/c-`) {
+     resourceFunction = asyncRequires.components[resourceName]
+   } else {
+     resourceFunction = () =>
+
+--- node_modules/gatsby/dist/utils/js-chunk-names.js
++++ node_modules/gatsby/dist/utils/js-chunk-names.js
+@@ -29,7 +29,7 @@
+   }
+ 
+   const name = path.relative(directory, componentPath);
+-  return `component---${_lodash.default.kebabCase(name)}`;
++  return `c/c-${shahash(_lodash.default.kebabCase(name))}`;
+ };
+ 
+ exports.generatePathChunkName = generatePathChunkName;

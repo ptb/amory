@@ -1,0 +1,33 @@
+--- node_modules/gatsby/cache-dir/develop-static-entry.js
++++ node_modules/gatsby/cache-dir/develop-static-entry.js
+@@ -77,7 +77,7 @@
+     ]),
+     preBodyComponents,
+     postBodyComponents: postBodyComponents.concat([
+-      <script key={`commons`} src="/commons.js" />,
++      <script key={`commons`} src="/js/commons.js" />,
+     ]),
+   })
+   htmlStr = renderToStaticMarkup(htmlElement)
+--- node_modules/gatsby/cache-dir/root.js
++++ node_modules/gatsby/cache-dir/root.js
+@@ -16,7 +16,7 @@
+ // Report runtime errors
+ ErrorOverlay.startReportingRuntimeErrors({
+   onError: () => {},
+-  filename: `/commons.js`,
++  filename: `/js/commons.js`,
+ })
+ ErrorOverlay.setEditorHandler(errorLocation =>
+   window.fetch(
+--- node_modules/gatsby/dist/utils/webpack.config.js
++++ node_modules/gatsby/dist/utils/webpack.config.js
+@@ -132,7 +132,7 @@
+       switch (stage) {
+         case `develop`:
+           return {
+-            commons: [require.resolve(`react-hot-loader/patch`), `${require.resolve(`webpack-hot-middleware/client`)}?path=http://${program.host}:${webpackPort}/__webpack_hmr&reload=true&overlay=false`, directoryPath(`.cache/app`)]
++            "js/commons": [require.resolve(`react-hot-loader/patch`), `${require.resolve(`webpack-hot-middleware/client`)}?path=/__webpack_hmr&reload=true&overlay=false`, directoryPath(`.cache/app`)]
+           };
+ 
+         case `develop-html`:

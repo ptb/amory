@@ -1,0 +1,22 @@
+--- node_modules/gatsby/cache-dir/static-entry.js
++++ node_modules/gatsby/cache-dir/static-entry.js
+@@ -11,7 +11,7 @@
+ const staticDataPaths = require(`./static-data-paths.json`)
+ 
+ const stats = JSON.parse(
+-  fs.readFileSync(`${process.cwd()}/public/webpack.stats.json`, `utf-8`)
++  fs.readFileSync(`${process.cwd()}/public/js/webpack.stats.json`, `utf-8`)
+ )
+ 
+ // const testRequireError = require("./test-require-error")
+--- node_modules/gatsby/dist/utils/webpack.config.js
++++ node_modules/gatsby/dist/utils/webpack.config.js
+@@ -231,7 +231,7 @@
+                     }
+                   }
+ 
+-                  fs.writeFile(path.join(`public`, `webpack.stats.json`), JSON.stringify({
++                  fs.writeFile(path.join(`public`, `js`, `webpack.stats.json`), JSON.stringify({
+                     assetsByChunkName: assets
+                   }), done);
+                 });

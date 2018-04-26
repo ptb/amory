@@ -1,0 +1,39 @@
+--- node_modules/gatsby/dist/internal-plugins/query-runner/query-runner.js
++++ node_modules/gatsby/dist/internal-plugins/query-runner/query-runner.js
+@@ -70,10 +70,10 @@
+ 
+     const resultJSON = JSON.stringify(result);
+ 
+-    const resultHash = require(`crypto`).createHash(`sha1`).update(resultJSON).digest(`base64`) // Remove potentially unsafe characters. This increases chances of collisions
++    const resultHash = require(`crypto`).createHash(`sha1`).update(resultJSON).digest(`hex`) // Remove potentially unsafe characters. This increases chances of collisions
+     // slightly but it should still be very safe + we get a shorter
+     // url vs hex.
+-    .replace(/[^a-zA-Z0-9-_]/g, ``);
++    .slice(0, 6);
+ 
+     let dataPath;
+ 
+--- node_modules/gatsby/dist/utils/js-chunk-names.js
++++ node_modules/gatsby/dist/utils/js-chunk-names.js
+@@ -2,6 +2,12 @@
+ 
+ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+ 
++var crypto = require("crypto");
++
++var shahash = function shahash(name) {
++  return crypto.createHash("sha1").update(name).digest("hex").slice(0,6);
++}
++
+ var _lodash = _interopRequireDefault(require("lodash"));
+ 
+ const path = require(`path`);
+@@ -11,7 +17,7 @@
+ 
+ const generatePathChunkName = path => {
+   const name = path === `/` ? `index` : _lodash.default.kebabCase(path);
+-  return `path---${name}`;
++  return `p-${shahash(name)}`;
+ };
+ 
+ const generateComponentChunkName = componentPath => {

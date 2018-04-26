@@ -1,8 +1,19 @@
+--- node_modules/gatsby/cache-dir/default-html.js
++++ node_modules/gatsby/cache-dir/default-html.js
+@@ -5,7 +5,7 @@
+     return (
+       <html {...this.props.htmlAttributes}>
+         <head>
+-          <meta charSet="utf-8" />
++          <meta charset="utf-8" />
+           <meta httpEquiv="x-ua-compatible" content="ie=edge" />
+           <meta
+             name="viewport"
 --- node_modules/gatsby/cache-dir/develop-static-entry.js
 +++ node_modules/gatsby/cache-dir/develop-static-entry.js
 @@ -28,7 +28,7 @@
  
- export default (locals, callback) => {
+ export default (pagePath, callback) => {
    let headComponents = []
 -  let htmlAttributes = {}
 +  let htmlAttributes = {"lang": "en", "xmlns": "http://www.w3.org/1999/xhtml"}
@@ -20,6 +31,15 @@
    let bodyAttributes = {}
    let preBodyComponents = []
    let postBodyComponents = []
+@@ -202,7 +202,7 @@
+       key={`webpack-runtime`}
+       id={`webpack-runtime`}
+       dangerouslySetInnerHTML={{
+-        __html: runtimeRaw,
++        __html: `/*<![CDATA[*/${runtimeRaw}/*]]>*/`,
+       }}
+     />
+   )
 --- node_modules/react-dom/cjs/react-dom-server.node.development.js
 +++ node_modules/react-dom/cjs/react-dom-server.node.development.js
 @@ -1133,7 +1133,7 @@
