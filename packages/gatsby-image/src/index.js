@@ -225,7 +225,7 @@ class GatsbyImage extends Component {
       "proxy": (alt, src, isLoaded, style, title) => ({
         "alt": alt,
         "className": css (this.getStyle ().image (0, null, isLoaded, style)),
-        "srcset": src,
+        "src": src,
         "title": title
       }),
       "ratio": (img) => ({
