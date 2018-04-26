@@ -1,8 +1,11 @@
 {
   "dependencies": {
     "gatsby": "2.0.0-alpha.20",
+    "gatsby-plugin-manifest": "next",
+    "gatsby-plugin-offline": "next",
     "react": "^16",
-    "react-dom": "^16"
+    "react-dom": "^16",
+    "require": "latest"
   },
   "scripts": {
     "gatsby:develop": "gatsby develop",
