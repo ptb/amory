@@ -19,19 +19,6 @@
        })
      })
    ).filter(s => isString(s))
---- node_modules/gatsby/dist/utils/webpack.config.js
-+++ node_modules/gatsby/dist/utils/webpack.config.js
-@@ -119,8 +119,8 @@
-           return {
-             filename: `[name]-[chunkhash].js`,
-             chunkFilename: `[name]-[chunkhash].js`,
--            path: directoryPath(`public`),
--            publicPath: program.prefixPaths ? `${store.getState().config.pathPrefix}/` : `/`
-+            path: directoryPath(`public/js`),
-+            publicPath: program.prefixPaths ? `${store.getState().config.pathPrefix}/js/` : `/js/`
-           };
- 
-         default:
 @@ -222,24 +222,6 @@
        )
      })
@@ -57,3 +44,16 @@
    styles
      .slice(0)
      .reverse()
+--- node_modules/gatsby/dist/utils/webpack.config.js
++++ node_modules/gatsby/dist/utils/webpack.config.js
+@@ -119,8 +119,8 @@
+           return {
+             filename: `[name]-[chunkhash].js`,
+             chunkFilename: `[name]-[chunkhash].js`,
+-            path: directoryPath(`public`),
+-            publicPath: program.prefixPaths ? `${store.getState().config.pathPrefix}/` : `/`
++            path: directoryPath(`public/js`),
++            publicPath: program.prefixPaths ? `${store.getState().config.pathPrefix}/js/` : `/js/`
+           };
+ 
+         default:
