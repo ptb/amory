@@ -5,7 +5,7 @@
     "gatsby-plugin-offline": "next",
     "react": "^16",
     "react-dom": "^16",
-    "require": "latest"
+    "request": "latest"
   },
   "scripts": {
     "gatsby:develop": "gatsby develop",

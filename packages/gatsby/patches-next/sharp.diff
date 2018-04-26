@@ -1,8 +1,8 @@
 --- node_modules/gatsby-plugin-sharp/index.js
 +++ node_modules/gatsby-plugin-sharp/index.js
-@@ -12,6 +12,25 @@
+@@ -4,6 +4,25 @@
  
- var _asyncToGenerator3 = _interopRequireDefault(_asyncToGenerator2);
+ var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime/helpers/asyncToGenerator"));
  
 +function mkdirp (p, made) {
 +  var mode = parseInt('0777', 8) & (~process.umask());
@@ -23,73 +23,80 @@
 +  return made;
 +};
 +
- var notMemoizedbase64 = function () {
-   var _ref4 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee2(_ref3) {
-     var file = _ref3.file,
-@@ -270,7 +289,7 @@
-             }).src;
-             srcSet = images.map(function (image) {
-               return `${image.src} ${Math.round(image.width)}w`;
--            }).join(`,\n`);
-+            }).join(`,`);
-             originalName = file.base;
-             return _context4.abrupt("return", {
-               base64: base64Image.src,
-@@ -327,9 +346,7 @@
-             sizes = [];
+ const sharp = require(`sharp`);
  
-             sizes.push(options.width);
--            sizes.push(options.width * 1.5);
-             sizes.push(options.width * 2);
--            sizes.push(options.width * 3);
-             dimensions = getImageSize(file);
-             filteredSizes = sizes.filter(function (size) {
-               return size <= dimensions.width;
-@@ -384,18 +401,12 @@
-                   resolution = `1x`;
-                   break;
-                 case 1:
--                  resolution = `1.5x`;
--                  break;
--                case 2:
-                   resolution = `2x`;
-                   break;
--                case 3:
--                  resolution = `3x`;
--                  break;
-                 default:
-               }
-               return `${image.src} ${resolution}`;
--            }).join(`,\n`);
-+            }).join(`,`);
-             originalName = file.base;
-             return _context5.abrupt("return", {
-               base64: base64Image.src,
-@@ -853,10 +864,11 @@
+ const crypto = require(`crypto`);
+@@ -283,10 +302,11 @@
+   const sortedArgs = _.sortBy(filteredArgs, arg => arg[0] === `width`);
  
-   var argsDigest = crypto.createHash(`md5`).update(JSON.stringify(sortedArgs)).digest(`hex`);
- 
--  var argsDigestShort = argsDigest.substr(argsDigest.length - 5);
-+  var argsDigestShort = argsDigest.slice(0,6);
- 
--  var imgSrc = `/${file.name}-${file.internal.contentDigest}-${argsDigestShort}.${fileExtension}`;
--  var filePath = path.join(process.cwd(), `public`, `static`, imgSrc);
-+  var imgSrc = `/${file.internal.contentDigest.slice(0,6)}-${argsDigestShort}.${fileExtension}`;
+   const fileExtension = options.toFormat ? options.toFormat : file.extension;
+-  const argsDigest = crypto.createHash(`md5`).update(JSON.stringify(sortedArgs)).digest(`hex`);
+-  const argsDigestShort = argsDigest.substr(argsDigest.length - 5);
+-  const imgSrc = `/${file.name}-${file.internal.contentDigest}-${argsDigestShort}.${fileExtension}`;
+-  const filePath = path.join(process.cwd(), `public`, `static`, imgSrc); // Create function to call when the image is finished.
++  const argsDigest = crypto.createHash(`sha1`).update(JSON.stringify(sortedArgs)).digest(`hex`);
++  const argsDigestShort = argsDigest.slice(0,6);
++  const imgSrc = `/${file.internal.contentDigest.slice(0,6)}-${argsDigestShort}.${fileExtension}`;
 +  mkdirp(path.join(process.cwd(), `public`, `img`, file.relativeDirectory ? file.relativeDirectory : ".", file.name))
-+  var filePath = path.join(process.cwd(), `public`, `img`, file.relativeDirectory ? file.relativeDirectory : ".", file.name, imgSrc);
++  const filePath = path.join(process.cwd(), `public`, `img`, file.relativeDirectory ? file.relativeDirectory : ".", file.name, imgSrc); // Create function to call when the image is finished.
  
-   // Create function to call when the image is finished.
-   var outsideResolve = void 0,
-@@ -901,7 +913,7 @@
-   queueJob(job, reporter);
+   let outsideResolve, outsideReject;
+   const finishedPromise = new Promise((resolve, reject) => {
+@@ -325,7 +345,7 @@
+   };
+   queueJob(job, reporter); // Prefix the image src.
  
-   // Prefix the image src.
--  var prefixedSrc = options.pathPrefix + `/static` + imgSrc;
-+  var prefixedSrc = options.pathPrefix + `/img/` + (file.relativeDirectory ? `${file.relativeDirectory}/` : "") + file.name + imgSrc;
- 
+-  const prefixedSrc = options.pathPrefix + `/static` + imgSrc;
++  const prefixedSrc = options.pathPrefix + `/img/` + (file.relativeDirectory ? `${file.relativeDirectory}/` : "") + file.name + imgSrc;
    return {
      src: prefixedSrc,
-@@ -929,7 +941,6 @@
+     absolutePath: filePath,
+@@ -484,9 +504,7 @@
+     sizes.push(options.maxWidth / 4);
+     sizes.push(options.maxWidth / 2);
+     sizes.push(options.maxWidth);
+-    sizes.push(options.maxWidth * 1.5);
+     sizes.push(options.maxWidth * 2);
+-    sizes.push(options.maxWidth * 3);
+     const filteredSizes = sizes.filter(size => size < width); // Add the original image to ensure the largest image possible
+     // is available for small images. Also so we can link to
+     // the original image.
+@@ -533,7 +551,7 @@
+ 
+     const fallbackSrc = _.minBy(images, image => Math.abs(options.maxWidth - image.width)).src;
+ 
+-    const srcSet = images.map(image => `${image.src} ${Math.round(image.width)}w`).join(`,\n`);
++    const srcSet = images.map(image => `${image.src} ${Math.round(image.width)}w`).join(`,`);
+     const originalName = file.base;
+     return {
+       base64: base64Image.src,
+@@ -633,24 +651,14 @@
+         case 0:
+           resolution = `1x`;
+           break;
+-
+         case 1:
+-          resolution = `1.5x`;
+-          break;
+-
+-        case 2:
+           resolution = `2x`;
+           break;
+-
+-        case 3:
+-          resolution = `3x`;
+-          break;
+-
+         default:
+       }
+ 
+       return `${image.src} ${resolution}`;
+-    }).join(`,\n`);
++    }).join(`,`);
+     const originalName = file.base;
+     return {
+       base64: base64Image.src,
+@@ -764,7 +772,6 @@
  function encodeOptimizedSVGDataUri(svgString) {
    var uriPayload = encodeURIComponent(svgString) // encode URL-unsafe characters
    .replace(/%0A/g, ``) // remove newlines
