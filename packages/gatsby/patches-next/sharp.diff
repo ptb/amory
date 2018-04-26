@@ -65,13 +65,16 @@
              originalName = file.base;
              return _context5.abrupt("return", {
                base64: base64Image.src,
-@@ -855,8 +866,9 @@
+@@ -853,10 +864,11 @@
  
-   var argsDigestShort = argsDigest.substr(argsDigest.length - 5);
+   var argsDigest = crypto.createHash(`md5`).update(JSON.stringify(sortedArgs)).digest(`hex`);
+ 
+-  var argsDigestShort = argsDigest.substr(argsDigest.length - 5);
++  var argsDigestShort = argsDigest.slice(0,6);
  
 -  var imgSrc = `/${file.name}-${file.internal.contentDigest}-${argsDigestShort}.${fileExtension}`;
 -  var filePath = path.join(process.cwd(), `public`, `static`, imgSrc);
-+  var imgSrc = `/${file.internal.contentDigest.slice(0,5)}-${argsDigestShort}.${fileExtension}`;
++  var imgSrc = `/${file.internal.contentDigest.slice(0,6)}-${argsDigestShort}.${fileExtension}`;
 +  mkdirp(path.join(process.cwd(), `public`, `img`, file.relativeDirectory ? file.relativeDirectory : ".", file.name))
 +  var filePath = path.join(process.cwd(), `public`, `img`, file.relativeDirectory ? file.relativeDirectory : ".", file.name, imgSrc);
  

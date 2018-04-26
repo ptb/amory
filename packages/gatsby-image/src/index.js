@@ -5,6 +5,8 @@ import styletron from "@ptb/gatsby-plugin-styletron"
 
 if (typeof window !== "undefined") {
   require ("intersection-observer")
+  require ("picturefill.min")
+  require ("picturefill/dist/plugins/mutation/pf.mutation.min")
 }
 
 // Handle legacy names for image queries.
@@ -270,30 +272,30 @@ class GatsbyImage extends Component {
       }
 
       return h (
-        Tag,
+        "picture",
         this.getProps ().inner (className, fluid, img, style),
 
         fluid && h (Tag, this.getProps ().ratio (img)),
 
         // Show the blurry base64 image.
         img.base64 &&
-          h ("img", this.getProps ()
+          h ("source", this.getProps ()
             .proxy (alt, img.base64, this.state.isLoaded, imgStyle, title)),
 
         // Show the traced SVG image.
         img.tracedSVG &&
-          h ("img",
+          h ("source",
             this.getProps ()
               .proxy (alt, img.tracedSVG, this.state.isLoaded, imgStyle, title)),
 
         // Show a solid background color.
         backgroundColor &&
-          h (Tag, this.getProps ()
+          h ("div", this.getProps ()
             .color (backgroundColor, img, fluid, this.state.isLoaded, title)),
 
         // Once the image is visible, start downloading the image
         this.state.isVisible &&
-          h ("img",
+          h ("source",
             this.getProps ()
               .image (alt, img, fluid, 1, this.state.isLoaded, imgStyle, title)),
 

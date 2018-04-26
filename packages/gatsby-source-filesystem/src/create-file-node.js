@@ -59,7 +59,7 @@ const createFileNode = async (src, createNodeId, opts = {}) => {
     node = {
       ... node,
       "files___NODE": await fs
-        .readdir (node.absolutePath)
+        .readdirSync (node.absolutePath)
         .map ((file) => path.join (node.absolutePath, file))
         .filter ((file) => fs.statSync (file).isFile ())
         .map ((file) => createNodeId (file))
