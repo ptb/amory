@@ -1,16 +1,17 @@
 --- node_modules/gatsby/cache-dir/static-entry.js
 +++ node_modules/gatsby/cache-dir/static-entry.js
-@@ -234,8 +234,7 @@
+@@ -234,8 +234,8 @@
          rel="preload"
          key={dataPath}
          href={dataPath}
 -        as="fetch"
 -        crossOrigin="use-credentials"
++        as="script"
 +        crossorigin="use-credentials"
        />
      )
    }
-@@ -263,6 +262,7 @@
+@@ -263,6 +263,7 @@
    // Taken from https://www.html5rocks.com/en/tutorials/speed/script-loading/
    const scriptsString = scripts
      .map(s => `"${pathPrefix}${JSON.stringify(s).slice(1, -1)}"`)
