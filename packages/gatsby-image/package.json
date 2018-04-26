@@ -14,8 +14,8 @@
   "dependencies": {
     "@ptb/gatsby-plugin-styletron": "latest",
     "gatsby-image": "latest",
-    "gatsby-plugin-sharp": "latest",
-    "gatsby-transformer-sharp": "latest",
+    "gatsby-plugin-sharp": "next",
+    "gatsby-transformer-sharp": "next",
     "intersection-observer": "latest",
     "picturefill": "latest"
   },
@@ -47,5 +47,5 @@
     "prepare": "cross-env NODE_ENV=production npm run build",
     "watch": "babel -w src/index.js --out-file index.js --ignore __tests__"
   },
-  "version": "2018.4.26-6"
+  "version": "2018.4.26-7"
 }
