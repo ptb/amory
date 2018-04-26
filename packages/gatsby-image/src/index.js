@@ -5,7 +5,7 @@ import styletron from "@ptb/gatsby-plugin-styletron"
 
 if (typeof window !== "undefined") {
   require ("intersection-observer")
-  require ("picturefill.min")
+  require ("picturefill")
   require ("picturefill/dist/plugins/mutation/pf.mutation.min")
 }
 
@@ -162,6 +162,7 @@ class GatsbyImage extends Component {
       "inner": (fluid, img, style) => {
         const fixed = Object.assign (
           {
+            "display": "block",
             "maxWidth": `${img.width}px`,
             "minHeight": `${img.height}px`,
             "width": "100%"
@@ -271,6 +272,12 @@ class GatsbyImage extends Component {
         img.srcSet = img.srcSetWebp ? img.srcSetWebp : img.srcSet
       }
 
+      const retina = Object.assign ({}, img)
+      const stdimg = Object.assign ({}, img)
+
+      delete retina.src
+      delete stdimg.srcSet
+
       return h (
         "picture",
         this.getProps ().inner (className, fluid, img, style),
@@ -297,7 +304,12 @@ class GatsbyImage extends Component {
         this.state.isVisible &&
           h ("source",
             this.getProps ()
-              .image (alt, img, fluid, 1, this.state.isLoaded, imgStyle, title)),
+              .image (alt, retina, fluid, 1, this.state.isLoaded, imgStyle, title )),
+
+        this.state.isVisible &&
+          h ("img",
+            this.getProps ()
+              .image (alt, stdimg, fluid, 1, this.state.isLoaded, imgStyle, title)),
 
         // Show the original image during server-side rendering,
         // or if JavaScript is disabled
