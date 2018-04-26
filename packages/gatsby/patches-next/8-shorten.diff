@@ -1,6 +1,6 @@
 --- node_modules/gatsby/cache-dir/loader.js
 +++ node_modules/gatsby/cache-dir/loader.js
-@@ -20,7 +20,7 @@
+@@ -40,7 +40,7 @@
  const fetchResource = resourceName => {
    // Find resource
    let resourceFunction

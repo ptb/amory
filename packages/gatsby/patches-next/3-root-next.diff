@@ -22,7 +22,7 @@
            {this.props.postBodyComponents}
 --- node_modules/gatsby/cache-dir/production-app.js
 +++ node_modules/gatsby/cache-dir/production-app.js
-@@ -193,7 +193,7 @@
+@@ -191,7 +191,7 @@
        ReactDOM.hydrate(
          <NewRoot />,
          typeof window !== `undefined`

@@ -11,35 +11,35 @@
                path2.parent.attributes.push(t.jSXAttribute(t.jSXIdentifier(`data`), t.jSXExpressionContainer(identifier))); // Add import
 --- node_modules/gatsby/cache-dir/loader.js
 +++ node_modules/gatsby/cache-dir/loader.js
-@@ -28,7 +28,7 @@
+@@ -48,7 +48,7 @@
          if (resourceName in jsonStore) {
            resolve(jsonStore[resourceName])
          } else {
 -          const url = `${pathPrefix ? pathPrefix : `/`}static/d/${
 +          const url = `${pathPrefix ? pathPrefix : `/`}js/p/${
-             asyncRequires.json[resourceName]
+             jsonDataPaths[resourceName]
            }.json`
            var req = new XMLHttpRequest()
 --- node_modules/gatsby/cache-dir/static-entry.js
 +++ node_modules/gatsby/cache-dir/static-entry.js
-@@ -117,7 +117,7 @@
-           page.jsonName in staticDataPaths
-             ? JSON.parse(
-                 fs.readFileSync(
--                  `${process.cwd()}/public/static/d/${
-+                  `${process.cwd()}/public/js/p/${
-                     staticDataPaths[page.jsonName]
-                   }.json`
-                 )
+@@ -102,7 +102,7 @@
+     try {
+       dataAndContext = JSON.parse(
+         fs.readFileSync(
+-          `${process.cwd()}/public/static/d/${dataPaths[page.jsonName]}.json`
++          `${process.cwd()}/public/js/p/${dataPaths[page.jsonName]}.json`
+         )
+       )
+     } catch (e) {
 @@ -223,7 +223,7 @@
      })
  
-   if (page.jsonName in staticDataPaths) {
--    const dataPath = `${pathPrefix}static/d/${
-+    const dataPath = `${pathPrefix}js/p/${
-       staticDataPaths[page.jsonName]
-     }.json`
-     // Insert json data path after app
+   if (page.jsonName in dataPaths) {
+-    const dataPath = `${pathPrefix}static/d/${dataPaths[page.jsonName]}.json`
++    const dataPath = `${pathPrefix}js/p/${dataPaths[page.jsonName]}.json`
+     // Insert json data path after commons and app
+     headComponents.splice(
+       1,
 --- node_modules/gatsby/dist/bootstrap/index.js
 +++ node_modules/gatsby/dist/bootstrap/index.js
 @@ -75,7 +75,7 @@

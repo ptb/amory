@@ -19,31 +19,6 @@
        })
      })
    ).filter(s => isString(s))
-@@ -222,24 +222,6 @@
-       )
-     })
- 
--  if (page.jsonName in staticDataPaths) {
--    const dataPath = `${pathPrefix}js/p/${
--      staticDataPaths[page.jsonName]
--    }.json`
--    // Insert json data path after app
--    headComponents.splice(
--      1,
--      0,
--      <link
--        rel="preload"
--        key={dataPath}
--        href={dataPath}
--        as="script"
--        crossorigin="use-credentials"
--      />
--    )
--  }
--
-   styles
-     .slice(0)
-     .reverse()
 --- node_modules/gatsby/dist/utils/webpack.config.js
 +++ node_modules/gatsby/dist/utils/webpack.config.js
 @@ -119,8 +119,8 @@

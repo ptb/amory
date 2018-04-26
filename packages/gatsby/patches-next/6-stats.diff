@@ -1,7 +1,7 @@
 --- node_modules/gatsby/cache-dir/static-entry.js
 +++ node_modules/gatsby/cache-dir/static-entry.js
-@@ -11,7 +11,7 @@
- const staticDataPaths = require(`./static-data-paths.json`)
+@@ -10,7 +10,7 @@
+ const { dataPaths, pages } = require(`./data.json`)
  
  const stats = JSON.parse(
 -  fs.readFileSync(`${process.cwd()}/public/webpack.stats.json`, `utf-8`)

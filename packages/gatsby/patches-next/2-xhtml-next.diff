@@ -22,7 +22,7 @@
    let postBodyComponents = []
 --- node_modules/gatsby/cache-dir/static-entry.js
 +++ node_modules/gatsby/cache-dir/static-entry.js
-@@ -61,7 +61,7 @@
+@@ -60,7 +60,7 @@
  
    let bodyHtml = ``
    let headComponents = []

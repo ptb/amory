@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "gatsby": "2.0.0-alpha.20",
+    "gatsby": "2.0.0-alpha.21",
     "gatsby-plugin-manifest": "next",
     "gatsby-plugin-offline": "next",
     "react": "^16",
