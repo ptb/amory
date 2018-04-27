@@ -1,3 +1,4 @@
+import Helmet from "react-helmet"
 import Img from "@ptb/gatsby-image"
 import Link from "gatsby-link"
 import React from "react"
@@ -9,6 +10,7 @@ export default (a) => {
 
   return pug `
     div(class=css (view) style=({ "backgroundColor": "rgba(255,204,204,0.8)" }))
+      Helmet(title="BIG FUN DJs 1")
       Link(to=({ "pathname": "/page-2/", "state": { "anim": "slide.fore" } })) To Page 2
       Link(to=({ "pathname": "/page-2/" })) To Page 2 (without transition)
       Link(to="/page-2/") To Page 2 (without transition 2)
@@ -22,6 +24,7 @@ export default (a) => {
 
 //   return pug `
 //     div(class=css (view) style=({ "backgroundColor": "rgba(204,255,204,0.8)" }))
+//       Helmet(title="BIG FUN DJs 1")
 //       Link(to=({ "pathname": "/", "state": { "anim": "slide.back" } })) To Index
 //       Link(to=({ "pathname": "/" })) To Index (without transition)
 //       Link(to="/") To Index (without transition 2)
