@@ -2,7 +2,7 @@ const chokidar = require ("chokidar")
 const { dirname } = require ("path").posix
 const existsSync = require ("fs").existsSync
 
-module.exports = (opts, emitter, reporter) =>
+module.exports = (opts, emitter, reporter, done) =>
   (existsSync (opts.src)
     ? chokidar
       .watch (opts.src, opts)
@@ -18,9 +18,15 @@ module.exports = (opts, emitter, reporter) =>
         emitter.emit ("WATCH_FS_DEL_FILE", { "src": src })
         emitter.emit ("WATCH_FS_MOD_DIR", { "src": dirname (src) })
       })
-      .on ("addDir", (src) => emitter.emit ("WATCH_FS_ADD_DIR", { "src": src }))
-      .on ("unlinkDir", (src) =>
-        emitter.emit ("WATCH_FS_DEL_DIR", { "src": src }))
-      .on ("ready", () => emitter.emit ("WATCH_FS_READY", { "src": opts.src }))
+      .on ("addDir", (src) => {
+        emitter.emit ("WATCH_FS_ADD_DIR", { "src": src })
+      })
+      .on ("unlinkDir", (src) => {
+        emitter.emit ("WATCH_FS_DEL_DIR", { "src": src })
+      })
+      .on ("ready", () => {
+        emitter.emit ("WATCH_FS_READY", { "src": opts.src })
+        done ()
+      })
     : reporter.panic (`"${opts.src}" does not exist.
       Specify the path to an existing directory.`))
