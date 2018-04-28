@@ -1,0 +1,29 @@
+{
+  "author": "Kyle Mathews <mathews.kyle@gmail.com> (https://www.bricolage.io/)",
+  "bugs": {
+    "url": "https://github.com/ptb/amory/issues"
+  },
+  "contributors": [
+    "Peter T Bosse II <ptb@ioutime.com> (http://ptb2.me/)"
+  ],
+  "dependencies": {
+    "chokidar": "^2"
+  },
+  "description": "Plugin that watches for changes in any specified path",
+  "engines": {
+    "node": ">=8"
+  },
+  "homepage": "https://github.com/ptb/amory/tree/master/packages/watch-filesystem#readme",
+  "keywords": [
+    "gatsby",
+    "gatsby-plugin"
+  ],
+  "license": "(Apache-2.0 OR MIT)",
+  "main": "index.js",
+  "name": "@ptb/watch-filesystem",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": "https://github.com/ptb/amory/tree/master/packages/watch-filesystem",
+  "version": "2018.4.28-1"
+}

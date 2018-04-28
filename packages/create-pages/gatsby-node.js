@@ -1,7 +1,7 @@
 const { canProcess, getPage } = require ("./index")
 const { dirname, resolve } = require ("path").posix
 const statSync = require ("fs").statSync
-const watcher = require ("./watcher")
+const watcher = require ("@ptb/watch-filesystem")
 
 exports.createPagesStatefully = async (
   { actions, emitter, reporter, store },

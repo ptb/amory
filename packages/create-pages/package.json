@@ -8,7 +8,7 @@
     "Steven Natera <tektekpush@gmail.com> (https://twitter.com/stevennatera)"
   ],
   "dependencies": {
-    "chokidar": "^2",
+    "@ptb/watch-filesystem": "latest",
     "lodash.includes": "^4",
     "slash": "^2"
   },
@@ -28,5 +28,5 @@
     "access": "public"
   },
   "repository": "https://github.com/ptb/amory/tree/master/packages/create-pages",
-  "version": "2018.4.28-0"
+  "version": "2018.4.28-1"
 }
