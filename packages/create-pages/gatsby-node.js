@@ -20,7 +20,7 @@ exports.createPagesStatefully = async (
     "path": stats.isDirectory () ? absPath : dirname (absPath)
   }
 
-  emitter.on ("SRC_FS_ADD_FILE", ({ src }) => {
+  emitter.on ("WATCH_FS_ADD_FILE", ({ src }) => {
     const [a, b] = canProcess (opts.exts, src, store.getState ().pages)
 
     if (a && b) {
@@ -29,7 +29,7 @@ exports.createPagesStatefully = async (
     }
   })
 
-  emitter.on ("SRC_FS_DEL_FILE", ({ src }) => {
+  emitter.on ("WATCH_FS_DEL_FILE", ({ src }) => {
     const [a, b] = canProcess (opts.exts, src, store.getState ().pages)
 
     if (a && !b) {
