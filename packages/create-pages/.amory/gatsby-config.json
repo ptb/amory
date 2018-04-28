@@ -1,0 +1,10 @@
+{
+  "plugins": [
+    {
+      "options": {
+        "path": "src/pages"
+      },
+      "resolve": "@ptb/create-pages"
+    }
+  ]
+}

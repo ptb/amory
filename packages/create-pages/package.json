@@ -28,5 +28,9 @@
     "access": "public"
   },
   "repository": "https://github.com/ptb/amory/tree/master/packages/create-pages",
-  "version": "2018.4.28-1"
+  "scripts": {
+    "postinstall": "npx npm-run-all 'postinstall:*'",
+    "postinstall:merge": "find '.amory' -maxdepth 1 -name '*.json' -print0 | xargs -0 -I {} -n1 basename '{}' | xargs -I {} -n1 npx -p @ptb/merge-json -c 'merge-json ../../../{} .amory/{}'"
+  },
+  "version": "2018.4.28-2"
 }
