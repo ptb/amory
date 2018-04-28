@@ -17,14 +17,14 @@ exports.createPagesStatefully = async (
     ... options,
     "component": options.component || stats.isFile () ? absPath : null,
     "exts": options.exts || extensions,
-    "path": stats.isDirectory () ? absPath : dirname (absPath)
+    "src": stats.isDirectory () ? absPath : dirname (absPath)
   }
 
   emitter.on ("WATCH_FS_ADD_FILE", ({ src }) => {
     const [a, b] = canProcess (opts.exts, src, store.getState ().pages)
 
     if (a && b) {
-      createPage (getPage (opts.path, src, opts.component))
+      createPage (getPage (opts.src, src, opts.component))
       reporter.info (`create page "${src}"`)
     }
   })
@@ -33,10 +33,10 @@ exports.createPagesStatefully = async (
     const [a, b] = canProcess (opts.exts, src, store.getState ().pages)
 
     if (a && !b) {
-      deletePage (getPage (opts.path, src, opts.component))
+      deletePage (getPage (opts.src, src, opts.component))
       reporter.info (`delete page "${src}"`)
     }
   })
 
-  await watcher ({ "src": opts.path }, emitter, reporter, done)
+  await watcher (opts, emitter, reporter, done)
 }
