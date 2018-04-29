@@ -1,11 +1,11 @@
 {
   "name": "amory",
-  "version": "2018.4.28-5",
+  "version": "2018.4.29-0",
   "main": "index.js",
   "author": "Peter T Bosse II <ptb@ioutime.com> (http://ptb2.me/)",
   "license": "Apache-2.0",
   "dependencies": {
-    "@ptb/queue": "^2018.4.28-5",
+    "@ptb/queue": "^2018.4.29-0",
     "tapable": "^1.0.0"
   }
 }
