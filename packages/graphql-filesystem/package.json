@@ -1,0 +1,31 @@
+{
+  "author": "Kyle Mathews <mathews.kyle@gmail.com> (https://www.bricolage.io/)",
+  "contributors": [
+    "Peter T Bosse II <ptb@ioutime.com> (http://ptb2.me/)"
+  ],
+  "dependencies": {
+    "better-queue": "^3",
+    "chokidar": "^2",
+    "fs-extra": "^5",
+    "got": "^8",
+    "md5-file": "^4",
+    "mime": "^2",
+    "pretty-bytes": "^4",
+    "slash": "^2",
+    "valid-url": "^1",
+    "xstate": "^3"
+  },
+  "description": "Enables GraphQL queries on files in any specified path",
+  "keywords": [
+    "gatsby",
+    "gatsby-plugin"
+  ],
+  "license": "(Apache-2.0 OR MIT)",
+  "main": "index.js",
+  "name": "@amory/graphql-filesystem",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": "https://github.com/ptb/amory/tree/master/packages/graphql-filesystem",
+  "version": "2018.4.29-12"
+}
