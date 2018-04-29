@@ -2,7 +2,6 @@
   "author": "Peter T Bosse II <ptb@ioutime.com> (http://ptb2.me/)",
   "dependencies": {
     "babel-eslint": "^8",
-    "chokidar-cli": "^1",
     "eslint": "^4",
     "eslint-plugin-better": "latest",
     "eslint-plugin-fp": "^2",
@@ -27,5 +26,5 @@
     "access": "public"
   },
   "repository": "https://github.com/ptb/amory/tree/master/packages/script-eslint",
-  "version": "2018.4.29-3"
+  "version": "2018.4.29-4"
 }
