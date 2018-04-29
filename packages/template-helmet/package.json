@@ -1,0 +1,23 @@
+{
+  "author": "Peter T Bosse II <ptb@ioutime.com> (http://ptb2.me/)",
+  "dependencies": {
+    "gatsby-plugin-react-helmet": "next",
+    "react-helmet": "latest"
+  },
+  "description": "Gatsby plugin to manage React components' head content",
+  "engines": {
+    "node": ">=8"
+  },
+  "keywords": [
+    "gatsby",
+    "gatsby-plugin",
+    "react-component"
+  ],
+  "license": "(Apache-2.0 OR MIT)",
+  "name": "@amory/template-helmet",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": "https://github.com/ptb/amory/tree/master/packages/template-helmet",
+  "version": "2018.4.29-13"
+}

@@ -16,6 +16,9 @@
     "xstate": "^3"
   },
   "description": "Enables GraphQL queries on files in any specified path",
+  "engines": {
+    "node": ">=8"
+  },
   "keywords": [
     "gatsby",
     "gatsby-plugin"
@@ -27,5 +30,5 @@
     "access": "public"
   },
   "repository": "https://github.com/ptb/amory/tree/master/packages/graphql-filesystem",
-  "version": "2018.4.29-12"
+  "version": "2018.4.29-13"
 }

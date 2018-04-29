@@ -1,0 +1,25 @@
+{
+  "author": "Peter T Bosse II <ptb@ioutime.com> (http://ptb2.me/)",
+  "dependencies": {
+    "@amory/transform-react-pug": "latest",
+    "@babel/core": "latest",
+    "@babel/plugin-proposal-class-properties": "latest",
+    "@babel/plugin-syntax-dynamic-import": "latest",
+    "@babel/preset-env": "latest",
+    "@babel/preset-flow": "latest",
+    "@babel/preset-react": "latest",
+    "eslint-plugin-react-pug": "latest",
+    "jstransformer-sass": "^1"
+  },
+  "description": "Template engine to render `pug` templates into HTML",
+  "engines": {
+    "node": ">=8"
+  },
+  "license": "(Apache-2.0 OR MIT)",
+  "name": "@amory/template-pug",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": "https://github.com/ptb/amory/tree/master/packages/template-pug",
+  "version": "2018.4.29-13"
+}

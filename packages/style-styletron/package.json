@@ -9,7 +9,7 @@
     "styletron-react-core": "^1",
     "styletron-standard": "^1"
   },
-  "description": "Plugin for Styletron with server-side rendering support",
+  "description": "Style engine to render Styletron CSS-in-JS into CSS",
   "engines": {
     "node": ">=8"
   },
@@ -24,5 +24,5 @@
     "access": "public"
   },
   "repository": "https://github.com/ptb/amory/tree/master/packages/style-styletron",
-  "version": "2018.4.29-12"
+  "version": "2018.4.29-13"
 }
