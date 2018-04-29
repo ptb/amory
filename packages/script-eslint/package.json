@@ -1,0 +1,31 @@
+{
+  "author": "Peter T Bosse II <ptb@ioutime.com> (http://ptb2.me/)",
+  "dependencies": {
+    "babel-eslint": "^8",
+    "chokidar-cli": "^1",
+    "eslint": "^4",
+    "eslint-plugin-better": "latest",
+    "eslint-plugin-fp": "^2",
+    "eslint-plugin-import": "^2",
+    "eslint-plugin-json": "^1",
+    "eslint-plugin-jsx-a11y": "^6",
+    "eslint-plugin-promise": "^3",
+    "eslint-plugin-react": "^7",
+    "eslint-plugin-standard": "^3"
+  },
+  "engines": {
+    "node": ">=8"
+  },
+  "keywords": [
+    "eslint",
+    "eslintconfig"
+  ],
+  "license": "(Apache-2.0 OR MIT)",
+  "main": ".eslintrc.js",
+  "name": "@amory/script-eslint",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": "https://github.com/ptb/amory/tree/master/packages/script-eslint",
+  "version": "2018.4.29-2"
+}
