@@ -1,0 +1,13 @@
+{
+  "plugins": [
+    "gatsby-plugin-sharp",
+    "gatsby-transformer-sharp",
+    {
+      "options": {
+        "name": "images",
+        "path": "src/images"
+      },
+      "resolve": "@amory/graphql-filesystem"
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+{
+  "plugins": [
+    "@amory/style-styletron"
+  ]
+}
