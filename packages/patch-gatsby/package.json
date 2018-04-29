@@ -1,0 +1,20 @@
+{
+  "author": "Peter T Bosse II <ptb@ioutime.com> (http://ptb2.me/)",
+  "dependencies": {
+    "babel-plugin-remove-graphql-queries": "2.0.1-4",
+    "gatsby": "2.0.0-alpha.23",
+    "gatsby-plugin-sharp": "2.0.0-alpha.11",
+    "react-dom": "16.3.2"
+  },
+  "description": "Personal preference patches for Gatsby",
+  "engines": {
+    "node": ">=8"
+  },
+  "license": "(Apache-2.0 OR MIT)",
+  "name": "@amory/patch-gatsby",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": "https://github.com/ptb/amory/tree/master/packages/patch-gatsby",
+  "version": "2018.4.29-8"
+}

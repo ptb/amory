@@ -1,0 +1,403 @@
+--- node_modules/gatsby/cache-dir/app.js
++++ node_modules/gatsby/cache-dir/app.js
+@@ -34,7 +34,7 @@
+     })
+   }
+ 
+-  const rootElement = document.getElementById(`___gatsby`)
++  const rootElement = document.getElementById(`root`)
+ 
+   let Root = require(`./root`)
+   if (Root.default) {
+--- node_modules/gatsby/cache-dir/default-html.js
++++ node_modules/gatsby/cache-dir/default-html.js
+@@ -5,7 +5,7 @@
+     return (
+       <html {...this.props.htmlAttributes}>
+         <head>
+-          <meta charSet="utf-8" />
++          <meta charset="utf-8" />
+           <meta httpEquiv="x-ua-compatible" content="ie=edge" />
+           <meta
+             name="viewport"
+@@ -17,7 +17,7 @@
+           {this.props.preBodyComponents}
+           <div
+             key={`body`}
+-            id="___gatsby"
++            id="root"
+             dangerouslySetInnerHTML={{ __html: this.props.body }}
+           />
+           {this.props.postBodyComponents}
+--- node_modules/gatsby/cache-dir/develop-static-entry.js
++++ node_modules/gatsby/cache-dir/develop-static-entry.js
+@@ -28,7 +28,7 @@
+ 
+ export default (pagePath, callback) => {
+   let headComponents = []
+-  let htmlAttributes = {}
++  let htmlAttributes = {"lang": "en", "xmlns": "http://www.w3.org/1999/xhtml"}
+   let bodyAttributes = {}
+   let preBodyComponents = []
+   let postBodyComponents = []
+@@ -73,11 +73,11 @@
+     body: ``,
+     headComponents: headComponents.concat([
+       <script key={`io`} src="/socket.io/socket.io.js" />,
+-      <link key={`style`} rel="stylesheet" href="/commons.css" />,
++      <link key={`style`} rel="stylesheet" href="/js/commons.css" />,
+     ]),
+     preBodyComponents,
+     postBodyComponents: postBodyComponents.concat([
+-      <script key={`commons`} src="/commons.js" />,
++      <script key={`commons`} src="/js/commons.js" />,
+     ]),
+   })
+   htmlStr = renderToStaticMarkup(htmlElement)
+--- node_modules/gatsby/cache-dir/loader.js
++++ node_modules/gatsby/cache-dir/loader.js
+@@ -40,7 +40,7 @@
+ const fetchResource = resourceName => {
+   // Find resource
+   let resourceFunction
+-  if (resourceName.slice(0, 12) === `component---`) {
++  if (resourceName.slice(0, 4) === `c/c-`) {
+     resourceFunction = asyncRequires.components[resourceName]
+   } else {
+     resourceFunction = () =>
+@@ -48,7 +48,7 @@
+         if (resourceName in jsonStore) {
+           resolve(jsonStore[resourceName])
+         } else {
+-          const url = `${pathPrefix ? pathPrefix : `/`}static/d/${
++          const url = `${pathPrefix ? pathPrefix : `/`}js/p/${
+             jsonDataPaths[resourceName]
+           }.json`
+           var req = new XMLHttpRequest()
+--- node_modules/gatsby/cache-dir/production-app.js
++++ node_modules/gatsby/cache-dir/production-app.js
+@@ -191,7 +191,7 @@
+       ReactDOM.hydrate(
+         <NewRoot />,
+         typeof window !== `undefined`
+-          ? document.getElementById(`___gatsby`)
++          ? document.getElementById(`root`)
+           : void 0,
+         () => {
+           apiRunner(`onInitialClientRender`)
+--- node_modules/gatsby/cache-dir/root.js
++++ node_modules/gatsby/cache-dir/root.js
+@@ -16,7 +16,7 @@
+ // Report runtime errors
+ ErrorOverlay.startReportingRuntimeErrors({
+   onError: () => {},
+-  filename: `/commons.js`,
++  filename: `/js/commons.js`,
+ })
+ ErrorOverlay.setEditorHandler(errorLocation =>
+   window.fetch(
+--- node_modules/gatsby/cache-dir/static-entry.js
++++ node_modules/gatsby/cache-dir/static-entry.js
+@@ -10,7 +10,7 @@
+ const { dataPaths, pages } = require(`./data.json`)
+ 
+ const stats = JSON.parse(
+-  fs.readFileSync(`${process.cwd()}/public/webpack.stats.json`, `utf-8`)
++  fs.readFileSync(`${process.cwd()}/public/js/webpack.stats.json`, `utf-8`)
+ )
+ 
+ // const testRequireError = require("./test-require-error")
+@@ -60,7 +60,7 @@
+ 
+   let bodyHtml = ``
+   let headComponents = []
+-  let htmlAttributes = {}
++  let htmlAttributes = {"lang": "en", "xmlns": "http://www.w3.org/1999/xhtml"}
+   let bodyAttributes = {}
+   let preBodyComponents = []
+   let postBodyComponents = []
+@@ -102,7 +102,7 @@
+     try {
+       dataAndContext = JSON.parse(
+         fs.readFileSync(
+-          `${process.cwd()}/public/static/d/${dataPaths[page.jsonName]}.json`
++          `${process.cwd()}/public/js/p/${dataPaths[page.jsonName]}.json`
+         )
+       )
+     } catch (e) {
+@@ -172,7 +172,7 @@
+       // Remove the runtime as we always inline that instead
+       // of loading it.
+       if (s === `app`) {
+-        runtimeScript = chunks[0]
++        runtimeScript = `/js/${chunks[0]}`
+       }
+ 
+       if (!chunks) {
+@@ -186,7 +186,7 @@
+         if (chunk.slice(0, 15) === `webpack-runtime`) {
+           return null
+         }
+-        return chunk
++        return `/js/${chunk}`
+       })
+     })
+   ).filter(s => isString(s))
+@@ -202,7 +202,7 @@
+       key={`webpack-runtime`}
+       id={`webpack-runtime`}
+       dangerouslySetInnerHTML={{
+-        __html: runtimeRaw,
++        __html: `/*<![CDATA[*/${runtimeRaw}/*]]>*/`,
+       }}
+     />
+   )
+@@ -222,22 +222,6 @@
+       )
+     })
+ 
+-  if (page.jsonName in dataPaths) {
+-    const dataPath = `${pathPrefix}static/d/${dataPaths[page.jsonName]}.json`
+-    // Insert json data path after commons and app
+-    headComponents.splice(
+-      1,
+-      0,
+-      <link
+-        rel="preload"
+-        key={dataPath}
+-        href={dataPath}
+-        as="fetch"
+-        crossOrigin="use-credentials"
+-      />
+-    )
+-  }
+-
+   styles
+     .slice(0)
+     .reverse()
+@@ -261,6 +245,7 @@
+   // Taken from https://www.html5rocks.com/en/tutorials/speed/script-loading/
+   const scriptsString = scripts
+     .map(s => `"${pathPrefix}${JSON.stringify(s).slice(1, -1)}"`)
++    .map(s => s.replace(/\/+/g, "/"))
+     .join(`,`)
+   postBodyComponents.push(
+     <script
+--- node_modules/gatsby/dist/bootstrap/index.js
++++ node_modules/gatsby/dist/bootstrap/index.js
+@@ -75,7 +75,7 @@
+ 
+     let activity = report.activityTimer(`delete html files from previous builds`);
+     activity.start();
+-    yield del([`public/*.htm}`, `public/**/*.html`, `!public/static`, `!public/static/**/*.html`]);
++    yield del([`public/*.htm}`, `public/**/*.html`, `!public/js`, `!public/js/**/*.html`]);
+     activity.end(); // Try opening the site's gatsby-config.js file.
+ 
+     activity = report.activityTimer(`open and validate gatsby-config.js`);
+@@ -143,7 +143,7 @@
+ 
+     initCache(); // Ensure the public/static directory is created.
+ 
+-    yield fs.ensureDirSync(`${program.directory}/public/static/d`); // Copy our site files to the root of the site.
++    yield fs.ensureDirSync(`${program.directory}/public/js/p`); // Copy our site files to the root of the site.
+ 
+     activity = report.activityTimer(`copy gatsby files`);
+     activity.start();
+--- node_modules/gatsby/dist/bootstrap/load-plugins/load.js
++++ node_modules/gatsby/dist/bootstrap/load-plugins/load.js
+@@ -133,7 +133,7 @@
+     }; // Add internal plugins
+ 
+ 
+-    const internalPlugins = [`../../internal-plugins/dev-404-page`, `../../internal-plugins/load-babel-config`, `../../internal-plugins/component-page-creator`, `../../internal-plugins/internal-data-bridge`, `../../internal-plugins/prod-404`, `../../internal-plugins/query-runner`];
++    const internalPlugins = [`../../internal-plugins/dev-404-page`, `../../internal-plugins/load-babel-config`, `../../../../@ptb/create-pages`, `../../internal-plugins/internal-data-bridge`, `../../internal-plugins/prod-404`, `../../internal-plugins/query-runner`];
+     internalPlugins.forEach(relPath => {
+       const absPath = path.join(__dirname, relPath);
+       plugins.push(processPlugin(absPath));
+--- node_modules/gatsby/dist/internal-plugins/query-runner/query-runner.js
++++ node_modules/gatsby/dist/internal-plugins/query-runner/query-runner.js
+@@ -70,10 +70,10 @@
+ 
+     const resultJSON = JSON.stringify(result);
+ 
+-    const resultHash = require(`crypto`).createHash(`sha1`).update(resultJSON).digest(`base64`) // Remove potentially unsafe characters. This increases chances of collisions
++    const resultHash = require(`crypto`).createHash(`sha1`).update(resultJSON).digest(`hex`) // Remove potentially unsafe characters. This increases chances of collisions
+     // slightly but it should still be very safe + we get a shorter
+     // url vs hex.
+-    .replace(/[^a-zA-Z0-9-_]/g, ``);
++    .slice(0, 6);
+ 
+     let dataPath;
+ 
+@@ -100,9 +100,9 @@
+     }
+ 
+     if (resultHashes[queryJob.id] !== resultHash) {
+-      resultHashes[queryJob.id] = resultHash; // Always write file to public/static/d/ folder.
++      resultHashes[queryJob.id] = resultHash; // Always write file to public/js/p/ folder.
+ 
+-      const resultPath = path.join(program.directory, `public`, `static`, `d`, `${dataPath}.json`);
++      const resultPath = path.join(program.directory, `public`, `js`, `p`, `${dataPath}.json`);
+       yield fs.writeFile(resultPath, resultJSON);
+       store.dispatch({
+         type: `SET_JSON_DATA_PATH`,
+--- node_modules/gatsby/dist/redux/reducers/webpack.js
++++ node_modules/gatsby/dist/redux/reducers/webpack.js
+@@ -8,7 +8,6 @@
+       {
+         let nextConfig = action.payload;
+         delete nextConfig.entry;
+-        delete nextConfig.output;
+         delete nextConfig.target;
+         delete nextConfig.resolveLoaders;
+         return merge(state, nextConfig);
+--- node_modules/gatsby/dist/utils/copy-static-directory.js
++++ node_modules/gatsby/dist/utils/copy-static-directory.js
+@@ -7,11 +7,11 @@
+ const nodePath = require(`path`);
+ 
+ module.exports = () => {
+-  chokidar.watch(`${process.cwd()}/static`).on(`add`, path => {
+-    const relativePath = nodePath.relative(`${process.cwd()}/static`, path);
++  chokidar.watch(`${process.cwd()}/js`).on(`add`, path => {
++    const relativePath = nodePath.relative(`${process.cwd()}/js`, path);
+     fs.copy(path, `${process.cwd()}/public/${relativePath}`);
+   }).on(`change`, path => {
+-    const relativePath = nodePath.relative(`${process.cwd()}/static`, path);
++    const relativePath = nodePath.relative(`${process.cwd()}/js`, path);
+     fs.copy(path, `${process.cwd()}/public/${relativePath}`);
+   });
+ };
+--- node_modules/gatsby/dist/utils/js-chunk-names.js
++++ node_modules/gatsby/dist/utils/js-chunk-names.js
+@@ -2,6 +2,12 @@
+ 
+ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+ 
++var crypto = require("crypto");
++
++var shahash = function shahash(name) {
++  return crypto.createHash("sha1").update(name).digest("hex").slice(0,6);
++}
++
+ var _lodash = _interopRequireDefault(require("lodash"));
+ 
+ const path = require(`path`);
+@@ -11,7 +17,7 @@
+ 
+ const generatePathChunkName = path => {
+   const name = path === `/` ? `index` : _lodash.default.kebabCase(path);
+-  return `path---${name}`;
++  return `p-${shahash(name)}`;
+ };
+ 
+ const generateComponentChunkName = componentPath => {
+@@ -23,7 +29,7 @@
+   }
+ 
+   const name = path.relative(directory, componentPath);
+-  return `component---${_lodash.default.kebabCase(name)}`;
++  return `c/c-${shahash(_lodash.default.kebabCase(name))}`;
+ };
+ 
+ exports.generatePathChunkName = generatePathChunkName;
+--- node_modules/gatsby/dist/utils/webpack-utils.js
++++ node_modules/gatsby/dist/utils/webpack-utils.js
+@@ -33,7 +33,7 @@
+     stage,
+     program
+   }) {
+-    const assetRelativeRoot = `static/`;
++    const assetRelativeRoot = `assets/`;
+     const vendorRegex = /(node_modules|bower_components)/;
+     const supportedBrowsers = program.browserlist;
+     const PRODUCTION = !stage.includes(`develop`);
+@@ -98,7 +98,7 @@
+             sourceMap: !PRODUCTION,
+             camelCase: `dashesOnly`,
+             // https://github.com/webpack-contrib/css-loader/issues/406
+-            localIdentName: `[name]--[local]--[hash:base64:5]`
++            localIdentName: `[sha256:hash:base52:6]`
+           }, options)
+         };
+       },
+@@ -136,7 +136,7 @@
+         return {
+           loader: require.resolve(`url-loader`),
+           options: Object.assign({
+-            name: `${assetRelativeRoot}[name]-[hash].[ext]`
++            name: `${assetRelativeRoot}[name]-[sha256:hash:base52:6].[ext]`
+           }, options)
+         };
+       },
+@@ -145,7 +145,7 @@
+           loader: require.resolve(`url-loader`),
+           options: Object.assign({
+             limit: 10000,
+-            name: `${assetRelativeRoot}[name]-[hash].[ext]`
++            name: `${assetRelativeRoot}[name]-[sha256:hash:base52:6].[ext]`
+           }, options)
+         };
+       },
+@@ -279,7 +279,7 @@
+           modules: true
+         }));
+         delete rule.exclude;
+-        rule.test = /\.module\.css$/;
++        rule.test = /\.css$/;
+         return rule;
+       };
+ 
+@@ -342,8 +342,8 @@
+ 
+ 
+     plugins.extractText = options => new MiniCssExtractPlugin(Object.assign({
+-      filename: `[name].[chunkhash].css`,
+-      chunkFilename: `[name].[chunkhash].css`
++      filename: `css/[name]-[chunkhash].css`,
++      chunkFilename: `[name]-[chunkhash].css`
+     }, options));
+ 
+     plugins.moment = () => plugins.ignore(/^\.\/locale$/, /moment$/);
+--- node_modules/gatsby/dist/utils/webpack.config.js
++++ node_modules/gatsby/dist/utils/webpack.config.js
+@@ -119,8 +119,8 @@
+           return {
+             filename: `[name]-[chunkhash].js`,
+             chunkFilename: `[name]-[chunkhash].js`,
+-            path: directoryPath(`public`),
+-            publicPath: program.prefixPaths ? `${store.getState().config.pathPrefix}/` : `/`
++            path: directoryPath(`public/js`),
++            publicPath: program.prefixPaths ? `${store.getState().config.pathPrefix}/js/` : `/js/`
+           };
+ 
+         default:
+@@ -132,7 +132,7 @@
+       switch (stage) {
+         case `develop`:
+           return {
+-            commons: [require.resolve(`react-hot-loader/patch`), `${require.resolve(`webpack-hot-middleware/client`)}?path=http://${program.host}:${webpackPort}/__webpack_hmr&reload=true&overlay=false`, directoryPath(`.cache/app`)]
++            "js/commons": [require.resolve(`react-hot-loader/patch`), `${require.resolve(`webpack-hot-middleware/client`)}?path=/__webpack_hmr&reload=true&overlay=false`, directoryPath(`.cache/app`)]
+           };
+ 
+         case `develop-html`:
+@@ -231,7 +231,7 @@
+                     }
+                   }
+ 
+-                  fs.writeFile(path.join(`public`, `webpack.stats.json`), JSON.stringify({
++                  fs.writeFile(path.join(`public`, `js`, `webpack.stats.json`), JSON.stringify({
+                     assetsByChunkName: assets
+                   }), done);
+                 });
+--- node_modules/gatsby/dist/utils/websocket-manager.js
++++ node_modules/gatsby/dist/utils/websocket-manager.js
+@@ -15,7 +15,7 @@
+   const page = pages.find(p => p.path === pagePath);
+   const dataPath = jsonDataPaths[page.jsonName];
+   if (typeof dataPath === `undefined`) return undefined;
+-  const filePath = path.join(directory, `public`, `static`, `d`, `${dataPath}.json`);
++  const filePath = path.join(directory, `public`, `js`, `p`, `${dataPath}.json`);
+   const result = JSON.parse(fs.readFileSync(filePath, `utf-8`));
+   return {
+     result,

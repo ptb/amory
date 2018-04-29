@@ -1,0 +1,11 @@
+--- node_modules/babel-plugin-remove-graphql-queries/index.js
++++ node_modules/babel-plugin-remove-graphql-queries/index.js
+@@ -55,7 +55,7 @@
+             })) {
+               const identifier = t.identifier(`staticQueryData`);
+               const filename = state.file.opts.filename;
+-              const shortResultPath = `public/static/d/${this.queryHash}.json`;
++              const shortResultPath = `public/js/p/${this.queryHash}.json`;
+               const resultPath = nodePath.join(process.cwd(), shortResultPath); // Add query
+ 
+               path2.parent.attributes.push(t.jSXAttribute(t.jSXIdentifier(`data`), t.jSXExpressionContainer(identifier))); // Add import
