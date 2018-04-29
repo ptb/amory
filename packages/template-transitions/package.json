@@ -1,0 +1,28 @@
+{
+  "author": "Peter T Bosse II <ptb@ioutime.com> (http://ptb2.me/)",
+  "dependencies": {
+    "@amory/style-animations": "latest",
+    "@amory/style-styletron": "latest",
+    "lodash.get": "^4",
+    "react": "^16",
+    "react-dom": "^16",
+    "react-transition-group": "^2"
+  },
+  "description": "React component to create dynamic transitions between pages",
+  "engines": {
+    "node": ">=8"
+  },
+  "keywords": [
+    "gatsby",
+    "gatsby-component",
+    "react-component"
+  ],
+  "license": "(Apache-2.0 OR MIT)",
+  "main": "index.js",
+  "name": "@amory/template-transitions",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": "https://github.com/ptb/amory/tree/master/packages/template-transitions",
+  "version": "2018.4.29-16"
+}
