@@ -210,7 +210,7 @@
  
  
 -    const internalPlugins = [`../../internal-plugins/dev-404-page`, `../../internal-plugins/load-babel-config`, `../../internal-plugins/component-page-creator`, `../../internal-plugins/internal-data-bridge`, `../../internal-plugins/prod-404`, `../../internal-plugins/query-runner`];
-+    const internalPlugins = [`../../internal-plugins/dev-404-page`, `../../internal-plugins/load-babel-config`, `../../../../@amory/create-pages`, `../../internal-plugins/internal-data-bridge`, `../../internal-plugins/prod-404`, `../../internal-plugins/query-runner`];
++    const internalPlugins = [`../../internal-plugins/dev-404-page`, `../../internal-plugins/load-babel-config`, `../../../../@amory/template-react`, `../../internal-plugins/internal-data-bridge`, `../../internal-plugins/prod-404`, `../../internal-plugins/query-runner`];
      internalPlugins.forEach(relPath => {
        const absPath = path.join(__dirname, relPath);
        plugins.push(processPlugin(absPath));

@@ -1,0 +1,97 @@
+{
+  "author": "Forbes Lindesay (http://www.forbeslindesay.co.uk/)",
+  "babel": {
+    "plugins": [
+      "@babel/plugin-proposal-class-properties"
+    ],
+    "presets": [
+      [
+        "@babel/preset-env",
+        {
+          "modules": "commonjs",
+          "shippedProposals": true,
+          "targets": {
+            "node": "current"
+          },
+          "useBuiltIns": "entry"
+        }
+      ],
+      "@babel/preset-flow"
+    ]
+  },
+  "contributors": [
+    "Peter T Bosse II <ptb@ioutime.com> (http://ptb2.me/)"
+  ],
+  "dependencies": {
+    "babylon": "^6",
+    "common-prefix": "^1",
+    "he": "^1",
+    "pug-error": "^1",
+    "pug-filters": "^3",
+    "pug-lexer": "^4",
+    "pug-parser": "^5",
+    "pug-strip-comments": "^1"
+  },
+  "description": "Babel plugin to render `pug` templates into JSX",
+  "devDependencies": {
+    "@babel/cli": "latest",
+    "@babel/core": "latest",
+    "@babel/plugin-proposal-class-properties": "latest",
+    "@babel/preset-env": "latest",
+    "@babel/preset-flow": "latest",
+    "@babel/types": "latest",
+    "babel-core": "latest",
+    "babel-jest": "^22",
+    "flow-bin": "latest",
+    "husky": "latest",
+    "jest": "^22",
+    "lint-staged": "^7",
+    "prettier": "^1",
+    "react": "^16",
+    "react-dom": "^16",
+    "react-test-renderer": "^16"
+  },
+  "engines": {
+    "node": ">=8"
+  },
+  "files": [
+    "lib/"
+  ],
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.js",
+      "!src/__tests__/*.js",
+      "!src/babel-types.js"
+    ],
+    "snapshotSerializers": [
+      "./scripts/filename-serializer.js"
+    ],
+    "testEnvironment": "node",
+    "testRegex": "src/__tests__/.*(\\.test.js)$"
+  },
+  "keywords": [
+    "babel-plugin"
+  ],
+  "lint-staged": {
+    "*.js": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "main": "lib/index.js",
+  "name": "@amory/transform-react-pug",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": "https://github.com/ptb/amory/tree/master/packages/transform-react-pug",
+  "scripts": {
+    "build": "babel src --out-dir lib",
+    "flow": "flow",
+    "format": "prettier --write **/*.js",
+    "lint": "prettier --list-different **/*.js",
+    "precommit": "lint-staged",
+    "test": "jest --coverage",
+    "watch": "jest --coverage --watch"
+  },
+  "version": "2018.4.29-14"
+}
