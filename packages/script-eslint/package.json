@@ -12,7 +12,7 @@
     "eslint-plugin-react": "^7",
     "eslint-plugin-standard": "^3"
   },
-  "description": "Personal ESLint preferences for JavaScript code linting",
+  "description": "Lint JavaScript code with @ptb's personal preferences",
   "engines": {
     "node": ">=8"
   },
@@ -27,5 +27,5 @@
     "access": "public"
   },
   "repository": "https://github.com/ptb/amory/tree/master/packages/script-eslint",
-  "version": "2018.4.29-16"
+  "version": "2018.4.29-17"
 }

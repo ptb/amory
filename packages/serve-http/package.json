@@ -1,0 +1,16 @@
+{
+  "author": "Peter T Bosse II <ptb@ioutime.com> (http://ptb2.me/)",
+  "engines": {
+    "node": ">=8"
+  },
+  "license": "(Apache-2.0 OR MIT)",
+  "dependencies": {
+    "http-server": "latest"
+  },
+  "name": "@amory/serve-http",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": "https://github.com/ptb/amory/tree/master/packages/serve-http",
+  "version": "2018.4.29-17"
+}
