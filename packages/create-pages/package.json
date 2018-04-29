@@ -1,0 +1,28 @@
+{
+  "author": "Kyle Mathews <mathews.kyle@gmail.com> (https://www.bricolage.io/)",
+  "contributors": [
+    "Peter T Bosse II <ptb@ioutime.com> (http://ptb2.me/)",
+    "Steven Natera <tektekpush@gmail.com> (https://twitter.com/stevennatera)"
+  ],
+  "dependencies": {
+    "@amory/watch-filesystem": "latest",
+    "lodash.includes": "^4",
+    "slash": "^2"
+  },
+  "description": "Plugin that creates pages from files in any specified path",
+  "engines": {
+    "node": ">=8"
+  },
+  "keywords": [
+    "gatsby",
+    "gatsby-plugin"
+  ],
+  "license": "(Apache-2.0 OR MIT)",
+  "main": "index.js",
+  "name": "@amory/create-pages",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": "https://github.com/ptb/amory/tree/master/packages/create-pages",
+  "version": "2018.4.29-9"
+}
