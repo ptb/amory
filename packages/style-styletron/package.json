@@ -1,0 +1,28 @@
+{
+  "author": "Nadiia Dmytrenko <nadiia.dmytrenko@gmail.com>",
+  "contributors": [
+    "Peter T Bosse II <ptb@ioutime.com> (http://ptb2.me/)"
+  ],
+  "dependencies": {
+    "styletron-engine-atomic": "^1",
+    "styletron-react": "^4",
+    "styletron-react-core": "^1",
+    "styletron-standard": "^1"
+  },
+  "description": "Plugin for Styletron with server-side rendering support",
+  "engines": {
+    "node": ">=8"
+  },
+  "keywords": [
+    "gatsby",
+    "gatsby-plugin"
+  ],
+  "license": "(Apache-2.0 OR MIT)",
+  "main": "index.js",
+  "name": "@amory/style-styletron",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": "https://github.com/ptb/amory/tree/master/packages/style-styletron",
+  "version": "2018.4.29-11"
+}

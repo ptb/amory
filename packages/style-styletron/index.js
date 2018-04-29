@@ -1,0 +1,20 @@
+const { Client, Server } = require ("styletron-engine-atomic")
+const driver = require ("styletron-standard").driver
+
+let instance
+
+module.exports = (() => (options) => {
+  if (!instance) {
+    if (typeof window !== `undefined` && window.document.createElement) {
+      const styleElements = document.getElementsByClassName ("rehydrate")
+
+      instance = new Client ({ "hydrate": styleElements, ... options })
+    } else {
+      instance = new Server (options)
+    }
+  }
+  return {
+    "css": (json) => driver (json, instance),
+    "instance": instance
+  }
+}) ()
