@@ -1,0 +1,32 @@
+#+begin_src sh
+yarn init -y
+yarn add \
+  react \
+  react-dom \
+  @amory/engine-gatsby \
+  @amory/example-setup \
+  @amory/graphql-filesystem \
+  @amory/image-lazyload \
+  @amory/patch-gatsby \
+  @amory/script-eslint \
+  @amory/script-prettier \
+  @amory/serve-http \
+  @amory/style-animations \
+  @amory/style-styletron \
+  @amory/template-helmet \
+  @amory/template-pug \
+  @amory/template-react \
+  @amory/template-transitions \
+  @amory/transform-react-pug \
+  @amory/watch-filesystem \
+  gatsby@2.0.0-alpha.23 \
+  gatsby-plugin-manifest@next \
+  gatsby-plugin-offline@next
+cp node_modules/@amory/example-setup/gatsby-config/*.js .
+merge-json gatsby-config.json node_modules/@amory/example-setup/gatsby-config/*.json
+cp node_modules/@amory/example-setup/gatsby-node/*.js .
+merge-json package.json node_modules/@amory/example-setup/package/*.json
+cp -Rp node_modules/@amory/example-setup/src .
+for f in node_modules/@amory/patch-gatsby/*.diff; do patch -p0 < $f; done
+rm -rf .cache public && gatsby build
+#+end_src
