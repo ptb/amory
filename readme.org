@@ -4,11 +4,11 @@ yarn add \
   react \
   react-dom \
   @amory/engine-gatsby \
+  @amory/eslint-config \
   @amory/example-setup \
   @amory/graphql-filesystem \
   @amory/image-lazyload \
   @amory/patch-gatsby \
-  @amory/script-eslint \
   @amory/script-prettier \
   @amory/serve-http \
   @amory/style-animations \

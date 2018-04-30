@@ -1,7 +1,7 @@
 {
   "eslintConfig": {
     "extends": [
-      "@amory/script-eslint"
+      "@amory/eslint-config"
     ],
     "rules": {
       "better/explicit-return": "off",
