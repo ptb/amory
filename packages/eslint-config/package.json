@@ -22,10 +22,10 @@
   ],
   "license": "(Apache-2.0 OR MIT)",
   "main": ".eslintrc.js",
-  "name": "@amory/script-eslint",
+  "name": "@amory/eslint-config",
   "publishConfig": {
     "access": "public"
   },
-  "repository": "https://github.com/ptb/amory/tree/master/packages/script-eslint",
-  "version": "2018.4.29-19"
+  "repository": "https://github.com/ptb/amory/tree/master/packages/eslint-config",
+  "version": "2018.4.30-0"
 }
