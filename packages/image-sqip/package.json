@@ -1,15 +1,21 @@
 {
   "author": "Benedikt Rötsch <roetsch.beni@gmail.com>",
+  "contributors": [
+    "Peter T Bosse II <ptb@ioutime.com> (http://ptb2.me/)"
+  ],
   "dependencies": {
     "fs-extra": "^5",
     "mini-svg-data-uri": "^1",
     "p-queue": "^2",
     "sqip": "latest"
   },
-  "description": "React component for lazy-loading responsive images",
-  "contributors": [
-    "Peter T Bosse II <ptb@ioutime.com> (http://ptb2.me/)"
-  ],
+  "engines": {
+    "node": ">=8"
+  },
   "name": "@amory/image-sqip",
-  "version": "2018.5.1-0"
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": "https://github.com/ptb/amory/tree/master/packages/image-sqip",
+  "version": "2018.5.1-1"
 }
