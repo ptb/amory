@@ -1,23 +1,80 @@
 {
-  "author": "Benedikt Rötsch <roetsch.beni@gmail.com>",
-  "contributors": [
-    "Peter T Bosse II <ptb@ioutime.com> (http://ptb2.me/)"
-  ],
-  "dependencies": {
-    "axios": "latest",
-    "fs-extra": "^5",
-    "gatsby-source-contentful": "next",
-    "mini-svg-data-uri": "^1",
-    "p-queue": "^2",
-    "sqip": "latest"
-  },
-  "engines": {
-    "node": ">=8"
-  },
   "name": "@amory/image-sqip",
-  "publishConfig": {
-    "access": "public"
+  "description": "Generates geometric primitive version of images",
+  "version": "2018.5.1-5",
+  "author": "Benedikt Rötsch <roetsch.beni@gmail.com>",
+  "babel": {
+    "plugins": [
+      "@babel/plugin-proposal-class-properties",
+      "@babel/plugin-proposal-optional-chaining",
+      "@babel/plugin-syntax-dynamic-import",
+      [
+        "@babel/plugin-transform-runtime",
+        {
+          "polyfill": false
+        }
+      ]
+    ],
+    "presets": [
+      [
+        "@babel/preset-env",
+        {
+          "loose": true,
+          "shippedProposals": true,
+          "targets": {
+            "node": 6
+          },
+          "useBuiltIns": "usage"
+        }
+      ],
+      "@babel/preset-react",
+      "@babel/preset-flow"
+    ]
   },
-  "repository": "https://github.com/ptb/amory/tree/master/packages/image-sqip",
-  "version": "2018.5.1-4"
+  "bugs": {
+    "url": "https://github.com/gatsbyjs/gatsby/issues"
+  },
+  "dependencies": {
+    "@babel/runtime": "latest",
+    "fs-extra": "^4.0.2",
+    "mini-svg-data-uri": "^1.0.0",
+    "p-queue": "^2.3.0",
+    "sqip": "^0.3.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "latest",
+    "@babel/core": "latest",
+    "@babel/plugin-proposal-class-properties": "latest",
+    "@babel/plugin-proposal-optional-chaining": "latest",
+    "@babel/plugin-syntax-dynamic-import": "latest",
+    "@babel/plugin-transform-runtime": "latest",
+    "@babel/preset-env": "latest",
+    "@babel/preset-flow": "latest",
+    "@babel/preset-react": "latest",
+    "@babel/runtime": "latest",
+    "cross-env": "^5.0.5",
+    "debug": "^3.1.0"
+  },
+  "peerDependencies": {
+    "gatsby-source-contentful": "*",
+    "gatsby-transformer-sharp": "*"
+  },
+  "homepage": "https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-transformer-sqip#readme",
+  "keywords": [
+    "gatsby",
+    "gatsby-plugin",
+    "image",
+    "trace",
+    "sqip"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gatsbyjs/gatsby.git"
+  },
+  "scripts": {
+    "build": "babel src --out-dir . --ignore __tests__",
+    "prepublish": "cross-env NODE_ENV=production npm run build",
+    "watch": "babel -w src --out-dir . --ignore __tests__"
+  }
 }

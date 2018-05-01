@@ -1,70 +1,104 @@
-const crypto = require ("crypto")
-const { exists, readFile, writeFile } = require ("fs-extra")
-const miniSvgDataUri = require ("mini-svg-data-uri")
-const { parse, "resolve": pathResolve } = require ("path").posix
-const PQueue = require ("p-queue")
-const sqip = require ("sqip")
+"use strict";
 
-const queue = new PQueue ({ "concurrency": 1 })
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 
-const getData = async (absolutePath, cachePath, sqipOpts) => {
-  let svg
+require("core-js/modules/es6.promise");
 
-  if (await exists (cachePath)) {
-    const svgBuffer = await readFile (cachePath)
+require("core-js/modules/es6.function.name");
 
-    svg = svgBuffer.toString ()
-  } else {
-    const result = await queue.add (
-      () =>
-        new Promise ((resolve, reject) => {
-          try {
-            resolve (
-              sqip ({
-                "filename": absolutePath,
-                ... sqipOpts
-              })
-            )
-          } catch (error) {
-            reject (error)
-          }
-        })
-    )
+var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime/helpers/asyncToGenerator"));
 
-    svg = result.final_svg
-    await writeFile (cachePath, svg)
-  }
-  return {
-    "dataURI": miniSvgDataUri (svg),
-    svg
-  }
-}
+const crypto = require(`crypto`);
 
-module.exports = async ({
-  absolutePath,
-  blur,
-  cache,
-  cacheDir,
-  mode,
-  numberOfPrimitives
-}) => {
-  const { name } = parse (absolutePath)
-  const sqipOpts = { blur, mode, numberOfPrimitives }
+const _require = require(`path`),
+      resolve = _require.resolve,
+      parse = _require.parse;
 
-  const optsHash = crypto
-    .createHash ("sha1")
-    .update (JSON.stringify (sqipOpts))
-    .digest ("hex")
-    .slice (0, 6)
+const Debug = require(`debug`);
 
-  const cacheKey = `sqip-${name}-${optsHash}`
-  let sqipData = await cache.get (cacheKey)
+const _require2 = require(`fs-extra`),
+      exists = _require2.exists,
+      readFile = _require2.readFile,
+      writeFile = _require2.writeFile;
 
-  if (!sqipData) {
-    const cachePath = pathResolve (cacheDir, `${name}-${optsHash}.svg`)
+const svgToMiniDataURI = require(`mini-svg-data-uri`);
 
-    sqipData = getData (absolutePath, cachePath, sqipOpts)
-    await cache.set (cacheKey, sqipData)
-  }
-  return sqipData
-}
+const PQueue = require(`p-queue`);
+
+const sqip = require(`sqip`);
+
+const queue = new PQueue({
+  concurrency: 1
+});
+const debug = Debug(`gatsby-transformer-sqip`);
+
+module.exports =
+/*#__PURE__*/
+function () {
+  var _generateSqip = (0, _asyncToGenerator2.default)(function* (options) {
+    const cache = options.cache,
+          absolutePath = options.absolutePath,
+          numberOfPrimitives = options.numberOfPrimitives,
+          blur = options.blur,
+          mode = options.mode,
+          cacheDir = options.cacheDir;
+    debug({
+      options
+    });
+
+    const _parse = parse(absolutePath),
+          name = _parse.name;
+
+    const sqipOptions = {
+      numberOfPrimitives,
+      blur,
+      mode
+    };
+    const optionsHash = crypto.createHash(`md5`).update(JSON.stringify(sqipOptions)).digest(`hex`);
+    const cacheKey = `sqip-${name}-${optionsHash}`;
+    const cachePath = resolve(cacheDir, `${name}-${optionsHash}.svg`);
+    let primitiveData = yield cache.get(cacheKey);
+    debug({
+      primitiveData
+    });
+
+    if (!primitiveData) {
+      let svg;
+
+      if (yield exists(cachePath)) {
+        const svgBuffer = yield readFile(cachePath);
+        svg = svgBuffer.toString();
+      } else {
+        debug(`generate sqip for ${name}`);
+        const result = yield queue.add(
+        /*#__PURE__*/
+        (0, _asyncToGenerator2.default)(function* () {
+          return new Promise((resolve, reject) => {
+            try {
+              const result = sqip(Object.assign({
+                filename: absolutePath
+              }, sqipOptions));
+              resolve(result);
+            } catch (error) {
+              reject(error);
+            }
+          });
+        }));
+        svg = result.final_svg;
+        yield writeFile(cachePath, svg);
+      }
+
+      primitiveData = {
+        svg,
+        dataURI: svgToMiniDataURI(svg)
+      };
+      yield cache.set(cacheKey, primitiveData);
+    }
+
+    return primitiveData;
+  });
+
+  return function generateSqip(_x) {
+    return _generateSqip.apply(this, arguments);
+  };
+}();
