@@ -1,0 +1,68 @@
+{
+  "author": "Peter T Bosse II <ptb@ioutime.com> (http://ptb2.me/)",
+  "babel": {
+    "plugins": [
+      "@babel/plugin-proposal-class-properties",
+      "@babel/plugin-proposal-optional-chaining",
+      "@babel/plugin-syntax-dynamic-import",
+      [
+        "@babel/plugin-transform-runtime",
+        {
+          "polyfill": false
+        }
+      ]
+    ],
+    "presets": [
+      [
+        "@babel/preset-env",
+        {
+          "ignoreBrowserslistConfig": true,
+          "loose": true,
+          "shippedProposals": true,
+          "targets": {
+            "node": 6
+          },
+          "useBuiltIns": "usage"
+        }
+      ],
+      "@babel/preset-react",
+      "@babel/preset-flow"
+    ]
+  },
+  "browserslist": [
+    "Android >= 5",
+    "Chrome >= 29",
+    "Edge >= 13",
+    "Firefox >= 27",
+    "Explorer >= 11",
+    "iOS >= 5",
+    "Safari >= 7"
+  ],
+  "dependencies": {
+    "@babel/core": "latest",
+    "@babel/plugin-proposal-class-properties": "latest",
+    "@babel/plugin-proposal-optional-chaining": "latest",
+    "@babel/plugin-syntax-dynamic-import": "latest",
+    "@babel/plugin-transform-runtime": "latest",
+    "@babel/preset-env": "latest",
+    "@babel/preset-flow": "latest",
+    "@babel/preset-react": "latest",
+    "@babel/runtime": "latest"
+  },
+  "description": "Compile ECMAScript code with @ptb's personal preferences",
+  "engines": {
+    "node": ">=8"
+  },
+  "keywords": [
+    "amory",
+    "babel",
+    "gatsby"
+  ],
+  "license": "(Apache-2.0 OR MIT)",
+  "name": "@amory/core-babel",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": "https://github.com/ptb/amory/tree/master/packages/core-babel",
+  "version": "2018.5.1-3"
+}
