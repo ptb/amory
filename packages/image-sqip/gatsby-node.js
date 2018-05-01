@@ -4,7 +4,7 @@ const { queueImageResizing } = require ("gatsby-plugin-sharp")
 const {
   DuotoneGradientType,
   "ImageCropFocusType": SharpImageCropFocusType
-} = require ("../../gatsby-transformer-sharp/types")
+} = require ("gatsby-transformer-sharp/types")
 
 const {
   GraphQLBoolean,
@@ -14,7 +14,7 @@ const {
 } = require ("graphql")
 
 const generateSqip = require ("./generate-sqip")
-const { extname, pathResolve } = require ("path").posix
+const { extname, "resolve": pathResolve } = require ("path").posix
 const {
   "schemes": {
     "ImageCropFocusType": ContentfulImageCropFocusType,
