@@ -1,0 +1,15 @@
+{
+  "author": "Benedikt Rötsch <roetsch.beni@gmail.com>",
+  "dependencies": {
+    "fs-extra": "^5",
+    "mini-svg-data-uri": "^1",
+    "p-queue": "^2",
+    "sqip": "latest"
+  },
+  "description": "React component for lazy-loading responsive images",
+  "contributors": [
+    "Peter T Bosse II <ptb@ioutime.com> (http://ptb2.me/)"
+  ],
+  "name": "@amory/image-sqip",
+  "version": "2018.5.1-0"
+}
