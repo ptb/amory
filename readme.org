@@ -3,11 +3,13 @@ yarn init -y
 yarn add \
   react \
   react-dom \
+  gatsby@2.0.0-alpha.24 \
   @amory/engine-gatsby \
   @amory/eslint-config \
   @amory/example-setup \
   @amory/graphql-filesystem \
   @amory/image-lazyload \
+  @amory/image-sqip \
   @amory/patch-gatsby \
   @amory/script-prettier \
   @amory/serve-http \
@@ -19,7 +21,6 @@ yarn add \
   @amory/template-transitions \
   @amory/transform-react-pug \
   @amory/watch-filesystem \
-  gatsby@2.0.0-alpha.23 \
   gatsby-plugin-manifest@next \
   gatsby-plugin-offline@next
 cp node_modules/@amory/example-setup/gatsby-config/*.js .

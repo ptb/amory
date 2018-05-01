@@ -1,0 +1,7 @@
+{
+  "scripts": {
+    "gatsby:build": "gatsby build",
+    "gatsby:debug": "node --inspect-brk gatsby develop",
+    "gatsby:develop": "gatsby develop"
+  }
+}
