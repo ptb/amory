@@ -53,7 +53,7 @@ module.exports = async (fn = {}, emitter) => {
     })
     .on ("unlink", (src) => {
       if (fn.regex.test (src)) {
-        fn.delFle && emitter.emit (fn.delFile[1], { src })
+        fn.delFile && emitter.emit (fn.delFile[1], { src })
         fn.modDir && emitter.emit (fn.modDir[1], { "src": dirname (src) })
       }
     })
