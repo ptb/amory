@@ -37,6 +37,7 @@ module.exports = async ({ createNodeId, opts = {}, src, type = "File" }) => {
     "relDir": slash (dirname (relative (opts.src, src))),
     "relPath": slash (relative (opts.src, src)),
     "size": prettyBytes (b.size),
+    "src": src,
     "srcDir": slash (a.isDirectory () ? opts.src : dirname (opts.src)),
     "srcName": opts.name,
     "srcPath": slash (opts.src)
