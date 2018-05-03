@@ -11,7 +11,7 @@ module.exports = async ({ createNodeId, opts = {}, src, type = "File" }) => {
   const b = await stat (src)
   const c = parse (src)
 
-  return JSON.parse ({
+  return {
     "absDir": slash (dirname (resolve (src))),
     "absPath": slash (resolve (src)),
     "accessTime": b.atime,
@@ -40,5 +40,5 @@ module.exports = async ({ createNodeId, opts = {}, src, type = "File" }) => {
     "srcDir": slash (a.isDirectory () ? opts.src : dirname (opts.src)),
     "srcName": opts.name,
     "srcPath": slash (opts.src)
-  })
+  }
 }
