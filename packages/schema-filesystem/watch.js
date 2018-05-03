@@ -1,8 +1,12 @@
 const chokidar = require ("chokidar")
 const { dirname } = require ("path").posix
 const nodeDir = require ("node-dir")
+const { stat } = require ("fs-extra")
 
 module.exports = async (fn = {}, emitter) => {
+  const a = await stat (fn.src)
+
+  fn.src = a.isDirectory () ? fn.src : dirname (fn.src)
   fn.addFile &&
     await Promise.all (
       nodeDir
