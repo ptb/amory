@@ -1,0 +1,28 @@
+{
+  "author": "Peter T Bosse II <ptb@ioutime.com> (http://ptb2.me/)",
+  "dependencies": {
+    "chokidar": "^2",
+    "fs-extra": "^6",
+    "gzip-size": "^4",
+    "mime": "^2",
+    "node-dir": "latest",
+    "pretty-bytes": "^4",
+    "slash": "^2"
+  },
+  "description": "",
+  "engines": {
+    "node": ">=8"
+  },
+  "keywords": [
+    "amory",
+    "gatsby",
+    "gatsby-plugin"
+  ],
+  "license": "(Apache-2.0 OR MIT)",
+  "name": "@amory/schema-filesystem",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": "https://github.com/ptb/amory/tree/master/packages/schema-filesystem",
+  "version": "2018.5.3-0"
+}

@@ -38,5 +38,6 @@ exports.createPagesStatefully = async (
     }
   })
 
-  await watcher (opts, emitter, reporter, done)
+  await watcher (opts, emitter)
+  done ()
 }

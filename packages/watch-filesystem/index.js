@@ -26,6 +26,5 @@ module.exports = (opts, emitter) =>
       })
       .on ("ready", () => {
         emitter.emit ("WATCH_FS_READY", { "src": opts.src })
-        done ()
       })
     : null)
