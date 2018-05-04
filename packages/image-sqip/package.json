@@ -1,7 +1,7 @@
 {
   "name": "@amory/image-sqip",
   "description": "Generates geometric primitive version of images",
-  "version": "2018.5.4-0",
+  "version": "2018.5.4-1",
   "author": "Benedikt Rötsch <roetsch.beni@gmail.com>",
   "babel": {
     "plugins": [

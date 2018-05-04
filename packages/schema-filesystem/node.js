@@ -42,7 +42,7 @@ module.exports = async ({ createNodeId, opts = {}, src, type = "File" }) => {
     "srcName": opts.name,
     "srcPath": slash (opts.src),
 
-    "absPath": slash (resolve (src)),
+    "absolutePath": slash (resolve (src)),
     "extension": c.ext.slice (1)
   }
 }
