@@ -40,6 +40,9 @@ module.exports = async ({ createNodeId, opts = {}, src, type = "File" }) => {
     "src": src,
     "srcDir": slash (a.isDirectory () ? opts.src : dirname (opts.src)),
     "srcName": opts.name,
-    "srcPath": slash (opts.src)
+    "srcPath": slash (opts.src),
+
+    "absPath": slash (resolve (src)),
+    "extension": c.ext.slice (1)
   }
 }
