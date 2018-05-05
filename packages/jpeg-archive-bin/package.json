@@ -1,7 +1,6 @@
 {
   "author": "1000ch <shogo.sensui@gmail.com> (https://github.com/1000ch)",
   "bin": {
-    "jpeg-archive": "archive.js",
     "jpeg-compare": "compare.js",
     "jpeg-hash": "hash.js",
     "jpeg-recompress": "recompress.js"
@@ -26,7 +25,6 @@
     "node": ">=4"
   },
   "files": [
-    "archive.js",
     "compare.js",
     "hash.js",
     "index.js",
@@ -59,5 +57,5 @@
     "postinstall": "node lib/install.js",
     "test": "xo && ava"
   },
-  "version": "2018.5.5-0"
+  "version": "2018.5.5-1"
 }

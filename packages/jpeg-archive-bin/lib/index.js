@@ -10,7 +10,6 @@ const wrap = (util) => new BinWrapper ()
   .dest (resolve (__dirname, "../vendor"))
   .use (process.platform === "win32" ? `jpeg-${util}.exe` : `jpeg-${util}`)
 
-exports.archive = wrap ("archive")
 exports.compare = wrap ("compare")
 exports.hash = wrap ("hash")
 exports.recompress = wrap ("recompress")
