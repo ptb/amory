@@ -1,0 +1,63 @@
+{
+  "author": "1000ch <shogo.sensui@gmail.com> (https://github.com/1000ch)",
+  "bin": {
+    "jpeg-archive": "archive.js",
+    "jpeg-compare": "compare.js",
+    "jpeg-hash": "hash.js",
+    "jpeg-recompress": "recompress.js"
+  },
+  "contributors": [
+    "Peter T Bosse II <ptb@ioutime.com> (http://ptb2.me/)"
+  ],
+  "dependencies": {
+    "bin-wrapper": "^3",
+    "logalot": "^2"
+  },
+  "description": "jpeg-archive wrappers to make them seamlessly available as local dependencies",
+  "devDependencies": {
+    "ava": "*",
+    "bin-check": "^4.0.1",
+    "compare-size": "^3.0.0",
+    "execa": "^0.6.3",
+    "tempy": "^0.1.0",
+    "xo": "*"
+  },
+  "engines": {
+    "node": ">=4"
+  },
+  "files": [
+    "archive.js",
+    "compare.js",
+    "hash.js",
+    "index.js",
+    "lib",
+    "recompress.js"
+  ],
+  "keywords": [
+    "imagemin",
+    "compress",
+    "image",
+    "img",
+    "jpeg",
+    "jpg",
+    "minify",
+    "optimize",
+    "jpeg-recompress"
+  ],
+  "license": "(Apache-2.0 OR MIT)",
+  "maintainers": [
+    "Sindre Sorhus <sindresorhus@gmail.com> (https://sindresorhus.com/)",
+    "Kevin Mårtensson <kevinmartensson@gmail.com> (https://github.com/kevva)",
+    "Shinnosuke Watanabe (https://github.com/shinnn)"
+  ],
+  "name": "@amory/jpeg-archive-bin",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": "https://github.com/ptb/amory/tree/master/packages/jpeg-archive-bin",
+  "scripts": {
+    "postinstall": "node lib/install.js",
+    "test": "xo && ava"
+  },
+  "version": "2018.5.5-0"
+}
