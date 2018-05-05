@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 
 const spawn = require ("child_process").spawn
-const { archive, compare, hash, recompress } = require (".")
+const { compare, hash, recompress } = require ("./lib/index")
 
 const input = process.argv.slice (2)
 
-spawn (compare, input, { "stdio": "inherit" })
+spawn (compare.path (), input, { "stdio": "inherit" })
   .on ("exit", process.exit)

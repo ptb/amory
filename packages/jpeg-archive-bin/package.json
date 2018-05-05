@@ -43,6 +43,7 @@
     "jpeg-recompress"
   ],
   "license": "(Apache-2.0 OR MIT)",
+  "main": "lib/index.js",
   "maintainers": [
     "Sindre Sorhus <sindresorhus@gmail.com> (https://sindresorhus.com/)",
     "Kevin Mårtensson <kevinmartensson@gmail.com> (https://github.com/kevva)",
@@ -57,5 +58,5 @@
     "postinstall": "node lib/install.js",
     "test": "xo && ava"
   },
-  "version": "2018.5.5-1"
+  "version": "2018.5.5-2"
 }
