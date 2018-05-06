@@ -50,13 +50,25 @@ const ImgFileFormatType = new GraphQLEnumType ({
   }
 })
 
-const ImgMethodType = new GraphQLEnumType ({
-  "name": "ImgMethod",
+const JpegMethodType = new GraphQLEnumType ({
+  "name": "JpegMethod",
   "values": {
     "MPE": { "value": "mpe" },
     "MS_SSIM": { "value": "ms-ssim" },
     "Smallfry": { "value": "smallfry" },
     "SSIM": { "value": "ssim" }
+  }
+})
+
+const PngMethodType = new GraphQLEnumType ({
+  "name": "PngMethod",
+  "values": {
+    "AdvPNG": { "value": "advpng" },
+    "OptiPNG": { "value": "optipng" },
+    "Pngcrush": { "value": "pngcrush" },
+    "PNGOUT": { "value": "pngout" },
+    "pngquant": { "value": "pngquant" },
+    "zopflipng": { "value": "zopflipng" }
   }
 })
 
@@ -93,7 +105,11 @@ const ImgCreateArgs = {
   "format": { "defaultValue": "jpg", "type": ImgFileFormatType },
   "height": { "type": GraphQLInt },
   "metadata": { "defaultValue": false, "type": GraphQLBoolean },
-  "method": { "defaultValue": "ssim", "type": ImgMethodType },
+  "jpegMethod": { "defaultValue": "ssim", "type": JpegMethodType },
+  "pngMethod": {
+    "defaultValue": ["zopflipng"],
+    "type": new GraphQLList (PngMethodType)
+  },
   "preset": { "defaultValue": "high", "type": ImgPresetType },
   "progressive": { "defaultValue": true, "type": GraphQLBoolean },
   "proxy": { "defaultValue": "sqip", "type": ImgProxyType },

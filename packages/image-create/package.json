@@ -9,8 +9,10 @@
     "lodash.sortby": "^4",
     "optipng-bin": "latest",
     "pngcrush-bin": "latest",
+    "pngout-bin": "latest",
     "pngquant-bin": "latest",
     "sharp": "latest",
+    "tempfile": "latest",
     "zopflipng-bin": "latest"
   },
   "description": "Gatsby plugin to create images of various resolutions",
@@ -33,5 +35,5 @@
     "access": "public"
   },
   "repository": "https://github.com/ptb/amory/tree/master/packages/image-create",
-  "version": "2018.5.6-12"
+  "version": "2018.5.6-13"
 }

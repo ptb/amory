@@ -1,20 +1,31 @@
-const { ensureDir } = require ("fs-extra")
+const crypto = require ("crypto")
+const { ensureDir, writeFile } = require ("fs-extra")
+const execBuffer = require ("exec-buffer")
 const { join } = require ("path").posix
 const advpngBin = require ("advpng-bin")
 const optipngBin = require ("optipng-bin")
 const pngcrushBin = require ("pngcrush-bin")
+const pngoutBin = require ("pngout-bin")
 const pngquantBin = require ("pngquant-bin")
+const sharp = require ("sharp")
+const tempfile = require ("tempfile")
 const zopflipngBin = require ("zopflipng-bin")
 
-const advpng = (png) =>
-  execBuffer ({
+const advpng = (png) => {
+  const tmp = tempfile ()
+
+  return execBuffer ({
     "args": [
-      execBuffer.input,
-      execBuffer.output
+      "-z",
+      "-4",
+      execBuffer.input
     ],
     "bin": advpngBin,
-    "input": Buffer.from (png)
+    "input": Buffer.from (png),
+    "inputPath": tmp,
+    "outputPath": tmp
   })
+}
 
 const optipng = (props) => (png) =>
   execBuffer ({
@@ -23,8 +34,9 @@ const optipng = (props) => (png) =>
       "-out",
       execBuffer.output,
       props.metadata ? null : "-strip",
+      props.metadata ? null : "all",
       execBuffer.input
-    ],
+    ].filter (Boolean),
     "bin": optipngBin,
     "input": Buffer.from (png)
   })
@@ -43,6 +55,21 @@ const pngcrush = (png) =>
   "input": Buffer.from (png)
 })
 
+const pngout = (props) => (png) => {
+  const tmp = tempfile ()
+
+  return execBuffer ({
+    "args": [
+      props.metadata ? "-k0" : "-k1",
+      execBuffer.input
+    ],
+    "bin": pngoutBin,
+    "input": Buffer.from (png),
+    "inputPath": tmp,
+    "outputPath": tmp
+  })
+}
+
 const pngquant = (props) => (png) =>
   execBuffer ({
     "args": [
@@ -51,9 +78,8 @@ const pngquant = (props) => (png) =>
       `--quality=0-${props.quality}`,
       "--speed",
       1,
-      props.metadata ? null : "--strip",
       execBuffer.input
-    ].filter (Boolean),
+    ],
     "bin": pngquantBin,
     "input": Buffer.from (png)
   })
@@ -61,16 +87,16 @@ const pngquant = (props) => (png) =>
 const zopflipng = (png) =>
   execBuffer ({
     "args": [
-      "--iterations=500",
-      "--splitting=3",
-      "--filters=01234mepb",
+      "--filters=b",
+      "--iterations=1",
       "--lossy_8bit",
       "--lossy_transparent",
+      "-m",
       execBuffer.input,
       execBuffer.output
     ],
     "bin": zopflipngBin,
-    "input": Buffer.from (c)
+    "input": Buffer.from (png)
   })
 
 module.exports = ({ file, opts, props }) => {
@@ -88,22 +114,29 @@ module.exports = ({ file, opts, props }) => {
           "progressive": props.progressive
         })
         .toBuffer ())
-    // .then (advpng)
-    // .then (optipng (props))
-    // .then (pngcrush)
-    // .then (pngquant (props))
-    // .then (zopflipng)
-    .then ((f) => {
-      const b = file.name
-      const c = file.internal.contentDigest.slice (0, 6)
-      const d = `${props.width}x${props.height}`
-      const e = crypto
+    .then ((b) =>
+      props.pngMethod.includes ("advpng") ? advpng (b) : b)
+    .then ((c) =>
+      props.pngMethod.includes ("optipng") ? optipng (props) (c) : c)
+    .then ((d) =>
+      props.pngMethod.includes ("pngcrush") ? pngcrush (d) : d)
+    .then ((e) =>
+      props.pngMethod.includes ("pngout") ? pngout (props) (e) : e)
+    .then ((f) =>
+      props.pngMethod.includes ("pngquant") ? pngquant (props) (f) : f)
+    .then ((g) =>
+      props.pngMethod.includes ("zopflipng") ? zopflipng (g) : g)
+    .then ((l) => {
+      const h = file.name
+      const i = file.internal.contentDigest.slice (0, 6)
+      const j = `${props.width}x${props.height}`
+      const k = crypto
         .createHash ("sha")
         .update (file.id)
-        .update (h)
+        .update (l)
         .digest ("hex")
         .slice (0, 6)
 
-      writeFile (join (a, `${b}-${c}-${d}-${e}.${props.format}`), f)
+      writeFile (join (a, `${h}-${i}-${j}-${k}.${props.format}`), l)
     })
 }

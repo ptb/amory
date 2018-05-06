@@ -26,7 +26,7 @@ module.exports = ({ file, opts, props }) => {
           "--accurate",
           props.metadata ? null : "--strip",
           "--method",
-          props.method,
+          props.jpegMethod,
           "--quality",
           props.preset,
           props.progressive ? null : "--no-progressive",
