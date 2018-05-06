@@ -5,18 +5,18 @@ const { join } = require ("path").posix
 const { recompress } = require ("@amory/jpeg-archive-bin/lib/index")
 const sharp = require ("sharp")
 
-module.exports = ({ "file": f, "opts": o, "props": p }) => {
-  const a = join (o.out, f.name)
+module.exports = ({ file, opts, props }) => {
+  const a = join (opts.out, file.name)
 
   ensureDir (a)
     .then (() =>
-      sharp (f.absPath)
-        .resize (p.width, p.height)
-        .crop (p.cropFocus)
+      sharp (file.absPath)
+        .resize (props.width, props.height)
+        .crop (props.cropFocus)
         .jpeg ({
-          "chromaSubsampling": p.subsample ? "4:2:0" : "4:4:4",
-          "force": p.format === "jpg",
-          "progressive": p.progressive,
+          "chromaSubsampling": props.subsample ? "4:2:0" : "4:4:4",
+          "force": props.format === "jpg",
+          "progressive": props.progressive,
           "quality": 100
         })
         .toBuffer ())
@@ -24,35 +24,33 @@ module.exports = ({ "file": f, "opts": o, "props": p }) => {
       execBuffer ({
         "args": [
           "--accurate",
-          p.metadata ? null : "--strip",
+          props.metadata ? null : "--strip",
           "--method",
-          p.method,
+          props.method,
           "--quality",
-          p.preset,
-          p.progressive ? null : "--no-progressive",
+          props.preset,
+          props.progressive ? null : "--no-progressive",
           "--max",
-          p.quality,
+          props.quality,
           "--subsample",
-          p.subsample ? "default" : "disable",
+          props.subsample ? "default" : "disable",
           execBuffer.input,
           execBuffer.output
         ].filter (Boolean),
         "bin": recompress.path (),
         "input": Buffer.from (b)
       }))
-    .then ((c) => {
-      const d = f.name
-      const e = f.internal.contentDigest.slice (0, 6)
-      const f = `${p.width}x${p.height}`
-      const g = crypto
+    .then ((g) => {
+      const c = file.name
+      const d = file.internal.contentDigest.slice (0, 6)
+      const e = `${props.width}x${props.height}`
+      const f = crypto
         .createHash ("sha")
-        .update (f.id)
+        .update (file.id)
         .update (c)
         .digest ("hex")
         .slice (0, 6)
 
-      writeFile (
-        join (a, `${d}-${e}-${f}-${g}.${p.format}`, c)
-      )
+      writeFile (join (a, `${c}-${d}-${e}-${f}.${props.format}`), g)
     })
 }
