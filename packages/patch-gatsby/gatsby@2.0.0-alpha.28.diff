@@ -11,7 +11,7 @@
    if (Root.default) {
 --- node_modules/gatsby/cache-dir/default-html.js
 +++ node_modules/gatsby/cache-dir/default-html.js
-@@ -5,7 +5,7 @@
+@@ -6,7 +6,7 @@
      return (
        <html {...this.props.htmlAttributes}>
          <head>
@@ -20,7 +20,7 @@
            <meta httpEquiv="x-ua-compatible" content="ie=edge" />
            <meta
              name="viewport"
-@@ -17,7 +17,7 @@
+@@ -18,7 +18,7 @@
            {this.props.preBodyComponents}
            <div
              key={`body`}
@@ -69,8 +69,8 @@
          if (resourceName in jsonStore) {
            resolve(jsonStore[resourceName])
          } else {
--          const url = `${pathPrefix ? pathPrefix : `/`}static/d/${
-+          const url = `${pathPrefix ? pathPrefix : `/`}js/p/${
+-          const url = `${pathPrefix}static/d/${
++          const url = `${pathPrefix}js/p/${
              jsonDataPaths[resourceName]
            }.json`
            var req = new XMLHttpRequest()
@@ -87,7 +87,7 @@
            apiRunner(`onInitialClientRender`)
 --- node_modules/gatsby/cache-dir/root.js
 +++ node_modules/gatsby/cache-dir/root.js
-@@ -16,7 +16,7 @@
+@@ -15,7 +15,7 @@
  // Report runtime errors
  ErrorOverlay.startReportingRuntimeErrors({
    onError: () => {},
