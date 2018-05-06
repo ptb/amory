@@ -3,10 +3,15 @@
   "dependencies": {
     "@amory/jpeg-archive-bin": "latest",
     "@amory/schema-filesystem": "latest",
+    "advpng-bin": "latest",
     "exec-buffer": "^3",
     "fs-extra": "^6",
     "lodash.sortby": "^4",
-    "sharp": "latest"
+    "optipng-bin": "latest",
+    "pngcrush-bin": "latest",
+    "pngquant-bin": "latest",
+    "sharp": "latest",
+    "zopflipng-bin": "latest"
   },
   "description": "Gatsby plugin to create images of various resolutions",
   "engines": {
@@ -28,5 +33,5 @@
     "access": "public"
   },
   "repository": "https://github.com/ptb/amory/tree/master/packages/image-create",
-  "version": "2018.5.6-11"
+  "version": "2018.5.6-12"
 }

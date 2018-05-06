@@ -47,7 +47,7 @@ module.exports = ({ file, opts, props }) => {
       const f = crypto
         .createHash ("sha")
         .update (file.id)
-        .update (c)
+        .update (g)
         .digest ("hex")
         .slice (0, 6)
 

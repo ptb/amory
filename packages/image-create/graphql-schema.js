@@ -11,6 +11,7 @@ const {
 const { gravity, strategy } = require ("sharp")
 
 const createJPEG = require ("./create-jpeg")
+const createPNG = require ("./create-png")
 const imageProps = require ("./image-props")
 
 const ImgCropFocusType = new GraphQLEnumType ({
@@ -138,7 +139,16 @@ module.exports = (
           const file = getNodeAndSavePathDependency (asset.id, context.src)
           const props = imageProps (asset, args)
 
-          createJPEG ({ file, opts, props })
+          switch (props.format) {
+            case "jpg":
+              createJPEG ({ file, opts, props })
+              break
+            case "png":
+              createPNG ({ file, opts, props })
+              break
+            default:
+              break
+          }
         },
         "type": ImgCreateType
       }
