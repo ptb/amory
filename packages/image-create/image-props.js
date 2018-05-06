@@ -3,7 +3,7 @@ const sortby = require ("lodash.sortby")
 module.exports = (a, b) => {
   const c =
     (/(\d+(?:\.)?(?:\d+)?)(?::|\/)?(\d+(?:\.)?(?:\d+)?)?/).exec (b.ratio) || []
-  const target = {
+  const d = {
     ... b,
     "density": sortby (b.density) || [1],
     "ratio": [
@@ -13,19 +13,14 @@ module.exports = (a, b) => {
     ].filter (Boolean)[0]
   }
 
-  target.width =
-    parseInt (b.width, 10) || parseInt (b.height * target.ratio, 10) || a.width
-  target.width = target.width <= a.width ? target.width : a.width
-  target.height =
-    parseInt (target.width / target.ratio, 10) || parseInt (b.height, 10)
-  target.sizes = target.density
-    .reduce (
-      (d, e) =>
-        d.concat ([
-          [Math.round (target.width * e), Math.round (target.height * e)]
-        ]),
-      []
-    )
-    .filter ((f) => f[0] <= a.width && f[1] <= a.height)
-  return target
+  d.width =
+    parseInt (b.width, 10) || parseInt (b.height * d.ratio, 10) || a.width
+  d.width = d.width <= a.width ? d.width : a.width
+  d.height = parseInt (d.width / d.ratio, 10) || parseInt (b.height, 10)
+  d.sizes = d.density
+    .reduce ((e, f) =>
+      e.concat ([[Math.round (d.width * f), Math.round (d.height * f)]]),
+      [])
+    .filter ((g) => g[0] <= a.width && g[1] <= a.height)
+  return d
 }
