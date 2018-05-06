@@ -1,0 +1,32 @@
+{
+  "author": "Peter T Bosse II <ptb@ioutime.com> (http://ptb2.me/)",
+  "dependencies": {
+    "@amory/jpeg-archive-bin": "latest",
+    "@amory/schema-filesystem": "latest",
+    "exec-buffer": "^3",
+    "fs-extra": "^6",
+    "lodash.sortby": "^4",
+    "sharp": "latest"
+  },
+  "description": "Gatsby plugin to create images of various resolutions",
+  "engines": {
+    "node": ">=8"
+  },
+  "keywords": [
+    "amory",
+    "gatsby",
+    "gatsby-plugin",
+    "image"
+  ],
+  "license": "(Apache-2.0 OR MIT)",
+  "main": "gatsby-node.js",
+  "name": "@amory/image-create",
+  "peerDependencies": {
+    "graphql": "latest"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": "https://github.com/ptb/amory/tree/master/packages/image-create",
+  "version": "2018.5.6-8"
+}
