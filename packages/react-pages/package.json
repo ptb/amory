@@ -19,10 +19,10 @@
   ],
   "license": "(Apache-2.0 OR MIT)",
   "main": "index.js",
-  "name": "@amory/template-react",
+  "name": "@amory/react-pages",
   "publishConfig": {
     "access": "public"
   },
-  "repository": "https://github.com/ptb/amory/tree/master/packages/template-react",
-  "version": "2018.5.6-1"
+  "repository": "https://github.com/ptb/amory/tree/master/packages/react-pages",
+  "version": "2018.5.6-2"
 }
