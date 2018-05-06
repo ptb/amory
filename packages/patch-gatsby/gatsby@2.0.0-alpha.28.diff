@@ -152,30 +152,7 @@
        }}
      />
    )
-@@ -222,22 +222,6 @@
-       )
-     })
- 
--  if (page.jsonName in dataPaths) {
--    const dataPath = `${pathPrefix}static/d/${dataPaths[page.jsonName]}.json`
--    // Insert json data path after commons and app
--    headComponents.splice(
--      1,
--      0,
--      <link
--        rel="preload"
--        key={dataPath}
--        href={dataPath}
--        as="fetch"
--        crossOrigin="use-credentials"
--      />
--    )
--  }
--
-   styles
-     .slice(0)
-     .reverse()
-@@ -261,6 +245,7 @@
+@@ -261,6 +261,7 @@
    // Taken from https://www.html5rocks.com/en/tutorials/speed/script-loading/
    const scriptsString = scripts
      .map(s => `"${pathPrefix}${JSON.stringify(s).slice(1, -1)}"`)
@@ -203,17 +180,6 @@
  
      activity = report.activityTimer(`copy gatsby files`);
      activity.start();
---- node_modules/gatsby/dist/bootstrap/load-plugins/load.js
-+++ node_modules/gatsby/dist/bootstrap/load-plugins/load.js
-@@ -133,7 +133,7 @@
-     }; // Add internal plugins
- 
- 
--    const internalPlugins = [`../../internal-plugins/dev-404-page`, `../../internal-plugins/load-babel-config`, `../../internal-plugins/component-page-creator`, `../../internal-plugins/internal-data-bridge`, `../../internal-plugins/prod-404`, `../../internal-plugins/query-runner`];
-+    const internalPlugins = [`../../internal-plugins/dev-404-page`, `../../internal-plugins/load-babel-config`, `../../../../@amory/react-pages`, `../../internal-plugins/internal-data-bridge`, `../../internal-plugins/prod-404`, `../../internal-plugins/query-runner`];
-     internalPlugins.forEach(relPath => {
-       const absPath = path.join(__dirname, relPath);
-       plugins.push(processPlugin(absPath));
 --- node_modules/gatsby/dist/internal-plugins/query-runner/query-runner.js
 +++ node_modules/gatsby/dist/internal-plugins/query-runner/query-runner.js
 @@ -70,10 +70,10 @@
