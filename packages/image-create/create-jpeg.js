@@ -41,9 +41,10 @@ module.exports = ({ "file": f, "opts": o, "props": p }) => {
         "input": Buffer.from (b)
       }))
     .then ((c) => {
-      const d = `${f.name}-${f.internal.contentDigest.slice (0, 6)}`
-      const e = `${p.width}x${p.height}`
-      const f = crypto
+      const d = f.name
+      const e = f.internal.contentDigest.slice (0, 6)
+      const f = `${p.width}x${p.height}`
+      const g = crypto
         .createHash ("sha")
         .update (f.id)
         .update (c)
@@ -51,7 +52,7 @@ module.exports = ({ "file": f, "opts": o, "props": p }) => {
         .slice (0, 6)
 
       writeFile (
-        join (a, `${d}-${e}-${f}.${p.format}`, c)
+        join (a, `${d}-${e}-${f}-${g}.${p.format}`, c)
       )
     })
 }
