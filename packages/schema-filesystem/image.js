@@ -36,8 +36,9 @@ module.exports = async (
     "addFile": [addFile, "GQL_FS_IMG_ADD"],
     "delFile": [delFile, "GQL_FS_IMG_DEL"],
     "modFile": [modFile, "GQL_FS_IMG_MOD"],
+    "out": opts.out || "public/img",
     "regex": /\.(gif|jpe?g|png|svg|tiff?|webp)$/i,
-    "src": opts.src || opts.path || "src/images"
+    "src": opts.src || "src/images"
   }
 
   await watcher (fn, emitter)
