@@ -1,0 +1,40 @@
+{
+  "author": "Peter T Bosse II <ptb@ioutime.com> (http://ptb2.me/)",
+  "dependencies": {
+    "@amory/jpeg-archive-bin": "latest",
+    "@amory/schema-filesystem": "latest",
+    "advpng-bin": "^3",
+    "exec-buffer": "^3",
+    "fs-extra": "^6",
+    "imagemin-svgo": "^6",
+    "lodash.sortby": "^4",
+    "mini-svg-data-uri": "^1",
+    "optipng-bin": "^4",
+    "pngcrush-bin": "^3",
+    "pngout-bin": "^3",
+    "pngquant-bin": "^4",
+    "sharp": "latest",
+    "sqip": "latest",
+    "temp-write": "^3",
+    "tempfile": "^2",
+    "zopflipng-bin": "^4"
+  },
+  "description": "Gatsby plugin to create images of various resolutions",
+  "engines": {
+    "node": ">=8"
+  },
+  "keywords": [
+    "amory",
+    "gatsby",
+    "gatsby-plugin",
+    "image"
+  ],
+  "license": "(Apache-2.0 OR MIT)",
+  "main": "gatsby-node.js",
+  "name": "@amory/image",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": "https://github.com/ptb/amory/tree/master/packages/image",
+  "version": "2018.5.10-0"
+}

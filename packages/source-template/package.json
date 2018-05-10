@@ -1,16 +1,18 @@
 {
   "author": "Peter T Bosse II <ptb@ioutime.com> (http://ptb2.me/)",
+  "description": "",
   "engines": {
     "node": ">=8"
   },
+  "keywords": [
+    "amory"
+  ],
   "license": "(Apache-2.0 OR MIT)",
-  "dependencies": {
-    "http-server": "latest"
-  },
-  "name": "@amory/serve-http",
+  "main": "gatsby-node.js",
+  "name": "@amory/source-template",
   "publishConfig": {
     "access": "public"
   },
-  "repository": "https://github.com/ptb/amory/tree/master/packages/serve-http",
+  "repository": "https://github.com/ptb/amory/tree/master/packages/source-template",
   "version": "2018.5.10-0"
 }

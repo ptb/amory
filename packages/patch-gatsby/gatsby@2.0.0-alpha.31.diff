@@ -56,7 +56,7 @@
    htmlStr = renderToStaticMarkup(htmlElement)
 --- node_modules/gatsby/cache-dir/loader.js
 +++ node_modules/gatsby/cache-dir/loader.js
-@@ -40,7 +40,7 @@
+@@ -45,7 +45,7 @@
  const fetchResource = resourceName => {
    // Find resource
    let resourceFunction
@@ -65,7 +65,7 @@
      resourceFunction = asyncRequires.components[resourceName]
    } else {
      resourceFunction = () =>
-@@ -48,7 +48,7 @@
+@@ -53,7 +53,7 @@
          if (resourceName in jsonStore) {
            resolve(jsonStore[resourceName])
          } else {
@@ -125,7 +125,7 @@
          )
        )
      } catch (e) {
-@@ -172,7 +172,7 @@
+@@ -162,7 +162,7 @@
        // Remove the runtime as we always inline that instead
        // of loading it.
        if (s === `app`) {
@@ -134,7 +134,7 @@
        }
  
        if (!chunks) {
-@@ -186,7 +186,7 @@
+@@ -176,7 +176,7 @@
          if (chunk.slice(0, 15) === `webpack-runtime`) {
            return null
          }
@@ -143,7 +143,7 @@
        })
      })
    ).filter(s => isString(s))
-@@ -202,7 +202,7 @@
+@@ -206,7 +206,7 @@
        key={`webpack-runtime`}
        id={`webpack-runtime`}
        dangerouslySetInnerHTML={{
@@ -152,7 +152,7 @@
        }}
      />
    )
-@@ -261,6 +261,7 @@
+@@ -265,6 +265,7 @@
    // Taken from https://www.html5rocks.com/en/tutorials/speed/script-loading/
    const scriptsString = scripts
      .map(s => `"${pathPrefix}${JSON.stringify(s).slice(1, -1)}"`)
