@@ -12,10 +12,10 @@
     "node": ">=8"
   },
   "license": "(Apache-2.0 OR MIT)",
-  "name": "@amory/patch-gatsby",
+  "name": "@amory/patches",
   "publishConfig": {
     "access": "public"
   },
-  "repository": "https://github.com/ptb/amory/tree/master/packages/patch-gatsby",
-  "version": "2018.5.11-5"
+  "repository": "https://github.com/ptb/amory/tree/master/packages/patches",
+  "version": "2018.5.11-6"
 }

@@ -10,6 +10,7 @@
     "imagemin-svgo": "^6",
     "lodash.sortby": "^4",
     "mini-svg-data-uri": "^1",
+    "node-vibrant": "^3",
     "optipng-bin": "^4",
     "p-queue": "^2",
     "pngcrush-bin": "^3",
@@ -38,5 +39,5 @@
     "access": "public"
   },
   "repository": "https://github.com/ptb/amory/tree/master/packages/image",
-  "version": "2018.5.11-5"
+  "version": "2018.5.11-6"
 }
