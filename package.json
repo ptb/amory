@@ -1,7 +1,7 @@
 {
   "author": "Peter T Bosse II <ptb@ioutime.com> (http://ptb2.me/)",
   "devDependencies": {
-    "@amory/script-eslint": "latest",
+    "@amory/eslint-config": "latest",
     "lerna": "^2"
   },
   "engines": {
@@ -9,7 +9,7 @@
   },
   "eslintConfig": {
     "extends": [
-      "@amory/script-eslint"
+      "@amory/eslint-config"
     ],
     "rules": {
       "better/explicit-return": "off",

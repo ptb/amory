@@ -326,43 +326,7 @@ const resize = {
         "Visit 'http://sharp.pixelplumbing.com/en/stable/api-resize/#resize' for details. []",
       "type": GraphQLInt
     }
-  },
-
-  "type": new GraphQLObjectType ({
-    "fields": {
-      "height": {
-        "type": GraphQLInt
-      },
-      "jpg": {
-        "args": jpg.args,
-        "resolve": (node, args) =>
-          new Jpg ({ args, node }).resolve (),
-        "type": jpg.type
-      },
-      "png": {
-        "args": png.args,
-        "resolve": (node, args) =>
-          new Png ({ args, node }).resolve (),
-        "type": png.type
-      },
-      "sqip": {
-        "args": sqip.args,
-        "resolve": (node, args) =>
-          new Svg ({ args, node }).resolveSqip (),
-        "type": sqip.type
-      },
-      "webp": {
-        "args": webp.args,
-        "resolve": (node, args) =>
-          new Webp ({ args, node }).resolve (),
-        "type": webp.type
-      },
-      "width": {
-        "type": GraphQLInt
-      }
-    },
-    "name": "ImageResize"
-  })
+  }
 }
 
 module.exports = ({ type }, opts = {}) => {
@@ -373,7 +337,41 @@ module.exports = ({ type }, opts = {}) => {
           "args": resize.args,
           "resolve": (node, args) =>
             new Resize ({ args, node, opts }).resolve,
-          "type": resize.type
+          "type": new GraphQLObjectType ({
+            "fields": {
+              "height": {
+                "type": GraphQLInt
+              },
+              "jpg": {
+                "args": jpg.args,
+                "resolve": (node, args) =>
+                  new Jpg ({ args, node }).resolve (),
+                "type": jpg.type
+              },
+              "png": {
+                "args": png.args,
+                "resolve": (node, args) =>
+                  new Png ({ args, node }).resolve (),
+                "type": png.type
+              },
+              "sqip": {
+                "args": sqip.args,
+                "resolve": (node, args) =>
+                  new Svg ({ args, node }).resolveSqip (),
+                "type": sqip.type
+              },
+              "webp": {
+                "args": webp.args,
+                "resolve": (node, args) =>
+                  new Webp ({ args, node }).resolve (),
+                "type": webp.type
+              },
+              "width": {
+                "type": GraphQLInt
+              }
+            },
+            "name": "ImageResize"
+          })
         }
       }
     default:
