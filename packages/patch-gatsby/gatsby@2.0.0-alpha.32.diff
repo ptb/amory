@@ -116,7 +116,12 @@
    let bodyAttributes = {}
    let preBodyComponents = []
    let postBodyComponents = []
-@@ -102,7 +102,7 @@
+@@ -98,11 +98,11 @@
+ 
+   let dataAndContext = {}
+   if (page.jsonName in dataPaths) {
+-    const pathToJsonData = `../public/` + dataPaths[page.jsonName]
++    const pathToJsonData = `../public/js/p/` + dataPaths[page.jsonName]
      try {
        dataAndContext = JSON.parse(
          fs.readFileSync(
@@ -152,6 +157,15 @@
        }}
      />
    )
+@@ -227,7 +227,7 @@
+     })
+ 
+   if (page.jsonName in dataPaths) {
+-    const dataPath = `${pathPrefix}static/d/${dataPaths[page.jsonName]}.json`
++    const dataPath = `${pathPrefix}js/p/${dataPaths[page.jsonName]}.json`
+     // Insert json data path after commons and app
+     headComponents.splice(
+       1,
 @@ -265,6 +265,7 @@
    // Taken from https://www.html5rocks.com/en/tutorials/speed/script-loading/
    const scriptsString = scripts

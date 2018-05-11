@@ -21,10 +21,10 @@
   ],
   "license": "(Apache-2.0 OR MIT)",
   "main": "gatsby-node.js",
-  "name": "@amory/schema-filesystem",
+  "name": "@amory/src-fs",
   "publishConfig": {
     "access": "public"
   },
-  "repository": "https://github.com/ptb/amory/tree/master/packages/schema-filesystem",
-  "version": "2018.5.10-1"
+  "repository": "https://github.com/ptb/amory/tree/master/packages/src-fs",
+  "version": "2018.5.11-2"
 }

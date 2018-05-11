@@ -14,7 +14,6 @@ module.exports = async ({ createNodeId, opts = {}, src, type = "File" }) => {
   return {
     "absDir": slash (dirname (resolve (src))),
     "absPath": slash (resolve (src)),
-    "accessTime": b.atime,
     "bytes": b.size,
     "children": [],
     "createTime": b.birthtime,

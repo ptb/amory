@@ -38,9 +38,9 @@ module.exports = async (
   }
 
   const fn = {
-    "addFile": [addFile, "GQL_FS_IMG_ADD"],
-    "delFile": [delFile, "GQL_FS_IMG_DEL"],
-    "modFile": [modFile, "GQL_FS_IMG_MOD"],
+    "addFile": [addFile, "SRC_FS_IMG_ADD"],
+    "delFile": [delFile, "SRC_FS_IMG_DEL"],
+    "modFile": [modFile, "SRC_FS_IMG_MOD"],
     "out": opts.out,
     "regex": /\.(gif|jpe?g|png|svg|tiff?|webp)$/i,
     "src": opts.src
