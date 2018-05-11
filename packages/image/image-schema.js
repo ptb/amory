@@ -243,6 +243,10 @@ const resize = {
       "type": GraphQLString
     },
 
+    "color": {
+      "type": GraphQLString
+    },
+
     "cropFocus": {
       "defaultValue": strategy.attention,
       "description":
@@ -339,6 +343,9 @@ module.exports = ({ type }, opts = {}) => {
             new Resize ({ args, node, opts }).resolve,
           "type": new GraphQLObjectType ({
             "fields": {
+              "color": {
+                "type": GraphQLString
+              },
               "height": {
                 "type": GraphQLInt
               },

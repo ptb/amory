@@ -1,6 +1,7 @@
 const crypto = require ("crypto")
 const { ensureDir, existsSync, writeFile } = require ("fs-extra")
 const { dirname, join } = require ("path").posix
+const vibrant = require ("node-vibrant")
 const PQueue = require ("p-queue")
 const sharp = require ("sharp")
 const sortby = require ("lodash.sortby")
@@ -23,6 +24,13 @@ class Resize {
       parseFloat (this.args.width / this.args.height),
       parseFloat (this.node.width / this.node.height)
     ].filter (Boolean)[0]
+  }
+
+  get color () {
+    return vibrant
+      .from (this.node.absPath)
+      .getPalette ()
+      .then ((p) => `${p.Vibrant ? p.Vibrant.getHex () : p.Muted.getHex ()}`)
   }
 
   get cropFocus () {
@@ -81,6 +89,7 @@ class Resize {
       ... this.args,
       ... this.node,
       "aspectRatio": this.aspectRatio,
+      "color": this.color,
       "cropFocus": this.cropFocus,
       "devicePixelRatios": this.devicePixelRatios,
       "height": this.height,
