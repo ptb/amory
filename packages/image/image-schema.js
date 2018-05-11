@@ -314,7 +314,8 @@ const resize = {
     },
 
     "saveName": {
-      "defaultValue": ["initName", "@", "saveDppx", "-", "saveOpts", ".", "saveExt"],
+      "defaultValue":
+        ["initName", "@", "saveDppx", "-", "saveOpts", ".", "saveExt"],
       "description":
         "Array to filename. ['initName', '@', 'saveDppx', '-', 'saveOpts', '.', 'saveExt']",
       "type": new GraphQLList (GraphQLString)

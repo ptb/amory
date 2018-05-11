@@ -1,10 +1,9 @@
-const execBuffer = require ("exec-buffer")
 const { join } = require ("path").posix
 const miniSvgDataUri = require ("mini-svg-data-uri")
 const { readFileSync } = require ("fs-extra")
 const Resize = require ("./image-resize")
 const sqip = require ("sqip")
-const Svgo = require ("imagemin-svgo")
+const svgoBin = require ("imagemin-svgo")
 const tempWrite = require ("temp-write")
 
 class Svg {
@@ -13,13 +12,13 @@ class Svg {
     this.node = node || {}
   }
 
-  async datauri (saveName) {
+  static datauri (saveName) {
     const buffer = readFileSync (join ("public", saveName), "utf8")
 
     return miniSvgDataUri (buffer)
   }
 
-  quotes (buffer) {
+  static quotes (buffer) {
     return buffer.toString ().replace (/"/g, "'")
   }
 
@@ -37,15 +36,15 @@ class Svg {
           })
           .toBuffer ()
           .then ((buffer) => this.sqip (buffer))
-          .then ((buffer) => this.svgo (buffer))
-          .then ((buffer) => this.quotes (buffer))
-          .then ((buffer) => Resize.saveFile (savePath, buffer)))
-          .catch (console.log.bind (console))
+          .then ((buffer) => Svg.svgo (buffer))
+          .then ((buffer) => Svg.quotes (buffer))
+          .then ((buffer) => Resize.saveFile (savePath, buffer))
+          .catch (console.log.bind (console)))
     }
 
     return Resize.queue.onEmpty ()
       .then (() => ({
-        "dataURI": this.datauri (savePath),
+        "dataURI": Svg.datauri (savePath),
         "src": savePath
       }))
   }
@@ -59,8 +58,8 @@ class Svg {
     }).final_svg
   }
 
-  svgo (buffer) {
-    return Svgo () (buffer)
+  static svgo (buffer) {
+    return svgoBin () (buffer)
   }
 }
 

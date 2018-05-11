@@ -1,2 +1,2 @@
 exports.setFieldsOnGraphQLNodeType = require ("./image-schema")
-exports.sourceNodes = require ("@amory/schema-filesystem/image")
+exports.sourceNodes = require ("@amory/src-fs/image")

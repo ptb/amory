@@ -41,7 +41,8 @@ class Webp {
             })
             .toBuffer ()
             .then ((buffer) => this.cwebp (buffer))
-            .then ((buffer) => Resize.saveFile (savePath, buffer)))
+            .then ((buffer) => Resize.saveFile (savePath, buffer))
+            .catch (console.log.bind (console)))
       }
       paths.push (savePath)
     }

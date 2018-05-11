@@ -114,7 +114,8 @@ class Png {
             .then ((buffer) => this.pngout (buffer))
             .then ((buffer) => this.pngquant (buffer))
             .then ((buffer) => this.zopflipng (buffer))
-            .then ((buffer) => Resize.saveFile (savePath, buffer)))
+            .then ((buffer) => Resize.saveFile (savePath, buffer))
+            .catch (console.log.bind (console)))
       }
       paths.push (savePath)
     }
