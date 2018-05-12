@@ -23,7 +23,7 @@ module.exports = async ({ createNodeId, opts = {}, src, type = "File" }) => {
     "id": createNodeId (src),
     "internal": {
       "contentDigest": crypto
-        .createHash ("sha")
+        .createHash ("sha1")
         .update (createNodeId (src))
         .update (await readFile (src))
         .digest ("hex"),

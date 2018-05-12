@@ -142,7 +142,7 @@ class Resize {
               return this.sizes[i][1]
             case "saveOpts":
               return crypto
-                .createHash ("sha")
+                .createHash ("sha1")
                 .update (JSON.stringify (this.node))
                 .update (JSON.stringify (args))
                 .digest ("hex")
