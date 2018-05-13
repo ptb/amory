@@ -225,14 +225,10 @@ const proxy = {
     },
 
     "style": {
-      "defaultValue": "color",
+      "defaultValue": "lqip",
       "type": new GraphQLEnumType ({
         "name": "ProxyImage",
         "values": {
-          "color": {
-            "description": "Extract prominent colors from the source image",
-            "value": "color"
-          },
           "lqip": {
             "description":
               "Low Quality Image Placeholder: Blurry bitmap thumbnail image",
@@ -248,6 +244,13 @@ const proxy = {
           }
         }
       })
+    },
+
+    "thumb": {
+      "defaultValue": 20,
+      "description":
+        "LQIP only: Thumbnail percent size of original. [20]",
+      "type": GraphQLInt
     }
   },
 

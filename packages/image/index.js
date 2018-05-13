@@ -149,9 +149,11 @@ class Img extends Component {
     this.css = styletron ().css
 
     return this.outer ([
-      this.props.image.proxy.color &&
+      this.props.image.proxy &&
+        this.props.image.proxy.color &&
         this.color (this.state.isLoaded),
-      this.props.image.proxy.src &&
+      this.props.image.proxy &&
+        this.props.image.proxy.src &&
         this.image (!this.state.isLoaded, this.proxySrc),
       this.state.isVisible &&
         this.image (this.state.isLoaded, this.imageSrc),

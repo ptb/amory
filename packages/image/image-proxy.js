@@ -1,6 +1,8 @@
+const execBuffer = require ("exec-buffer")
 const { join } = require ("path").posix
 const miniSvgDataUri = require ("mini-svg-data-uri")
 const { readFileSync } = require ("fs-extra")
+const { recompress } = require ("@amory/jpeg-archive-bin/lib/index")
 const Resize = require ("./image-resize")
 const sqip = require ("sqip")
 const svgoBin = require ("imagemin-svgo")
@@ -31,17 +33,46 @@ class Proxy {
       .then ((c) => c.filter (Boolean)[0].getHex ())
   }
 
+  recompress (buffer) {
+    return execBuffer ({
+      "args": [
+        "--accurate",
+        "--method",
+        "ssim",
+        "--strip",
+        execBuffer.input,
+        execBuffer.output
+      ].filter (Boolean),
+      "bin": recompress.path (),
+      "input": Buffer.from (buffer)
+    })
+  }
+
   async resolve () {
     const img = new Resize ({ "node": this.node })
+    const [width, height] = this.node.sizes[0]
 
     switch (this.args.style) {
-      case "color":
-        return {
-          "color": this.color
-        }
+      case "lqip":
+        const pct = parseFloat (this.args.thumb / 100)
+        const imgBase64 = await Resize.queue.add (() =>
+          img.resize (Math.round (width * pct), Math.round (height * pct))
+            .jpeg ({
+              "force": true,
+              "quality": 100
+            })
+            .toBuffer ()
+            .then ((buffer) => this.recompress (buffer))
+            .then ((buffer) => `data:image/jpeg;base64,${buffer.toString ("base64")}`))
+
+        return Resize.queue.onEmpty ()
+          .then (() => ({
+            "color": this.color,
+            "src": imgBase64
+          }))
+
       case "sqip":
         const savePath = await img.saveName (0, "svg", this.args)
-        const [width, height] = this.node.sizes[0]
 
         if (!Resize.exists (savePath)) {
           await Resize.queue.add (() =>
@@ -60,6 +91,7 @@ class Proxy {
 
         return Resize.queue.onEmpty ()
           .then (() => ({
+            "color": this.color,
             "src": Proxy.datauri (savePath)
           }))
     }
