@@ -5,6 +5,7 @@
     "gatsby": "2.0.0-alpha.32",
     "gatsby-plugin-sharp": "2.0.0-alpha.12",
     "gatsby-transformer-sharp": "2.0.1-5",
+    "react": "16.3.2",
     "react-dom": "16.3.2"
   },
   "description": "Personal preference patches for Gatsby",
@@ -17,5 +18,5 @@
     "access": "public"
   },
   "repository": "https://github.com/ptb/amory/tree/master/packages/patches",
-  "version": "2018.5.13-2"
+  "version": "2018.5.13-3"
 }
