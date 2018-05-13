@@ -34,7 +34,7 @@ module.exports = async (
 
   const modFile = async ({ src }) => {
     delFile (src)
-    addFile (src)
+    await addFile (src)
   }
 
   const fn = {
