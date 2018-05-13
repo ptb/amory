@@ -8,6 +8,7 @@
     "exec-buffer": "^3",
     "fs-extra": "^6",
     "imagemin-svgo": "^6",
+    "intersection-observer": "latest",
     "lodash.sortby": "^4",
     "mini-svg-data-uri": "^1",
     "node-vibrant": "^3",
@@ -20,6 +21,7 @@
     "sqip": "latest",
     "temp-write": "^3",
     "tempfile": "^2",
+    "weakmap-polyfill": "^2",
     "zopflipng-bin": "^4"
   },
   "description": "Gatsby plugin to create images of various resolutions",
@@ -39,5 +41,5 @@
     "access": "public"
   },
   "repository": "https://github.com/ptb/amory/tree/master/packages/image",
-  "version": "2018.5.13-3"
+  "version": "2018.5.13-4"
 }
