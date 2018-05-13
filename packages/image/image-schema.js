@@ -9,8 +9,8 @@ const {
 const { gravity, strategy } = require ("sharp")
 const Jpg = require ("./image-jpg")
 const Png = require ("./image-png")
+const Proxy = require ("./image-proxy")
 const Resize = require ("./image-resize")
-const Svg = require ("./image-svg")
 const Webp = require ("./image-webp")
 
 const jpg = {
@@ -159,17 +159,17 @@ const png = {
   })
 }
 
-const sqip = {
+const proxy = {
   "args": {
     "blur": {
       "defaultValue": 5,
-      "description": "GaussianBlur SVG filter value. [5]",
+      "description": "SQIP only: GaussianBlur SVG filter value. [5]",
       "type": GraphQLInt
     },
 
     "mode": {
       "defaultValue": 0,
-      "description": "Style of primitives to use. [combo]",
+      "description": "SQIP only: Style of primitives to use. [combo]",
       "type": new GraphQLEnumType ({
         "name": "SqipStyleMode",
         "values": {
@@ -189,17 +189,74 @@ const sqip = {
     "numberOfPrimitives": {
       "defaultValue": 40,
       "description":
-        "Number of primitive shapes to use to build the SVG. [40]",
+        "SQIP only: Number of primitive shapes to use to build the SVG. [40]",
       "type": GraphQLInt
+    },
+
+    "palette": {
+      "defaultValue": ["Vibrant", "Muted"],
+      "description":
+        "Color only: Returns first available from this list. ['Vibrant', 'Muted']",
+      "type": new GraphQLList (
+        new GraphQLEnumType ({
+          "name": "ProxyColors",
+          "values": {
+            "DarkMuted": {
+              "value": "DarkMuted"
+            },
+            "DarkVibrant": {
+              "value": "DarkVibrant"
+            },
+            "LightMuted": {
+              "value": "LightMuted"
+            },
+            "LightVibrant": {
+              "value": "LightVibrant"
+            },
+            "Muted": {
+              "value": "Muted"
+            },
+            "Vibrant": {
+              "value": "Vibrant"
+            }
+          }
+        })
+      )
+    },
+
+    "style": {
+      "defaultValue": "color",
+      "type": new GraphQLEnumType ({
+        "name": "ProxyImage",
+        "values": {
+          "color": {
+            "description": "Extract prominent colors from the source image",
+            "value": "color"
+          },
+          "lqip": {
+            "description":
+              "Low Quality Image Placeholder: Blurry bitmap thumbnail image",
+            "value": "lqip"
+          },
+          "sqip": {
+            "description":
+              "SVG Image Placeholder: Blurry vector shape-based image",
+            "value": "sqip"
+          },
+          "traced": {
+            "value": "potrace"
+          }
+        }
+      })
     }
   },
 
   "type": new GraphQLObjectType ({
     "fields": {
-      "dataURI": { "type": GraphQLString },
+      "color": { "type": GraphQLString },
       "src": { "type": GraphQLString }
     },
-    "name": "Sqip"
+    "name": "Proxy"
   })
 }
 
@@ -240,10 +297,6 @@ const resize = {
     "aspectRatio": {
       "description":
         "Ratio between the width and height, e.g. 1.618, 16/9, or 21:9",
-      "type": GraphQLString
-    },
-
-    "color": {
       "type": GraphQLString
     },
 
@@ -343,9 +396,6 @@ module.exports = ({ type }, opts = {}) => {
             new Resize ({ args, node, opts }).resolve,
           "type": new GraphQLObjectType ({
             "fields": {
-              "color": {
-                "type": GraphQLString
-              },
               "height": {
                 "type": GraphQLInt
               },
@@ -361,11 +411,11 @@ module.exports = ({ type }, opts = {}) => {
                   new Png ({ args, node }).resolve (),
                 "type": png.type
               },
-              "sqip": {
-                "args": sqip.args,
+              "proxy": {
+                "args": proxy.args,
                 "resolve": (node, args) =>
-                  new Svg ({ args, node }).resolveSqip (),
-                "type": sqip.type
+                  new Proxy ({ args, node }).resolve (),
+                "type": proxy.type
               },
               "webp": {
                 "args": webp.args,

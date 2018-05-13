@@ -85,19 +85,15 @@ class Img extends Component {
   }
 
   get proxySrc () {
-    const src = [
-      this.props.image.sqip.dataURI
-    ].filter (Boolean)
-
     return {
-      "src": src[0]
+      "src": this.props.image.proxy.src
     }
   }
 
   color (isLoaded) {
     return h ("div", {
       "className": this.css ({
-        "backgroundColor": this.props.image.color,
+        "backgroundColor": this.props.image.proxy.color,
         "bottom": 0,
         "left": 0,
         "opacity": isLoaded ? 0 : 1,
@@ -153,9 +149,9 @@ class Img extends Component {
     this.css = styletron ().css
 
     return this.outer ([
-      this.props.image.color &&
+      this.props.image.proxy.color &&
         this.color (this.state.isLoaded),
-      this.props.proxy &&
+      this.props.image.proxy.src &&
         this.image (!this.state.isLoaded, this.proxySrc),
       this.state.isVisible &&
         this.image (this.state.isLoaded, this.imageSrc),
