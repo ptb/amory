@@ -48,8 +48,8 @@ const jpg = {
     },
 
     "quality": {
-      "defaultValue": 95,
-      "description": "Integer up to 100 = Maximum JPEG quality. [95]",
+      "defaultValue": 80,
+      "description": "Integer up to 100 = Maximum JPEG quality. [80]",
       "type": GraphQLInt
     },
 
@@ -224,9 +224,6 @@ const proxy = {
             "description":
               "SVG Image Placeholder: Blurry vector shape-based image",
             "value": "sqip"
-          },
-          "traced": {
-            "value": "potrace"
           }
         }
       })
@@ -266,8 +263,8 @@ const webp = {
     },
 
     "quality": {
-      "defaultValue": 95,
-      "description": "Integer up to 100 = Quality factor. [95]",
+      "defaultValue": 80,
+      "description": "Integer up to 100 = Quality factor. [80]",
       "type": GraphQLInt
     }
   },
