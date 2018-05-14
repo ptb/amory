@@ -26,7 +26,7 @@ class Resize {
   }
 
   get cropFocus () {
-    return this.args.cropFocus
+    return this.args.cropFocus || this.node.cropFocus
   }
 
   get devicePixelRatios () {
@@ -125,6 +125,8 @@ class Resize {
               return this.node.internal.contentDigest.slice (0, 6)
             case "initName":
               return this.node.name
+            case "quality":
+              return args.quality
             case "saveDppx":
               return `${this.devicePixelRatios[i]}x`
             case "saveExt":

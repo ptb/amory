@@ -11,7 +11,7 @@ class Webp {
   cwebp (buffer) {
     return execBuffer ({
       "args": [
-        this.args.copyMetadata ? "all" : "none",
+        this.args.metadata ? "all" : "none",
         this.args.lossless ? "-lossless" : null,
         "-q",
         this.args.quality,

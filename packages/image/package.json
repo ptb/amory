@@ -3,6 +3,7 @@
   "dependencies": {
     "@amory/jpeg-archive-bin": "latest",
     "@amory/src-fs": "latest",
+    "@amory/styletron": "latest",
     "advpng-bin": "^3",
     "cwebp-bin": "git://github.com/ptb/cwebp-bin#develop",
     "exec-buffer": "^3",
@@ -41,5 +42,5 @@
     "access": "public"
   },
   "repository": "https://github.com/ptb/amory/tree/master/packages/image",
-  "version": "2018.5.13-6"
+  "version": "2018.5.14-0"
 }

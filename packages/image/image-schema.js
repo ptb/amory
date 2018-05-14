@@ -40,14 +40,14 @@ const jpg = {
       })
     },
 
-    "copyMetadata": {
+    "metadata": {
       "defaultValue": false,
       "description":
         "true = Keep EXIF/IPTC/XMP data, but increases size. [false]",
       "type": GraphQLBoolean
     },
 
-    "maxQuality": {
+    "quality": {
       "defaultValue": 95,
       "description": "Integer up to 100 = Maximum JPEG quality. [95]",
       "type": GraphQLInt
@@ -57,20 +57,6 @@ const jpg = {
       "defaultValue": true,
       "description": "false = Disable progressive encoding. [true]",
       "type": GraphQLBoolean
-    },
-
-    "qualityPreset": {
-      "defaultValue": "high",
-      "description": "Quality preset level. [High]",
-      "type": new GraphQLEnumType ({
-        "name": "JpegPreset",
-        "values": {
-          "Low": { "value": "low" },
-          "Medium": { "value": "medium" },
-          "High": { "value": "high" },
-          "VeryHigh": { "value": "veryhigh" }
-        }
-      })
     },
 
     "subsample": {
@@ -135,14 +121,14 @@ const png = {
       )
     },
 
-    "copyMetadata": {
+    "metadata": {
       "defaultValue": false,
       "description":
         "true = Keep ancillary data, in optipng and pngout only. [false]",
       "type": GraphQLBoolean
     },
 
-    "maxQuality": {
+    "quality": {
       "defaultValue": 95,
       "description":
         "Integer up to 100 = Maximum PNG quality (pngquant only). [95]",
@@ -265,7 +251,7 @@ const proxy = {
 
 const webp = {
   "args": {
-    "copyMetadata": {
+    "metadata": {
       "defaultValue": false,
       "description":
         "true = Keep EXIF/IPTC/XMP data, but increases size. [false]",
@@ -311,16 +297,16 @@ const resize = {
         "name": "ImageCropFocus",
         "values": {
           "attention": { "value": strategy.attention },
-          "center": { "value": gravity.center },
-          "east": { "value": gravity.east },
           "entropy": { "value": strategy.entropy },
+          "center": { "value": gravity.center },
           "north": { "value": gravity.north },
           "northeast": { "value": gravity.northeast },
-          "northwest": { "value": gravity.northwest },
-          "south": { "value": gravity.south },
+          "east": { "value": gravity.east },
           "southeast": { "value": gravity.southeast },
+          "south": { "value": gravity.south },
           "southwest": { "value": gravity.southwest },
-          "west": { "value": gravity.west }
+          "west": { "value": gravity.west },
+          "northwest": { "value": gravity.northwest },
         }
       })
     },
@@ -375,9 +361,9 @@ const resize = {
 
     "saveName": {
       "defaultValue":
-        ["initName", "@", "saveDppx", "-", "saveOpts", ".", "saveExt"],
+        ["initName", "@", "saveDppx", "-", "quality", "-", "saveOpts", ".", "saveExt"],
       "description":
-        "Array to filename. ['initName', '@', 'saveDppx', '-', 'saveOpts', '.', 'saveExt']",
+        "Array to filename. ['initName', '@', 'saveDppx', '-', 'quality', '-', 'saveOpts', '.', 'saveExt']",
       "type": new GraphQLList (GraphQLString)
     },
 

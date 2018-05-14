@@ -35,8 +35,8 @@ class Png {
           "-o5",
           "-out",
           execBuffer.output,
-          this.args.copyMetadata ? null : "-strip",
-          this.args.copyMetadata ? null : "all",
+          this.args.metadata ? null : "-strip",
+          this.args.metadata ? null : "all",
           execBuffer.input
         ].filter (Boolean),
         "bin": optipng,
@@ -67,7 +67,7 @@ class Png {
 
     return this.args.algorithm.includes ("pngout")
       ? execBuffer ({
-        "args": [this.args.copyMetadata ? "-k0" : "-k1", execBuffer.input],
+        "args": [this.args.metadata ? "-k0" : "-k1", execBuffer.input],
         "bin": pngout,
         "input": Buffer.from (a),
         "inputPath": b,
@@ -82,7 +82,7 @@ class Png {
         "args": [
           "--output",
           execBuffer.output,
-          `--quality=0-${this.args.maxQuality}`,
+          `--quality=0-${this.args.quality}`,
           "--speed",
           "1",
           execBuffer.input
