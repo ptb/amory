@@ -9,10 +9,10 @@
     "node": ">=8"
   },
   "license": "(Apache-2.0 OR MIT)",
-  "name": "@amory/script-prettier",
+  "name": "@amory/prettier",
   "publishConfig": {
     "access": "public"
   },
-  "repository": "https://github.com/ptb/amory/tree/master/packages/script-prettier",
-  "version": "2018.5.14-3"
+  "repository": "https://github.com/ptb/amory/tree/master/packages/prettier",
+  "version": "2018.5.14-4"
 }
