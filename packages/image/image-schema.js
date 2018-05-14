@@ -287,7 +287,7 @@ const resize = {
     },
 
     "cropFocus": {
-      "defaultValue": strategy.attention,
+      "defaultValue": gravity.center,
       "description":
         "Visit 'http://sharp.pixelplumbing.com/en/stable/api-resize/#crop' for details. [attention]",
       "type": new GraphQLEnumType ({
