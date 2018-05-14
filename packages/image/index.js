@@ -72,13 +72,13 @@ class Img extends Component {
     return this.canWebP && this.props.image.webp
       ? {
         "src": this.props.image.webp.src,
-        "srcSet": this.props.image.webp.srcset
+        "srcset": this.props.image.webp.srcset
       }
       : {
         "src": this.props.image.jpg
           ? this.props.image.jpg.src
           : this.props.image.png.src,
-        "srcSet": this.props.image.jpg
+        "srcset": this.props.image.jpg
           ? this.props.image.jpg.srcset
           : this.props.image.png.srcset
       }
