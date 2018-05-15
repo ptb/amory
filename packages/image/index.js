@@ -41,8 +41,8 @@ class Img extends Component {
   }
 
   componentDidMount () {
-    const el = typeof document === "object"
-      ? document.createElement ("canvas") : {}
+    const el =
+      typeof document === "object" ? document.createElement ("canvas") : {}
 
     this.canWebP = (/image\/webp/).test (el.toDataURL ("image/webp"))
   }
@@ -55,100 +55,91 @@ class Img extends Component {
   }
 
   static ioEvents (entries, ioInstance) {
-    entries
-      .filter ((entry) => entry.isIntersecting)
-      .forEach ((entry) => {
-        ioObservers.get (entry.target) ()
-        ioObservers.delete (entry.target)
-        ioInstance.unobserve (entry.target)
-      })
+    entries.filter ((entry) => entry.isIntersecting).forEach ((entry) => {
+      ioObservers.get (entry.target) ()
+      ioObservers.delete (entry.target)
+      ioInstance.unobserve (entry.target)
+    })
   }
 
-  get imageSrc () {
-    return this.canWebP && this.props.image.webp
-      ? {
-        "src": this.props.image.webp.src,
-        "srcset": this.props.image.webp.srcset
-      }
-      : {
-        "src": this.props.image.jpg
-          ? this.props.image.jpg.src
-          : this.props.image.png.src,
-        "srcset": this.props.image.jpg
-          ? this.props.image.jpg.srcset
-          : this.props.image.png.srcset
-      }
-  }
+  styles (el, isLoaded) {
+    const css = styletron ().css
+    const { height, proxy = {}, width } = this.props.image
 
-  get proxySrc () {
-    return {
-      "src": this.props.image.proxy.src
+    switch (el) {
+      case "color":
+        return css ({
+          "backgroundColor": proxy.color,
+          "height": `${height}px`,
+          "width": `${width}px`,
+          "opacity": isLoaded ? 0 : 1,
+          "transitionDuration": ".35s",
+          "transitionProperty": "opacity"
+        })
+      case "image":
+        return css ({
+          "height": "100%",
+          "left": 0,
+          "maxHeight": `${height}px`,
+          "maxWidth": `${width}px`,
+          "objectFit": "cover",
+          "objectPosition": "center",
+          "opacity": isLoaded ? 1 : 0,
+          "position": "absolute",
+          "top": 0,
+          "transitionDuration": ".35s",
+          "transitionProperty": "opacity",
+          "width": "100%"
+        })
+      case "outer":
+        return css ({
+          "display": "block",
+          "maxHeight": `${height}px`,
+          "maxWidth": `${width}px`,
+          "overflow": "hidden",
+          "position": "relative"
+        })
     }
   }
 
-  color (isLoaded) {
-    return h ("div", {
-      "className": this.css ({
-        "backgroundColor": this.props.image.proxy.color,
-        "height": `${this.props.image.height}px`,
-        "width": `${this.props.image.width}px`,
-        "opacity": isLoaded ? 0 : 1,
-        "transitionDuration": ".35s",
-        "transitionProperty": "opacity"
-      })
-    })
-  }
-
-  image (isLoaded, src) {
-    return h ("img", {
-      "alt": this.props.title,
-      "className": this.css ({
-        "height": "100%",
-        "left": 0,
-        "maxHeight": `${this.props.image.height}px`,
-        "maxWidth": `${this.props.image.width}px`,
-        "objectFit": "cover",
-        "objectPosition": "center",
-        "opacity": isLoaded ? 1 : 0,
-        "position": "absolute",
-        "top": 0,
-        "transitionDuration": ".35s",
-        "transitionProperty": "opacity",
-        "width": "100%"
-      }),
-      "height": this.props.image.height,
-      "onLoad": () => this.setState ({ "isLoaded": true }),
-      ... src,
-      "width": this.props.image.width
-    })
-  }
-
-  outer (children) {
-    return h ("div", {
-      "className": this.css ({
-        "display": "block",
-        "maxWidth": `${this.props.image.width}px`,
-        "maxHeight": `${this.props.image.height}px`,
-        "overflow": "hidden",
-        "position": "relative"
-      }),
-      "ref": this.ioObserve,
-      "title": this.props.title
-    }, ... children)
-  }
-
   render () {
-    this.css = styletron ().css
+    const {
+      children = [],
+      "image": { height, jpg = {}, png = {}, proxy = {}, webp = {}, width },
+      title
+    } = this.props
 
-    return this.outer ([
-      this.color (this.state.isLoaded),
-      this.props.image.proxy &&
-        this.props.image.proxy.src &&
-        this.image (!this.state.isLoaded, this.proxySrc),
+    return h ("div",
+      {
+        "className": this.styles ("outer"),
+        "ref": this.ioObserve,
+        "title": title
+      },
+      h ("div", {
+        "className": this.styles ("color", this.state.isLoaded)
+      }),
+      proxy.src &&
+        h ("img", {
+          "alt": title,
+          "className": this.styles ("image", !this.state.isLoaded),
+          "height": height,
+          "src": proxy.src,
+          "width": width
+        }),
       this.state.isVisible &&
-        this.image (this.state.isLoaded, this.imageSrc),
-      this.props.children
-    ].filter (Boolean))
+        h ("img", {
+          "alt": title,
+          "className": this.styles ("image", this.state.isLoaded),
+          "height": height,
+          "onLoad": () => this.setState ({ "isLoaded": true }),
+          "src": [this.canWebP && webp.src, jpg.src, png.src]
+            .filter (Boolean)[0],
+          "srcset": [this.canWebP && webp.srcset, jpg.srcset, png.srcset]
+            .filter (Boolean)[0],
+          "width": width
+        }),
+      ... children
+    )
   }
 }
 
