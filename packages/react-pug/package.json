@@ -80,11 +80,11 @@
     ]
   },
   "main": "lib/index.js",
-  "name": "@amory/transform-react-pug",
+  "name": "@amory/react-pug",
   "publishConfig": {
     "access": "public"
   },
-  "repository": "https://github.com/ptb/amory/tree/master/packages/transform-react-pug",
+  "repository": "https://github.com/ptb/amory/tree/master/packages/react-pug",
   "scripts": {
     "build": "babel src --out-dir lib",
     "flow": "flow",
@@ -94,5 +94,5 @@
     "test": "jest --coverage",
     "watch": "jest --coverage --watch"
   },
-  "version": "2018.5.14-5"
+  "version": "2018.5.15-0"
 }

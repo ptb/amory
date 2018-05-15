@@ -1,7 +1,7 @@
 {
   "author": "Peter T Bosse II <ptb@ioutime.com> (http://ptb2.me/)",
   "dependencies": {
-    "@amory/transform-react-pug": "latest",
+    "@amory/react-pug": "latest",
     "@babel/core": "latest",
     "@babel/plugin-proposal-class-properties": "latest",
     "@babel/plugin-syntax-dynamic-import": "latest",
@@ -16,10 +16,10 @@
     "node": ">=8"
   },
   "license": "(Apache-2.0 OR MIT)",
-  "name": "@amory/template-pug",
+  "name": "@amory/babel-pug",
   "publishConfig": {
     "access": "public"
   },
-  "repository": "https://github.com/ptb/amory/tree/master/packages/template-pug",
-  "version": "2018.5.14-5"
+  "repository": "https://github.com/ptb/amory/tree/master/packages/babel-pug",
+  "version": "2018.5.15-0"
 }
