@@ -92,6 +92,8 @@ class Img extends Component {
         "backgroundColor": this.props.image.proxy.color,
         "bottom": 0,
         "left": 0,
+        "maxHeight": `${this.props.image.height}px`,
+        "maxWidth": `${this.props.image.width}px`,
         "opacity": isLoaded ? 0 : 1,
         "position": "absolute",
         "right": 0,
@@ -131,7 +133,7 @@ class Img extends Component {
       "className": this.css ({
         "display": "block",
         "maxWidth": `${this.props.image.width}px`,
-        "minHeight": `${this.props.image.height}px`,
+        "maxHeight": `${this.props.image.height}px`,
         "overflow": "hidden",
         "position": "relative",
         "width": "100%"
