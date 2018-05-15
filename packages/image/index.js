@@ -90,14 +90,9 @@ class Img extends Component {
     return h ("div", {
       "className": this.css ({
         "backgroundColor": this.props.image.proxy.color,
-        "bottom": 0,
-        "left": 0,
-        "maxHeight": `${this.props.image.height}px`,
-        "maxWidth": `${this.props.image.width}px`,
+        "height": `${this.props.image.height}px`,
+        "width": `${this.props.image.width}px`,
         "opacity": isLoaded ? 0 : 1,
-        "position": "absolute",
-        "right": 0,
-        "top": 0,
         "transitionDuration": ".35s",
         "transitionProperty": "opacity"
       })
@@ -135,8 +130,7 @@ class Img extends Component {
         "maxWidth": `${this.props.image.width}px`,
         "maxHeight": `${this.props.image.height}px`,
         "overflow": "hidden",
-        "position": "relative",
-        "width": "100%"
+        "position": "relative"
       }),
       "ref": this.ioObserve,
       "title": this.props.title
@@ -147,9 +141,7 @@ class Img extends Component {
     this.css = styletron ().css
 
     return this.outer ([
-      this.props.image.proxy &&
-        this.props.image.proxy.color &&
-        this.color (this.state.isLoaded),
+      this.color (this.state.isLoaded),
       this.props.image.proxy &&
         this.props.image.proxy.src &&
         this.image (!this.state.isLoaded, this.proxySrc),
