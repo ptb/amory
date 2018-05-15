@@ -64,10 +64,6 @@ class Img extends Component {
       })
   }
 
-  componentWillUnmount () {
-    this.ioInstance.unobserve (this)
-  }
-
   get imageSrc () {
     return this.canWebP && this.props.image.webp
       ? {
