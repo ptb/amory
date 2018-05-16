@@ -1,17 +1,10 @@
-const { extname, join, parse, relative } = require ("path").posix
-const includes = require ("lodash.includes")
+const { dirname, join, parse, relative, resolve } = require ("path").posix
 const slash = require ("slash")
+const { stat } = require ("fs-extra")
+const watcher = require ("@amory/src-fs/watch")
 
-const canProcess = (exts, src, pages) => {
-  const { dir, name } = parse (slash (src))
-
-  return [
-    includes (exts, extname (src)) &&
-      !(/__tests__/).test (dir) &&
-      !(/^(_|template-)|(\.d\.t|(spec|test)\.j)sx?$/).test (name),
-    !includes (pages.reduce ((a, b) => a.concat (b.component), []), src)
-  ]
-}
+const canProcess = (pages, src) =>
+  pages.reduce ((a, b) => a.concat (b.component), []).includes (src)
 
 const getPage = (base, src, component) => {
   const { dir, name } = parse (relative (slash (base), slash (src)))
@@ -22,4 +15,37 @@ const getPage = (base, src, component) => {
   }
 }
 
-module.exports = { canProcess, getPage }
+module.exports = async (
+  { "actions": { createPage, deletePage }, emitter, store },
+  options = {}
+) => {
+  const { directory } = store.getState ().program
+  const absPath = resolve (directory, options.path || "src/pages/index.js")
+  const stats = await stat (absPath)
+
+  const opts = Object.assign (options, {
+    "component": options.component || stats.isFile () ? absPath : null,
+    "src": stats.isDirectory () ? absPath : dirname (absPath)
+  })
+
+  const addPage = ({ src }) => {
+    if (!canProcess (store.getState ().pages, src)) {
+      createPage (getPage (opts.src, src, opts.component))
+    }
+  }
+
+  const delPage = ({ src }) => {
+    if (canProcess (store.getState ().pages, src)) {
+      deletePage (getPage (opts.src, src, opts.component))
+    }
+  }
+
+  const fn = {
+    "addFile": [addPage, "SRC_FS_PAGE_ADD"],
+    "delFile": [delPage, "SRC_FS_PAGE_DEL"],
+    "regex": /(?!^(_|template-)|(\.d\.t|(spec|test)\.j)sx?$)\.jsx?$/,
+    "src": opts.src
+  }
+
+  await watcher (fn, emitter)
+}
