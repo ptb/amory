@@ -194,6 +194,17 @@
  
      activity = report.activityTimer(`copy gatsby files`);
      activity.start();
+--- node_modules/gatsby/dist/bootstrap/load-plugins/load.js
++++ node_modules/gatsby/dist/bootstrap/load-plugins/load.js
+@@ -133,7 +133,7 @@
+     }; // Add internal plugins
+ 
+ 
+-    const internalPlugins = [`../../internal-plugins/dev-404-page`, `../../internal-plugins/load-babel-config`, `../../internal-plugins/component-page-creator`, `../../internal-plugins/internal-data-bridge`, `../../internal-plugins/prod-404`, `../../internal-plugins/query-runner`];
++    const internalPlugins = [`../../internal-plugins/dev-404-page`, `../../internal-plugins/load-babel-config`, `../../internal-plugins/internal-data-bridge`, `../../internal-plugins/prod-404`, `../../internal-plugins/query-runner`];
+     internalPlugins.forEach(relPath => {
+       const absPath = path.join(__dirname, relPath);
+       plugins.push(processPlugin(absPath));
 --- node_modules/gatsby/dist/internal-plugins/query-runner/query-runner.js
 +++ node_modules/gatsby/dist/internal-plugins/query-runner/query-runner.js
 @@ -70,10 +70,10 @@
