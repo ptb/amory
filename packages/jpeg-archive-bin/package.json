@@ -58,5 +58,5 @@
     "postinstall": "node lib/install.js",
     "test": "xo && ava"
   },
-  "version": "2018.5.16-3"
+  "version": "2018.5.17-0"
 }

@@ -1,17 +1,16 @@
-const getFileNode = require ("./node")
+const getFileNode = require ("@amory/src-fs/node")
 const sharp = require ("sharp")
-const watcher = require ("./watch")
+const watcher = require ("@amory/src-fs/watch")
 
 module.exports = async (
   { "actions": { createNode, deleteNode }, createNodeId, emitter, getNode },
   options = {}
 ) => {
   const opts = Object.assign ({
-    "out": "public/img",
     "src": "src/images"
   }, options)
 
-  const addFile = async ({ src }) => {
+  const addImg = async ({ src }) => {
     const node = Object.assign ({},
       await getFileNode ({
         createNodeId,
@@ -24,7 +23,7 @@ module.exports = async (
     createNode (node)
   }
 
-  const delFile = ({ src }) => {
+  const delImg = ({ src }) => {
     const node = getNode (createNodeId (src))
 
     if (node) {
@@ -32,16 +31,9 @@ module.exports = async (
     }
   }
 
-  const modFile = async ({ src }) => {
-    delFile (src)
-    await addFile (src)
-  }
-
   const fn = {
-    "addFile": [addFile, "SRC_FS_IMG_ADD"],
-    "delFile": [delFile, "SRC_FS_IMG_DEL"],
-    // "modFile": [modFile, "SRC_FS_IMG_MOD"],
-    "out": opts.out,
+    "addFile": [addImg, "SRC_FS_IMG_ADD"],
+    "delFile": [delImg, "SRC_FS_IMG_DEL"],
     "regex": /\.(gif|jpe?g|png|svg|tiff?|webp)$/i,
     "src": opts.src
   }
