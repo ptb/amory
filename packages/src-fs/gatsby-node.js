@@ -1,1 +1,1 @@
-exports.sourceNodes = require ("./image")
+exports.sourceNodes = require (".").sourceNodes

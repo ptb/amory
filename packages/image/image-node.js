@@ -1,6 +1,5 @@
-const getFileNode = require ("@amory/src-fs/node")
+const { getFileNode, watcher } = require ("@amory/src-fs")
 const sharp = require ("sharp")
-const watcher = require ("@amory/src-fs/watch")
 
 module.exports = async (
   { "actions": { createNode, deleteNode }, createNodeId, emitter, getNode },

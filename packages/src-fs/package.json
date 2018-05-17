@@ -7,7 +7,6 @@
     "mime": "^2",
     "node-dir": "latest",
     "pretty-bytes": "^4",
-    "sharp": "latest",
     "slash": "^2"
   },
   "description": "",
@@ -20,11 +19,11 @@
     "gatsby-plugin"
   ],
   "license": "(Apache-2.0 OR MIT)",
-  "main": "gatsby-node.js",
+  "main": "index.js",
   "name": "@amory/src-fs",
   "publishConfig": {
     "access": "public"
   },
   "repository": "https://github.com/ptb/amory/tree/master/packages/src-fs",
-  "version": "2018.5.17-0"
+  "version": "2018.5.17-1"
 }

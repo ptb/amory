@@ -1,1 +1,1 @@
-exports.createPagesStatefully = require ("./index")
+exports.createPagesStatefully = require (".").reactPages

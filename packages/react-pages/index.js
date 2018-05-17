@@ -1,7 +1,7 @@
 const { dirname, join, parse, relative, resolve } = require ("path").posix
 const slash = require ("slash")
 const { stat } = require ("fs-extra")
-const watcher = require ("@amory/src-fs/watch")
+const { watcher } = require ("@amory/src-fs")
 
 const canProcess = (pages, src) =>
   pages.reduce ((a, b) => a.concat (b.component), []).includes (src)
@@ -15,7 +15,7 @@ const getPage = (base, src, component) => {
   }
 }
 
-module.exports = async (
+const reactPages = async (
   { "actions": { createPage, deletePage }, emitter, store },
   options = {}
 ) => {
@@ -48,4 +48,8 @@ module.exports = async (
   }
 
   await watcher (fn, emitter)
+}
+
+module.exports = {
+  reactPages
 }
