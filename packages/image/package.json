@@ -1,11 +1,8 @@
 {
   "author": "Peter T Bosse II <ptb@ioutime.com> (http://ptb2.me/)",
   "dependencies": {
-    "@amory/jpeg-archive-bin": "latest",
     "@amory/src-fs": "latest",
     "@amory/styletron": "latest",
-    "advpng-bin": "^3",
-    "cwebp-bin": "git://github.com/ptb/cwebp-bin#develop",
     "exec-buffer": "^3",
     "fs-extra": "^6",
     "imagemin-svgo": "^6",
@@ -13,17 +10,12 @@
     "lodash.sortby": "^4",
     "mini-svg-data-uri": "^1",
     "node-vibrant": "^3",
-    "optipng-bin": "^4",
     "p-queue": "^2",
-    "pngcrush-bin": "^3",
-    "pngout-bin": "^3",
-    "pngquant-bin": "^4",
     "sharp": "latest",
     "sqip": "latest",
     "temp-write": "^3",
     "tempfile": "^2",
-    "weakmap-polyfill": "^2",
-    "zopflipng-bin": "^4"
+    "weakmap-polyfill": "^2"
   },
   "description": "Gatsby plugin to create images of various resolutions",
   "engines": {
@@ -42,5 +34,5 @@
     "access": "public"
   },
   "repository": "https://github.com/ptb/amory/tree/master/packages/image",
-  "version": "2018.5.18-0"
+  "version": "2018.5.18-1"
 }
