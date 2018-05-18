@@ -1,6 +1,6 @@
 const execBuffer = require ("exec-buffer")
 const Resize = require ("./image-resize")
-const { recompress } = require ("@amory/jpeg-archive-bin/lib/index")
+const { jpegRecompress } = require ("./image-utils")
 
 class Jpg {
   constructor ({ args, node }) {
@@ -8,7 +8,7 @@ class Jpg {
     this.node = node || {}
   }
 
-  recompress (buffer) {
+  jpegRecompress (buffer) {
     return execBuffer ({
       "args": [
         "--accurate",

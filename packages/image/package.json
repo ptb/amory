@@ -11,6 +11,7 @@
     "mini-svg-data-uri": "^1",
     "node-vibrant": "^3",
     "p-queue": "^2",
+    "picturefill": "^3",
     "sharp": "latest",
     "sqip": "latest",
     "temp-write": "^3",
@@ -34,5 +35,5 @@
     "access": "public"
   },
   "repository": "https://github.com/ptb/amory/tree/master/packages/image",
-  "version": "2018.5.18-1"
+  "version": "2018.5.18-2"
 }

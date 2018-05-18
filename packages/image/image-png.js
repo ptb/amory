@@ -1,12 +1,7 @@
-const advpng = require ("advpng-bin")
+const { advpng, optipng, pngcrush, pngout, pngquant, zopflipng } = require ("./image-utils")
 const execBuffer = require ("exec-buffer")
-const optipng = require ("optipng-bin")
-const pngcrush = require ("pngcrush-bin")
-const pngout = require ("pngout-bin")
-const pngquant = require ("pngquant-bin")
 const Resize = require ("./image-resize")
 const tempfile = require ("tempfile")
-const zopflipng = require ("zopflipng-bin")
 
 class Png {
   constructor ({ args, node }) {

@@ -1,4 +1,4 @@
-const cwebp = require ("cwebp-bin")
+const { cwebp } = require ("./image-utils")
 const execBuffer = require ("exec-buffer")
 const Resize = require ("./image-resize")
 
