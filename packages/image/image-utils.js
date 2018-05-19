@@ -7,7 +7,7 @@ const wrap = (util) => new BinWrapper ()
   .src (`${url}/macos/${util}`, "darwin")
   .dest (resolve (__dirname, "bin"))
 
-modules.exports = {
+module.exports = {
   "advpng": wrap ("advpng-1.23"),
   "cwebp": wrap ("cwebp-1.0.0"),
   "jpegCompare": wrap ("jpeg-compare-2.1.1"),
