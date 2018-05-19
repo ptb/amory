@@ -23,7 +23,7 @@ class Jpg {
         execBuffer.input,
         execBuffer.output
       ].filter (Boolean),
-      "bin": recompress.path (),
+      "bin": jpegRecompress,
       "input": Buffer.from (buffer)
     })
   }
@@ -44,7 +44,7 @@ class Jpg {
               "quality": 100
             })
             .toBuffer ()
-            .then ((buffer) => this.recompress (buffer))
+            .then ((buffer) => this.jpegRecompress (buffer))
             .then ((buffer) => Resize.saveFile (savePath, buffer))
             .catch (console.log.bind (console)))
       }

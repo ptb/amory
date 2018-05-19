@@ -33,7 +33,7 @@ class Proxy {
       .then ((c) => c.filter (Boolean)[0].getHex ())
   }
 
-  recompress (buffer) {
+  jpegRecompress (buffer) {
     return execBuffer ({
       "args": [
         "--accurate",
@@ -43,7 +43,7 @@ class Proxy {
         execBuffer.input,
         execBuffer.output
       ].filter (Boolean),
-      "bin": recompress.path (),
+      "bin": jpegRecompress,
       "input": Buffer.from (buffer)
     })
   }
@@ -62,7 +62,7 @@ class Proxy {
               "quality": 100
             })
             .toBuffer ()
-            .then ((buffer) => this.recompress (buffer))
+            .then ((buffer) => this.jpegRecompress (buffer))
             .then ((buffer) => `data:image/jpeg;base64,${buffer.toString ("base64")}`))
 
         return Resize.queue.onEmpty ()
