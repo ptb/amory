@@ -5,7 +5,8 @@ const url = "https://github.com/ptb/amory/raw/master/packages/image/bin"
 
 const wrap = (util) => new BinWrapper ()
   .src (`${url}/macos/${util}`, "darwin")
-  .dest (resolve (__dirname, "bin"))
+  .dest (resolve (__dirname, "bin", "macos"))
+  .use(util)
 
 module.exports = {
   "advpng": wrap ("advpng-1.23").path (),
