@@ -2,8 +2,10 @@ const execBuffer = require ("exec-buffer")
 const { join } = require ("path").posix
 const miniSvgDataUri = require ("mini-svg-data-uri")
 const { readFileSync } = require ("fs-extra")
-const { jpegRecompress } = require ("./image-utils")
+const { jpegRecompress, pngquant } = require ("./image-utils")
+const Png = require ("./image-png")
 const Resize = require ("./image-resize")
+const sharp = require ("sharp")
 const sqip = require ("sqip")
 const svgoBin = require ("imagemin-svgo")
 const tempWrite = require ("temp-write")
@@ -15,101 +17,97 @@ class Proxy {
     this.node = node || {}
   }
 
-  static datauri (saveName) {
-    const buffer = readFileSync (join ("public", saveName), "utf8")
-
-    return miniSvgDataUri (buffer)
-  }
-
-  static quotes (buffer) {
-    return buffer.toString ().replace (/"/g, "'")
-  }
-
-  get color () {
-    return vibrant
-      .from (this.node.absPath)
-      .getPalette ()
-      .then ((p) => this.args.palette.map ((c) => p[c]))
-      .then ((c) => c.filter (Boolean)[0].getHex ())
-  }
-
-  jpegRecompress (buffer) {
-    return execBuffer ({
-      "args": [
-        "--accurate",
-        "--method",
-        "ssim",
-        "--strip",
-        execBuffer.input,
-        execBuffer.output
-      ].filter (Boolean),
-      "bin": jpegRecompress,
-      "input": Buffer.from (buffer)
-    })
-  }
-
   async resolve () {
     const img = new Resize ({ "node": this.node })
     const [width, height] = this.node.sizes[0]
 
     switch (this.args.style) {
+      case "color":
+        return {
+          "src": vibrant
+            .from (this.node.absPath)
+            .getPalette ()
+            .then ((p) => this.args.palette.map ((c) => p[c]))
+            .then ((color) => color.filter (Boolean)[0].getHex ())
+            .then ((color) => sharp ({
+              "create": {
+                "background": color,
+                "channels": 3,
+                "height": height,
+                "width": width
+              }
+            })
+            .png ({
+              "force": true
+            })
+            .toBuffer ())
+            .then ((buffer) => execBuffer ({
+              "args": [
+                "--output",
+                execBuffer.output,
+                execBuffer.input
+              ],
+              "bin": pngquant,
+              "input": Buffer.from (buffer)
+            }))
+            .then ((buffer) => `data:image/png;base64,${buffer.toString ("base64")}`)
+            .catch (console.log.bind (console))
+        }
+
       case "lqip":
         const pct = parseFloat (this.args.thumb / 100)
-        const imgBase64 = await Resize.queue.add (() =>
-          img.resize (Math.round (width * pct), Math.round (height * pct))
+        
+        return {
+          "src": img
+            .resize (Math.round (width * pct), Math.round (height * pct))
             .jpeg ({
               "force": true,
               "quality": 100
             })
             .toBuffer ()
-            .then ((buffer) => this.jpegRecompress (buffer))
-            .then ((buffer) => `data:image/jpeg;base64,${buffer.toString ("base64")}`))
-
-        return Resize.queue.onEmpty ()
-          .then (() => ({
-            "color": this.color,
-            "src": imgBase64
-          }))
+            .then ((buffer) => execBuffer ({
+              "args": [
+                "--accurate",
+                "--method",
+                "ssim",
+                "--strip",
+                execBuffer.input,
+                execBuffer.output
+              ].filter (Boolean),
+              "bin": jpegRecompress,
+              "input": Buffer.from (buffer)
+            }))
+            .then ((buffer) => `data:image/jpeg;base64,${buffer.toString ("base64")}`)
+            .catch (console.log.bind (console))
+        }
 
       case "sqip":
         const savePath = await img.saveName (0, "svg", this.args)
 
-        if (!Resize.exists (savePath)) {
-          await Resize.queue.add (() =>
-            img.resize (width, height)
-              .jpeg ({
-                "force": true,
-                "quality": 100
-              })
-              .toBuffer ()
-              .then ((buffer) => this.sqip (buffer))
-              .then ((buffer) => Proxy.svgo (buffer))
-              .then ((buffer) => Proxy.quotes (buffer))
-              .then ((buffer) => Resize.saveFile (savePath, buffer))
-              .catch (console.log.bind (console)))
+        return {
+          "src": miniSvgDataUri (
+            Resize.exists (savePath)
+              ? await readFileSync (join ("public", saveName), "utf8")
+              : await img.resize (width, height)
+                .jpeg ({
+                  "force": true,
+                  "quality": 100
+                })
+                .toBuffer ()
+                .then ((buffer) => sqip ({
+                  "filename": tempWrite.sync (buffer),
+                  ... this.args
+                }).final_svg)
+                .then ((buffer) => svgoBin () (buffer))
+                .then ((buffer) => buffer.toString ().replace (/"/g, "'"))
+                .then ((buffer) => {
+                  Resize.saveFile (savePath, buffer)
+                  return buffer
+                })
+                .catch (console.log.bind (console))
+          )
         }
-
-        return Resize.queue.onEmpty ()
-          .then (() => ({
-            "color": this.color,
-            "src": Proxy.datauri (savePath)
-          }))
     }
-  }
-
-  sqip (buffer) {
-    const tmp = tempWrite.sync (buffer)
-
-    return this.args.style === "sqip"
-      ? sqip ({
-        "filename": tmp,
-        ... this.args
-      }).final_svg
-      : buffer
-  }
-
-  static svgo (buffer) {
-    return svgoBin () (buffer)
   }
 }
 

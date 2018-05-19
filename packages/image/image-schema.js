@@ -215,6 +215,9 @@ const proxy = {
       "type": new GraphQLEnumType ({
         "name": "ProxyImage",
         "values": {
+          "color": {
+            "value": "color"
+          },
           "lqip": {
             "description":
               "Low Quality Image Placeholder: Blurry bitmap thumbnail image",
@@ -239,7 +242,6 @@ const proxy = {
 
   "type": new GraphQLObjectType ({
     "fields": {
-      "color": { "type": GraphQLString },
       "src": { "type": GraphQLString }
     },
     "name": "Proxy"
@@ -349,6 +351,10 @@ const resize = {
       "type": GraphQLInt
     },
 
+    "mq": {
+      "type": GraphQLString
+    },
+
     "saveDir": {
       "defaultValue": ["/", "img", "relDir", "initName"],
       "description":
@@ -390,6 +396,9 @@ module.exports = ({ type }, opts = {}) => {
                 "resolve": (node, args) =>
                   new Jpg ({ args, node }).resolve (),
                 "type": jpg.type
+              },
+              "mq": {
+                "type": GraphQLString
               },
               "png": {
                 "args": png.args,

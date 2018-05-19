@@ -58,6 +58,10 @@ class Resize {
     return parseInt (a <= this.node.height ? a : this.node.height, 10)
   }
 
+  get mq () {
+    return this.args.mq || this.node.mq
+  }
+
   static get queue () {
     let q
 
@@ -84,6 +88,7 @@ class Resize {
       "cropFocus": this.cropFocus,
       "devicePixelRatios": this.devicePixelRatios,
       "height": this.height,
+      "mq": this.mq,
       "sizes": this.sizes,
       "width": this.width
     }
