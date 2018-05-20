@@ -54,38 +54,22 @@ class Img extends Component {
     })
   }
 
-  image (formats, isLoaded, media, primary) {
-    const css = styletron ().css
-
-    return [
-      ... formats.map (
-        (format = {}) =>
-          (format.srcset
-            ? h ("source", {
-              "media": media,
-              "srcset": format.srcset,
-              "type": format.type
-            })
-            : null)
-      ),
-
-      h ("img", {
-        "alt": this.props.title,
-        "className": css ({
-          "height": "100%",
-          "objectFit": "cover",
-          "opacity": isLoaded ? 1 : 0,
-          "position": "absolute",
-          "transitionDuration": ".35s",
-          "transitionProperty": "opacity",
-          "width": "100%"
-        }),
-        "onload": primary
-          ? (() =>
-            !this.state.isLoaded && this.setState ({ "isLoaded": true })) ()
-          : null
-      })
-    ]
+  image (isLoaded, primary) {
+    return h ("img", {
+      "alt": this.props.title,
+      "className": css ({
+        "height": "100%",
+        "objectFit": "cover",
+        "opacity": isLoaded ? 1 : 0,
+        "position": "absolute",
+        "transitionDuration": ".35s",
+        "transitionProperty": "opacity",
+        "width": "100%"
+      }),
+      "onload": primary
+        ? (() => !this.state.isLoaded && this.setState ({ "isLoaded": true })) ()
+        : null
+    })
   }
 
   get outer () {
@@ -123,6 +107,23 @@ class Img extends Component {
     }
   }
 
+  sources (formats, media) {
+    const css = styletron ().css
+
+    return [
+      ... formats.map (
+        (format = {}) =>
+          (format.srcset
+            ? h ("source", {
+              "media": media,
+              "srcset": format.srcset,
+              "type": format.type
+            })
+            : null)
+      )
+    ]
+  }
+
   render () {
     const { children = [] } = this.props
 
@@ -130,15 +131,18 @@ class Img extends Component {
 
       h ("picture", {},
         Object.values (this.props.images).map ((p = {}) =>
-          this.image ([p.proxy],
-            !this.state.isLoaded, p.media, false))),
+          this.sources ([p.proxy], p.media)),
+        this.image (!this.state.isLoaded, false)
+      ),
 
       h ("picture", {},
         Object.values (this.props.images).map ((i = {}) =>
-          this.image ([i.webp, i.jpg, i.png],
-            this.state.isLoaded, i.media, true))),
+          this.sources ([i.webp, i.jpg, i.png], i.media)),
+        this.image (this.state.isLoaded, true)
+      ),
 
-      ... children)
+      ... children
+    )
   }
 }
 
