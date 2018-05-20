@@ -55,6 +55,8 @@ class Img extends Component {
   }
 
   image (isLoaded, primary) {
+    const css = styletron ().css
+
     return h ("img", {
       "alt": this.props.title,
       "className": css ({
@@ -108,8 +110,6 @@ class Img extends Component {
   }
 
   sources (formats, media) {
-    const css = styletron ().css
-
     return [
       ... formats.map (
         (format = {}) =>
