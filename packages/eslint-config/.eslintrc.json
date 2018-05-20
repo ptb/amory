@@ -738,18 +738,7 @@
       "warn",
       "last"
     ],
-    "sort-imports": [
-      "warn",
-      {
-        "ignoreCase": true,
-        "memberSyntaxSortOrder": [
-          "multiple",
-          "single",
-          "all",
-          "none"
-        ]
-      }
-    ],
+    "sort-imports": "off",
     "sort-keys": [
       "warn",
       "asc",

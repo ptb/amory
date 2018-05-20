@@ -135,11 +135,12 @@ class Img extends Component {
         this.image (!this.state.isLoaded, false)
       ),
 
-      h ("picture", {},
-        Object.values (this.props.images).map ((i = {}) =>
-          this.sources ([i.webp, i.jpg, i.png], i.media)),
-        this.image (this.state.isLoaded, true)
-      ),
+      this.state.isVisible &&
+        h ("picture", {},
+          Object.values (this.props.images).map ((i = {}) =>
+            this.sources ([i.webp, i.jpg, i.png], i.media)),
+          this.image (this.state.isLoaded, true)
+        ),
 
       ... children
     )
