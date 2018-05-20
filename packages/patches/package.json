@@ -2,7 +2,7 @@
   "author": "Peter T Bosse II <ptb@ioutime.com> (http://ptb2.me/)",
   "dependencies": {
     "babel-plugin-remove-graphql-queries": "=2.0.1-7",
-    "gatsby": "=2.0.0-alpha.38",
+    "gatsby": "=2.0.0-alpha.39",
     "gatsby-plugin-sharp": "=2.0.0-alpha.15",
     "gatsby-transformer-sharp": "=2.0.1-8",
     "react": "=16.3.2",
@@ -18,5 +18,5 @@
     "access": "public"
   },
   "repository": "https://github.com/ptb/amory/tree/master/packages/patches",
-  "version": "2018.5.20-0"
+  "version": "2018.5.20-1"
 }

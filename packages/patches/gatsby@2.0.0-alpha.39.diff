@@ -76,8 +76,8 @@
            var req = new XMLHttpRequest()
 --- node_modules/gatsby/cache-dir/production-app.js
 +++ node_modules/gatsby/cache-dir/production-app.js
-@@ -191,7 +191,7 @@
-       ReactDOM.hydrate(
+@@ -194,7 +194,7 @@
+       renderer(
          <NewRoot />,
          typeof window !== `undefined`
 -          ? document.getElementById(`___gatsby`)
@@ -166,8 +166,8 @@
      // Insert json data path after commons and app
      headComponents.splice(
        1,
-@@ -266,6 +266,7 @@
-   // Taken from https://www.html5rocks.com/en/tutorials/speed/script-loading/
+@@ -265,6 +265,7 @@
+   // Add script loader for page scripts to the end of body element (after webpack manifest).
    const scriptsString = scripts
      .map(s => `"${pathPrefix}${JSON.stringify(s).slice(1, -1)}"`)
 +    .map(s => s.replace(/\/+/g, "/"))
@@ -184,7 +184,7 @@
 +    yield del([`public/*.htm}`, `public/**/*.html`, `!public/js`, `!public/js/**/*.html`]);
      activity.end(); // Try opening the site's gatsby-config.js file.
  
-     activity = report.activityTimer(`open and validate gatsby-config.js`);
+     activity = report.activityTimer(`open and validate gatsby-config`);
 @@ -143,7 +143,7 @@
  
      initCache(); // Ensure the public/static directory is created.
@@ -207,7 +207,7 @@
        plugins.push(processPlugin(absPath));
 --- node_modules/gatsby/dist/internal-plugins/query-runner/query-runner.js
 +++ node_modules/gatsby/dist/internal-plugins/query-runner/query-runner.js
-@@ -70,10 +70,10 @@
+@@ -72,10 +72,10 @@
  
      const resultJSON = JSON.stringify(result);
  
@@ -220,7 +220,7 @@
  
      let dataPath;
  
-@@ -100,9 +100,9 @@
+@@ -102,9 +102,9 @@
      }
  
      if (resultHashes[queryJob.id] !== resultHash) {
