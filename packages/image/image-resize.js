@@ -1,11 +1,11 @@
 const crypto = require ("crypto")
 const { ensureDir, existsSync, writeFile } = require ("fs-extra")
-const { dirname, join } = require ("path").posix
-const PQueue = require ("p-queue")
-const sharp = require ("sharp")
 const sortby = require ("lodash.sortby")
+const PQueue = require ("p-queue")
+const { dirname, join } = require ("path").posix
+const sharp = require ("sharp")
 
-class Resize {
+class ImageResize {
   constructor ({ args, node, opts } = {}) {
     this.args = args || {}
     this.node = node || {}
@@ -58,8 +58,8 @@ class Resize {
     return parseInt (a <= this.node.height ? a : this.node.height, 10)
   }
 
-  get mq () {
-    return this.args.mq || this.node.mq
+  get media () {
+    return this.args.media || this.node.media
   }
 
   static get queue () {
@@ -88,7 +88,7 @@ class Resize {
       "cropFocus": this.cropFocus,
       "devicePixelRatios": this.devicePixelRatios,
       "height": this.height,
-      "mq": this.mq,
+      "media": this.media,
       "sizes": this.sizes,
       "width": this.width
     }
@@ -167,15 +167,15 @@ class Resize {
       .filter (([w, h]) => w <= this.node.width && h <= this.node.height)
   }
 
-  sources (srcs) {
+  sources (srcs, type) {
     return {
-      "src": srcs[0],
-      "srcset": srcs[1]
-        ? srcs
-          .reduce ((a, src, i) =>
-            a.concat (`${src} ${this.devicePixelRatios[i]}x`), [])
-          .join (",")
-        : null
+      "srcset": srcs
+        .reduce (
+          (a, src, i) => a.concat (`${src} ${this.devicePixelRatios[i]}x`),
+          []
+        )
+        .join (","),
+      "type": type
     }
   }
 
@@ -190,4 +190,4 @@ class Resize {
   }
 }
 
-module.exports = Resize
+module.exports = ImageResize

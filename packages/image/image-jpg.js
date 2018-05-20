@@ -1,8 +1,8 @@
 const execBuffer = require ("exec-buffer")
-const Resize = require ("./image-resize")
+const ImageResize = require ("./image-resize")
 const { jpegRecompress } = require ("./image-utils")
 
-class Jpg {
+class ImageJpg {
   constructor ({ args, node }) {
     this.args = args || {}
     this.node = node || {}
@@ -29,30 +29,32 @@ class Jpg {
   }
 
   async resolve () {
-    const img = new Resize ({ "node": this.node })
+    const img = new ImageResize ({ "node": this.node })
     const paths = []
 
     for (const [i, size] of this.node.sizes.entries ()) {
       const savePath = await img.saveName (i, "jpg", this.args)
       const [width, height] = size
 
-      if (!Resize.exists (savePath)) {
-        await Resize.queue.add (() =>
-          img.resize (width, height)
+      if (!ImageResize.exists (savePath)) {
+        await ImageResize.queue.add (() =>
+          img
+            .resize (width, height)
             .jpeg ({
               "force": true,
               "quality": 100
             })
             .toBuffer ()
             .then ((buffer) => this.jpegRecompress (buffer))
-            .then ((buffer) => Resize.saveFile (savePath, buffer))
+            .then ((buffer) => ImageResize.saveFile (savePath, buffer))
             .catch (console.log.bind (console)))
       }
       paths.push (savePath)
     }
-    return Resize.queue.onEmpty ()
-      .then (() => img.sources (paths))
+    return ImageResize.queue
+      .onEmpty ()
+      .then (() => img.sources (paths, "image/jpeg"))
   }
 }
 
-module.exports = Jpg
+module.exports = ImageJpg

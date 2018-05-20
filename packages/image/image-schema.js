@@ -6,12 +6,12 @@ const {
   GraphQLObjectType,
   GraphQLString
 } = require ("graphql")
+const ImageJpg = require ("./image-jpg")
+const ImagePng = require ("./image-png")
+const ImageProxy = require ("./image-proxy")
+const ImageResize = require ("./image-resize")
+const ImageWebp = require ("./image-webp")
 const { gravity, strategy } = require ("sharp")
-const Jpg = require ("./image-jpg")
-const Png = require ("./image-png")
-const Proxy = require ("./image-proxy")
-const Resize = require ("./image-resize")
-const Webp = require ("./image-webp")
 
 const jpg = {
   "args": {
@@ -47,32 +47,31 @@ const jpg = {
       "type": GraphQLBoolean
     },
 
-    "quality": {
-      "defaultValue": 80,
-      "description": "Integer up to 100 = Maximum JPEG quality. [80]",
-      "type": GraphQLInt
-    },
-
     "progressive": {
       "defaultValue": true,
       "description": "false = Disable progressive encoding. [true]",
       "type": GraphQLBoolean
     },
 
+    "quality": {
+      "defaultValue": 80,
+      "description": "Integer up to 100 = Maximum JPEG quality. [80]",
+      "type": GraphQLInt
+    },
+
     "subsample": {
       "defaultValue": false,
-      "description":
-        "true = May reduce quality, but also file size. [false]",
+      "description": "true = May reduce quality, but also file size. [false]",
       "type": GraphQLBoolean
     }
   },
 
   "type": new GraphQLObjectType ({
     "fields": {
-      "src": { "type": GraphQLString },
-      "srcset": { "type": GraphQLString }
+      "srcset": { "type": GraphQLString },
+      "type": { "type": GraphQLString }
     },
-    "name": "Jpeg"
+    "name": "ImageJpeg"
   })
 }
 
@@ -138,10 +137,10 @@ const png = {
 
   "type": new GraphQLObjectType ({
     "fields": {
-      "src": { "type": GraphQLString },
-      "srcset": { "type": GraphQLString }
+      "srcset": { "type": GraphQLString },
+      "type": { "type": GraphQLString }
     },
-    "name": "Png"
+    "name": "ImagePng"
   })
 }
 
@@ -234,33 +233,33 @@ const proxy = {
 
     "thumb": {
       "defaultValue": 20,
-      "description":
-        "LQIP only: Thumbnail percent size of original. [20]",
+      "description": "LQIP only: Thumbnail percent size of original. [20]",
       "type": GraphQLInt
     }
   },
 
   "type": new GraphQLObjectType ({
     "fields": {
-      "src": { "type": GraphQLString }
+      "srcset": { "type": GraphQLString },
+      "type": { "type": GraphQLString }
     },
-    "name": "Proxy"
+    "name": "ImageProxy"
   })
 }
 
 const webp = {
   "args": {
-    "metadata": {
-      "defaultValue": false,
-      "description":
-        "true = Keep EXIF/IPTC/XMP data, but increases size. [false]",
-      "type": GraphQLBoolean
-    },
-
     "lossless": {
       "defaultValue": false,
       "description":
         "true = Encode image losslessly, but increases size. [false]",
+      "type": GraphQLBoolean
+    },
+
+    "metadata": {
+      "defaultValue": false,
+      "description":
+        "true = Keep EXIF/IPTC/XMP data, but increases size. [false]",
       "type": GraphQLBoolean
     },
 
@@ -273,10 +272,10 @@ const webp = {
 
   "type": new GraphQLObjectType ({
     "fields": {
-      "src": { "type": GraphQLString },
-      "srcset": { "type": GraphQLString }
+      "srcset": { "type": GraphQLString },
+      "type": { "type": GraphQLString }
     },
-    "name": "WebP"
+    "name": "ImageWebP"
   })
 }
 
@@ -284,14 +283,14 @@ const resize = {
   "args": {
     "aspectRatio": {
       "description":
-        "Ratio between the width and height, e.g. 1.618, 16/9, or 21:9",
+        "Ratio between the width and height, e.g. '1.618', '16/9', or '21:9'",
       "type": GraphQLString
     },
 
     "cropFocus": {
       "defaultValue": gravity.center,
       "description":
-        "Visit 'http://sharp.pixelplumbing.com/en/stable/api-resize/#crop' for details. [attention]",
+        "Visit 'http://sharp.pixelplumbing.com/en/stable/api-resize/#crop' for details. [center]",
       "type": new GraphQLEnumType ({
         "name": "ImageCropFocus",
         "values": {
@@ -305,7 +304,7 @@ const resize = {
           "south": { "value": gravity.south },
           "southwest": { "value": gravity.southwest },
           "west": { "value": gravity.west },
-          "northwest": { "value": gravity.northwest },
+          "northwest": { "value": gravity.northwest }
         }
       })
     },
@@ -318,8 +317,7 @@ const resize = {
           "name": "ImageDevicePixelRatio",
           "values": {
             "dpr_1x": {
-              "description":
-                "All non-Retina computers, phones, and tablets",
+              "description": "All non-Retina computers, phones, and tablets",
               "name": "1x",
               "value": 1
             },
@@ -330,8 +328,7 @@ const resize = {
               "value": 1.5
             },
             "dpr_2x": {
-              "description":
-                "iPhone 4, Retina Macs, Galaxy S III, and later",
+              "description": "iPhone 4, Retina Macs, Galaxy S III, and later",
               "name": "2x",
               "value": 2
             },
@@ -346,12 +343,11 @@ const resize = {
     },
 
     "height": {
-      "description":
-        "Visit 'http://sharp.pixelplumbing.com/en/stable/api-resize/#resize' for details. []",
+      "description": "Height as integer in pixels. []",
       "type": GraphQLInt
     },
 
-    "mq": {
+    "media": {
       "type": GraphQLString
     },
 
@@ -363,16 +359,22 @@ const resize = {
     },
 
     "saveName": {
-      "defaultValue":
-        ["initName", "@", "saveDppx", "-", "saveOpts", ".", "saveExt"],
+      "defaultValue": [
+        "initName",
+        "@",
+        "saveDppx",
+        "-",
+        "saveOpts",
+        ".",
+        "saveExt"
+      ],
       "description":
         "Array to filename. ['initName', '@', 'saveDppx', '-', 'saveOpts', '.', 'saveExt']",
       "type": new GraphQLList (GraphQLString)
     },
 
     "width": {
-      "description":
-        "Visit 'http://sharp.pixelplumbing.com/en/stable/api-resize/#resize' for details. []",
+      "description": "Width as integer in pixels. []",
       "type": GraphQLInt
     }
   }
@@ -385,7 +387,7 @@ module.exports = ({ type }, opts = {}) => {
         "resize": {
           "args": resize.args,
           "resolve": (node, args) =>
-            new Resize ({ args, node, opts }).resolve,
+            new ImageResize ({ args, node, opts }).resolve,
           "type": new GraphQLObjectType ({
             "fields": {
               "height": {
@@ -394,28 +396,28 @@ module.exports = ({ type }, opts = {}) => {
               "jpg": {
                 "args": jpg.args,
                 "resolve": (node, args) =>
-                  new Jpg ({ args, node }).resolve (),
+                  new ImageJpg ({ args, node }).resolve (),
                 "type": jpg.type
               },
-              "mq": {
+              "media": {
                 "type": GraphQLString
               },
               "png": {
                 "args": png.args,
                 "resolve": (node, args) =>
-                  new Png ({ args, node }).resolve (),
+                  new ImagePng ({ args, node }).resolve (),
                 "type": png.type
               },
               "proxy": {
                 "args": proxy.args,
                 "resolve": (node, args) =>
-                  new Proxy ({ args, node }).resolve (),
+                  new ImageProxy ({ args, node }).resolve (),
                 "type": proxy.type
               },
               "webp": {
                 "args": webp.args,
                 "resolve": (node, args) =>
-                  new Webp ({ args, node }).resolve (),
+                  new ImageWebp ({ args, node }).resolve (),
                 "type": webp.type
               },
               "width": {

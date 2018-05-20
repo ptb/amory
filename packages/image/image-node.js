@@ -5,9 +5,12 @@ module.exports = async (
   { "actions": { createNode, deleteNode }, createNodeId, emitter, getNode },
   options = {}
 ) => {
-  const opts = Object.assign ({
-    "src": "src/images"
-  }, options)
+  const opts = Object.assign (
+    {
+      "src": "src/images"
+    },
+    options
+  )
 
   const addImg = async ({ src }) => {
     const node = Object.assign ({},

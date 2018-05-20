@@ -1,29 +1,36 @@
-const { advpng, optipng, pngcrush, pngout, pngquant, zopflipng } = require ("./image-utils")
 const execBuffer = require ("exec-buffer")
-const Resize = require ("./image-resize")
+const ImageResize = require ("./image-resize")
+const {
+  advpng,
+  optipng,
+  pngcrush,
+  pngout,
+  pngquant,
+  zopflipng
+} = require ("./image-utils")
 const tempfile = require ("tempfile")
 
-class Png {
+class ImagePng {
   constructor ({ args, node }) {
     this.args = args || {}
     this.node = node || {}
   }
 
-  advpng (a) {
-    const b = tempfile ()
+  advpng (buffer) {
+    const tmp = tempfile ()
 
     return this.args.algorithm.includes ("advpng")
       ? execBuffer ({
         "args": ["-z", "-4", execBuffer.input],
         "bin": advpng,
-        "input": Buffer.from (a),
-        "inputPath": b,
-        "outputPath": b
+        "input": Buffer.from (buffer),
+        "inputPath": buffer,
+        "outputPath": tmp
       })
-      : a
+      : buffer
   }
 
-  optipng (a) {
+  optipng (buffer) {
     return this.args.algorithm.includes ("optipng")
       ? execBuffer ({
         "args": [
@@ -35,12 +42,12 @@ class Png {
           execBuffer.input
         ].filter (Boolean),
         "bin": optipng,
-        "input": Buffer.from (a)
+        "input": Buffer.from (buffer)
       })
-      : a
+      : buffer
   }
 
-  pngcrush (a) {
+  pngcrush (buffer) {
     return this.args.algorithm.includes ("pngcrush")
       ? execBuffer ({
         "args": [
@@ -52,26 +59,26 @@ class Png {
           execBuffer.output
         ],
         "bin": pngcrush,
-        "input": Buffer.from (a)
+        "input": Buffer.from (buffer)
       })
-      : a
+      : buffer
   }
 
-  pngout (a) {
-    const b = tempfile ()
+  pngout (buffer) {
+    const tmp = tempfile ()
 
     return this.args.algorithm.includes ("pngout")
       ? execBuffer ({
         "args": [this.args.metadata ? "-k0" : "-k1", execBuffer.input],
         "bin": pngout,
-        "input": Buffer.from (a),
-        "inputPath": b,
-        "outputPath": b
+        "input": Buffer.from (buffer),
+        "inputPath": tmp,
+        "outputPath": tmp
       })
-      : a
+      : buffer
   }
 
-  pngquant (a) {
+  pngquant (buffer) {
     return this.args.algorithm.includes ("pngquant")
       ? execBuffer ({
         "args": [
@@ -83,42 +90,12 @@ class Png {
           execBuffer.input
         ],
         "bin": pngquant,
-        "input": Buffer.from (a)
+        "input": Buffer.from (buffer)
       })
-      : a
+      : buffer
   }
 
-  async resolve () {
-    const img = new Resize ({ "node": this.node })
-    const paths = []
-
-    for (const [i, size] of this.node.sizes.entries ()) {
-      const savePath = await img.saveName (i, "png", this.args)
-      const [width, height] = size
-
-      if (!Resize.exists (savePath)) {
-        await Resize.queue.add (() =>
-          img.resize (width, height)
-            .png ({
-              "force": true
-            })
-            .toBuffer ()
-            .then ((buffer) => this.advpng (buffer))
-            .then ((buffer) => this.optipng (buffer))
-            .then ((buffer) => this.pngcrush (buffer))
-            .then ((buffer) => this.pngout (buffer))
-            .then ((buffer) => this.pngquant (buffer))
-            .then ((buffer) => this.zopflipng (buffer))
-            .then ((buffer) => Resize.saveFile (savePath, buffer))
-            .catch (console.log.bind (console)))
-      }
-      paths.push (savePath)
-    }
-    return Resize.queue.onEmpty ()
-      .then (() => img.sources (paths))
-  }
-
-  zopflipng (a) {
+  zopflipng (buffer) {
     return this.args.algorithm.includes ("zopflipng")
       ? execBuffer ({
         "args": [
@@ -131,10 +108,42 @@ class Png {
           execBuffer.output
         ],
         "bin": zopflipng,
-        "input": Buffer.from (a)
+        "input": Buffer.from (buffer)
       })
-      : a
+      : buffer
+  }
+
+  async resolve () {
+    const img = new ImageResize ({ "node": this.node })
+    const paths = []
+
+    for (const [i, size] of this.node.sizes.entries ()) {
+      const savePath = await img.saveName (i, "png", this.args)
+      const [width, height] = size
+
+      if (!ImageResize.exists (savePath)) {
+        await ImageResize.queue.add (() =>
+          img
+            .resize (width, height)
+            .png ({
+              "force": true
+            })
+            .toBuffer ()
+            .then ((buffer) => this.advpng (buffer))
+            .then ((buffer) => this.optipng (buffer))
+            .then ((buffer) => this.pngcrush (buffer))
+            .then ((buffer) => this.pngout (buffer))
+            .then ((buffer) => this.pngquant (buffer))
+            .then ((buffer) => this.zopflipng (buffer))
+            .then ((buffer) => ImageResize.saveFile (savePath, buffer))
+            .catch (console.log.bind (console)))
+      }
+      paths.push (savePath)
+    }
+    return ImageResize.queue
+      .onEmpty ()
+      .then (() => img.sources (paths, "image/png"))
   }
 }
 
-module.exports = Png
+module.exports = ImagePng

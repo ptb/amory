@@ -1,8 +1,8 @@
-const { cwebp } = require ("./image-utils")
 const execBuffer = require ("exec-buffer")
-const Resize = require ("./image-resize")
+const ImageResize = require ("./image-resize")
+const { cwebp } = require ("./image-utils")
 
-class Webp {
+class ImageWebp {
   constructor ({ args, node }) {
     this.args = args || {}
     this.node = node || {}
@@ -25,30 +25,32 @@ class Webp {
   }
 
   async resolve () {
-    const img = new Resize ({ "node": this.node })
+    const img = new ImageResize ({ "node": this.node })
     const paths = []
 
     for (const [i, size] of this.node.sizes.entries ()) {
       const savePath = await img.saveName (i, "webp", this.args)
       const [width, height] = size
 
-      if (!Resize.exists (savePath)) {
-        await Resize.queue.add (() =>
-          img.resize (width, height)
-            .jpeg ({
-              "force": true,
+      if (!ImageResize.exists (savePath)) {
+        await ImageResize.queue.add (() =>
+          img
+            .resize (width, height)
+            .webp ({
+              "lossless": true,
               "quality": 100
             })
             .toBuffer ()
             .then ((buffer) => this.cwebp (buffer))
-            .then ((buffer) => Resize.saveFile (savePath, buffer))
+            .then ((buffer) => ImageResize.saveFile (savePath, buffer))
             .catch (console.log.bind (console)))
       }
       paths.push (savePath)
     }
-    return Resize.queue.onEmpty ()
-      .then (() => img.sources (paths))
+    return ImageResize.queue
+      .onEmpty ()
+      .then (() => img.sources (paths, "image/webp"))
   }
 }
 
-module.exports = Webp
+module.exports = ImageWebp
