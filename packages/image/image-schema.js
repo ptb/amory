@@ -347,10 +347,6 @@ const resize = {
       "type": GraphQLInt
     },
 
-    "media": {
-      "type": GraphQLString
-    },
-
     "saveDir": {
       "defaultValue": ["/", "img", "relDir", "initName"],
       "description":
@@ -400,6 +396,12 @@ module.exports = ({ type }, opts = {}) => {
                 "type": jpg.type
               },
               "media": {
+                "args": {
+                  "mq": {
+                    "type": GraphQLString
+                  }
+                },
+                "resolve": (_, args) => args.mq,
                 "type": GraphQLString
               },
               "png": {
