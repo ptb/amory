@@ -10,7 +10,7 @@ class Img extends Component {
     super (props)
 
     this.state = {
-      "isLoaded": typeof window === "undefined"
+      "isLoaded": false
     }
   }
 
@@ -20,11 +20,13 @@ class Img extends Component {
     return h ("img", {
       "alt": this.props.title,
       "className": css ({
+        "height": "100%",
         "objectFit": "cover",
         "opacity": isLoaded ? 1 : 0,
         "position": "absolute",
         "transitionDuration": ".35s",
         "transitionProperty": "opacity",
+        "width": "100%"
       }),
       "onload": primary
         ? (() => !this.state.isLoaded && this.setState ({ "isLoaded": true })) ()
