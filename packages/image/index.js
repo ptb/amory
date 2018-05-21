@@ -30,7 +30,8 @@ class Img extends Component {
       }),
       "onload": primary
         ? (() => !this.state.isLoaded && this.setState ({ "isLoaded": true })) ()
-        : null
+        : null,
+      "src": "data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
     })
   }
 
@@ -66,7 +67,7 @@ class Img extends Component {
     }
   }
 
-  sources (formats, media) {
+  static sources (formats, media) {
     return [
       ... formats.map (
         (format = {}) =>
@@ -88,18 +89,15 @@ class Img extends Component {
 
       h ("picture", {},
         Object.values (this.props.images).map ((p = {}) =>
-          this.sources ([p.proxy], p.media)),
-        this.image (!this.state.isLoaded, false)
-      ),
+          Img.sources ([p.proxy], p.media)),
+        this.image (!this.state.isLoaded, false)),
 
       h ("picture", {},
         Object.values (this.props.images).map ((i = {}) =>
-          this.sources ([i.webp, i.jpg, i.png], i.media)),
-        this.image (this.state.isLoaded, true)
-      ),
+          Img.sources ([i.webp, i.jpg, i.png], i.media)),
+        this.image (this.state.isLoaded, true)),
 
-      ... children
-    )
+      ... children)
   }
 }
 
