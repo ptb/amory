@@ -166,6 +166,17 @@
      // Insert json data path after commons and app
      headComponents.splice(
        1,
+@@ -237,8 +237,8 @@
+         rel="preload"
+         key={dataPath}
+         href={dataPath}
+-        as="fetch"
+-        crossOrigin="use-credentials"
++        as="script"
++        crossorigin="use-credentials"
+       />
+     )
+   }
 @@ -266,6 +266,7 @@
    // Taken from https://www.html5rocks.com/en/tutorials/speed/script-loading/
    const scriptsString = scripts
