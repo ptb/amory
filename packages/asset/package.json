@@ -14,10 +14,11 @@
     "gatsby-plugin"
   ],
   "license": "(Apache-2.0 OR MIT)",
+  "main": "gatsby-node.js",
   "name": "@amory/asset",
   "publishConfig": {
     "access": "public"
   },
   "repository": "https://github.com/ptb/amory/tree/master/packages/asset",
-  "version": "2018.5.23-4"
+  "version": "2018.5.23-5"
 }
