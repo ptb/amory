@@ -9,3 +9,12 @@
    checked: 'checked',
    children: 'children',
    cite: 'cite',
+@@ -1244,7 +1244,7 @@
+   src: 'src',
+   srcdoc: 'srcDoc',
+   srclang: 'srcLang',
+-  srcset: 'srcSet',
++  srcset: 'srcset',
+   start: 'start',
+   step: 'step',
+   style: 'style',
