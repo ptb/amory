@@ -60,7 +60,8 @@ class Img extends Component {
             "overflowX": "hidden",
             "position": "relative"
           },
-          ... cssmq
+          ... cssmq,
+          this.props.styles
         )
       ),
       "title": this.props.title
