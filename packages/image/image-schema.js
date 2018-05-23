@@ -15,10 +15,30 @@ const { gravity, strategy } = require ("sharp")
 
 const jpg = {
   "args": {
+    "actions": {
+      "defaultValue": ["jpegRecompress"],
+      "type": new GraphQLList (
+        new GraphQLEnumType ({
+          "name": "JpegCompressionTool",
+          "values": {
+            "jpegoptim": {
+              "value": "jpegoptim"
+            },
+            "jpegrecompress": {
+              "value": "jpegRecompress"
+            },
+            "jpegtran": {
+              "value": "jpegtran"
+            }
+          }
+        })
+      )
+    },
+
     "algorithm": {
       "defaultValue": "ssim",
       "description":
-        "Visit 'https://github.com/danielgtaylor/jpeg-archive#image-comparison-metrics' for details. [SSIM]",
+        "jpegrecompress only: Visit 'https://github.com/danielgtaylor/jpeg-archive#image-comparison-metrics' for details. [SSIM]",
       "type": new GraphQLEnumType ({
         "name": "JpegCompressionMethod",
         "values": {
@@ -38,6 +58,13 @@ const jpg = {
           }
         }
       })
+    },
+
+    "lossless": {
+      "defaultValue": true,
+      "description":
+        "jpegoptim only. [true]",
+      "type": GraphQLBoolean
     },
 
     "metadata": {
@@ -61,7 +88,8 @@ const jpg = {
 
     "subsample": {
       "defaultValue": false,
-      "description": "true = May reduce quality, but also file size. [false]",
+      "description":
+        "jpegrecompress only: true = May reduce quality, but also file size. [false]",
       "type": GraphQLBoolean
     }
   },
@@ -77,7 +105,7 @@ const jpg = {
 
 const png = {
   "args": {
-    "algorithm": {
+    "actions": {
       "defaultValue": ["zopflipng"],
       "description":
         "Visit 'https://wikipedia.org/wiki/Portable_Network_Graphics#Optimizing_tools' for details.",
@@ -350,7 +378,7 @@ const resize = {
     "saveDir": {
       "defaultValue": ["/", "img", "relDir", "initName"],
       "description":
-        "Array to output directory. ['/', 'img', 'relDir', 'initName']",
+        `Output directory: ["/" "img" "relDir" "initName"]`,
       "type": new GraphQLList (GraphQLString)
     },
 
@@ -365,7 +393,7 @@ const resize = {
         "saveExt"
       ],
       "description":
-        "Array to filename. ['initName', '@', 'saveDppx', '-', 'saveOpts', '.', 'saveExt']",
+        `Output filename: ["initName" "@" "saveDppx" "-" "saveOpts" "." "saveExt"]`,
       "type": new GraphQLList (GraphQLString)
     },
 

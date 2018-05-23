@@ -19,7 +19,7 @@ class ImagePng {
   advpng (buffer) {
     const tmp = tempfile ()
 
-    return this.args.algorithm.includes ("advpng")
+    return this.args.actions.includes ("advpng")
       ? execBuffer ({
         "args": ["-z", "-4", execBuffer.input],
         "bin": advpng,
@@ -31,7 +31,7 @@ class ImagePng {
   }
 
   optipng (buffer) {
-    return this.args.algorithm.includes ("optipng")
+    return this.args.actions.includes ("optipng")
       ? execBuffer ({
         "args": [
           "-o5",
@@ -48,7 +48,7 @@ class ImagePng {
   }
 
   pngcrush (buffer) {
-    return this.args.algorithm.includes ("pngcrush")
+    return this.args.actions.includes ("pngcrush")
       ? execBuffer ({
         "args": [
           "-brute",
@@ -67,7 +67,7 @@ class ImagePng {
   pngout (buffer) {
     const tmp = tempfile ()
 
-    return this.args.algorithm.includes ("pngout")
+    return this.args.actions.includes ("pngout")
       ? execBuffer ({
         "args": [this.args.metadata ? "-k0" : "-k1", execBuffer.input],
         "bin": pngout,
@@ -79,7 +79,7 @@ class ImagePng {
   }
 
   pngquant (buffer) {
-    return this.args.algorithm.includes ("pngquant")
+    return this.args.actions.includes ("pngquant")
       ? execBuffer ({
         "args": [
           "--output",
@@ -96,7 +96,7 @@ class ImagePng {
   }
 
   zopflipng (buffer) {
-    return this.args.algorithm.includes ("zopflipng")
+    return this.args.actions.includes ("zopflipng")
       ? execBuffer ({
         "args": [
           "--filters=b",

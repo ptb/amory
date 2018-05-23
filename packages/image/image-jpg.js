@@ -1,6 +1,6 @@
 const execBuffer = require ("exec-buffer")
 const ImageResize = require ("./image-resize")
-const { jpegRecompress } = require ("./image-utils")
+const { jpegoptim, jpegRecompress, jpegtran } = require ("./image-utils")
 
 class ImageJpg {
   constructor ({ args, node }) {
@@ -8,24 +8,58 @@ class ImageJpg {
     this.node = node || {}
   }
 
+  jpegoptim (buffer) {
+    return this.args.actions.includes ("jpegoptim")
+      ? execBuffer ({
+        "args": [
+          this.args.metadata ? "--strip-none" : "--strip-all",
+          this.args.progressive ? "--all-progressive" : "--all-normal",
+          this.args.lossless ? null : `--max=${this.args.quality}`,
+          execBuffer.input
+        ],
+        "bin": jpegoptim,
+        "input": Buffer.from (buffer)
+      })
+      : buffer
+  }
+
   jpegRecompress (buffer) {
-    return execBuffer ({
-      "args": [
-        "--accurate",
-        "--method",
-        this.args.algorithm,
-        this.args.metadata ? null : "--strip",
-        "--max",
-        this.args.quality,
-        this.args.progressive ? null : "--no-progressive",
-        "--subsample",
-        this.args.subsample ? "default" : "disable",
-        execBuffer.input,
-        execBuffer.output
-      ].filter (Boolean),
-      "bin": jpegRecompress,
-      "input": Buffer.from (buffer)
-    })
+    return this.args.actions.includes ("jpegRecompress")
+      ? execBuffer ({
+        "args": [
+          "--accurate",
+          "--method",
+          this.args.algorithm,
+          this.args.metadata ? null : "--strip",
+          "--max",
+          this.args.quality,
+          this.args.progressive ? null : "--no-progressive",
+          "--subsample",
+          this.args.subsample ? "default" : "disable",
+          execBuffer.input,
+          execBuffer.output
+        ].filter (Boolean),
+        "bin": jpegRecompress,
+        "input": Buffer.from (buffer)
+      })
+    : buffer
+  }
+
+  jpegtran (buffer) {
+    return this.args.actions.includes ("jpegtran")
+      ? execBuffer ({
+        "args": [
+          "-copy",
+          this.args.metadata ? "all" : "none",
+          this.args.progressive ? "-progressive" : null,
+          "-outfile",
+          execBuffer.output,
+          execBuffer.input
+        ].filter (Boolean),
+        "bin": jpegtran,
+        "input": Buffer.from (buffer)
+      })
+      : buffer
   }
 
   async resolve () {
@@ -45,6 +79,8 @@ class ImageJpg {
               "quality": 100
             })
             .toBuffer ()
+            .then ((buffer) => this.jpegtran (buffer))
+            .then ((buffer) => this.jpegoptim (buffer))
             .then ((buffer) => this.jpegRecompress (buffer))
             .then ((buffer) => ImageResize.saveFile (savePath, buffer))
             .catch (console.log.bind (console)))
