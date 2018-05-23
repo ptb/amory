@@ -24,7 +24,7 @@ class ImagePng {
         "args": ["-z", "-4", execBuffer.input],
         "bin": advpng,
         "input": Buffer.from (buffer),
-        "inputPath": buffer,
+        "inputPath": tmp,
         "outputPath": tmp
       })
       : buffer

@@ -62,7 +62,6 @@ export const FallbackImage = graphql `
   fragment FallbackImage on ImageResize {
     height
     width
-    media
     proxy(style: sqip) {
       srcset
       type

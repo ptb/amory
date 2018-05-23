@@ -1,6 +1,7 @@
 const execBuffer = require ("exec-buffer")
 const ImageResize = require ("./image-resize")
 const { jpegoptim, jpegRecompress, jpegtran } = require ("./image-utils")
+const tempfile = require ("tempfile")
 
 class ImageJpg {
   constructor ({ args, node }) {
@@ -9,6 +10,8 @@ class ImageJpg {
   }
 
   jpegoptim (buffer) {
+    const tmp = tempfile ()
+
     return this.args.actions.includes ("jpegoptim")
       ? execBuffer ({
         "args": [
@@ -18,7 +21,9 @@ class ImageJpg {
           execBuffer.input
         ],
         "bin": jpegoptim,
-        "input": Buffer.from (buffer)
+        "input": Buffer.from (buffer),
+        "inputPath": tmp,
+        "outputPath": tmp
       })
       : buffer
   }
