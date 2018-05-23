@@ -1,15 +1,10 @@
 {
   "author": "Peter T Bosse II <ptb@ioutime.com> (http://ptb2.me/)",
   "dependencies": {
-    "chokidar": "^2",
-    "fs-extra": "^6",
-    "gzip-size": "^4",
-    "mime": "^2",
-    "node-dir": "latest",
-    "pretty-bytes": "^4",
-    "slash": "^2"
+    "@amory/src-fs": "latest",
+    "fs-extra": "^6"
   },
-  "description": "",
+  "description": "Copy assets to public directory with content hash",
   "engines": {
     "node": ">=8"
   },
@@ -19,11 +14,10 @@
     "gatsby-plugin"
   ],
   "license": "(Apache-2.0 OR MIT)",
-  "main": "index.js",
-  "name": "@amory/src-fs",
+  "name": "@amory/asset",
   "publishConfig": {
     "access": "public"
   },
-  "repository": "https://github.com/ptb/amory/tree/master/packages/src-fs",
+  "repository": "https://github.com/ptb/amory/tree/master/packages/asset",
   "version": "2018.5.23-4"
 }

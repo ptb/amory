@@ -1,0 +1,22 @@
+* @amory/asset
+
+** Example
+
+**** =gatsby-config.js=
+
+#+begin_src js
+module.exports = {
+  "plugins": [
+    {
+      "options": {
+        "regex": /\.(woff)$/,
+        "saveDir": ["/", "fonts"],
+        "saveName": ["initName", "-", "initHash", ".", "saveExt"],
+        "src": "src/fonts",
+        "type": "Font"
+      },
+      "resolve": "@amory/asset"
+    }
+  ]
+}
+#+end_src

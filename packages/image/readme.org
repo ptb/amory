@@ -17,6 +17,7 @@ Key differences from =gatsby-image=:
 - SQIP and prominent colors proxy images are available as options
 - Multiple images with media query support built-in to React component
 - No intersection observer support, try [[https://www.npmjs.com/package/@researchgate/react-intersection-observer][@researchgate/react-intersection-observer]]?
+- No support for image filters, such as grayscale, duotone, rotate, etc.
 - Output destination and filenames are completely configurable
 
 ** Install
