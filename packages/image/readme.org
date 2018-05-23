@@ -1,13 +1,14 @@
 * @amory/image
 
 #+begin_quote
-Alternative to =gatsby-image= for responsive high-quality optimized images.
+Simply a different approach than [[https://github.com/gatsbyjs/gatsby/tree/v2/packages/gatsby-image][gatsby-image]] for responsive high-quality optimized images.
 #+end_quote
 
 ** Overview
 
 =@amory/image= is an image processing plugin and React component for Gatsby v2.
-Currentl macOS-only, however pull requests for other platforms are appreciated.
+
+Currently macOS-only, however pull requests for other platforms are appreciated.
 
 Key differences from =gatsby-image=:
 - Complete processing pipeline and all dependencies are included
