@@ -84,8 +84,6 @@ class Img extends Component {
   }
 
   render () {
-    const { children = [] } = this.props
-
     return h ("div", this.outer,
 
       h ("picture", {},
@@ -98,7 +96,7 @@ class Img extends Component {
           Img.sources ([i.webp, i.jpg, i.png], i.media)),
         this.image (this.state.isLoaded, true)),
 
-      ... children)
+      this.props.children)
   }
 }
 

@@ -2,7 +2,7 @@ export const DesktopImage = graphql `
   fragment DesktopImage on ImageResize {
     height
     width
-    media(mq: "(min-width: 1024px)")
+    media(mq: "(min-width: 992px)")
     proxy(style: sqip) {
       srcset
       type
