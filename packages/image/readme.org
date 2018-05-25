@@ -260,7 +260,14 @@ fragment ImageXs on ImageResize {
 
 **** Arguments
 
-- =mq= (string, valid CSS media query, e.g. "=(max-width: 480px)=")
+- =mq= (enum, media query breakpoint, default: =xs=)
+  - =xs= (Fallback image for pages of any width, value: =null=)
+  - =sm= (Small image for pages 576px wide and up, value: =(min-width: 576px)=)
+  - =md= (Medium image for pages 768px wide and up, value: =(min-width: 768px)=)
+  - =lg= (Large image for pages 992px wide and up, value: =(min-width: 992px)=)
+  - =xl= (Extra-large image for pages 1200px wide and up, value: =(min-width: 1200px)=)
+
+  Visit 'https://getbootstrap.com/docs/4.1/layout/overview/#responsive-breakpoints' for details.
 
 *** =png=
 
