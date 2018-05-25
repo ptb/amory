@@ -20,7 +20,7 @@ const reactPages = async (
   options = {}
 ) => {
   const { directory } = store.getState ().program
-  const absPath = resolve (directory, options.path || "src/pages/index.js")
+  const absPath = resolve (directory, options.path || "src/pages/index.jsx")
   const stats = await stat (absPath)
 
   const opts = Object.assign (options, {
