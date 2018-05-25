@@ -123,7 +123,7 @@ Original aspect ratio is maintained unless =aspectRatio=, =cropFocus=, =height=,
 fragment ImageXl on ImageResize {
   height
   width
-  media(mq: "(min-width: 1200px)")
+  media(mq: xl)
   proxy(style: sqip) {
     srcset
     type
@@ -145,7 +145,7 @@ fragment ImageXl on ImageResize {
 fragment ImageLg on ImageResize {
   height
   width
-  media(mq: "(min-width: 992px)")
+  media(mq: lg)
   proxy(style: sqip) {
     srcset
     type
@@ -167,7 +167,7 @@ fragment ImageLg on ImageResize {
 fragment ImageMd on ImageResize {
   height
   width
-  media(mq: "(min-width: 768px)")
+  media(mq: md)
   proxy(style: sqip) {
     srcset
     type
@@ -189,7 +189,7 @@ fragment ImageMd on ImageResize {
 fragment ImageSm on ImageResize {
   height
   width
-  media(mq: "(min-width: 576px)")
+  media(mq: sm)
   proxy(style: sqip) {
     srcset
     type
@@ -211,7 +211,7 @@ fragment ImageSm on ImageResize {
 fragment ImageXs on ImageResize {
   height
   width
-  media
+  media(mq: xs)
   proxy(style: sqip) {
     srcset
     type
