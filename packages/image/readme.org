@@ -74,8 +74,8 @@ export default ({ data }) =>
 export const query = graphql `
   query indexQuery {
     sun: image(name: {eq: "sun"}) {
-      mobile: resize(aspectRatio: "1.618" width: 300) { ... MobileImage }
-      tablet: resize(aspectRatio: "1.618" width: 600) { ... TabletImage }
+      xs: resize(aspectRatio: "1.618" width: 300) { ... ImageXs }
+      md: resize(aspectRatio: "1.618" width: 600) { ... ImageMd }
     }
   }
 `
@@ -117,10 +117,32 @@ Original aspect ratio is maintained unless =aspectRatio=, =cropFocus=, =height=,
 
 **** Fragments
 
-- =... DesktopImage=
+- =... ImageXl=
 
 #+begin_src graphql
-fragment DesktopImage on ImageResize {
+fragment ImageXl on ImageResize {
+  height
+  width
+  media(mq: "(min-width: 1200px)")
+  proxy(style: sqip) {
+    srcset
+    type
+  }
+  jpg {
+    srcset
+    type
+  }
+  webp {
+    srcset
+    type
+  }
+}
+#+end_src
+
+- =... ImageLg=
+
+#+begin_src graphql
+fragment ImageLg on ImageResize {
   height
   width
   media(mq: "(min-width: 992px)")
@@ -139,10 +161,10 @@ fragment DesktopImage on ImageResize {
 }
 #+end_src
 
-- =... TabletImage=
+- =... ImageMd=
 
 #+begin_src graphql
-fragment TabletImage on ImageResize {
+fragment ImageMd on ImageResize {
   height
   width
   media(mq: "(min-width: 768px)")
@@ -161,13 +183,13 @@ fragment TabletImage on ImageResize {
 }
 #+end_src
 
-- =... MobileImage=
+- =... ImageSm=
 
 #+begin_src graphql
-fragment MobileImage on ImageResize {
+fragment ImageSm on ImageResize {
   height
   width
-  media(mq: "(max-width: 767px)")
+  media(mq: "(min-width: 576px)")
   proxy(style: sqip) {
     srcset
     type
@@ -183,10 +205,10 @@ fragment MobileImage on ImageResize {
 }
 #+end_src
 
-- =... FallbackImage=
+- =... ImageXs=
 
 #+begin_src graphql
-fragment FallbackImage on ImageResize {
+fragment ImageXs on ImageResize {
   height
   width
   media

@@ -103,6 +103,45 @@ const jpg = {
   })
 }
 
+const mq = {
+  "args": {
+    "mq": {
+      "defaultValue": "xs",
+      "description": "Media query breakpoint. Visit 'https://getbootstrap.com/docs/4.1/layout/overview/#responsive-breakpoints' for details. [xs]",
+      "type": new GraphQLEnumType ({
+        "name": "ImageMediaQuery",
+        "values": {
+          "xs": {
+            "description": "Fallback image for pages of any width.",
+            "name": "Extra-Small",
+            "value": null
+          },
+          "sm": {
+            "description": "Small image for pages 576px wide and up.",
+            "name": "Small",
+            "value": "(min-width: 576px)"
+          },
+          "md": {
+            "description": "Medium image for pages 768px wide and up.",
+            "name": "Medium",
+            "value": "(min-width: 768px)"
+          },
+          "lg": {
+            "description": "Large image for pages 992px wide and up.",
+            "name": "Large",
+            "value": "(min-width: 992px)"
+          },
+          "xl": {
+            "description": "Extra-large image for pages 1200px wide and up.",
+            "name": "Extra-Large",
+            "value": "(min-width: 1200px)"
+          }
+        }
+      })
+    }
+  }
+}
+
 const png = {
   "args": {
     "actions": {
@@ -424,11 +463,7 @@ module.exports = ({ type }, opts = {}) => {
                 "type": jpg.type
               },
               "media": {
-                "args": {
-                  "mq": {
-                    "type": GraphQLString
-                  }
-                },
+                "args": mq.args,
                 "resolve": (_, args) => args.mq,
                 "type": GraphQLString
               },

@@ -1,8 +1,8 @@
-export const DesktopImage = graphql `
-  fragment DesktopImage on ImageResize {
+export const ImageXl = graphql `
+  fragment ImageXl on ImageResize {
     height
     width
-    media(mq: "(min-width: 992px)")
+    media(mq: xl)
     proxy(style: sqip) {
       srcset
       type
@@ -18,11 +18,11 @@ export const DesktopImage = graphql `
   }
 `
 
-export const TabletImage = graphql `
-  fragment TabletImage on ImageResize {
+export const ImageLg = graphql `
+  fragment ImageLg on ImageResize {
     height
     width
-    media(mq: "(min-width: 768px)")
+    media(mq: lg)
     proxy(style: sqip) {
       srcset
       type
@@ -38,11 +38,11 @@ export const TabletImage = graphql `
   }
 `
 
-export const MobileImage = graphql `
-  fragment MobileImage on ImageResize {
+export const ImageMd = graphql `
+  fragment ImageMd on ImageResize {
     height
     width
-    media(mq: "(max-width: 767px)")
+    media(mq: md)
     proxy(style: sqip) {
       srcset
       type
@@ -58,10 +58,31 @@ export const MobileImage = graphql `
   }
 `
 
-export const FallbackImage = graphql `
-  fragment FallbackImage on ImageResize {
+export const ImageSm = graphql `
+  fragment ImageSm on ImageResize {
     height
     width
+    media(mq: sm)
+    proxy(style: sqip) {
+      srcset
+      type
+    }
+    jpg {
+      srcset
+      type
+    }
+    webp {
+      srcset
+      type
+    }
+  }
+`
+
+export const ImageXs = graphql `
+  fragment ImageXs on ImageResize {
+    height
+    width
+    media(mq: xs)
     proxy(style: sqip) {
       srcset
       type
