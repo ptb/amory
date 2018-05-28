@@ -139,8 +139,8 @@
        }
  
        if (!chunks) {
-@@ -177,7 +177,7 @@
-         if (chunk.slice(0, 15) === `webpack-runtime`) {
+@@ -174,7 +174,7 @@
+         if (chunk === `/`) {
            return null
          }
 -        return chunk
@@ -148,16 +148,7 @@
        })
      })
    ).filter(s => isString(s))
-@@ -207,7 +207,7 @@
-       key={`webpack-runtime`}
-       id={`webpack-runtime`}
-       dangerouslySetInnerHTML={{
--        __html: runtimeRaw,
-+        __html: `/*<![CDATA[*/${runtimeRaw}/*]]>*/`,
-       }}
-     />
-   )
-@@ -228,7 +228,7 @@
+ @@ -216,7 +216,7 @@
      })
  
    if (page.jsonName in dataPaths) {
@@ -166,7 +157,7 @@
      // Insert json data path after commons and app
      headComponents.splice(
        1,
-@@ -237,8 +237,8 @@
+@@ -225,8 +225,8 @@
          rel="preload"
          key={dataPath}
          href={dataPath}
@@ -177,23 +168,15 @@
        />
      )
    }
-@@ -265,6 +265,7 @@
-   // Add script loader for page scripts to the end of body element (after webpack manifest).
-   const scriptsString = scripts
-     .map(s => `"${pathPrefix}${JSON.stringify(s).slice(1, -1)}"`)
-+    .map(s => s.replace(/\/+/g, "/"))
-     .join(`,`)
-   postBodyComponents.push(
-     <script
-@@ -275,7 +276,7 @@
-           page.jsonName in dataPaths
-             ? `window.dataPath="${dataPaths[page.jsonName]}";`
-             : ``
--        }[${scriptsString}].forEach(function(s){document.write('<script src="'+s+'" defer></'+'script>')})/*]]>*/`,
-+        }[${scriptsString}].forEach(function(s){var d=document,e=d.createElement("script");e.async=false,e.src=s,d.head.appendChild(e)})/*]]>*/`,
-       }}
-     />
+@@ -268,7 +268,7 @@
    )
+ 
+   const bodyScripts = scripts.map(s => {
+-    const scriptPath = `${pathPrefix}${JSON.stringify(s).slice(1, -1)}`
++    const scriptPath = `${pathPrefix}${JSON.stringify(s).slice(1, -1)}`.replace(/\/+/g, "/")
+     return <script key={scriptPath} src={scriptPath} async />
+   })
+ 
 --- node_modules/gatsby/dist/bootstrap/index.js
 +++ node_modules/gatsby/dist/bootstrap/index.js
 @@ -75,7 +75,7 @@
