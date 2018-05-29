@@ -665,7 +665,10 @@
     "react/jsx-curly-spacing": "warn",
     "react/jsx-equals-spacing": "warn",
     "react/jsx-filename-extension": "warn",
-    "react/jsx-first-prop-new-line": ["warn", "always"],
+    "react/jsx-first-prop-new-line": [
+      "warn",
+      "always"
+    ],
     "react/jsx-handler-names": "warn",
     "react/jsx-indent": [
       "warn",
@@ -708,7 +711,14 @@
     "react/no-string-refs": "warn",
     "react/no-typos": "warn",
     "react/no-unescaped-entities": "warn",
-    "react/no-unknown-property": "warn",
+    "react/no-unknown-property": [
+      "warn",
+      {
+        "ignore": [
+          "charset"
+        ]
+      }
+    ],
     "react/no-unused-prop-types": "warn",
     "react/no-unused-state": "warn",
     "react/no-will-update-set-state": "warn",
