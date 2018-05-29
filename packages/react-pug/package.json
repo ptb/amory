@@ -41,7 +41,7 @@
     "@babel/preset-flow": "latest",
     "@babel/types": "latest",
     "babel-core": "latest",
-    "babel-jest": "^22",
+    "babel-jest": "^23.0.0",
     "flow-bin": "latest",
     "husky": "latest",
     "jest": "^22",
