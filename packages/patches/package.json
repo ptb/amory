@@ -1,7 +1,7 @@
 {
   "author": "Peter T Bosse II <ptb@ioutime.com> (http://ptb2.me/)",
   "dependencies": {
-    "babel-plugin-remove-graphql-queries": "=2.0.1-7",
+    "babel-plugin-remove-graphql-queries": "2.1.0-alpha.f98688ee",
     "gatsby": "=2.0.0-alpha.42",
     "react": "=16.4.0",
     "react-dom": "=16.4.0"
