@@ -2,8 +2,8 @@
   "author": "Peter T Bosse II <ptb@ioutime.com> (http://ptb2.me/)",
   "dependencies": {
     "gatsby": "2.0.0-alpha.23",
-    "react": "^16",
-    "react-dom": "^16"
+    "react": "16.4.0",
+    "react-dom": "16.4.0"
   },
   "description": "React static site generator",
   "engines": {

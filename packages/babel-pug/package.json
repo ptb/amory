@@ -9,7 +9,7 @@
     "@babel/preset-flow": "latest",
     "@babel/preset-react": "latest",
     "eslint-plugin-react-pug": "latest",
-    "jstransformer-sass": "^1"
+    "jstransformer-sass": "1.0.0"
   },
   "description": "Template engine to render `pug` templates into HTML",
   "engines": {
