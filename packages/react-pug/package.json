@@ -44,7 +44,7 @@
     "babel-jest": "^22",
     "flow-bin": "latest",
     "husky": "latest",
-    "jest": "^22",
+    "jest": "^23.0.0",
     "lint-staged": "^7",
     "prettier": "^1",
     "react": "^16",
