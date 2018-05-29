@@ -39,6 +39,10 @@
     }
   },
   "license": "(Apache-2.0 OR MIT)",
-  "renovate": {},
+  "renovate": {
+    "extends": [
+      "config:base"
+    ]
+  },
   "repository": "https://github.com/ptb/amory.git"
 }
