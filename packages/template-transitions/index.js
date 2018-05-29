@@ -2,7 +2,7 @@ const { cloneElement, Component, createElement: h } = require ("react")
 const { CSSTransition, TransitionGroup } = require ("react-transition-group")
 const animations = require ("@amory/style-animations")
 const get = require ("lodash.get")
-const styletron = require ("@amory/style-styletron")
+const styletron = require ("@amory/styletron")
 
 module.exports = class extends Component {
   render () {
