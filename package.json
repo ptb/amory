@@ -2,7 +2,7 @@
   "author": "Peter T Bosse II <ptb@ioutime.com> (http://ptb2.me/)",
   "devDependencies": {
     "@amory/eslint-config": "latest",
-    "lerna": "^2"
+    "lerna": "2.11.0"
   },
   "engines": {
     "node": ">=8"

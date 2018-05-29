@@ -41,15 +41,15 @@
     "@babel/preset-flow": "latest",
     "@babel/types": "latest",
     "babel-core": "latest",
-    "babel-jest": "^22",
+    "babel-jest": "22.4.4",
     "flow-bin": "latest",
     "husky": "latest",
-    "jest": "^22",
-    "lint-staged": "^7",
-    "prettier": "^1",
-    "react": "^16",
-    "react-dom": "^16",
-    "react-test-renderer": "^16"
+    "jest": "22.4.4",
+    "lint-staged": "7.1.2",
+    "prettier": "1.13.2",
+    "react": "16.4.0",
+    "react-dom": "16.4.0",
+    "react-test-renderer": "16.4.0"
   },
   "engines": {
     "node": ">=8"
