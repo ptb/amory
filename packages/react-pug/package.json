@@ -41,10 +41,10 @@
     "@babel/preset-flow": "latest",
     "@babel/types": "latest",
     "babel-core": "latest",
-    "babel-jest": "22.4.4",
+    "babel-jest": "23.0.0",
     "flow-bin": "latest",
     "husky": "latest",
-    "jest": "22.4.4",
+    "jest": "23.0.0",
     "lint-staged": "7.1.2",
     "prettier": "1.13.2",
     "react": "16.4.0",
@@ -94,5 +94,5 @@
     "test": "jest --coverage",
     "watch": "jest --coverage --watch"
   },
-  "version": "2018.5.29-2"
+  "version": "2018.5.29-3"
 }
