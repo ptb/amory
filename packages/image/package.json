@@ -3,19 +3,19 @@
   "dependencies": {
     "@amory/src-fs": "latest",
     "@amory/styletron": "latest",
-    "bin-wrapper": "^3",
-    "exec-buffer": "^3",
-    "fs-extra": "^6",
-    "imagemin-svgo": "^6",
-    "lodash.sortby": "^4",
-    "mini-svg-data-uri": "^1",
-    "node-vibrant": "^3",
-    "p-queue": "^2",
-    "picturefill": "^3",
+    "bin-wrapper": "3.0.2",
+    "exec-buffer": "3.2.0",
+    "fs-extra": "6.0.1",
+    "imagemin-svgo": "6.0.0",
+    "lodash.sortby": "4.7.0",
+    "mini-svg-data-uri": "1.0.1",
+    "node-vibrant": "3.0.0",
+    "p-queue": "2.4.2",
+    "picturefill": "3.0.2",
     "sharp": "latest",
     "sqip": "latest",
-    "temp-write": "^3",
-    "tempfile": "^2"
+    "temp-write": "3.4.0",
+    "tempfile": "2.0.0"
   },
   "description": "Gatsby plugin to create images of various resolutions",
   "engines": {
@@ -34,5 +34,5 @@
     "access": "public"
   },
   "repository": "https://github.com/ptb/amory/tree/master/packages/image",
-  "version": "2018.5.29-3"
+  "version": "2018.5.29-4"
 }

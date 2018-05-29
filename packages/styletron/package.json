@@ -4,10 +4,10 @@
     "Peter T Bosse II <ptb@ioutime.com> (http://ptb2.me/)"
   ],
   "dependencies": {
-    "styletron-engine-atomic": "^1",
-    "styletron-react": "^4",
-    "styletron-react-core": "^1",
-    "styletron-standard": "^1"
+    "styletron-engine-atomic": "1.0.5",
+    "styletron-react": "4.2.2",
+    "styletron-react-core": "1.2.2",
+    "styletron-standard": "1.0.3"
   },
   "description": "Style engine to render Styletron CSS-in-JS into CSS",
   "engines": {
@@ -24,5 +24,5 @@
     "access": "public"
   },
   "repository": "https://github.com/ptb/amory/tree/master/packages/styletron",
-  "version": "2018.5.29-3"
+  "version": "2018.5.29-4"
 }

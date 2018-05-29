@@ -2,7 +2,7 @@
   "author": "Peter T Bosse II <ptb@ioutime.com> (http://ptb2.me/)",
   "dependencies": {
     "@amory/src-fs": "latest",
-    "fs-extra": "^6"
+    "fs-extra": "6.0.1"
   },
   "description": "Copy assets to public directory with content hash",
   "engines": {
@@ -20,5 +20,5 @@
     "access": "public"
   },
   "repository": "https://github.com/ptb/amory/tree/master/packages/asset",
-  "version": "2018.5.29-3"
+  "version": "2018.5.29-4"
 }

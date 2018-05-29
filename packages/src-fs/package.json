@@ -1,13 +1,13 @@
 {
   "author": "Peter T Bosse II <ptb@ioutime.com> (http://ptb2.me/)",
   "dependencies": {
-    "chokidar": "^2",
-    "fs-extra": "^6",
-    "gzip-size": "^4",
-    "mime": "^2",
+    "chokidar": "2.0.3",
+    "fs-extra": "6.0.1",
+    "gzip-size": "4.1.0",
+    "mime": "2.3.1",
     "node-dir": "latest",
-    "pretty-bytes": "^5.0.0",
-    "slash": "^2"
+    "pretty-bytes": "5.0.0",
+    "slash": "2.0.0"
   },
   "description": "",
   "engines": {
@@ -25,5 +25,5 @@
     "access": "public"
   },
   "repository": "https://github.com/ptb/amory/tree/master/packages/src-fs",
-  "version": "2018.5.29-3"
+  "version": "2018.5.29-4"
 }
