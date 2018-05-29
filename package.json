@@ -9,7 +9,7 @@
   },
   "eslintConfig": {
     "extends": [
-      "@amory/eslint-config"
+      "@amory"
     ],
     "rules": {
       "better/explicit-return": "off",
@@ -39,5 +39,6 @@
     }
   },
   "license": "(Apache-2.0 OR MIT)",
+  "renovate": {},
   "repository": "https://github.com/ptb/amory.git"
 }
