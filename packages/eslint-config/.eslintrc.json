@@ -493,6 +493,10 @@
     "no-shadow": [
       "warn",
       {
+        "allow": [
+          "CSSTransition",
+          "location"
+        ],
         "builtinGlobals": true,
         "hoist": "all"
       }
@@ -654,7 +658,7 @@
     "react/default-props-match-prop-types": "warn",
     "react/destructuring-assignment": "warn",
     "react/display-name": "off",
-    "react/forbid-component-props": "warn",
+    "react/forbid-component-props": "off",
     "react/forbid-elements": "warn",
     "react/forbid-foreign-prop-types": "warn",
     "react/forbid-prop-types": "warn",
@@ -680,7 +684,12 @@
     ],
     "react/jsx-key": "warn",
     "react/jsx-max-props-per-line": "warn",
-    "react/jsx-no-bind": "warn",
+    "react/jsx-no-bind": [
+      "warn",
+      {
+        "allowArrowFunctions": true
+      }
+    ],
     "react/jsx-no-comment-textnodes": "warn",
     "react/jsx-no-duplicate-props": "warn",
     "react/jsx-no-literals": "off",
