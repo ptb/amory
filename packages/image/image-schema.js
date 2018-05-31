@@ -96,6 +96,7 @@ const jpg = {
 
   "type": new GraphQLObjectType ({
     "fields": {
+      "src": { "type": GraphQLString },
       "srcset": { "type": GraphQLString },
       "type": { "type": GraphQLString }
     },
@@ -204,6 +205,7 @@ const png = {
 
   "type": new GraphQLObjectType ({
     "fields": {
+      "src": { "type": GraphQLString },
       "srcset": { "type": GraphQLString },
       "type": { "type": GraphQLString }
     },
@@ -307,6 +309,7 @@ const proxy = {
 
   "type": new GraphQLObjectType ({
     "fields": {
+      "src": { "type": GraphQLString },
       "srcset": { "type": GraphQLString },
       "type": { "type": GraphQLString }
     },
@@ -339,6 +342,7 @@ const webp = {
 
   "type": new GraphQLObjectType ({
     "fields": {
+      "src": { "type": GraphQLString },
       "srcset": { "type": GraphQLString },
       "type": { "type": GraphQLString }
     },

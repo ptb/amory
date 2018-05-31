@@ -169,6 +169,7 @@ class ImageResize {
 
   sources (srcs, type) {
     return {
+      "src": srcs[0],
       "srcset": srcs
         .reduce (
           (a, src, i) => a.concat (`${src} ${this.devicePixelRatios[i]}x`),
