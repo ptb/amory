@@ -1,0 +1,26 @@
+{
+  "author": "Julien Blatecky <julien.blatecky@creatiwity.net>",
+  "contributors": [
+    "Peter T Bosse II <ptb@ioutime.com> (http://ptb2.me/)"
+  ],
+  "dependencies": {
+    "favicons-webpack-plugin": "latest"
+  },
+  "description": "Gatsby plugin to add favicon for all configurations",
+  "engines": {
+    "node": ">=8"
+  },
+  "keywords": [
+    "gatsby",
+    "gatsby-plugin",
+    "favicon"
+  ],
+  "license": "MIT",
+  "main": "gatsby-node.js",
+  "name": "@amory/favicon",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": "https://github.com/ptb/amory/tree/master/packages/favicon",
+  "version": "2018.6.1-0"
+}
