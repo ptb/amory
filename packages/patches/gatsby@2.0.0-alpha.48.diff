@@ -253,12 +253,12 @@
  module.exports = () => {
 -  chokidar.watch(`${process.cwd()}/static`).on(`add`, path => {
 -    const relativePath = nodePath.relative(`${process.cwd()}/static`, path);
-+  chokidar.watch(`${process.cwd()}/js`).on(`add`, path => {
-+    const relativePath = nodePath.relative(`${process.cwd()}/js`, path);
++  chokidar.watch(`${process.cwd()}/src/static`).on(`add`, path => {
++    const relativePath = nodePath.relative(`${process.cwd()}/src/static`, path);
      fs.copy(path, `${process.cwd()}/public/${relativePath}`);
    }).on(`change`, path => {
 -    const relativePath = nodePath.relative(`${process.cwd()}/static`, path);
-+    const relativePath = nodePath.relative(`${process.cwd()}/js`, path);
++    const relativePath = nodePath.relative(`${process.cwd()}/src/static`, path);
      fs.copy(path, `${process.cwd()}/public/${relativePath}`);
    });
  };
