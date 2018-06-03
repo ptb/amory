@@ -697,8 +697,15 @@
     "react/jsx-no-undef": "warn",
     "react/jsx-pascal-case": "warn",
     "react/jsx-sort-props": "warn",
-    "react/jsx-space-before-closing": "warn",
-    "react/jsx-tag-spacing": "warn",
+    "react/jsx-tag-spacing": [
+      "warn",
+      {
+        "afterOpening": "never",
+        "beforeClosing": "never",
+        "beforeSelfClosing": "always",
+        "closingSlash": "never"
+      }
+    ],
     "react/jsx-uses-react": "warn",
     "react/jsx-uses-vars": "warn",
     "react/jsx-wrap-multilines": "warn",
