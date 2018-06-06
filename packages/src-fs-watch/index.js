@@ -1,6 +1,7 @@
 const { fork } = require ("child_process")
 const crypto = require ("crypto")
 const { existsSync, readFileSync } = require ("fs-extra")
+const { join } = require ("path").posix
 const { ReplaySubject } = require ("rxjs")
 
 const getHash = (src) =>
@@ -23,7 +24,7 @@ module.exports = (() => (options = {}) => {
   }, options)
 
   if (!agent) {
-    agent = fork ("@amory/src-fs-watch/agent")
+    agent = fork (join (__dirname, "agent"))
   }
 
   if (!files) {
