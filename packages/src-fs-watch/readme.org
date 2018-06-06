@@ -2,7 +2,7 @@
 
 ** Overview
 
-The intention of this package is to provide a single process and interface for all desired file watching activities. Only file changes and deletions are reported. Saving files without changing their content are [intentionally] not reported. Consumers receive all reported file events starting with the beginning of the file watching process. Events can easily be filtered using any method supported by RxJs `.pipe`, e.g. `filter`, `map`, `reduce`, etc.
+The intention of this package is to provide a single process and interface for all desired file watching activities. Only file changes and deletions are reported. Saving files without changing their content are [intentionally] not reported. Consumers receive all reported file events starting with the beginning of the file watching process. Events can easily be filtered using any method supported by RxJs =.pipe=, e.g. =filter=, =map=, =reduce=, etc.
 
 ** Install
 
