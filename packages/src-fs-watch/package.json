@@ -1,15 +1,10 @@
 {
   "author": "Peter T Bosse II <ptb@ioutime.com> (http://ptb2.me/)",
   "dependencies": {
-    "chokidar": "2.0.3",
+    "@amory/chokidar": "2.0.3",
     "fs-extra": "6.0.1",
-    "gzip-size": "4.1.0",
-    "mime": "2.3.1",
-    "node-dir": "latest",
-    "pretty-bytes": "5.0.0",
-    "slash": "2.0.0"
+    "rxjs": "6.2.0"
   },
-  "description": "",
   "engines": {
     "node": ">=8"
   },
@@ -20,10 +15,10 @@
   ],
   "license": "(Apache-2.0 OR MIT)",
   "main": "index.js",
-  "name": "@amory/src-fs",
+  "name": "src-fs-watch",
   "publishConfig": {
     "access": "public"
   },
-  "repository": "https://github.com/ptb/amory/tree/master/packages/src-fs",
+  "repository": "https://github.com/ptb/amory/tree/master/packages/src-fs-watch",
   "version": "2018.6.6-0"
 }
