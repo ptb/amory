@@ -36,24 +36,24 @@ module.exports = (() => (options = {}) => {
   }
 
   agent.on ("message", ({ evt, src }) => {
-    let hash
+    let digest
 
     switch (evt) {
       case "add":
       case "change":
-        hash = getHash (src)
+        digest = getHash (src)
 
-        if (hash !== files.get (src)) {
-          files.set (src, hash)
-          queue.next ({ "evt": "change", hash, src })
+        if (digest !== files.get (src)) {
+          files.set (src, digest)
+          queue.next ({ digest, "evt": "change", src })
         }
 
         break
       case "unlink":
-        hash = files.get (src)
+        digest = files.get (src)
 
         files.delete (src)
-        queue.next ({ "evt": "delete", hash, src })
+        queue.next ({ digest, "evt": "delete", src })
         break
       default:
         break
