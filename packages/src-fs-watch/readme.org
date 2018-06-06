@@ -1,0 +1,30 @@
+* @amory/src-fs-watch
+
+** Install
+
+#+begin_src sh
+npm install --save @amory/src-fs-watch
+#+end_src
+
+** Example
+
+#+begin_src js
+const srcFsWatch = require ("@amory/src-fs-watch")
+const { join } = require ("path").posix
+
+// Any valid chokidar options (plus `src`) can be passed here:
+const watcher = srcFsWatch ({
+  "src": join (process.cwd (), "src")
+})
+
+watcher.subscribe ({
+  "next": (file) => console.log (file)
+})
+#+end_src
+
+** Credits
+
+Inspired by original code and concepts from:
+- [[https://github.com/DeMoorJasper/fswatcher-child][DeMoorJasper/fswatcher-child]]
+- [[https://github.com/tools-rx/watch-rx][tools-rx/watch-rx]]
+- [[https://github.com/webpack/watchpack][webpack/watchpack]]
