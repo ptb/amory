@@ -11,15 +11,18 @@ npm install --save @amory/src-fs-watch
 #+begin_src js
 const srcFsWatch = require ("@amory/src-fs-watch")
 const { join } = require ("path").posix
+const { filter } = require ("rxjs/operators")
 
 // Any valid chokidar options (plus `src`) can be passed here:
 const watcher = srcFsWatch ({
   "src": join (process.cwd (), "src")
 })
 
-watcher.subscribe ({
-  "next": (file) => console.log (file)
-})
+watcher
+  .pipe (filter (({ src }) => /\.js(on)?$/.test (src)))
+  .subscribe ({
+    "next": ({ evt, src }) => console.log (evt, src)
+  })
 #+end_src
 
 ** Credits
