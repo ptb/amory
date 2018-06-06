@@ -23,7 +23,7 @@ module.exports = (() => (options = {}) => {
   }, options)
 
   if (!agent) {
-    agent = fork ("./agent")
+    agent = fork ("@amory/src-fs-watch/agent")
   }
 
   if (!files) {
