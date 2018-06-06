@@ -15,10 +15,10 @@
   ],
   "license": "(Apache-2.0 OR MIT)",
   "main": "index.js",
-  "name": "src-fs-watch",
+  "name": "@amory/src-fs-watch",
   "publishConfig": {
     "access": "public"
   },
   "repository": "https://github.com/ptb/amory/tree/master/packages/src-fs-watch",
-  "version": "2018.6.6-0"
+  "version": "2018.6.6-1"
 }
