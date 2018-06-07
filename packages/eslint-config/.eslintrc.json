@@ -17,14 +17,15 @@
     "sourceType": "module"
   },
   "plugins": [
-    "eslint-plugin-better",
-    "eslint-plugin-fp",
-    "eslint-plugin-import",
-    "eslint-plugin-json",
-    "eslint-plugin-jsx-a11y",
-    "eslint-plugin-promise",
-    "eslint-plugin-react",
-    "eslint-plugin-standard"
+    "better",
+    "fp",
+    "graphql",
+    "import",
+    "json",
+    "jsx-a11y",
+    "promise",
+    "react",
+    "standard"
   ],
   "rules": {
     "accessor-pairs": "warn",
