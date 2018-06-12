@@ -160,7 +160,7 @@
    }));
    var bodyScripts = scripts.map(function (s) {
 -    var scriptPath = "" + pathPrefix + (0, _stringify.default)(s).slice(1, -1);
-+    var scriptPath = "" + pathPrefix + (0, _stringify.default)(s).slice(1, -1).replace(/\/+/g, "/");
++    var scriptPath = `${pathPrefix}${(0, _stringify.default)(s).slice(1, -1)}`.replace(/\/+/g, "/");
      return React.createElement("script", {
        key: scriptPath,
        src: scriptPath,
