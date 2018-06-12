@@ -16,9 +16,9 @@ let agent, files, queue
 module.exports = (() => (options = {}) => {
   const opts = Object.assign ({
     "ignored": [
-      "**/.cache",
-      "**/.git",
-      "**/node_modules"
+      "**/.cache/**",
+      "**/.git/**",
+      "**/node_modules/**"
     ],
     "src": process.cwd ()
   }, options)

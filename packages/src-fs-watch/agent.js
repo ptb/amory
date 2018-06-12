@@ -7,13 +7,13 @@ class FSAgent {
     process.send ({ evt, src })
   }
 
-  constructor (opts = {}) {
+  constructor (opts) {
     this.watcher = new FSWatcher (opts)
       .on ("ready", () => FSAgent.sendEvent ({ "evt": "ready" }))
       .on ("all", (evt, src) => FSAgent.sendEvent ({ evt, src }))
   }
 
-  execMethod (cmd, opts = []) {
+  execMethod (cmd, opts) {
     try {
       this.watcher[cmd] (... Array.isArray (opts) ? opts : [opts])
     } catch (err) {
@@ -30,7 +30,7 @@ process.on ("error", (err) => {
   throw new Error (err)
 })
 
-process.on ("message", ({ cmd, opts = {} }) => {
+process.on ("message", ({ cmd, opts }) => {
   switch (cmd) {
     case "init":
       agent = new FSAgent (opts)
