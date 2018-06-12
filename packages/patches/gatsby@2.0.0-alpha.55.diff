@@ -1,182 +1,169 @@
 --- node_modules/gatsby/cache-dir/app.js
 +++ node_modules/gatsby/cache-dir/app.js
-@@ -34,7 +34,7 @@
-     })
+@@ -57,7 +57,7 @@
+     });
    }
  
--  const rootElement = document.getElementById(`___gatsby`)
-+  const rootElement = document.getElementById(`root`)
+-  var rootElement = document.getElementById("___gatsby");
++  var rootElement = document.getElementById("root");
  
-   let Root = require(`./root`)
-   if (Root.default) {
+   var Root = require("./root");
+ 
 --- node_modules/gatsby/cache-dir/default-html.js
 +++ node_modules/gatsby/cache-dir/default-html.js
-@@ -6,7 +6,7 @@
-     return (
-       <html {...this.props.htmlAttributes}>
-         <head>
--          <meta charSet="utf-8" />
-+          <meta charset="utf-8" />
-           <meta httpEquiv="x-ua-compatible" content="ie=edge" />
-           <meta
-             name="viewport"
-@@ -18,7 +18,7 @@
-           {this.props.preBodyComponents}
-           <div
-             key={`body`}
--            id="___gatsby"
-+            id="root"
-             dangerouslySetInnerHTML={{ __html: this.props.body }}
-           />
-           {this.props.postBodyComponents}
+@@ -22,7 +22,7 @@
+ 
+   _proto.render = function render() {
+     return _react.default.createElement("html", this.props.htmlAttributes, _react.default.createElement("head", null, _react.default.createElement("meta", {
+-      charSet: "utf-8"
++      charset: "utf-8"
+     }), _react.default.createElement("meta", {
+       httpEquiv: "x-ua-compatible",
+       content: "ie=edge"
+@@ -31,7 +31,7 @@
+       content: "width=device-width, initial-scale=1, shrink-to-fit=no"
+     }), this.props.headComponents), _react.default.createElement("body", this.props.bodyAttributes, this.props.preBodyComponents, _react.default.createElement("div", {
+       key: "body",
+-      id: "___gatsby",
++      id: "root",
+       dangerouslySetInnerHTML: {
+         __html: this.props.body
+       }
 --- node_modules/gatsby/cache-dir/develop-static-entry.js
 +++ node_modules/gatsby/cache-dir/develop-static-entry.js
-@@ -28,7 +28,7 @@
+@@ -42,7 +42,7 @@
  
- export default (pagePath, callback) => {
-   let headComponents = []
--  let htmlAttributes = {}
-+  let htmlAttributes = {"lang": "en", "xmlns": "http://www.w3.org/1999/xhtml"}
-   let bodyAttributes = {}
-   let preBodyComponents = []
-   let postBodyComponents = []
-@@ -73,11 +73,11 @@
-     body: ``,
-     headComponents: headComponents.concat([
-       <script key={`io`} src="/socket.io/socket.io.js" />,
--      <link key={`style`} rel="stylesheet" href="/commons.css" />,
-+      <link key={`style`} rel="stylesheet" href="/js/commons.css" />,
-     ]),
-     preBodyComponents,
-     postBodyComponents: postBodyComponents.concat([
--      <script key={`commons`} src="/commons.js" />,
-+      <script key={`commons`} src="/js/commons.js" />,
-     ]),
-   })
-   htmlStr = renderToStaticMarkup(htmlElement)
+ var _default = function _default(pagePath, callback) {
+   var headComponents = [];
+-  var htmlAttributes = {};
++  var htmlAttributes = {"lang": "en", "xmlns": "http://www.w3.org/1999/xhtml"};
+   var bodyAttributes = {};
+   var preBodyComponents = [];
+   var postBodyComponents = [];
+@@ -87,15 +87,11 @@
+     headComponents: headComponents.concat([_react.default.createElement("script", {
+       key: "io",
+       src: "/socket.io/socket.io.js"
+-    }), _react.default.createElement("link", {
+-      key: "style",
+-      rel: "stylesheet",
+-      href: "/commons.css"
+     })]),
+     preBodyComponents: preBodyComponents,
+     postBodyComponents: postBodyComponents.concat([_react.default.createElement("script", {
+       key: "commons",
+-      src: "/commons.js"
++      src: "/js/commons.js"
+     })])
+   }));
+ 
 --- node_modules/gatsby/cache-dir/loader.js
 +++ node_modules/gatsby/cache-dir/loader.js
-@@ -45,7 +45,7 @@
- const fetchResource = resourceName => {
+@@ -65,7 +65,7 @@
    // Find resource
-   let resourceFunction
--  if (resourceName.slice(0, 12) === `component---`) {
-+  if (resourceName.slice(0, 4) === `c/c-`) {
-     resourceFunction = asyncRequires.components[resourceName]
+   var resourceFunction;
+ 
+-  if (resourceName.slice(0, 12) === "component---") {
++  if (resourceName.slice(0, 4) === "c/c-") {
+     resourceFunction = asyncRequires.components[resourceName];
    } else {
-     resourceFunction = () =>
-@@ -53,7 +53,7 @@
+     resourceFunction = function resourceFunction() {
+@@ -73,7 +73,7 @@
          if (resourceName in jsonStore) {
-           resolve(jsonStore[resourceName])
+           resolve(jsonStore[resourceName]);
          } else {
--          const url = `${pathPrefix}static/d/${
-+          const url = `${pathPrefix}js/p/${
-             jsonDataPaths[resourceName]
-           }.json`
-           var req = new XMLHttpRequest()
+-          var url = __PATH_PREFIX__ + "/static/d/" + jsonDataPaths[resourceName] + ".json";
++          var url = __PATH_PREFIX__ + "/js/p/" + jsonDataPaths[resourceName] + ".json";
+           var req = new XMLHttpRequest();
+           req.open("GET", url, true);
+           req.withCredentials = true;
 --- node_modules/gatsby/cache-dir/production-app.js
 +++ node_modules/gatsby/cache-dir/production-app.js
-@@ -194,7 +194,7 @@
-       renderer(
-         <NewRoot />,
-         typeof window !== `undefined`
--          ? document.getElementById(`___gatsby`)
-+          ? document.getElementById(`root`)
-           : void 0,
-         () => {
-           apiRunner(`onInitialClientRender`)
+@@ -212,7 +212,7 @@
+     }, Root)[0];
+     var renderer = (0, _apiRunnerBrowser.apiRunner)("replaceHydrateFunction", undefined, _reactDom.default.hydrate)[0];
+     (0, _domready.default)(function () {
+-      renderer(_react.default.createElement(NewRoot, null), typeof window !== "undefined" ? document.getElementById("___gatsby") : void 0, function () {
++      renderer(_react.default.createElement(NewRoot, null), typeof window !== "undefined" ? document.getElementById("root") : void 0, function () {
+         (0, _apiRunnerBrowser.apiRunner)("onInitialClientRender");
+       });
+     });
 --- node_modules/gatsby/cache-dir/root.js
 +++ node_modules/gatsby/cache-dir/root.js
-@@ -15,7 +15,7 @@
+@@ -36,7 +36,7 @@
  // Report runtime errors
  ErrorOverlay.startReportingRuntimeErrors({
-   onError: () => {},
--  filename: `/commons.js`,
-+  filename: `/js/commons.js`,
- })
- ErrorOverlay.setEditorHandler(errorLocation =>
-   window.fetch(
+   onError: function onError() {},
+-  filename: "/commons.js"
++  filename: "/js/commons.js"
+ });
+ ErrorOverlay.setEditorHandler(function (errorLocation) {
+   return window.fetch("/__open-stack-frame-in-editor?fileName=" + window.encodeURIComponent(errorLocation.fileName) + "&lineNumber=" + window.encodeURIComponent(errorLocation.lineNumber || 1));
 --- node_modules/gatsby/cache-dir/static-entry.js
 +++ node_modules/gatsby/cache-dir/static-entry.js
-@@ -10,7 +10,7 @@
- const { dataPaths, pages } = require(`./data.json`)
+@@ -38,7 +38,7 @@
+     dataPaths = _require5.dataPaths,
+     pages = _require5.pages;
  
- const stats = JSON.parse(
--  fs.readFileSync(`${process.cwd()}/public/webpack.stats.json`, `utf-8`)
-+  fs.readFileSync(`${process.cwd()}/public/js/webpack.stats.json`, `utf-8`)
- )
+-var stats = JSON.parse(fs.readFileSync(process.cwd() + "/public/webpack.stats.json", "utf-8")); // const testRequireError = require("./test-require-error")
++var stats = JSON.parse(fs.readFileSync(process.cwd() + "/public/js/webpack.stats.json", "utf-8")); // const testRequireError = require("./test-require-error")
+ // For some extremely mysterious reason, webpack adds the above module *after*
+ // this module so that when this code runs, testRequireError is undefined.
+ // So in the meantime, we'll just inline it.
+@@ -89,7 +89,7 @@
+   var pathPrefix = __PATH_PREFIX__ + "/";
+   var bodyHtml = "";
+   var headComponents = [];
+-  var htmlAttributes = {};
++  var htmlAttributes = {"lang": "en", "xmlns": "http://www.w3.org/1999/xhtml"};
+   var bodyAttributes = {};
+   var preBodyComponents = [];
+   var postBodyComponents = [];
+@@ -130,7 +130,7 @@
+     var pathToJsonData = "../public/" + dataPaths[page.jsonName];
  
- // const testRequireError = require("./test-require-error")
-@@ -60,7 +60,7 @@
- 
-   let bodyHtml = ``
-   let headComponents = []
--  let htmlAttributes = {}
-+  let htmlAttributes = {"lang": "en", "xmlns": "http://www.w3.org/1999/xhtml"}
-   let bodyAttributes = {}
-   let preBodyComponents = []
-   let postBodyComponents = []
-@@ -98,11 +98,11 @@
- 
-   let dataAndContext = {}
-   if (page.jsonName in dataPaths) {
--    const pathToJsonData = `../public/` + dataPaths[page.jsonName]
-+    const pathToJsonData = `../public/js/p/` + dataPaths[page.jsonName]
      try {
-       dataAndContext = JSON.parse(
-         fs.readFileSync(
--          `${process.cwd()}/public/static/d/${dataPaths[page.jsonName]}.json`
-+          `${process.cwd()}/public/js/p/${dataPaths[page.jsonName]}.json`
-         )
-       )
+-      dataAndContext = JSON.parse(fs.readFileSync(process.cwd() + "/public/static/d/" + dataPaths[page.jsonName] + ".json"));
++      dataAndContext = JSON.parse(fs.readFileSync(process.cwd() + "/public/js/p/" + dataPaths[page.jsonName] + ".json"));
      } catch (e) {
-@@ -163,7 +163,7 @@
-       // Remove the runtime as we always inline that instead
-       // of loading it.
-       if (s === `app`) {
--        runtimeScript = chunks[0]
-+        runtimeScript = `/js/${chunks[0]}`
+       console.log("error", pathToJsonData, e);
+       process.exit();
+@@ -183,7 +183,7 @@
+         return null;
        }
  
-       if (!chunks) {
-@@ -174,7 +174,7 @@
-         if (chunk === `/`) {
-           return null
-         }
--        return chunk
-+        return `/js/${chunk}`
-       })
-     })
-   ).filter(s => isString(s))
-@@ -216,7 +216,7 @@
-     })
+-      return chunk;
++      return `/js/${chunk}`;
+     });
+   })).filter(function (s) {
+     return isString(s);
+@@ -218,14 +218,14 @@
+   });
  
    if (page.jsonName in dataPaths) {
--    const dataPath = `${pathPrefix}static/d/${dataPaths[page.jsonName]}.json`
-+    const dataPath = `${pathPrefix}js/p/${dataPaths[page.jsonName]}.json`
-     // Insert json data path after commons and app
-     headComponents.splice(
-       1,
-@@ -225,8 +225,8 @@
-         rel="preload"
-         key={dataPath}
-         href={dataPath}
--        as="fetch"
--        crossOrigin="use-credentials"
-+        as="script"
-+        crossorigin="use-credentials"
-       />
-     )
+-    var dataPath = pathPrefix + "static/d/" + dataPaths[page.jsonName] + ".json"; // Insert json data path after commons and app
++    var dataPath = pathPrefix + "js/p/" + dataPaths[page.jsonName] + ".json"; // Insert json data path after commons and app
+ 
+     headComponents.splice(1, 0, React.createElement("link", {
+       rel: "preload",
+       key: dataPath,
+       href: dataPath,
+-      as: "fetch",
+-      crossOrigin: "use-credentials"
++      as: "script",
++      crossorigin: "use-credentials"
+     }));
    }
-@@ -268,7 +268,7 @@
-   )
  
-   const bodyScripts = scripts.map(s => {
--    const scriptPath = `${pathPrefix}${JSON.stringify(s).slice(1, -1)}`
-+    const scriptPath = `${pathPrefix}${JSON.stringify(s).slice(1, -1)}`.replace(/\/+/g, "/")
-     return <script key={scriptPath} src={scriptPath} async />
-   })
- 
+@@ -249,7 +249,7 @@
+     }
+   }));
+   var bodyScripts = scripts.map(function (s) {
+-    var scriptPath = "" + pathPrefix + (0, _stringify.default)(s).slice(1, -1);
++    var scriptPath = "" + pathPrefix + (0, _stringify.default)(s).slice(1, -1).replace(/\/+/g, "/");
+     return React.createElement("script", {
+       key: scriptPath,
+       src: scriptPath,
 --- node_modules/gatsby/dist/bootstrap/index.js
 +++ node_modules/gatsby/dist/bootstrap/index.js
 @@ -75,7 +75,7 @@
@@ -210,7 +197,7 @@
        plugins.push(processPlugin(absPath));
 --- node_modules/gatsby/dist/internal-plugins/query-runner/query-runner.js
 +++ node_modules/gatsby/dist/internal-plugins/query-runner/query-runner.js
-@@ -72,10 +72,10 @@
+@@ -73,10 +73,10 @@
  
      const resultJSON = JSON.stringify(result);
  
@@ -223,7 +210,7 @@
  
      let dataPath;
  
-@@ -102,9 +102,9 @@
+@@ -103,9 +103,9 @@
      }
  
      if (resultHashes[queryJob.id] !== resultHash) {
@@ -277,16 +264,16 @@
  var _lodash = _interopRequireDefault(require("lodash"));
  
  const path = require(`path`);
-@@ -11,7 +17,7 @@
+@@ -13,7 +19,7 @@
  
  const generatePathChunkName = path => {
-   const name = path === `/` ? `index` : _lodash.default.kebabCase(path);
+   const name = path === `/` ? `index` : kebabHash(path);
 -  return `path---${name}`;
 +  return `p-${shahash(name)}`;
  };
  
  const generateComponentChunkName = componentPath => {
-@@ -23,7 +29,7 @@
+@@ -25,7 +31,7 @@
    }
  
    const name = path.relative(directory, componentPath);
@@ -355,7 +342,7 @@
      plugins.moment = () => plugins.ignore(/^\.\/locale$/, /moment$/);
 --- node_modules/gatsby/dist/utils/webpack.config.js
 +++ node_modules/gatsby/dist/utils/webpack.config.js
-@@ -119,8 +119,8 @@
+@@ -136,8 +136,8 @@
            return {
              filename: `[name]-[chunkhash].js`,
              chunkFilename: `[name]-[chunkhash].js`,
@@ -366,16 +353,16 @@
            };
  
          default:
-@@ -132,7 +132,7 @@
+@@ -149,7 +149,7 @@
        switch (stage) {
          case `develop`:
            return {
--            commons: [require.resolve(`react-hot-loader/patch`), `${require.resolve(`webpack-hot-middleware/client`)}?path=http://${program.host}:${webpackPort}/__webpack_hmr&reload=true&overlay=false`, directoryPath(`.cache/app`)]
-+            "js/commons": [require.resolve(`react-hot-loader/patch`), `${require.resolve(`webpack-hot-middleware/client`)}?path=/__webpack_hmr&reload=true&overlay=false`, directoryPath(`.cache/app`)]
+-            commons: [require.resolve(`react-hot-loader/patch`), `${require.resolve(`webpack-hot-middleware/client`)}?path=${getHmrPath()}`, directoryPath(`.cache/app`)]
++            "js/commons": [require.resolve(`react-hot-loader/patch`), `${require.resolve(`webpack-hot-middleware/client`)}?path=${getHmrPath()}`, directoryPath(`.cache/app`)]
            };
  
          case `develop-html`:
-@@ -231,7 +231,7 @@
+@@ -246,7 +246,7 @@
                      }
                    }
  

@@ -20,7 +20,7 @@
           "loose": true,
           "shippedProposals": true,
           "targets": {
-            "node": 6
+            "node": "current"
           },
           "useBuiltIns": "usage"
         }
@@ -64,5 +64,5 @@
     "access": "public"
   },
   "repository": "https://github.com/ptb/amory/tree/master/packages/core-babel",
-  "version": "2018.6.7-2"
+  "version": "2018.6.12-0"
 }
