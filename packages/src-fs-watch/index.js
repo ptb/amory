@@ -1,7 +1,7 @@
 const { fork } = require ("child_process")
 const crypto = require ("crypto")
 const { existsSync, readFileSync } = require ("fs-extra")
-const { join } = require ("path").posix
+const { dirname, join } = require ("path").posix
 const { ReplaySubject } = require ("rxjs")
 
 const getHash = (src) =>
@@ -41,22 +41,39 @@ module.exports = (() => (options = {}) => {
 
     switch (evt) {
       case "add":
-      case "change":
         digest = getHash (src)
-
         if (digest !== files.get (src)) {
           files.set (src, digest)
-          queue.next ({ digest, "evt": "change", src })
+          queue.next ({ digest, "evt": "addFile", src })
         }
-
         break
+
+      case "change":
+        digest = getHash (src)
+        if (digest !== files.get (src)) {
+          files.set (src, digest)
+          queue.next ({ "evt": "modDir", dirname (src) })
+          queue.next ({ digest, "evt": "modFile", src })
+        }
+        break
+
       case "unlink":
         digest = files.get (src)
-
         files.delete (src)
-        queue.next ({ digest, "evt": "delete", src })
+        queue.next ({ "evt": "modDir", dirname (src) })
+        queue.next ({ digest, "evt": "delFile", src })
         break
+
+      case "addDir":
+        queue.next ({ "evt": "addDir", src })
+        break
+
+      case "unlinkDir":
+        queue.next ({ "evt": "delDir", src })
+        break
+
       default:
+        queue.next ({ evt, src })
         break
     }
   })
