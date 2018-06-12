@@ -3,7 +3,7 @@
   "dependencies": {
     "@amory/chokidar": "2.0.3",
     "fs-extra": "6.0.1",
-    "rxjs": "6.2.0"
+    "rxjs": "6.2.1"
   },
   "engines": {
     "node": ">=8"
