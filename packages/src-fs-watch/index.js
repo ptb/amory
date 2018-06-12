@@ -52,7 +52,7 @@ module.exports = (() => (options = {}) => {
         digest = getHash (src)
         if (digest !== files.get (src)) {
           files.set (src, digest)
-          queue.next ({ "evt": "modDir", dirname (src) })
+          queue.next ({ "evt": "modDir", "src": dirname (src) })
           queue.next ({ digest, "evt": "modFile", src })
         }
         break
@@ -60,7 +60,7 @@ module.exports = (() => (options = {}) => {
       case "unlink":
         digest = files.get (src)
         files.delete (src)
-        queue.next ({ "evt": "modDir", dirname (src) })
+        queue.next ({ "evt": "modDir", "src": dirname (src) })
         queue.next ({ digest, "evt": "delFile", src })
         break
 
