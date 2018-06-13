@@ -3,8 +3,8 @@
   "dependencies": {
     "babel-plugin-remove-graphql-queries": "2.0.1-9",
     "gatsby": "2.0.0-alpha.55",
-    "react": "16.4.0",
-    "react-dom": "16.4.0"
+    "react": "16.4.1",
+    "react-dom": "16.4.1"
   },
   "description": "Personal preference patches for Gatsby",
   "engines": {
