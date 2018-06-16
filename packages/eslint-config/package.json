@@ -11,7 +11,8 @@
     "eslint-plugin-jsx-a11y": "6.0.3",
     "eslint-plugin-promise": "3.8.0",
     "eslint-plugin-react": "7.9.1",
-    "eslint-plugin-standard": "3.1.0"
+    "eslint-plugin-standard": "3.1.0",
+    "graphql": "^14.0.0-rc.2"
   },
   "description": "Lint JavaScript code with @ptb's personal preferences",
   "engines": {
@@ -28,5 +29,5 @@
     "access": "public"
   },
   "repository": "https://github.com/ptb/amory/tree/master/packages/eslint-config",
-  "version": "2018.6.12-5"
+  "version": "2018.6.16-0"
 }
