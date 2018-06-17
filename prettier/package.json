@@ -1,0 +1,18 @@
+{
+  "author": "Peter T Bosse II <ptb@ioutime.com> (http://ptb2.me/)",
+  "dependencies": {
+    "prettier": "1.13.5",
+    "prettier-eslint-cli": "4.7.1"
+  },
+  "description": "Format JavaScript code with @ptb's personal preferences",
+  "engines": {
+    "node": ">=8"
+  },
+  "license": "(Apache-2.0 OR MIT)",
+  "name": "@amory/prettier",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": "https://github.com/ptb/amory/tree/master/prettier",
+  "version": "2018.6.17-0"
+}

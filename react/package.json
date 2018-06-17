@@ -1,0 +1,41 @@
+{
+  "author": "Peter T Bosse II <ptb@ioutime.com> (http://ptb2.me/)",
+  "babel": {
+    "plugins": [
+      [
+        "babel-plugin-jsx-pragmatic",
+        {
+          "export": "createElement",
+          "import": "h",
+          "module": "react"
+        }
+      ]
+    ],
+    "presets": [
+      [
+        "@babel/preset-react",
+        {
+          "pragma": "h"
+        }
+      ]
+    ]
+  },
+  "dependencies": {
+    "@babel/core": "latest",
+    "@babel/preset-react": "latest",
+    "babel-loader": "next",
+    "babel-plugin-jsx-pragmatic": "1.0.2",
+    "deepmerge": "2.1.1"
+  },
+  "engines": {
+    "node": ">=8"
+  },
+  "license": "(Apache-2.0 OR MIT)",
+  "main": "index.js",
+  "name": "@amory/react",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": "https://github.com/ptb/amory/tree/master/react",
+  "version": "2018.6.17-0"
+}

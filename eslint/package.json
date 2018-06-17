@@ -1,0 +1,33 @@
+{
+  "author": "Peter T Bosse II <ptb@ioutime.com> (http://ptb2.me/)",
+  "dependencies": {
+    "babel-eslint": "8.2.3",
+    "eslint": "4.19.1",
+    "eslint-plugin-better": "latest",
+    "eslint-plugin-fp": "2.3.0",
+    "eslint-plugin-graphql": "2.1.1",
+    "eslint-plugin-import": "2.12.0",
+    "eslint-plugin-json": "1.2.0",
+    "eslint-plugin-jsx-a11y": "6.0.3",
+    "eslint-plugin-promise": "3.8.0",
+    "eslint-plugin-react": "7.9.1",
+    "eslint-plugin-standard": "3.1.0",
+    "graphql": "rc"
+  },
+  "description": "Lint JavaScript code with @ptb's personal preferences",
+  "engines": {
+    "node": ">=8"
+  },
+  "keywords": [
+    "eslint",
+    "eslintconfig"
+  ],
+  "license": "(Apache-2.0 OR MIT)",
+  "main": ".eslintrc.js",
+  "name": "@amory/eslint-config",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": "https://github.com/ptb/amory/tree/master/eslint",
+  "version": "2018.6.17-0"
+}
