@@ -1,0 +1,12 @@
+{
+  "configurations": [
+    {
+      "cwd": "${workspaceRoot}",
+      "name": "Launch webpack",
+      "program": "${workspaceRoot}/node_modules/.bin/webpack",
+      "request": "launch",
+      "type": "node"
+    }
+  ],
+  "version": "0.2.0"
+}

@@ -4,6 +4,8 @@ module.exports = (config, esm) =>
   config.module
     .rule ("babel")
     .test (/\.jsx?$/)
+    .exclude.add (/node_modules/)
+    .end ()
     .use ("babel")
     .loader (require.resolve ("babel-loader"))
     .tap ((options = {}) =>
@@ -13,7 +15,6 @@ module.exports = (config, esm) =>
           [
             require.resolve ("@babel/plugin-transform-runtime"),
             {
-              "polyfill": false,
               "useBuiltIns": true,
               "useESModules": true
             }
