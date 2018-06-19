@@ -1,6 +1,6 @@
 const merge = require ("deepmerge")
 
-module.exports = (config, esm) =>
+module.exports = (config, esm = false) =>
   config.module
     .rule ("babel")
     .test (/\.jsx?$/)
@@ -16,7 +16,7 @@ module.exports = (config, esm) =>
             require.resolve ("@babel/plugin-transform-runtime"),
             {
               "useBuiltIns": true,
-              "useESModules": true
+              "useESModules": esm
             }
           ]
         ],
@@ -24,29 +24,11 @@ module.exports = (config, esm) =>
           [
             require.resolve ("@babel/preset-env"),
             {
-              "ignoreBrowserslistConfig": true,
-              "loose": false,
               "modules": false,
               "shippedProposals": true,
               "spec": true,
               "targets": {
-                "browsers": esm
-                  ? [
-                    "Chrome >= 61",
-                    "Edge >= 16",
-                    "Firefox >= 60",
-                    "iOS >= 11",
-                    "Safari >= 11"
-                  ]
-                  : [
-                    "Android >= 5",
-                    "Chrome >= 30",
-                    "Edge >= 12",
-                    "Explorer >= 11",
-                    "Firefox >= 27",
-                    "iOS >= 5",
-                    "Safari >= 7"
-                  ]
+                "esmodules": esm
               },
               "useBuiltIns": "usage"
             }
