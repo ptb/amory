@@ -15,13 +15,11 @@
       [
         "@babel/preset-env",
         {
-          "ignoreBrowserslistConfig": true,
-          "loose": false,
           "modules": false,
           "shippedProposals": true,
           "spec": true,
           "targets": {
-            "node": "current"
+            "esmodules": true
           },
           "useBuiltIns": "usage"
         }
@@ -30,6 +28,7 @@
   },
   "dependencies": {
     "@babel/core": "latest",
+    "@babel/node": "latest",
     "@babel/plugin-syntax-dynamic-import": "latest",
     "@babel/plugin-transform-runtime": "latest",
     "@babel/preset-env": "latest",
@@ -48,5 +47,5 @@
     "access": "public"
   },
   "repository": "https://github.com/ptb/amory/tree/master/babel",
-  "version": "2018.6.20-0"
+  "version": "2018.6.20-1"
 }
