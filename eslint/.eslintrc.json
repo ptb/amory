@@ -55,17 +55,17 @@
         "before": true
       }
     ],
-    "better/explicit-return": "warn",
+    "better/explicit-return": "off",
     "better/no-classes": "off",
     "better/no-deletes": "off",
     "better/no-exceptions": "off",
     "better/no-exports": "off",
     "better/no-fors": "off",
     "better/no-function-expressions": "off",
-    "better/no-ifs": "warn",
+    "better/no-ifs": "off",
     "better/no-imports": "off",
-    "better/no-instanceofs": "warn",
-    "better/no-new": "warn",
+    "better/no-instanceofs": "off",
+    "better/no-new": "off",
     "better/no-nulls": "off",
     "better/no-reassigns": "off",
     "better/no-switches": "off",
@@ -146,33 +146,33 @@
       "smart"
     ],
     "for-direction": "warn",
-    "fp/no-arguments": "warn",
-    "fp/no-class": "warn",
-    "fp/no-delete": "warn",
-    "fp/no-events": "warn",
-    "fp/no-get-set": "warn",
-    "fp/no-let": "warn",
-    "fp/no-loops": "warn",
-    "fp/no-mutating-assign": "warn",
-    "fp/no-mutating-methods": "warn",
+    "fp/no-arguments": "off",
+    "fp/no-class": "off",
+    "fp/no-delete": "off",
+    "fp/no-events": "off",
+    "fp/no-get-set": "off",
+    "fp/no-let": "off",
+    "fp/no-loops": "off",
+    "fp/no-mutating-assign": "off",
+    "fp/no-mutating-methods": "off",
     "fp/no-mutation": [
-      "warn",
+      "off",
       {
         "commonjs": true
       }
     ],
-    "fp/no-nil": "warn",
-    "fp/no-proxy": "warn",
-    "fp/no-rest-parameters": "warn",
-    "fp/no-this": "warn",
-    "fp/no-throw": "warn",
+    "fp/no-nil": "off",
+    "fp/no-proxy": "off",
+    "fp/no-rest-parameters": "off",
+    "fp/no-this": "off",
+    "fp/no-throw": "off",
     "fp/no-unused-expression": [
-      "warn",
+      "off",
       {
         "allowUseStrict": true
       }
     ],
-    "fp/no-valueof-field": "warn",
+    "fp/no-valueof-field": "off",
     "func-call-spacing": [
       "warn",
       "always"
@@ -204,10 +204,10 @@
     "id-blacklist": "off",
     "id-length": "off",
     "id-match": "off",
-    "import/export": "warn",
-    "import/no-amd": "warn",
+    "import/export": "off",
+    "import/no-amd": "off",
     "import/no-commonjs": [
-      "warn",
+      "off",
       "allow-primitive-modules"
     ],
     "indent": [
