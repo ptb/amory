@@ -35,7 +35,7 @@
     "@babel/runtime": "latest",
     "babel-loader": "next",
     "deepmerge": "2.1.1",
-    "webpack": "4.12.2"
+    "webpack": "4.13.0"
   },
   "engines": {
     "node": ">=8"
