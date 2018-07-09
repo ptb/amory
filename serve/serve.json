@@ -1,0 +1,22 @@
+{
+  "nodemonConfig": {
+    "events": {
+      "start": "echo '\\x1Bc'"
+    },
+    "exec": "yarn serve",
+    "watch": [
+      "package.json",
+      "webpack.config.js"
+    ]
+  },
+  "scripts": {
+    "open:dev": "sleep 2 && open https://dev.ptb2.me/",
+    "open:hot": "sleep 2 && open http://hot.ptb2.me/",
+    "open:src": "sleep 2 && open https://src.ptb2.me/",
+    "open:web": "sleep 2 && open https://web.ptb2.me/",
+    "serve": "npx npm-run-all --parallel open:* serve:*",
+    "serve:dev": "browser-sync start --no-notify --no-open --no-ui -s src -w",
+    "serve:hot": "webpack-serve --content src --log-level warn --port 3001",
+    "start": "npx nodemon"
+  }
+}

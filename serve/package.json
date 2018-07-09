@@ -1,0 +1,34 @@
+{
+  "author": "Peter T Bosse II <ptb@ioutime.com> (http://ptb2.me/)",
+  "dependencies": {
+    "browser-sync": "^2.24.5",
+    "webpack-serve": "beta"
+  },
+  "devDependencies": {
+    "nodemon": "^1.17.5",
+    "npm-run-all": "^4.1.3"
+  },
+  "license": "Apache-2.0",
+  "name": "@amory/serve",
+  "nodemonConfig": {
+    "events": {
+      "start": "echo '\\x1Bc'"
+    },
+    "exec": "yarn serve",
+    "watch": [
+      "package.json",
+      "webpack.config.js"
+    ]
+  },
+  "scripts": {
+    "open:dev": "sleep 2 && open https://dev.ptb2.me/",
+    "open:hot": "sleep 2 && open http://hot.ptb2.me/",
+    "open:src": "sleep 2 && open https://src.ptb2.me/",
+    "open:web": "sleep 2 && open https://web.ptb2.me/",
+    "serve": "npx npm-run-all --parallel open:* serve:*",
+    "serve:dev": "browser-sync start --no-notify --no-open --no-ui -s src -w",
+    "serve:hot": "webpack-serve --content src --log-level warn --port 3001",
+    "start": "npx nodemon"
+  },
+  "version": "2018.7.9-0"
+}
