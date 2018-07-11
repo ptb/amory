@@ -12,6 +12,9 @@ module.exports = (config) => {
     .forEach ((asset) =>
       /* eslint-disable indent */
       config
+        .entry ("index")
+          .add (join (config.get ("context"), "src", "index.js"))
+          .end ()
         .output
           .filename (join ("js", "[name]-[contenthash:6].js"))
           .end ()
@@ -29,8 +32,8 @@ module.exports = (config) => {
               "template": asset,
               "xhtml": true
             })
-          ]))
-          .end ()
+          ])
+          .end ())
 
   return config
 }
