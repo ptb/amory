@@ -1,18 +1,22 @@
 {
   "author": "Peter T Bosse II <ptb@ioutime.com> (http://ptb2.me/)",
   "dependencies": {
-    "webpack": "4.15.1",
+    "react": "16.4.1",
+    "react-dom": "16.4.1",
+    "vm2": "3.6.2",
+    "webpack": "4.16.0",
     "webpack-chain": "4.8.0",
-    "webpack-command": "latest"
+    "webpack-sources": "1.1.0"
   },
   "engines": {
     "node": ">=8"
   },
   "license": "(Apache-2.0 OR MIT)",
-  "name": "@amory/webpack",
+  "main": "index.js",
+  "name": "@amory/ssr",
   "publishConfig": {
     "access": "public"
   },
-  "repository": "https://github.com/ptb/amory/tree/master/webpack",
+  "repository": "https://github.com/ptb/amory/tree/master/ssr",
   "version": "2018.7.11-0"
 }
