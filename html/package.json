@@ -3,7 +3,8 @@
   "dependencies": {
     "deepmerge": "2.1.1",
     "html-webpack-plugin": "next",
-    "node-dir": "latest"
+    "node-dir": "latest",
+    "webpack": "4.16.0"
   },
   "engines": {
     "node": ">=8"
@@ -15,5 +16,5 @@
     "access": "public"
   },
   "repository": "https://github.com/ptb/amory/tree/master/html",
-  "version": "2018.7.11-3"
+  "version": "2018.7.11-4"
 }
