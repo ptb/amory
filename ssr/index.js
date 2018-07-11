@@ -24,6 +24,7 @@ const layout = (content) =>
       ]),
       h ("body", {
         "dangerouslySetInnerHTML": { "__html": content },
+        "id": "root",
         "key": "body"
       })
     ])
