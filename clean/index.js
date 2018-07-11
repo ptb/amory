@@ -4,7 +4,15 @@ const merge = require ("deepmerge")
 module.exports = (config) =>
   config
     .plugin ("clean")
+    .before ("ssr")
     .use (CleanWebpackPlugin)
-    .tap ((options = []) => [
-      merge (options, config.output.get ("path"))
+    .tap ((paths = [], options = {}) => [
+      merge (paths, [
+        config.output.get ("path")
+      ]),
+      merge (options, {
+        "allowExternal": true,
+        "root": config.output.get ("context"),
+        "watch": true
+      })
     ])
