@@ -1,7 +1,7 @@
 const merge = require ("deepmerge")
 const HtmlWebpackPlugin = require ("html-webpack-plugin")
 const nodeDir = require ("node-dir")
-const { relative } = require ("path").posix
+const { join, relative } = require ("path").posix
 
 module.exports = (config) => {
   const dir = config.output.get ("path")
@@ -10,22 +10,27 @@ module.exports = (config) => {
     .files (dir, { "sync": true })
     .filter ((asset) => (/\.(html?)$/).test (asset))
     .forEach ((asset) =>
+      /* eslint-disable indent */
       config
+        .output
+          .filename (join ("js", "[name]-[contenthash:6].js"))
+          .end ()
         .plugin (asset)
-        .use (HtmlWebpackPlugin)
-        .tap ((options = {}) => [
-          merge (options, {
-            "filename": relative (dir, asset),
-            "minify": {
-              "collapseWhitespace": true,
-              "keepClosingSlash": true,
-              "preserveLineBreaks": true,
-              "useShortDoctype": true
-            },
-            "template": asset,
-            "xhtml": true
-          })
-        ]))
+          .use (HtmlWebpackPlugin)
+          .tap ((options = {}) => [
+            merge (options, {
+              "filename": relative (dir, asset),
+              "minify": {
+                "collapseWhitespace": true,
+                "keepClosingSlash": true,
+                "preserveLineBreaks": true,
+                "useShortDoctype": true
+              },
+              "template": asset,
+              "xhtml": true
+            })
+          ]))
+          .end ()
 
   return config
 }

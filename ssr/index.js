@@ -22,11 +22,13 @@ const layout = (content) =>
         }),
         h ("title", { "key": "title" }, "\u00a0")
       ]),
-      h ("body", {
-        "dangerouslySetInnerHTML": { "__html": content },
-        "id": "root",
-        "key": "body"
-      })
+      h ("body", { "key": "body" }, [
+        h ("div", {
+          "dangerouslySetInnerHTML": { "__html": content },
+          "id": "root",
+          "key": "root"
+        })
+      ])
     ])
   )}`
 
