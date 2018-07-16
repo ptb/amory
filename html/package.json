@@ -4,7 +4,7 @@
     "deepmerge": "2.1.1",
     "html-webpack-plugin": "next",
     "node-dir": "latest",
-    "webpack": "4.16.0"
+    "webpack": "4.16.1"
   },
   "engines": {
     "node": ">=8"
