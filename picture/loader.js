@@ -112,7 +112,7 @@ module.exports = async function (source, map, meta) {
 
     output = JSON.stringify (opts)
 
-    this.emitFile (join (filepath, `${opts.input.name}.json`), output)
+    this.emitFile (filename, output)
   }
 
   done (null, `module.exports = ${output}`, map, meta)

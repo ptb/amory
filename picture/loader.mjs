@@ -112,7 +112,7 @@ const loader = async function (source, map, meta) {
 
     output = JSON.stringify (opts)
 
-    this.emitFile (join (filepath, `${opts.input.name}.json`), output)
+    this.emitFile (filename, output)
   }
 
   done (null, `export default ${output}`, map, meta)
