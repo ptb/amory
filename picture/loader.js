@@ -94,9 +94,15 @@ module.exports = async function (source, map, meta) {
 
   opts = merge (opts, await resize.getMetadata ([source, opts]) (this))
   const filepath = join (opts.input.relative, opts.input.name)
+  const etag = crypto
+    .createHash ("sha1")
+    .update (opts)
+    .digest ("hex")
+    .slice (0, 6)
+
   const filename = join (
     filepath,
-    `${opts.input.name}-${opts.input.hash}.json`
+    `${opts.input.name}-${opts.input.hash.slice (0, 6)}-${etag}.json`
   )
   const fullname = join (this._compiler.outputPath, filename)
 
