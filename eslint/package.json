@@ -2,7 +2,7 @@
   "author": "Peter T Bosse II <ptb@ioutime.com> (http://ptb2.me/)",
   "dependencies": {
     "babel-eslint": "8.2.6",
-    "eslint": "5.1.0",
+    "eslint": "5.2.0",
     "eslint-plugin-better": "latest",
     "eslint-plugin-compat": "2.5.0",
     "eslint-plugin-fp": "2.3.0",
