@@ -98,7 +98,7 @@ module.exports = async function (source, map, meta) {
     filepath,
     `${opts.input.name}-${opts.input.hash}.json`
   )
-  const fullname = join (this._compiler.outputPah, filename)
+  const fullname = join (this._compiler.outputPath, filename)
 
   let output
 
