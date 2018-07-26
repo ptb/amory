@@ -97,7 +97,7 @@ module.exports = async function (source, map, meta) {
   const filepath = join (opts.input.relative, opts.input.name)
   const etag = crypto
     .createHash ("sha1")
-    .update (opts)
+    .update (JSON.stringify (opts))
     .digest ("hex")
     .slice (0, 6)
 
