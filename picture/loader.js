@@ -1,5 +1,6 @@
 /* eslint max-statements: off, no-invalid-this: off, require-jsdoc: off */
 
+const crypto = require ("crypto")
 const { existsSync, readFileSync } = require ("fs-extra")
 const { getOptions, parseQuery } = require ("loader-utils")
 const pMap = require ("p-map")

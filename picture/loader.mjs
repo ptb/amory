@@ -1,5 +1,6 @@
 /* eslint max-statements: off, no-invalid-this: off, require-jsdoc: off */
 
+import crypto from "crypto"
 import { existsSync, readFileSync } from "fs-extra"
 import { getOptions, parseQuery } from "loader-utils"
 import pMap from "p-map"
