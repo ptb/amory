@@ -95,15 +95,15 @@ const loader = async function (source, map, meta) {
   opts = merge (opts, await resize.getMetadata ([source, opts]) (this))
   const filepath = join (opts.input.relative, opts.input.name)
   const filename = join (
-    this._compiler.outputPath,
     filepath,
     `${opts.input.name}-${opts.input.hash}.json`
   )
+  const fullname = join (this._compiler.outputPah, filename)
 
   let output
 
-  if (existsSync (filename)) {
-    output = readFileSync (filename)
+  if (existsSync (fullname)) {
+    output = readFileSync (fullname)
   } else {
     opts.sizes = await resize.getSizes ([source, opts]) (opts.sizes)
 
