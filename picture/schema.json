@@ -1,0 +1,363 @@
+{
+  "additionalProperties": false,
+  "definitions": {
+    "jpegactions": {
+      "items": {
+        "enum": [
+          "jpegoptim",
+          "jpegrecompress",
+          "jpegtran",
+          "libjpegturbo"
+        ],
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "jpegalgorithm": {
+      "enum": [
+        "mpe",
+        "ms-ssim",
+        "smallfry",
+        "ssim"
+      ],
+      "type": "string"
+    },
+    "pngactions": {
+      "items": {
+        "enum": [
+          "advpng",
+          "optipng",
+          "pngcrush",
+          "pngout",
+          "pngquant",
+          "zopflipng"
+        ],
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "viewbox": {
+      "additionalProperties": false,
+      "properties": {
+        "h": {
+          "type": "number"
+        },
+        "height": {
+          "type": "number"
+        },
+        "l": {
+          "type": "number"
+        },
+        "left": {
+          "type": "number"
+        },
+        "t": {
+          "type": "number"
+        },
+        "top": {
+          "type": "number"
+        },
+        "w": {
+          "type": "number"
+        },
+        "width": {
+          "type": "number"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "properties": {
+    "files": {
+      "additionalProperties": false,
+      "properties": {
+        "filename": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "filepath": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "input": {
+      "additionalProperties": false,
+      "properties": {
+        "dppx": {
+          "items": {
+            "type": "number"
+          },
+          "type": "array"
+        },
+        "hash": {
+          "pattern": "^[a-f0-9]+$",
+          "type": "string"
+        },
+        "height": {
+          "type": "number"
+        },
+        "name": {
+          "type": "string"
+        },
+        "ratio": {
+          "type": "number"
+        },
+        "relative": {
+          "type": "string"
+        },
+        "src": {
+          "type": "string"
+        },
+        "viewbox": {
+          "$ref": "#/definitions/viewbox"
+        },
+        "width": {
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "setup": {
+      "additionalProperties": false,
+      "properties": {
+        "color": {
+          "additionalProperties": false,
+          "properties": {
+            "actions": {
+              "$ref": "#/definitions/pngactions"
+            },
+            "ext": {
+              "type": "string"
+            },
+            "output": {
+              "type": "boolean"
+            },
+            "palette": {
+              "items": {
+                "enum": [
+                  "DarkMuted",
+                  "DarkVibrant",
+                  "LightMuted",
+                  "LightVibrant",
+                  "Muted",
+                  "Vibrant"
+                ],
+                "type": "string"
+              },
+              "type": "array"
+            }
+          },
+          "type": "object"
+        },
+        "jpeg": {
+          "additionalProperties": false,
+          "properties": {
+            "actions": {
+              "$ref": "#/definitions/jpegactions"
+            },
+            "algorithm": {
+              "$ref": "#/definitions/jpegalgorithm"
+            },
+            "ext": {
+              "type": "string"
+            },
+            "lossless": {
+              "type": "boolean"
+            },
+            "metadata": {
+              "type": "boolean"
+            },
+            "output": {
+              "type": "boolean"
+            },
+            "progressive": {
+              "type": "boolean"
+            },
+            "quality": {
+              "type": "number"
+            },
+            "subsample": {
+              "type": "boolean"
+            }
+          },
+          "type": "object"
+        },
+        "lqip": {
+          "additionalProperties": false,
+          "properties": {
+            "actions": {
+              "$ref": "#/definitions/jpegactions"
+            },
+            "algorithm": {
+              "$ref": "#/definitions/jpegalgorithm"
+            },
+            "ext": {
+              "type": "string"
+            },
+            "metadata": {
+              "type": "boolean"
+            },
+            "output": {
+              "type": "boolean"
+            },
+            "thumb": {
+              "type": "number"
+            }
+          }
+        },
+        "png": {
+          "additionalProperties": false,
+          "properties": {
+            "actions": {
+              "$ref": "#/definitions/pngactions"
+            },
+            "ext": {
+              "type": "string"
+            },
+            "metadata": {
+              "type": "boolean"
+            },
+            "output": {
+              "type": "boolean"
+            },
+            "quality": {
+              "type": "number"
+            }
+          }
+        },
+        "sqip": {
+          "additionalProperties": false,
+          "properties": {
+            "blur": {
+              "type": "number"
+            },
+            "ext": {
+              "type": "string"
+            },
+            "mode": {
+              "type": "number"
+            },
+            "numberOfPrimitives": {
+              "type": "number"
+            },
+            "output": {
+              "type": "boolean"
+            }
+          }
+        },
+        "webp": {
+          "additionalProperties": false,
+          "properties": {
+            "ext": {
+              "type": "string"
+            },
+            "lossless": {
+              "type": "boolean"
+            },
+            "metadata": {
+              "type": "boolean"
+            },
+            "output": {
+              "type": "boolean"
+            },
+            "quality": {
+              "type": "number"
+            }
+          }
+        }
+      },
+      "type": "object"
+    },
+    "sizes": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "color": {
+            "type": "string"
+          },
+          "cropbox": {
+            "$ref": "#/definitions/viewbox"
+          },
+          "dppx": {
+            "items": {
+              "type": "number"
+            },
+            "type": "array"
+          },
+          "focus": {
+            "items": {
+              "type": "number"
+            },
+            "type": "array"
+          },
+          "height": {
+            "type": "number"
+          },
+          "image": {
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "srcset": {
+                  "items": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                "type": {
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "max": {
+            "type": "number"
+          },
+          "media": {
+            "type": "string"
+          },
+          "min": {
+            "type": "number"
+          },
+          "proxy": {
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "srcset": {
+                  "items": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                "type": {
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "ratio": {
+            "type": "number"
+          },
+          "viewbox": {
+            "$ref": "#/definitions/viewbox"
+          },
+          "width": {
+            "type": "number"
+          }
+        },
+        "type": "object"
+      },
+      "type": "array"
+    }
+  },
+  "type": "object"
+}

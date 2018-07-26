@@ -1,0 +1,89 @@
+{
+  "files": {
+    "filename": [
+      "name",
+      "-",
+      "hash",
+      "@",
+      "dppx",
+      "-",
+      "etag",
+      ".",
+      "ext"
+    ],
+    "filepath": [
+      "relative",
+      "name"
+    ]
+  },
+  "input": {
+    "dppx": [
+      1,
+      2
+    ],
+    "viewbox": {
+      "h": 100,
+      "l": 0,
+      "t": 0,
+      "w": 100
+    }
+  },
+  "setup": {
+    "color": {
+      "actions": [
+        "pngquant",
+        "zopflipng"
+      ],
+      "ext": "png",
+      "output": false,
+      "palette": [
+        "Vibrant",
+        "Muted"
+      ]
+    },
+    "jpeg": {
+      "actions": [
+        "jpegrecompress"
+      ],
+      "algorithm": "ssim",
+      "ext": "jpeg",
+      "lossless": true,
+      "metadata": false,
+      "output": true,
+      "progressive": true,
+      "quality": 80,
+      "subsample": false
+    },
+    "lqip": {
+      "actions": [
+        "jpegrecompress"
+      ],
+      "ext": "jpeg",
+      "output": false,
+      "thumb": 20
+    },
+    "png": {
+      "actions": [
+        "zopflipng"
+      ],
+      "ext": "png",
+      "metadata": false,
+      "output": false,
+      "quality": 95
+    },
+    "sqip": {
+      "blur": 5,
+      "ext": "svg",
+      "mode": 0,
+      "numberOfPrimitives": 40,
+      "output": true
+    },
+    "webp": {
+      "ext": "webp",
+      "lossless": false,
+      "metadata": false,
+      "output": true,
+      "quality": 80
+    }
+  }
+}
