@@ -22,3 +22,4 @@ module.exports = ({
     .context (context)
     .mode (mode)
     .output.path (dest (context, mode))
+    .end ()
