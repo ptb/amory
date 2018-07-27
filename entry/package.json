@@ -1,18 +1,22 @@
 {
   "author": "Peter T Bosse II <ptb@ioutime.com> (http://ptb2.me/)",
   "dependencies": {
-    "@amory/chain": "latest",
-    "webpack-serve": "beta"
+    "fs-extra": "7.0.0",
+    "webpack-chain": "4.8.0"
   },
   "engines": {
     "node": ">=8"
   },
+  "keywords": [
+    "amory",
+    "webpack"
+  ],
   "license": "(Apache-2.0 OR MIT)",
   "main": "index.js",
-  "name": "@amory/devel",
+  "name": "@amory/entry",
   "publishConfig": {
     "access": "public"
   },
-  "repository": "https://github.com/ptb/amory/tree/master/devel",
+  "repository": "https://github.com/ptb/amory/tree/master/entry",
   "version": "2018.7.27-2"
 }
