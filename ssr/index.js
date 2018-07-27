@@ -1,14 +1,10 @@
+/* eslint max-statements: off */
+
 const { join } = require ("path").posix
 const { Children, "createElement": h } = require ("react")
 const { renderToStaticMarkup } = require ("react-dom/server")
 const { NodeVM } = require ("vm2")
 const { RawSource } = require ("webpack-sources")
-
-const dest = (config) =>
-  join (
-    config.get ("context"),
-    config.get ("mode") === "development" ? "dev" : "web"
-  )
 
 const layout = (content) =>
   `<!DOCTYPE html>${renderToStaticMarkup (
@@ -44,7 +40,7 @@ const routes = (content, prefix = "") =>
     ]
     : [])
 
-class AmorySSRPlugin {
+module.exports = class {
   constructor (opts = {}) {
     this.entry = opts.entry || "index.js"
     this.index = opts.index || "index.html"
@@ -60,7 +56,13 @@ class AmorySSRPlugin {
       compilation.hooks.additionalAssets.tapAsync (this.plugin, (done) => {
         try {
           const source = compilation.assets[this.entry].source ()
-          const asset = new NodeVM ().run (source).default
+
+          let asset = new NodeVM ().run (source)
+
+          asset = Object.prototype.hasOwnProperty.call (asset, "default")
+            ? asset.default
+            : asset
+
           const stats = compilation.getStats ().toJson ()
           const assets = new Map (
             Object.entries (stats.assetsByChunkName).map (([chunk, file]) => [
@@ -125,17 +127,3 @@ class AmorySSRPlugin {
       })
   }
 }
-
-/* eslint-disable indent */
-module.exports = (config) =>
-  config
-    .entry ("index")
-      .add (join (config.get ("context"), "src", "index.js"))
-      .end ()
-    .output
-      .libraryTarget ("commonjs2")
-      .path (dest (config))
-      .end ()
-    .plugin ("ssr")
-      .use (AmorySSRPlugin)
-      .end ()

@@ -5,7 +5,6 @@
     "react-dom": "16.4.1",
     "vm2": "3.6.2",
     "webpack": "4.16.2",
-    "webpack-chain": "4.8.0",
     "webpack-sources": "1.1.0"
   },
   "engines": {
@@ -18,5 +17,5 @@
     "access": "public"
   },
   "repository": "https://github.com/ptb/amory/tree/master/ssr",
-  "version": "2018.7.26-10"
+  "version": "2018.7.27-0"
 }

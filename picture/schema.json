@@ -114,6 +114,9 @@
         "src": {
           "type": "string"
         },
+        "title": {
+          "type": "string"
+        },
         "viewbox": {
           "$ref": "#/definitions/viewbox"
         },
