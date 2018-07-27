@@ -20,6 +20,9 @@ module.exports = ({
 }) =>
   config
     .context (context)
+    .entry ("index")
+    .add (resolve (context, "src", "index"))
+    .end ()
     .mode (mode)
     .output.path (dest (context, mode))
     .end ()
