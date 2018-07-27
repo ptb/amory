@@ -23,4 +23,3 @@ module.exports = ({
     .mode (mode)
     .output.path (dest (context, mode))
     .end ()
-    .toConfig ()

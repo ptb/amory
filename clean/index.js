@@ -1,10 +1,13 @@
+const merge = require ("@amory/merge")
 const CleanWebpackPlugin = require ("clean-webpack-plugin")
-const merge = require ("deepmerge")
+const Config = require ("webpack-chain")
 
-module.exports = (config) =>
+module.exports = ({
+  config = new Config ()
+}) =>
   config
     .plugin ("clean")
-    .before ("ssr")
+    .before ("react")
     .use (CleanWebpackPlugin)
     .tap ((paths = [], options = {}) => [
       merge (paths, [
@@ -16,3 +19,4 @@ module.exports = (config) =>
         "watch": true
       })
     ])
+    .end ()
