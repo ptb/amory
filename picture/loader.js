@@ -1,5 +1,6 @@
 /* eslint max-statements: off, no-invalid-this: off, require-jsdoc: off */
 
+const merge = require ("@amory/merge")
 const crypto = require ("crypto")
 const { existsSync, readFileSync } = require ("fs-extra")
 const { getOptions, parseQuery } = require ("loader-utils")
@@ -8,7 +9,6 @@ const { join } = require ("path").posix
 const validate = require ("@webpack-contrib/schema-utils")
 
 const defaults = require ("./defaults.json")
-const merge = require ("./merge.js")
 const resize = require ("./resize.js")
 const schema = require ("./schema.json")
 

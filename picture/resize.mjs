@@ -1,5 +1,6 @@
 /* eslint-disable compat/compat, no-magic-numbers, no-mixed-operators */
 
+import merge from "@amory/merge"
 import BinWrapper from "bin-wrapper"
 import crypto from "crypto" // eslint-disable-line no-shadow
 import execBuffer from "exec-buffer"
@@ -14,8 +15,6 @@ import { crop } from "smartcrop-sharp"
 import sqipBin from "sqip"
 import tempWrite from "temp-write"
 import tempy from "tempy"
-
-import merge from "./merge.mjs"
 
 const bin = (util) => {
   const dir = resolve (__dirname, "bin", process.platform)

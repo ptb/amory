@@ -1,6 +1,7 @@
 {
   "author": "Peter T Bosse II <ptb@ioutime.com> (http://ptb2.me/)",
   "dependencies": {
+    "@amory/merge": "latest",
     "@webpack-contrib/schema-utils": "^1.0.0-beta.0",
     "bin-wrapper": "^4.0.0",
     "exec-buffer": "^3.2.0",
@@ -39,5 +40,5 @@
     "access": "public"
   },
   "repository": "https://github.com/ptb/amory/tree/master/picture",
-  "version": "2018.7.27-6"
+  "version": "2018.7.27-7"
 }

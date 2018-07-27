@@ -1,9 +1,9 @@
-const merge = require ("deepmerge")
+const merge = require ("@amory/merge")
 
 module.exports = (config) =>
   config.module
     .rule ("babel")
-    .test (/\.jsx?$/)
+    .test (/\.m?jsx?$/)
     .exclude.add (/node_modules/)
     .end ()
     .use ("babel")

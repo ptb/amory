@@ -1,5 +1,6 @@
 /* eslint max-statements: off, no-invalid-this: off, require-jsdoc: off */
 
+import merge from "@amory/merge"
 import crypto from "crypto"
 import { existsSync, readFileSync } from "fs-extra"
 import { getOptions, parseQuery } from "loader-utils"
@@ -8,7 +9,6 @@ import { join } from "path"
 import validate from "@webpack-contrib/schema-utils"
 
 import defaults from "./defaults.json"
-import merge from "./merge.mjs"
 import resize from "./resize.mjs"
 import schema from "./schema.json"
 

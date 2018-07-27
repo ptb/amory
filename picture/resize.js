@@ -1,5 +1,6 @@
 /* eslint-disable compat/compat, no-magic-numbers, no-mixed-operators */
 
+const merge = require ("@amory/merge")
 const BinWrapper = require ("bin-wrapper")
 const crypto = require ("crypto") // eslint-disable-line no-shadow
 const execBuffer = require ("exec-buffer")
@@ -14,8 +15,6 @@ const { crop } = require ("smartcrop-sharp")
 const sqipBin = require ("sqip")
 const tempWrite = require ("temp-write")
 const tempy = require ("tempy")
-
-const merge = require ("./merge.js")
 
 const bin = (util) => {
   const dir = resolve (__dirname, "bin", process.platform)
