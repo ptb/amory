@@ -1,0 +1,21 @@
+{
+  "author": "Peter T Bosse II <ptb@ioutime.com> (http://ptb2.me/)",
+  "description": "Recursively merge any number of JavaScript objects",
+  "engines": {
+    "node": ">=8"
+  },
+  "keywords": [
+    "amory",
+    "deepmerge",
+    "merge"
+  ],
+  "license": "(Apache-2.0 OR MIT)",
+  "main": "index.js",
+  "module": "index.mjs",
+  "name": "@amory/merge",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": "https://github.com/ptb/amory/tree/master/merge",
+  "version": "2018.7.27-1"
+}
