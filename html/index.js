@@ -2,8 +2,11 @@ const merge = require ("deepmerge")
 const HtmlWebpackPlugin = require ("html-webpack-plugin")
 const nodeDir = require ("node-dir")
 const { join, relative } = require ("path").posix
+const Config = require ("webpack-chain")
 
-module.exports = (config) => {
+module.exports = ({
+  config = new Config ()
+}) => {
   const dir = config.output.get ("path")
 
   nodeDir
