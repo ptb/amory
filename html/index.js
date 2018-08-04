@@ -26,8 +26,7 @@ module.exports = (config) => {
               "minify": {
                 "collapseWhitespace": true,
                 "keepClosingSlash": true,
-                "preserveLineBreaks": true,
-                "useShortDoctype": true
+                "preserveLineBreaks": true
               },
               "template": asset,
               "xhtml": true
