@@ -7,7 +7,9 @@ module.exports = ({
 }) =>
   /* eslint-disable indent */
   config
-    .output.libraryTarget ("commonjs2")
+    .output
+      .libraryTarget ("commonjs2")
+      .end ()
     .plugin ("xhtml")
       .use (AmorySSRPlugin)
       .end ()

@@ -1,5 +1,6 @@
 module.exports = class {
   constructor (opts = {}) {
+    this.plugin = "AmoryExcludePlugin"
     this.regex = opts.regex || /\.(html?)$/
   }
 

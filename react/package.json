@@ -36,5 +36,5 @@
   "scripts": {
     "postinstall": "./convert.sh"
   },
-  "version": "2018.8.4-2"
+  "version": "2018.8.4-3"
 }
