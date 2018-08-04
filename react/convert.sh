@@ -16,4 +16,4 @@ for js in node_modules/fbjs/lib/*.js; do sed -i "" -E "s/process.env.NODE_ENV !=
 
 node_modules/.bin/rollup -c
 
-cp react.mjs example/js/react.js
+cp index.mjs example/js/react.js
