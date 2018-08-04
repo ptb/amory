@@ -15,13 +15,13 @@
     "webpack": "4.16.4"
   },
   "devDependencies": {
-    "cjs-to-es6": "^1.1.1",
-    "rollup": "^0.63.5",
+    "cjs-to-es6": "1.1.1",
+    "rollup": "0.63.5",
     "rollup-plugin-babel": "beta",
-    "rollup-plugin-commonjs": "^9.1.4",
-    "rollup-plugin-node-resolve": "^3.3.0",
-    "rollup-plugin-terser": "^1.0.1",
-    "rollup-plugin-uglify-es": "^0.0.1"
+    "rollup-plugin-commonjs": "9.1.4",
+    "rollup-plugin-node-resolve": "3.3.0",
+    "rollup-plugin-terser": "1.0.1",
+    "rollup-plugin-uglify-es": "0.0.1"
   },
   "engines": {
     "node": ">=8"
