@@ -36,9 +36,7 @@
   "main": "index.js",
   "module": "index.mjs",
   "name": "@amory/picture",
-  "publishConfig": {
-    "access": "public"
-  },
+  "private": true,
   "repository": "https://github.com/ptb/amory/tree/master/picture",
-  "version": "2018.8.4-1"
+  "version": "2018.8.4-2"
 }
