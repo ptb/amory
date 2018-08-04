@@ -10,8 +10,8 @@
     "@babel/core": "latest",
     "@babel/preset-react": "latest",
     "babel-loader": "next",
-    "react": "16.4.1",
-    "react-dom": "16.4.1",
+    "react": "16.4.2",
+    "react-dom": "16.4.2",
     "webpack": "4.16.4"
   },
   "engines": {

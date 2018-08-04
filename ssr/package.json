@@ -1,8 +1,8 @@
 {
   "author": "Peter T Bosse II <ptb@ioutime.com> (http://ptb2.me/)",
   "dependencies": {
-    "react": "16.4.1",
-    "react-dom": "16.4.1",
+    "react": "16.4.2",
+    "react-dom": "16.4.2",
     "vm2": "3.6.2",
     "webpack": "4.16.4",
     "webpack-sources": "1.1.0"
