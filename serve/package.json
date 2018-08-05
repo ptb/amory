@@ -2,6 +2,7 @@
   "author": "Peter T Bosse II <ptb@ioutime.com> (http://ptb2.me/)",
   "dependencies": {
     "browser-sync": "2.24.6",
+    "webpack": "4.16.4",
     "webpack-serve": "beta"
   },
   "devDependencies": {
@@ -11,11 +12,18 @@
   "engines": {
     "node": ">=8"
   },
+  "keywords": [
+    "amory",
+    "webpack"
+  ],
   "license": "(Apache-2.0 OR MIT)",
   "name": "@amory/serve",
   "publishConfig": {
     "access": "public"
   },
   "repository": "https://github.com/ptb/amory/tree/master/serve",
-  "version": "2018.8.4-6"
+  "scripts": {
+    "postinstall": "echo 'merge-json package.json node_modules/@amory/serve/serve.json'"
+  },
+  "version": "2018.8.5-1"
 }
