@@ -1,16 +1,16 @@
 /* eslint max-statements: off, no-invalid-this: off, require-jsdoc: off */
 
-const merge = require ("@amory/merge")
-const crypto = require ("crypto")
-const { existsSync, readFileSync } = require ("fs-extra")
-const { getOptions, parseQuery } = require ("loader-utils")
-const pMap = require ("p-map")
-const { join } = require ("path").posix
-const validate = require ("@webpack-contrib/schema-utils")
+import merge from "@amory/merge"
+import crypto from "crypto"
+import { existsSync, readFileSync } from "fs-extra"
+import { getOptions, parseQuery } from "loader-utils"
+import pMap from "p-map"
+import { join } from "path"
+import validate from "@webpack-contrib/schema-utils"
 
-const defaults = require ("./defaults.json")
-const resize = require ("./resize.js")
-const schema = require ("./schema.json")
+import defaults from "./defaults.json"
+import resize from "./resize.mjs"
+import schema from "./schema.json"
 
 const image = ([buffer, opts, size, type]) => (dppx) =>
   resize[type] ([buffer, opts, size, type, dppx])
@@ -75,7 +75,7 @@ const start = ([buffer, opts]) => async (size) =>
     ).then ((proxies) => proxies.filter (Boolean))
   })
 
-module.exports = async function (source, map, meta) {
+const loader = async function (source, map, meta) {
   const done = this.async ()
 
   let opts = [
@@ -85,7 +85,7 @@ module.exports = async function (source, map, meta) {
   ].reduce ((values, target) => {
     // this.emitWarning ?
     validate ({
-      "name": "@amory/picture",
+      "name": "@amory/image",
       "schema": schema,
       "target": target
     })
@@ -122,7 +122,9 @@ module.exports = async function (source, map, meta) {
     this.emitFile (filename, output)
   }
 
-  done (null, `module.exports = ${output}`, map, meta)
+  done (null, `export default ${output}`, map, meta)
 }
 
-module.exports.raw = true
+const raw = true
+
+export { loader as default, raw }
