@@ -1,12 +1,18 @@
 {
   "author": "Peter T Bosse II <ptb@ioutime.com> (http://ptb2.me/)",
   "dependencies": {
+    "@amory/merge": "latest",
     "clean-webpack-plugin": "latest",
-    "deepmerge": "2.1.1"
+    "webpack": "4.16.4",
+    "webpack-chain": "4.8.0"
   },
   "engines": {
     "node": ">=8"
   },
+  "keywords": [
+    "amory",
+    "webpack"
+  ],
   "license": "(Apache-2.0 OR MIT)",
   "main": "index.js",
   "name": "@amory/clean",
@@ -14,5 +20,5 @@
     "access": "public"
   },
   "repository": "https://github.com/ptb/amory/tree/master/clean",
-  "version": "2018.8.4-6"
+  "version": "2018.8.5-0"
 }

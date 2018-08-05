@@ -5,18 +5,18 @@ const Config = require ("webpack-chain")
 module.exports = ({
   config = new Config ()
 }) =>
+  /* eslint-disable indent */
   config
     .plugin ("clean")
-    .before ("react")
-    .use (CleanWebpackPlugin)
-    .tap ((paths = [], options = {}) => [
-      merge (paths, [
-        config.output.get ("path")
-      ]),
-      merge (options, {
-        "allowExternal": true,
-        "root": config.output.get ("context"),
-        "watch": true
-      })
-    ])
-    .end ()
+      .use (CleanWebpackPlugin)
+      .tap ((paths = [], options = {}) => [
+        merge (paths, [
+          config.output.get ("path")
+        ]),
+        merge (options, {
+          "allowExternal": true,
+          "root": config.output.get ("context"),
+          "watch": true
+        })
+      ])
+      .end ()
