@@ -1,7 +1,8 @@
 /* eslint max-statements: off */
 
-const { Children, h, renderToStaticMarkup } = require ("@amory/react")
 const { join } = require ("path").posix
+const { Children, "createElement": h } = require ("react")
+const { renderToStaticMarkup } = require ("react-dom/server")
 const { NodeVM } = require ("vm2")
 const { RawSource } = require ("webpack-sources")
 
