@@ -1,9 +1,8 @@
 {
   "author": "Peter T Bosse II <ptb@ioutime.com> (http://ptb2.me/)",
   "dependencies": {
-    "@amory/exclude": "latest",
-    "react": "16.4.2",
-    "react-dom": "16.4.2",
+    "@amory/react": "latest",
+    "@amory/scrub": "latest",
     "vm2": "3.6.2",
     "webpack": "4.16.4",
     "webpack-chain": "4.8.0",
@@ -12,12 +11,17 @@
   "engines": {
     "node": ">=8"
   },
+  "keywords": [
+    "amory",
+    "react",
+    "webpack"
+  ],
   "license": "(Apache-2.0 OR MIT)",
   "main": "index.js",
-  "name": "@amory/ssr",
+  "name": "@amory/xhtml",
   "publishConfig": {
     "access": "public"
   },
-  "repository": "https://github.com/ptb/amory/tree/master/ssr",
-  "version": "2018.8.4-6"
+  "repository": "https://github.com/ptb/amory/tree/master/xhtml",
+  "version": "2018.8.5-0"
 }

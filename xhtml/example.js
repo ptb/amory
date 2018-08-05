@@ -1,6 +1,6 @@
-import { h, hydrate, renderToString } from "./react.mjs"
+import { h, hydrate, renderToString } from "@amory/react"
 
-const content = (props) =>
+const content = () =>
   h ("div", { "path": "" }, h ("div", { "path": "i" }, "Hi!"))
 
 if (typeof document !== "undefined") {

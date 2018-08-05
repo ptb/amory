@@ -6,12 +6,17 @@
   "engines": {
     "node": ">=8"
   },
+  "keywords": [
+    "amory",
+    "react",
+    "webpack"
+  ],
   "license": "(Apache-2.0 OR MIT)",
   "main": "index.js",
-  "name": "@amory/exclude",
+  "name": "@amory/scrub",
   "publishConfig": {
     "access": "public"
   },
-  "repository": "https://github.com/ptb/amory/tree/master/exclude",
-  "version": "2018.8.4-6"
+  "repository": "https://github.com/ptb/amory/tree/master/scrub",
+  "version": "2018.8.5-0"
 }

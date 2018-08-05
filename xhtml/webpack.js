@@ -1,5 +1,5 @@
-const AmoryExcludePlugin = require ("@amory/exclude")
-const AmorySSRPlugin = require ("@amory/ssr")
+const AmoryScrubPlugin = require ("@amory/scrub")
+const AmoryXHTMLPlugin = require ("@amory/xhtml")
 const Config = require ("webpack-chain")
 
 module.exports = ({
@@ -11,9 +11,9 @@ module.exports = ({
       .libraryTarget ("commonjs2")
       .end ()
     .plugin ("xhtml")
-      .use (AmorySSRPlugin)
+      .use (AmoryXHTMLPlugin)
       .end ()
     .plugin ("exclude")
-      .use (AmoryExcludePlugin)
+      .use (AmoryScrubPlugin)
       .after ("xhtml")
       .end ()

@@ -1,8 +1,7 @@
 /* eslint max-statements: off */
 
+const { Children, h, renderToStaticMarkup } = require ("@amory/react")
 const { join } = require ("path").posix
-const { Children, "createElement": h } = require ("react")
-const { renderToStaticMarkup } = require ("react-dom/server")
 const { NodeVM } = require ("vm2")
 const { RawSource } = require ("webpack-sources")
 
@@ -46,7 +45,7 @@ module.exports = class {
     this.index = opts.index || "index.html"
     this.layout = opts.layout || layout
     this.paths = opts.paths || [""]
-    this.plugin = "AmorySSRPlugin"
+    this.plugin = "AmoryXHTMLPlugin"
     this.regex = opts.regex || /\.(html?)$/
     this.routes = opts.routes || routes
   }
