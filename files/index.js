@@ -18,11 +18,13 @@ module.exports = ({
   context = resolve (process.cwd ()),
   mode = "production"
 }) =>
+  /* eslint-disable indent */
   config
     .context (context)
     .entry ("index")
-    .add (resolve (context, "src", "index"))
-    .end ()
+      .add (resolve (context, "src", "index"))
+      .end ()
     .mode (mode)
-    .output.path (dest (context, mode))
-    .end ()
+    .output
+      .path (dest (context, mode))
+      .end ()
