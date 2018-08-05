@@ -1,4 +1,4 @@
-const merge = require ("deepmerge")
+const merge = require ("@amory/merge")
 const HtmlWebpackPlugin = require ("html-webpack-plugin")
 const nodeDir = require ("node-dir")
 const { join, relative } = require ("path").posix
@@ -15,9 +15,6 @@ module.exports = ({
     .forEach ((asset) =>
       /* eslint-disable indent */
       config
-        .entry ("index")
-          .add (join (config.get ("context"), "src", "index.js"))
-          .end ()
         .output
           .filename (join ("js", "[name]-[contenthash:6].js"))
           .end ()

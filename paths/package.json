@@ -1,7 +1,7 @@
 {
   "author": "Peter T Bosse II <ptb@ioutime.com> (http://ptb2.me/)",
   "dependencies": {
-    "deepmerge": "2.1.1",
+    "@amory/merge": "latest",
     "html-webpack-plugin": "next",
     "node-dir": "latest",
     "webpack": "4.16.4",
@@ -10,12 +10,16 @@
   "engines": {
     "node": ">=8"
   },
+  "keywords": [
+    "amory",
+    "webpack"
+  ],
   "license": "(Apache-2.0 OR MIT)",
   "main": "index.js",
-  "name": "@amory/html",
+  "name": "@amory/paths",
   "publishConfig": {
     "access": "public"
   },
-  "repository": "https://github.com/ptb/amory/tree/master/html",
-  "version": "2018.8.4-6"
+  "repository": "https://github.com/ptb/amory/tree/master/paths",
+  "version": "2018.8.5-0"
 }
