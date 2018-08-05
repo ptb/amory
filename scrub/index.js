@@ -1,7 +1,7 @@
 module.exports = class {
   constructor (opts = {}) {
     this.plugin = "AmoryScrubPlugin"
-    this.regex = opts.regex || /\.(html?)$/
+    this.regex = opts.regex || /\.(gif|html?|jpe?g|png|webp)$/
   }
 
   apply (compiler) {
