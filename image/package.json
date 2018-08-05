@@ -16,7 +16,8 @@
     "smartcrop-sharp": "2.0.3",
     "sqip": "0.3.3",
     "temp-write": "3.4.0",
-    "tempy": "0.2.1"
+    "tempy": "0.2.1",
+    "webpack": "4.16.4"
   },
   "description": "Webpack 4 loader to create images of various resolutions",
   "engines": {
@@ -35,7 +36,9 @@
   "main": "index.js",
   "module": "index.mjs",
   "name": "@amory/image",
-  "private": true,
+  "publishConfig": {
+    "access": "public"
+  },
   "repository": "https://github.com/ptb/amory/tree/master/image",
-  "version": "2018.8.5-0"
+  "version": "2018.8.5-1"
 }
