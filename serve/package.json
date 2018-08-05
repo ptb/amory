@@ -23,7 +23,7 @@
   },
   "repository": "https://github.com/ptb/amory/tree/master/serve",
   "scripts": {
-    "postinstall": "echo 'merge-json package.json node_modules/@amory/serve/serve.json' && exit 0"
+    "postinstall": "sh -c 'echo $0' 'merge-json package.json node_modules/@amory/serve/serve.json'"
   },
-  "version": "2018.8.5-3"
+  "version": "2018.8.5-4"
 }
