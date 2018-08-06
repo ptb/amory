@@ -6,7 +6,7 @@
     "react": "16.4.2",
     "react-dom": "16.4.2",
     "vm2": "3.6.3",
-    "webpack": "4.16.4",
+    "webpack": "4.16.5",
     "webpack-chain": "4.8.0",
     "webpack-sources": "1.1.0"
   },
