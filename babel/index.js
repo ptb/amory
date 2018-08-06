@@ -1,4 +1,4 @@
-const merge = require ("deepmerge")
+const merge = require ("@amory/merge")
 
 module.exports = (config, esm = false) =>
   config.module

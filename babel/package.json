@@ -27,6 +27,7 @@
     ]
   },
   "dependencies": {
+    "@amory/merge": "latest",
     "@babel/core": "latest",
     "@babel/node": "latest",
     "@babel/plugin-syntax-dynamic-import": "latest",
@@ -34,7 +35,6 @@
     "@babel/preset-env": "latest",
     "@babel/runtime": "latest",
     "babel-loader": "next",
-    "deepmerge": "2.1.1",
     "webpack": "4.16.4"
   },
   "engines": {
@@ -47,5 +47,5 @@
     "access": "public"
   },
   "repository": "https://github.com/ptb/amory/tree/master/babel",
-  "version": "2018.8.4-6"
+  "version": "2018.8.5-0"
 }
