@@ -17,7 +17,7 @@
   },
   "devDependencies": {
     "cjs-to-es6": "1.1.1",
-    "rollup": "0.63.5",
+    "rollup": "0.64.1",
     "rollup-plugin-babel": "beta",
     "rollup-plugin-commonjs": "9.1.4",
     "rollup-plugin-node-resolve": "3.3.0",
