@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-vars */
-
 import { resolve } from "path"
 import Config from "webpack-chain"
 

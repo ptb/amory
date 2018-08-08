@@ -7,6 +7,9 @@
       ],
       "autoAttachChildProcesses": true,
       "cwd": "${workspaceRoot}",
+      "env": {
+        "NODE_ENV": "production"
+      },
       "name": "Webpack Stage 1",
       "program": "/usr/local/bin/wp",
       "request": "launch",
@@ -15,6 +18,9 @@
     {
       "autoAttachChildProcesses": true,
       "cwd": "${workspaceRoot}",
+      "env": {
+        "NODE_ENV": "production"
+      },
       "name": "Webpack Stage 2",
       "program": "/usr/local/bin/wp",
       "request": "launch",
