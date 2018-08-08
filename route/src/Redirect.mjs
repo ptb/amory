@@ -1,5 +1,5 @@
 import generatePath from "./generatePath.mjs"
-import { createLocation, locationsAreEqual } from "./history.mjs"
+import { createLocation, locationsAreEqual } from "history"
 import { h, PureComponent } from "react"
 import RouterContext from "./RouterContext.mjs"
 

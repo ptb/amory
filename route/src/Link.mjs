@@ -1,4 +1,4 @@
-import { createLocation } from "./history.mjs"
+import { createLocation } from "history"
 import objWithoutProps from "./objWithoutProps.mjs"
 import { Component, h } from "react"
 import RouterContext from "./RouterContext.mjs"

@@ -1,4 +1,4 @@
-import { createHashHistory } from "./history.mjs"
+import { createHashHistory } from "history"
 import { h } from "react"
 import Router from "./Router.mjs"
 

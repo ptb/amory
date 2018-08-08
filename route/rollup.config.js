@@ -6,7 +6,7 @@ import { terser } from "rollup-plugin-terser"
 import uglify from "rollup-plugin-uglify-es"
 
 export default {
-  "external": ["react"],
+  "external": ["history", "react"],
   "input": "src/index.mjs",
   "output": {
     "file": "index.mjs",
@@ -24,6 +24,6 @@ export default {
     terser ({
       "module": true
     }),
-    execute (`sed -i "" -e 's/from"react"/from".\\/react.mjs"/' index.mjs`)
+    execute (`sed -i "" -e 's/from"history"/from".\\/history.mjs"/' -e 's/from"react"/from".\\/react.mjs"/' index.mjs`)
   ]
 }

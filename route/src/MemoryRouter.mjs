@@ -1,4 +1,4 @@
-import { createMemoryHistory } from "./history.mjs"
+import { createMemoryHistory } from "history"
 import { h } from "react"
 import Router from "./Router.mjs"
 
