@@ -16,11 +16,10 @@
     "webpack-chain": "4.8.0"
   },
   "devDependencies": {
-    "cjs-to-es6": "1.1.1",
-    "rollup": "0.63.5",
-    "rollup-plugin-babel": "beta",
+    "rollup": "0.64.1",
     "rollup-plugin-commonjs": "9.1.4",
     "rollup-plugin-node-resolve": "3.3.0",
+    "rollup-plugin-replace": "2.0.0",
     "rollup-plugin-terser": "1.0.1",
     "rollup-plugin-uglify-es": "0.0.1"
   },
@@ -40,7 +39,7 @@
   },
   "repository": "https://github.com/ptb/amory/tree/master/react",
   "scripts": {
-    "postinstall": "./convert.sh"
+    "build": "rollup -c"
   },
-  "version": "2018.8.5-0"
+  "version": "2018.8.8-0"
 }

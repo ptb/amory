@@ -1,13 +1,16 @@
-import React from "./node_modules/react/cjs/react.production.min.js"
-import ReactDOM from "./node_modules/react-dom/cjs/react-dom.production.min.js"
-import ReactDOMServer from "./node_modules/react-dom/cjs/react-dom-server.browser.production.min.js"
+import React from "react"
+import ReactDOM from "react-dom"
+import ReactDOMServer from "react-dom/server"
 
 const {
   Children,
   cloneElement,
   Component,
+  createContext,
   createElement,
-  Fragment
+  Fragment,
+  isValidElement,
+  PureComponent
 } = React
 const {
   hydrate,
@@ -22,10 +25,13 @@ export {
   Children,
   cloneElement,
   Component,
+  createContext,
   createElement,
   createElement as h,
   Fragment,
   hydrate,
+  isValidElement,
+  PureComponent,
   render,
   renderToString,
   renderToStaticMarkup

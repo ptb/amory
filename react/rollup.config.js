@@ -1,30 +1,26 @@
-import babel from "rollup-plugin-babel"
 import commonjs from "rollup-plugin-commonjs"
 import nodeResolve from "rollup-plugin-node-resolve"
+import replace from "rollup-plugin-replace"
 import { terser } from "rollup-plugin-terser"
 import uglify from "rollup-plugin-uglify-es"
 
 export default {
-  "input": "exports.mjs",
+  "input": "src/index.mjs",
   "output": {
     "file": "index.mjs",
-    "format": "es",
-    "sourceMap": "false"
+    "format": "esm"
   },
   "plugins": [
     nodeResolve ({
-      "browser": true,
-      "extensions": [".js"],
-      "jsnext": true,
-      "main": true,
+      "browser": true
+    }),
+    commonjs (),
+    replace ({
+      "process.env.NODE_ENV": JSON.stringify ("production")
+    }),
+    uglify (),
+    terser ({
       "module": true
-    }),
-    commonjs ({
-      "include": "node_modules/**",
-      "sourceMap": false
-    }),
-    babel (),
-    terser (),
-    uglify ()
+    })
   ]
 }
