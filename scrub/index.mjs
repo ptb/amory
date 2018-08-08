@@ -1,7 +1,7 @@
-class index {
+export default class {
   constructor (opts = {}) {
-    this.plugin = "AmoryScrubPlugin";
-    this.regex = opts.regex || /\.(gif|html?|jpe?g|png|webp)$/;
+    this.plugin = "AmoryScrubPlugin"
+    this.regex = opts.regex || /\.(gif|html?|jpe?g|png|webp)$/
   }
 
   apply (compiler) {
@@ -16,19 +16,17 @@ class index {
                 assets[key] !== null &&
                 !this.regex.test (key)
               ) {
-                delete assets[key];
+                delete assets[key]
               }
-            });
+            })
 
-            done ();
+            done ()
           } catch ({ stack }) {
-            compilation.errors.push (stack);
-            done ();
+            compilation.errors.push (stack)
+            done ()
           }
         }
-      );
-    });
+      )
+    })
   }
 }
-
-module.exports = index;
