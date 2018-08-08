@@ -1,8 +1,8 @@
-const merge = require('@amory/merge');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
-const Config = require('webpack-chain');
+import merge from "@amory/merge"
+import CleanWebpackPlugin from "clean-webpack-plugin"
+import Config from "webpack-chain"
 
-const index = ({
+export default ({
   config = new Config ()
 }) =>
   /* eslint-disable indent */
@@ -19,6 +19,4 @@ const index = ({
           "watch": true
         })
       ])
-      .end ();
-
-module.exports = index;
+      .end ()
