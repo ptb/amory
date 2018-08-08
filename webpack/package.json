@@ -1,6 +1,7 @@
 {
   "author": "Peter T Bosse II <ptb@ioutime.com> (http://ptb2.me/)",
   "dependencies": {
+    "esm": "3.0.74",
     "webpack": "4.16.5",
     "webpack-chain": "4.8.0",
     "webpack-command": "latest"
@@ -9,10 +10,18 @@
     "node": ">=8"
   },
   "license": "(Apache-2.0 OR MIT)",
+  "main": "webpack.config.js",
+  "module": "webpack.config.mjs",
   "name": "@amory/webpack",
   "publishConfig": {
     "access": "public"
   },
   "repository": "https://github.com/ptb/amory/tree/master/webpack",
-  "version": "2018.8.4-6"
+  "scripts": {
+    "build": "npx npm-run-all --serial build:xhtml build:react",
+    "build:react": "wp --define.stage react",
+    "build:xhtml": "wp --define.stage xhtml",
+    "watch": "npx -p chokidar-cli chokidar 'src/**/*' -c 'yarn build' --initial"
+  },
+  "version": "2018.8.8-0"
 }

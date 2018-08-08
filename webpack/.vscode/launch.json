@@ -1,12 +1,25 @@
 {
   "configurations": [
     {
+      "args": [
+        "--define.stage",
+        "xhtml"
+      ],
+      "autoAttachChildProcesses": true,
       "cwd": "${workspaceRoot}",
-      "name": "Launch webpack",
-      "program": "${workspaceRoot}/node_modules/.bin/webpack",
+      "name": "Webpack Stage 1",
+      "program": "/usr/local/bin/wp",
       "request": "launch",
       "type": "node"
-    }
+    },
+    {
+      "autoAttachChildProcesses": true,
+      "cwd": "${workspaceRoot}",
+      "name": "Webpack Stage 2",
+      "program": "/usr/local/bin/wp",
+      "request": "launch",
+      "type": "node"
+    },
   ],
   "version": "0.2.0"
 }
