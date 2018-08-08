@@ -20,10 +20,14 @@
   ],
   "license": "(Apache-2.0 OR MIT)",
   "main": "index.js",
+  "module": "index.mjs",
   "name": "@amory/xhtml",
   "publishConfig": {
     "access": "public"
   },
+  "scripts": {
+    "prepublishOnly": "rollup --file index.js --format cjs --input index.mjs --no-interop --no-strict --preferConst"
+  },
   "repository": "https://github.com/ptb/amory/tree/master/xhtml",
-  "version": "2018.8.5-2"
+  "version": "2018.8.8-0"
 }

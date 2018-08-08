@@ -1,12 +1,12 @@
-const nodePath = require('path');
-const React = require('react');
-const ReactDOMServer = require('react-dom/server');
-const vm2 = require('vm2');
-const webpackSources = require('webpack-sources');
-
 /* eslint max-statements: off */
 
-const h = React.createElement;
+import nodePath from "path"
+import React from "react"
+import ReactDOMServer from "react-dom/server"
+import vm2 from "vm2"
+import webpackSources from "webpack-sources"
+
+const h = React.createElement
 
 const layout = (content) =>
   `<!DOCTYPE html>${ReactDOMServer.renderToStaticMarkup (
@@ -28,7 +28,7 @@ const layout = (content) =>
         })
       ])
     ])
-  )}`;
+  )}`
 
 const routes = (content, prefix = "") =>
   (content.props
@@ -40,32 +40,32 @@ const routes = (content, prefix = "") =>
         ]).filter ((path) => !(/:|\*/).test (path))
       )
     ]
-    : []);
+    : [])
 
-class index {
+export default class {
   constructor (opts = {}) {
-    this.entry = opts.entry || "index.js";
-    this.index = opts.index || "index.html";
-    this.layout = opts.layout || layout;
-    this.paths = opts.paths || [""];
-    this.plugin = "AmoryXHTMLPlugin";
-    this.regex = opts.regex || /\.(html?)$/;
-    this.routes = opts.routes || routes;
+    this.entry = opts.entry || "index.js"
+    this.index = opts.index || "index.html"
+    this.layout = opts.layout || layout
+    this.paths = opts.paths || [""]
+    this.plugin = "AmoryXHTMLPlugin"
+    this.regex = opts.regex || /\.(html?)$/
+    this.routes = opts.routes || routes
   }
 
   apply (compiler) {
     compiler.hooks.thisCompilation.tap (this.plugin, (compilation) => {
       compilation.hooks.additionalAssets.tapAsync (this.plugin, (done) => {
         try {
-          const source = compilation.assets[this.entry].source ();
+          const source = compilation.assets[this.entry].source ()
 
-          let asset = new vm2.NodeVM ().run (source);
+          let asset = new vm2.NodeVM ().run (source)
 
           asset = Object.prototype.hasOwnProperty.call (asset, "default")
             ? asset.default
-            : asset;
+            : asset
 
-          const stats = compilation.getStats ().toJson ();
+          const stats = compilation.getStats ().toJson ()
           const assets = new Map (
             Object.entries (stats.assetsByChunkName).map (([chunk, file]) => [
               chunk,
@@ -74,7 +74,7 @@ class index {
                 Array.isArray (file) ? file[0] : file
               )
             ])
-          );
+          )
 
           const locals = {
             asset,
@@ -85,15 +85,15 @@ class index {
           };
 
           [this.paths, this.routes (asset (locals, false))].map ((paths) =>
-            this.render ({ ... locals, paths }));
+            this.render ({ ... locals, paths }))
 
-          done ();
+          done ()
         } catch ({ stack }) {
-          compilation.errors.push (stack);
-          done ();
+          compilation.errors.push (stack)
+          done ()
         }
-      });
-    });
+      })
+    })
   }
 
   render ({ asset, assets, compilation, paths, stats }) {
@@ -101,11 +101,9 @@ class index {
       .map ((p) => (this.regex.test (p) ? p : nodePath.join (p, this.index)))
       .filter ((path) => !compilation.assets[path])
       .forEach ((path) => {
-        const content = this.layout (asset ({ assets, path, stats }, true));
+        const content = this.layout (asset ({ assets, path, stats }, true))
 
-        compilation.assets[path] = new webpackSources.RawSource (content);
-      });
+        compilation.assets[path] = new webpackSources.RawSource (content)
+      })
   }
 }
-
-module.exports = index;

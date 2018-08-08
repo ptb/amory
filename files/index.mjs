@@ -1,9 +1,9 @@
 import fs from "fs-extra"
-import { resolve } from "path"
+import nodePath from "path"
 import Config from "webpack-chain"
 
 const dest = ({ context, mode }) => {
-  const dir = resolve (
+  const dir = nodePath.resolve (
     context,
     mode === "development" ? "dev" : "web"
   )
@@ -15,14 +15,14 @@ const dest = ({ context, mode }) => {
 
 export default ({
   config = new Config (),
-  context = resolve (process.cwd ()),
+  context = nodePath.resolve (process.cwd ()),
   mode = "production"
 }) =>
   /* eslint-disable indent */
   config
     .context (context)
     .entry ("index")
-      .add (resolve (context, "src", "index"))
+      .add (nodePath.resolve (context, "src", "index"))
       .end ()
     .mode (mode)
     .output

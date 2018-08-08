@@ -1,9 +1,9 @@
 const fs = require('fs-extra');
-const path = require('path');
+const nodePath = require('path');
 const Config = require('webpack-chain');
 
 const dest = ({ context, mode }) => {
-  const dir = path.resolve (
+  const dir = nodePath.resolve (
     context,
     mode === "development" ? "dev" : "web"
   );
@@ -15,14 +15,14 @@ const dest = ({ context, mode }) => {
 
 const index = ({
   config = new Config (),
-  context = path.resolve (process.cwd ()),
+  context = nodePath.resolve (process.cwd ()),
   mode = "production"
 }) =>
   /* eslint-disable indent */
   config
     .context (context)
     .entry ("index")
-      .add (path.resolve (context, "src", "index"))
+      .add (nodePath.resolve (context, "src", "index"))
       .end ()
     .mode (mode)
     .output
