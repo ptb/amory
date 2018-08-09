@@ -29,5 +29,5 @@
   "scripts": {
     "prepublishOnly": "rollup --file index.js --format cjs --input index.mjs --no-interop --no-strict --preferConst"
   },
-  "version": "2018.8.8-1"
+  "version": "2018.8.9-0"
 }
