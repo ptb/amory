@@ -7,7 +7,7 @@ import merge from "@amory/merge"
 import importFresh from "import-fresh"
 import loaderUtils from "loader-utils"
 
-import defaults from "./defaults.mjs"
+import defaults from "./rollup.config.js"
 
 const rollup = () => importFresh ("rollup")
 
