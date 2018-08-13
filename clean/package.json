@@ -3,7 +3,6 @@
   "dependencies": {
     "@amory/merge": "latest",
     "clean-webpack-plugin": "latest",
-    "esm": "3.0.75",
     "webpack": "4.16.5",
     "webpack-chain": "4.8.0"
   },
@@ -22,5 +21,8 @@
     "access": "public"
   },
   "repository": "https://github.com/ptb/amory/tree/master/clean",
-  "version": "2018.8.13-2"
+  "scripts": {
+    "prepublishOnly": "rollup --file webpack.js --format cjs --input webpack.mjs --no-interop --no-strict --preferConst"
+  },
+  "version": "2018.8.13-3"
 }
