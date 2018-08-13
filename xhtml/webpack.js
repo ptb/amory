@@ -1,3 +1,17 @@
-const _require = require ("esm") (module)
+const AmoryScrubPlugin = require ("@amory/scrub")
+const AmoryXHTMLPlugin = require ("@amory/xhtml/plugin")
+const Config = require ("webpack-chain")
 
-module.exports = _require ("./webpack.mjs").default
+module.exports = ({ config = new Config () }) =>
+  /* eslint-disable indent */
+  config
+    .output
+      .libraryTarget ("commonjs2")
+      .end ()
+    .plugin ("xhtml")
+      .use (AmoryXHTMLPlugin)
+      .end ()
+    .plugin ("exclude")
+      .use (AmoryScrubPlugin)
+      .after ("xhtml")
+      .end ()
