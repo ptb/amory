@@ -14,12 +14,12 @@
     "webpack"
   ],
   "license": "(Apache-2.0 OR MIT)",
-  "main": "index.js",
-  "module": "index.mjs",
+  "main": "webpack.js",
+  "module": "webpack.mjs",
   "name": "@amory/files",
   "publishConfig": {
     "access": "public"
   },
   "repository": "https://github.com/ptb/amory/tree/master/files",
-  "version": "2018.8.13-0"
+  "version": "2018.8.13-1"
 }
