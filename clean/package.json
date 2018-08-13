@@ -15,7 +15,6 @@
   ],
   "license": "(Apache-2.0 OR MIT)",
   "main": "webpack.js",
-  "module": "webpack.mjs",
   "name": "@amory/clean",
   "publishConfig": {
     "access": "public"
@@ -24,5 +23,5 @@
   "scripts": {
     "prepublishOnly": "rollup --file webpack.js --format cjs --input webpack.mjs --no-interop --no-strict --preferConst"
   },
-  "version": "2018.8.13-3"
+  "version": "2018.8.13-4"
 }
