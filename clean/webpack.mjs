@@ -15,7 +15,7 @@ export default ({
         ]),
         merge (options, {
           "allowExternal": true,
-          "root": config.output.get ("context"),
+          "root": config.get ("context"),
           "watch": true
         })
       ])
