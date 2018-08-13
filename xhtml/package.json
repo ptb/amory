@@ -21,11 +21,10 @@
   ],
   "license": "(Apache-2.0 OR MIT)",
   "main": "plugin.js",
-  "module": "plugin.mjs",
   "name": "@amory/xhtml",
   "publishConfig": {
     "access": "public"
   },
   "repository": "https://github.com/ptb/amory/tree/master/xhtml",
-  "version": "2018.8.13-1"
+  "version": "2018.8.13-2"
 }
