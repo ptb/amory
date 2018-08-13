@@ -3,6 +3,7 @@
   "dependencies": {
     "@amory/react": "latest",
     "@amory/scrub": "latest",
+    "esm": "3.0.75",
     "react": "16.4.2",
     "react-dom": "16.4.2",
     "vm2": "3.6.3",
@@ -19,15 +20,12 @@
     "webpack"
   ],
   "license": "(Apache-2.0 OR MIT)",
-  "main": "index.js",
-  "module": "index.mjs",
+  "main": "plugin.js",
+  "module": "plugin.mjs",
   "name": "@amory/xhtml",
   "publishConfig": {
     "access": "public"
   },
   "repository": "https://github.com/ptb/amory/tree/master/xhtml",
-  "scripts": {
-    "prepublishOnly": "rollup --file index.js --format cjs --input index.mjs --no-interop --no-strict --preferConst"
-  },
-  "version": "2018.8.9-0"
+  "version": "2018.8.13-0"
 }

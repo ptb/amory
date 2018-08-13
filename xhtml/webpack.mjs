@@ -1,5 +1,5 @@
 import AmoryScrubPlugin from "@amory/scrub"
-import AmoryXHTMLPlugin from "@amory/xhtml"
+import AmoryXHTMLPlugin from "@amory/xhtml/plugin"
 import Config from "webpack-chain"
 
 export default ({
