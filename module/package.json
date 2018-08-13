@@ -2,7 +2,7 @@
   "author": "Peter T Bosse II <ptb@ioutime.com> (http://ptb2.me/)",
   "dependencies": {
     "@amory/merge": "latest",
-    "esm": "3.0.74",
+    "esm": "3.0.75",
     "import-fresh": "2.0.0",
     "loader-utils": "1.1.0",
     "rollup": "0.64.1",
@@ -30,5 +30,5 @@
     "access": "public"
   },
   "repository": "https://github.com/ptb/amory/tree/master/module",
-  "version": "2018.8.13-0"
+  "version": "2018.8.13-1"
 }
