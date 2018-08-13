@@ -20,8 +20,5 @@
     "access": "public"
   },
   "repository": "https://github.com/ptb/amory/tree/master/clean",
-  "scripts": {
-    "prepublishOnly": "rollup --file webpack.js --format cjs --input webpack.mjs --no-interop --no-strict --preferConst"
-  },
-  "version": "2018.8.13-4"
+  "version": "2018.8.13-5"
 }
