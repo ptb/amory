@@ -1,9 +1,9 @@
 import fs from "fs-extra"
-import nodePath from "path"
+import path from "path"
 import Config from "webpack-chain"
 
 const dest = ({ context, mode }) => {
-  const dir = nodePath.resolve (
+  const dir = path.resolve (
     context,
     mode === "development" ? "dev" : "web"
   )
@@ -15,7 +15,7 @@ const dest = ({ context, mode }) => {
 
 export default ({
   config = new Config (),
-  context = nodePath.resolve (process.cwd ()),
+  context = path.resolve (process.cwd ()),
   define = {},
   mode = "production"
 }) =>
@@ -23,7 +23,7 @@ export default ({
   config
     .context (context)
     .entry ("index")
-      .add (nodePath.resolve (context, "src", "index"))
+      .add (path.resolve (context, "src", "index"))
       .end ()
     .mode (mode)
     .output
@@ -32,15 +32,15 @@ export default ({
     .when (
       define.stage === "xhtml" || mode === "development",
 
-      (conf) =>
-        conf
+      () =>
+        config
           .output
             .filename ("[name].js")
             .end (),
 
-      (conf) =>
-        conf
+      () =>
+        config
           .output
-            .filename (nodePath.join ("js", "[name]-[hash:6].js"))
+            .filename (path.join ("js", "[name]-[hash:6].js"))
             .end ()
     )
