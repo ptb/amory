@@ -7,9 +7,10 @@ const webpackSources = require ("webpack-sources")
 /* eslint max-statements: off */
 
 const h = React.createElement
+const renderToStaticMarkup = ReactDOMServer.renderToStaticMarkup
 
 const layout = (content) =>
-  `<!DOCTYPE html>${ReactDOMServer.renderToStaticMarkup (
+  `<!DOCTYPE html>${renderToStaticMarkup (
     h ("html", { "lang": "en", "xmlns": "http://www.w3.org/1999/xhtml" }, [
       h ("head", { "key": "head" }, [
         h ("meta", { "charset": "utf-8", "key": "charset" }),
