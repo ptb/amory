@@ -16,6 +16,7 @@ const dest = ({ context, mode }) => {
 export default ({
   config = new Config (),
   context = nodePath.resolve (process.cwd ()),
+  define = {},
   mode = "production"
 }) =>
   /* eslint-disable indent */
@@ -29,12 +30,12 @@ export default ({
       .path (dest ({ context, mode }))
       .end ()
     .when (
-      mode === "production",
+      define.stage === "xhtml" || mode === "development",
 
       (conf) =>
         conf
           .output
-            .filename (nodePath.join ("js", "[name]-[contenthash:6].js"))
+            .filename ("[name].js")
             .end (),
 
       (conf) =>

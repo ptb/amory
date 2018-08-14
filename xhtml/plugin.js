@@ -47,7 +47,7 @@ const routes = (content, prefix = "") =>
 
 module.exports = class {
   constructor (opts = {}) {
-    this.entry = opts.entry || "index.mjs"
+    this.entry = opts.entry || "index.js"
     this.index = opts.index || "index.html"
     this.layout = opts.layout || layout
     this.paths = opts.paths || [""]
