@@ -14,14 +14,14 @@ module.exports = ({
       () =>
         config
           .plugin ("clean")
-          .use (CleanWebpackPlugin)
-          .tap ((paths = [], options = {}) => [
-            merge (paths, [config.output.get ("path")]),
-            merge (options, {
-              "allowExternal": true,
-              "root": config.get ("context"),
-              "watch": true
-            })
-          ])
-          .end ()
+            .use (CleanWebpackPlugin)
+            .tap ((paths = [], options = {}) => [
+              merge (paths, [config.output.get ("path")]),
+              merge (options, {
+                "allowExternal": true,
+                "root": config.get ("context"),
+                "watch": true
+              })
+            ])
+            .end ()
     )
