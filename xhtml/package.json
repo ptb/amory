@@ -3,7 +3,7 @@
   "dependencies": {
     "@amory/react": "latest",
     "@amory/scrub": "latest",
-    "esm": "3.0.75",
+    "esm": "3.0.76",
     "react": "16.4.2",
     "react-dom": "16.4.2",
     "vm2": "3.6.3",
