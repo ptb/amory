@@ -13,12 +13,12 @@
     "webpack"
   ],
   "license": "(Apache-2.0 OR MIT)",
-  "main": "index.js",
-  "module": "index.mjs",
+  "main": "plugin.js",
+  "module": "plugin.mjs",
   "name": "@amory/scrub",
   "publishConfig": {
     "access": "public"
   },
   "repository": "https://github.com/ptb/amory/tree/master/scrub",
-  "version": "2018.8.13-6"
+  "version": "2018.8.14-0"
 }

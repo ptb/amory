@@ -28,3 +28,18 @@ export default ({
     .output
       .path (dest ({ context, mode }))
       .end ()
+    .when (
+      mode === "production",
+
+      (conf) =>
+        conf
+          .output
+            .filename (nodePath.join ("js", "[name]-[contenthash:6].js"))
+            .end (),
+
+      (conf) =>
+        conf
+          .output
+            .filename (nodePath.join ("js", "[name]-[hash:6].js"))
+            .end ()
+    )
