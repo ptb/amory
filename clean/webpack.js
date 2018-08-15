@@ -18,7 +18,6 @@ module.exports = ({
             .tap ((paths = [], options = {}) => [
               merge (paths, [config.output.get ("path")]),
               merge (options, {
-                "allowExternal": true,
                 "root": config.get ("context"),
                 "watch": true
               })
