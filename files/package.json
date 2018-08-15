@@ -1,7 +1,6 @@
 {
   "author": "Peter T Bosse II <ptb@ioutime.com> (http://ptb2.me/)",
   "dependencies": {
-    "esm": "3.0.76",
     "fs-extra": "7.0.0",
     "webpack": "4.16.5",
     "webpack-chain": "4.8.0"
@@ -15,11 +14,10 @@
   ],
   "license": "(Apache-2.0 OR MIT)",
   "main": "webpack.js",
-  "module": "webpack.mjs",
   "name": "@amory/files",
   "publishConfig": {
     "access": "public"
   },
   "repository": "https://github.com/ptb/amory/tree/master/files",
-  "version": "2018.8.15-0"
+  "version": "2018.8.15-1"
 }
