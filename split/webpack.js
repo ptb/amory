@@ -1,4 +1,4 @@
-import Config from "webpack-chain"
+const Config = require ("webpack-chain")
 
 module.exports = ({
   config = new Config ()
