@@ -1,0 +1,18 @@
+{
+  "author": "Peter T Bosse II <ptb@ioutime.com> (http://ptb2.me/)",
+  "dependencies": {
+    "webpack": "4.16.5",
+    "webpack-chain": "4.8.0"
+  },
+  "engines": {
+    "node": ">=8"
+  },
+  "license": "(Apache-2.0 OR MIT)",
+  "main": "webpack.js",
+  "name": "@amory/split",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": "https://github.com/ptb/amory/tree/master/split",
+  "version": "2018.8.15-0"
+}
