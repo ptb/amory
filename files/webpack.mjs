@@ -26,6 +26,17 @@ export default ({
       .add (path.resolve (context, "src", "index"))
       .end ()
     .mode (mode)
+    .optimization
+      .splitChunks ({
+        "cacheGroups": {
+          "react": {
+            "chunks": "all",
+            "name": "react",
+            "test": /react/
+          }
+        }
+      })
+      .end ()
     .output
       .path (dest ({ context, mode }))
       .end ()
@@ -41,6 +52,6 @@ export default ({
       () =>
         config
           .output
-            .filename (path.join ("js", "[name]-[hash:6].js"))
+            .filename (path.join ("js", "[name]-[contenthash:6].js"))
             .end ()
     )
