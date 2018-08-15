@@ -13,6 +13,7 @@ const {
   PureComponent
 } = React
 const {
+  createPortal,
   hydrate,
   render
 } = ReactDOM
@@ -28,6 +29,7 @@ export {
   createContext,
   createElement,
   createElement as h,
+  createPortal,
   Fragment,
   hydrate,
   isValidElement,
