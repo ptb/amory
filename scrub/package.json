@@ -1,7 +1,6 @@
 {
   "author": "Peter T Bosse II <ptb@ioutime.com> (http://ptb2.me/)",
   "dependencies": {
-    "esm": "3.0.76",
     "webpack": "4.16.5"
   },
   "engines": {
@@ -14,11 +13,10 @@
   ],
   "license": "(Apache-2.0 OR MIT)",
   "main": "plugin.js",
-  "module": "plugin.mjs",
   "name": "@amory/scrub",
   "publishConfig": {
     "access": "public"
   },
   "repository": "https://github.com/ptb/amory/tree/master/scrub",
-  "version": "2018.8.14-1"
+  "version": "2018.8.15-0"
 }
