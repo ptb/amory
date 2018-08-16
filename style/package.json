@@ -1,12 +1,16 @@
 {
   "authors": [
-    "Michael Jackson <mj@mjackson.me> (https://mjackson.me/)",
-    "Ryan Florence <rpflorence@gmail.com> (https://reach.tech/)"
+    "Ryan Tsao <ryan.j.tsao@gmail.com> (https://ryantsao.com/)"
   ],
   "contributors": [
     "Peter T Bosse II <ptb@ioutime.com> (http://ptb2.me/)"
   ],
-  "description": "React Router DOM converted to browser-ready ES modules",
+  "dependencies": {
+    "inline-style-prefixer": "^4.0.2",
+    "styletron-engine-atomic": "^1.0.8",
+    "styletron-standard": "^1.0.6"
+  },
+  "description": "Styletron converted to browser-ready ES modules",
   "devDependencies": {
     "rollup": "0.64.1",
     "rollup-plugin-commonjs": "9.1.5",
@@ -21,21 +25,16 @@
   },
   "keywords": [
     "amory",
-    "history",
-    "link",
+    "style",
+    "styletron",
     "react",
-    "rollup",
-    "route",
-    "router",
-    "routing"
+    "rollup"
   ],
-  "license": "MIT",
+  "license": "(Apache-2.0 OR MIT)",
   "module": "index.mjs",
-  "name": "@amory/route",
-  "publishConfig": {
-    "access": "public"
-  },
-  "repository": "https://github.com/ptb/amory/tree/master/route",
+  "name": "@amory/style",
+  "private": true,
+  "repository": "https://github.com/ptb/amory/tree/master/style",
   "scripts": {
     "build": "rollup -c"
   },

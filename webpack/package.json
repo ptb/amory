@@ -23,5 +23,5 @@
     "build:xhtml": "wp --define.stage xhtml",
     "watch": "npx -p chokidar-cli chokidar 'src/**/*' -c 'yarn build' --initial"
   },
-  "version": "2018.8.14-1"
+  "version": "2018.8.14-2018.8.16-0.0"
 }
