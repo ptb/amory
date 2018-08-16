@@ -8,18 +8,27 @@ const {
   Component,
   createContext,
   createElement,
+  createFactory,
+  createRef,
+  forwardRef,
   Fragment,
   isValidElement,
-  PureComponent
+  PureComponent,
+  StrictMode
 } = React
 const {
   createPortal,
+  findDOMNode,
+  flushSync,
   hydrate,
-  render
+  render,
+  unmountComponentAtNode
 } = ReactDOM
 const {
-  renderToString,
-  renderToStaticMarkup
+  renderToNodeStream,
+  renderToStaticMarkup,
+  renderToStaticNodeStream,
+  renderToString
 } = ReactDOMServer
 
 export {
@@ -27,14 +36,23 @@ export {
   cloneElement,
   Component,
   createContext,
-  createElement,
   createElement as h,
+  createElement,
+  createFactory,
   createPortal,
+  createRef,
+  findDOMNode,
+  flushSync,
+  forwardRef,
   Fragment,
   hydrate,
   isValidElement,
   PureComponent,
   render,
+  renderToNodeStream,
+  renderToStaticMarkup,
+  renderToStaticNodeStream,
   renderToString,
-  renderToStaticMarkup
+  StrictMode,
+  unmountComponentAtNode
 }

@@ -39,5 +39,5 @@
   "scripts": {
     "build": "rollup -c"
   },
-  "version": "2018.8.16-1"
+  "version": "2018.8.16-2"
 }
