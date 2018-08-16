@@ -2,7 +2,7 @@
   "author": "Peter T Bosse II <ptb@ioutime.com> (http://ptb2.me/)",
   "dependencies": {
     "@amory/merge": "latest",
-    "esm": "3.0.76",
+    "esm": "3.0.77",
     "import-fresh": "2.0.0",
     "loader-utils": "1.1.0",
     "node-dir": "latest",
