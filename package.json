@@ -3,7 +3,7 @@
   "devDependencies": {
     "@amory/eslint-config": "latest",
     "@amory/prettier": "latest",
-    "lerna": "3.1.2"
+    "lerna": "3.1.4"
   },
   "engines": {
     "node": ">=8"
