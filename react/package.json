@@ -12,7 +12,7 @@
     "babel-loader": "next",
     "react": "16.4.2",
     "react-dom": "16.4.2",
-    "webpack": "4.17.0",
+    "webpack": "4.17.1",
     "webpack-chain": "4.9.0"
   },
   "devDependencies": {
