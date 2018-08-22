@@ -2,7 +2,7 @@
   "author": "Peter T Bosse II <ptb@ioutime.com> (http://ptb2.me/)",
   "dependencies": {
     "fs-extra": "7.0.0",
-    "webpack": "4.17.0",
+    "webpack": "4.17.1",
     "webpack-chain": "4.9.0"
   },
   "engines": {
