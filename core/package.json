@@ -1,0 +1,24 @@
+{
+  "author": "Peter T Bosse II <ptb@ioutime.com> (http://ptb2.me/)",
+  "dependencies": {
+    "p-each-series": "1.0.0",
+    "tapable": "1.0.0"
+  },
+  "description": "Amory API runner",
+  "engines": {
+    "node": ">=8"
+  },
+  "keywords": [
+    "amory",
+    "core",
+    "webpack"
+  ],
+  "license": "(Apache-2.0 OR MIT)",
+  "main": "plugin.js",
+  "name": "@amory/core",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": "https://github.com/ptb/amory/tree/master/core",
+  "version": "2018.8.26-0"
+}
