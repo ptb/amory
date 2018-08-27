@@ -23,7 +23,7 @@ module.exports = ({
   config
     .context (context)
     .entry ("index")
-      .add (path.resolve (context, "src", "index"))
+      .add (path.resolve (context, "src", "js", "index"))
       .end ()
     .mode (mode)
     .output
@@ -35,7 +35,7 @@ module.exports = ({
       () =>
         config
           .output
-            .filename ("[name].js")
+            .filename (path.join ("js", "[name].js"))
             .end (),
 
       () =>
