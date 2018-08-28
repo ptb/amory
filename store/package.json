@@ -1,0 +1,24 @@
+{
+  "author": "Peter T Bosse II <ptb@ioutime.com> (http://ptb2.me/)",
+  "dependencies": {
+    "lodash.clonedeep": "4.5.0",
+    "redux": "4.0.0",
+    "uuid": "3.3.2"
+  },
+  "engines": {
+    "node": ">=8"
+  },
+  "keywords": [
+    "amory",
+    "redux",
+    "store"
+  ],
+  "license": "(Apache-2.0 OR MIT)",
+  "main": "index.js",
+  "name": "@amory/store",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": "https://github.com/ptb/amory/tree/master/store",
+  "version": "2018.8.28-0"
+}
