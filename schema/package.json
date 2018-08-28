@@ -1,0 +1,31 @@
+{
+  "author": "Peter T Bosse II <ptb@ioutime.com> (http://ptb2.me/)",
+  "dependencies": {
+    "@amory/store": "latest",
+    "apollo-cache-inmemory": "1.2.9",
+    "apollo-client": "2.4.1",
+    "apollo-link-schema": "1.1.0",
+    "apollo-server": "2.0.5",
+    "graphql": "rc",
+    "graphql-tag": "2.9.2",
+    "graphql-tools": "3.1.1"
+  },
+  "engines": {
+    "node": ">=8"
+  },
+  "keywords": [
+    "amory",
+    "apollo",
+    "client",
+    "server",
+    "schema"
+  ],
+  "license": "(Apache-2.0 OR MIT)",
+  "main": "client.js",
+  "name": "@amory/schema",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": "https://github.com/ptb/amory/tree/master/schema",
+  "version": "2018.8.28-0"
+}
