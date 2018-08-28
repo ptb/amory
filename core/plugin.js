@@ -1,3 +1,4 @@
+const { actions, client } = require ("@amory/schema")
 const pEachSeries = require ("p-each-series")
 const { AsyncSeriesHook } = require ("tapable")
 
@@ -46,7 +47,7 @@ module.exports = class {
                   this.hooks[api].tap (
                     plugin.name,
                     await plugin[api] (
-                      { compilation, compiler, ... this },
+                      { actions, client, compilation, compiler, ... this },
                       plugin.options
                     )
                   )

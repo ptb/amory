@@ -28,5 +28,5 @@
   "scripts": {
     "postinstall": "merge-json ../../../package.json postinstall.json"
   },
-  "version": "2018.8.27-2"
+  "version": "2018.8.28-0"
 }
