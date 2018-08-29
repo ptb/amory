@@ -1,0 +1,7 @@
+{
+  "amory": {
+    "plugins": [
+      "@amory/files"
+    ]
+  }
+}

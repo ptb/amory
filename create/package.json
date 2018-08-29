@@ -1,0 +1,28 @@
+{
+  "author": "Peter T Bosse II <ptb@ioutime.com> (http://ptb2.me/)",
+  "bin": {
+    "amory": "index.js"
+  },
+  "dependencies": {
+    "@amory/core": "latest",
+    "@amory/merge-json": "latest",
+    "cosmiconfig": "5.0.6"
+  },
+  "description": "Amory CLI",
+  "engines": {
+    "node": ">=8"
+  },
+  "keywords": [
+    "amory",
+    "cli",
+    "create"
+  ],
+  "license": "(Apache-2.0 OR MIT)",
+  "main": "index.js",
+  "name": "create-amory",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": "https://github.com/ptb/amory/tree/master/create",
+  "version": "2018.8.29-0"
+}
