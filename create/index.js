@@ -21,7 +21,7 @@ config.search ().then ((result) => {
     const dest = resolve ("package.json")
     const src = resolve (".defaults.json")
 
-    writeFileSync (src, defaults, "utf8")
+    writeFileSync (src, JSON.stringify (defaults), "utf8")
     mergeJSON (dest, [src])
     unlinkSync (src)
   }
