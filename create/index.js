@@ -16,7 +16,7 @@ const defaults = {
   },
   "dependencies": {
     "@amory/core": "latest",
-    "@amory/create": "latest"
+    "create-amory": "latest"
   },
   "scripts": {
     "start": "amory"
