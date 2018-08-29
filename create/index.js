@@ -9,8 +9,8 @@ const config = cosmiconfig ("amory")
 
 config.search ().then ((result) => {
   if (result === null) {
-    const dest = resolve ("../../../package.json")
-    const srcs = resolve ("./defaults.json")
+    const dest = resolve ("package.json")
+    const srcs = resolve ("node_modules", "create-amory", "defaults.json")
 
     mergeJSON (dest, [srcs])
   }
