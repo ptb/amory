@@ -11,26 +11,25 @@ const config = cosmiconfig ("amory")
 const defaults = {
   "amory": {
     "plugins": [
-      "@amory/files"
+      "@amory/schema"
     ]
   }
 }
 
-config.search ().then ((result) => {
-  if (result === null) {
-    const dest = resolve ("package.json")
-    const src = resolve (".defaults.json")
+let result = config.searchSync ()
 
-    writeFileSync (src, JSON.stringify (defaults), "utf8")
-    mergeJSON (dest, [src])
-    unlinkSync (src)
-  }
-})
+if (result === null) {
+  const dest = resolve ("package.json")
+  const src = resolve (".defaults.json")
+
+  writeFileSync (src, JSON.stringify (defaults), "utf8")
+  mergeJSON (dest, [src])
+  unlinkSync (src)
+}
 
 config.clearCaches ()
+result = config.searchSync ()
 
-config.search ().then ((result) => {
-  const plugins = result.config.plugins.map ((plugin) => require (plugin))
+const plugins = result.config.plugins.map ((plugin) => require (plugin))
 
-  new Core ({ plugins }).run ()
-})
+new Core ({ plugins }).run ()

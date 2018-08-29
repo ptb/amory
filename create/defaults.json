@@ -1,7 +1,0 @@
-{
-  "amory": {
-    "plugins": [
-      "@amory/files"
-    ]
-  }
-}
