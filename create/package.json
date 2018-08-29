@@ -6,7 +6,9 @@
   },
   "dependencies": {
     "@amory/core": "latest",
+    "@amory/files": "latest",
     "@amory/merge-json": "latest",
+    "@amory/schema": "latest",
     "cosmiconfig": "5.0.6"
   },
   "description": "Amory CLI",
@@ -25,5 +27,5 @@
     "access": "public"
   },
   "repository": "https://github.com/ptb/amory/tree/master/create",
-  "version": "2018.8.29-7"
+  "version": "2018.8.29-9"
 }
