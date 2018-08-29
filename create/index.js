@@ -13,6 +13,13 @@ const defaults = {
     "plugins": [
       "@amory/schema"
     ]
+  },
+  "dependencies": {
+    "@amory/core": "latest",
+    "@amory/create": "latest"
+  },
+  "scripts": {
+    "start": "amory"
   }
 }
 
