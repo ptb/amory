@@ -29,7 +29,7 @@ const sort = (e) => {
   return f
 }
 
-const mergeJSON = (h = process.argv[2], i = process.argv.slice (2)) => {
+const mergeJSON = (h, i) => {
   const j = i.map ((k) => {
     try {
       return readFileSync (k, { "encoding": "utf8" })
@@ -42,11 +42,11 @@ const mergeJSON = (h = process.argv[2], i = process.argv.slice (2)) => {
   const p = JSON.stringify (sort (l), null, 2)
   const q = p[p.length - 1] === "\n" ? p : `${p}\n`
 
-  if (j[0] !== q) {
-    writeFileSync (h, q, "utf8")
-  }
+  writeFileSync (h, q, "utf8")
+}
+
+if (require.main === module) {
+  mergeJSON (process.argv[2], process.argv.slice (2))
 }
 
 module.exports = mergeJSON
-
-mergeJSON ()
