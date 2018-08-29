@@ -1,8 +1,0 @@
-{
-  "scripts": {
-    "build": "npm-run-all -s build:xhtml build:react",
-    "build:react": "wp --define.stage react",
-    "build:xhtml": "wp --define.stage xhtml",
-    "start": "npm-run-all -p build"
-  }
-}
