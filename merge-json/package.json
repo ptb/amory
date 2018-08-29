@@ -1,0 +1,27 @@
+{
+  "author": "Peter T Bosse II <ptb@ioutime.com> (http://ptb2.me/)",
+  "bin": {
+    "merge-json": "./index.js"
+  },
+  "dependencies": {
+    "lodash.isequal": "4.5.0",
+    "lodash.mergewith": "4.6.1",
+    "lodash.uniqwith": "4.5.0"
+  },
+  "engines": {
+    "node": ">=8"
+  },
+  "keywords": [
+    "amory",
+    "json",
+    "merge"
+  ],
+  "license": "(Apache-2.0 OR MIT)",
+  "main": "index.js",
+  "name": "@amory/merge-json",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": "https://github.com/ptb/amory/tree/master/merge-json",
+  "version": "2018.8.29-0"
+}
