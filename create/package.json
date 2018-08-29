@@ -1,7 +1,8 @@
 {
   "author": "Peter T Bosse II <ptb@ioutime.com> (http://ptb2.me/)",
   "bin": {
-    "amory": "index.js"
+    "amory": "index.js",
+    "create-amory": "index.js"
   },
   "dependencies": {
     "@amory/core": "latest",
@@ -24,5 +25,5 @@
     "access": "public"
   },
   "repository": "https://github.com/ptb/amory/tree/master/create",
-  "version": "2018.8.29-0"
+  "version": "2018.8.29-1"
 }
