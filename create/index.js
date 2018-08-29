@@ -3,16 +3,27 @@
 const Core = require ("@amory/core")
 const mergeJSON = require ("@amory/merge-json")
 const cosmiconfig = require ("cosmiconfig")
+const { unlinkSync, writeFileSync } = require ("fs")
 const { resolve } = require ("path")
 
 const config = cosmiconfig ("amory")
 
+const defaults = {
+  "amory": {
+    "plugins": [
+      "@amory/files"
+    ]
+  }
+}
+
 config.search ().then ((result) => {
   if (result === null) {
     const dest = resolve ("package.json")
-    const srcs = resolve ("node_modules", "create-amory", "defaults.json")
+    const src = resolve (".defaults.json")
 
-    mergeJSON (dest, [srcs])
+    writeFileSync (src, defaults, "utf8")
+    mergeJSON (dest, [src])
+    unlinkSync (src)
   }
 })
 
