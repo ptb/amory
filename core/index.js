@@ -18,7 +18,7 @@ module.exports = class extends Tapable {
     this.webpack = new Config ()
   }
 
-  run ({ define, mode }) {
+  run (options) {
     pEachSeries (apis, (api) =>
       pEachSeries (
         this.plugins,
@@ -26,7 +26,7 @@ module.exports = class extends Tapable {
           plugin[api] &&
           this.hooks[api].tap (
             plugin.name,
-            await plugin[api] ({ define, mode, ... this }, plugin.options)
+            await plugin[api] ({ ... options, ... this }, plugin.options)
           )
       ))
   }
