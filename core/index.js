@@ -2,7 +2,7 @@ const pEachSeries = require ("p-each-series")
 const { Tapable, AsyncSeriesHook } = require ("tapable")
 const Config = require ("webpack-chain")
 
-const apis = ["setConfig"]
+const apis = ["setConfig", "runProcess"]
 
 module.exports = class extends Tapable {
   constructor (options = {}) {
