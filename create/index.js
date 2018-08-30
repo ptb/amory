@@ -10,15 +10,10 @@ const config = cosmiconfig ("amory")
 
 const defaults = {
   "amory": {
-    "plugins": [
-      "@amory/schema",
-      "@amory/files"
-    ]
+    "plugins": []
   },
   "dependencies": {
     "@amory/core": "latest",
-    "@amory/files": "latest",
-    "@amory/schema": "latest",
     "create-amory": "latest"
   },
   "license": "(Apache-2.0 OR MIT)",
