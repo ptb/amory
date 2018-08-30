@@ -13,11 +13,11 @@
     "webpack"
   ],
   "license": "(Apache-2.0 OR MIT)",
-  "main": "webpack.js",
+  "main": "index.js",
   "name": "@amory/files",
   "publishConfig": {
     "access": "public"
   },
   "repository": "https://github.com/ptb/amory/tree/master/files",
-  "version": "2018.8.27-1"
+  "version": "2018.8.30-0"
 }

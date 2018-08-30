@@ -13,14 +13,14 @@ const dest = ({ context, mode }) => {
   return dir
 }
 
-module.exports = ({
-  config = new Config (),
+const addWebpackConfig = ({
   context = path.resolve (process.cwd ()),
   define = {},
-  mode = "production"
+  mode = "production",
+  webpack = new Config ()
 }) =>
   /* eslint-disable indent */
-  config
+  webpack
     .context (context)
     .entry ("index")
       .add (path.resolve (context, "src", "js", "index"))
@@ -30,17 +30,22 @@ module.exports = ({
       .path (dest ({ context, mode }))
       .end ()
     .when (
-      define.stage === "xhtml" || mode === "development",
+      define.stage === "markup" || mode === "development",
 
       () =>
-        config
+        webpack
           .output
             .filename (path.join ("js", "[name].js"))
             .end (),
 
       () =>
-        config
+        webpack
           .output
             .filename (path.join ("js", "[name]-[contenthash:6].js"))
             .end ()
     )
+
+module.exports = {
+  "name": "@amory/files",
+  "setConfig": addWebpackConfig
+}
