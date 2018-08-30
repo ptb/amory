@@ -45,7 +45,12 @@ const addWebpackConfig = ({
             .end ()
     )
 
+const createProject = ({ webpack }) =>
+  Array.from (webpack.entry ("index").store.values ())
+    .map ((entry) => fs.ensureFile (`${entry}.js`))
+
 module.exports = {
   "name": "@amory/files",
-  "setConfig": addWebpackConfig
+  "setConfig": addWebpackConfig,
+  "setDefaults": createProject
 }
