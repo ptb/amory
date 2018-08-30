@@ -10,7 +10,9 @@ const config = cosmiconfig ("amory")
 
 const defaults = {
   "amory": {
-    "plugins": []
+    "plugins": [
+      "@amory/files"
+    ]
   },
   "dependencies": {
     "@amory/core": "latest",
