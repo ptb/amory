@@ -16,6 +16,7 @@ const defaults = {
   },
   "dependencies": {
     "@amory/core": "latest",
+    "@amory/files": "latest",
     "create-amory": "latest"
   },
   "license": "(Apache-2.0 OR MIT)",
