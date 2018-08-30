@@ -1,0 +1,26 @@
+* 🛠 Amory 
+:properties:
+:header-args: :cache yes :comments org :padline yes :results silent
+:header-args:sh: :noweb tangle :shebang "#!/bin/sh"
+:end:
+#+startup: showall nohideblocks hidestars indent
+
+#+begin_quote
+A modular toolkit for web development.
+#+end_quote
+
+** Overview
+
+*** Quick Start
+
+For yarn users, initialize a new project with ~yarn create~
+
+#+begin_example sh
+yarn create amory <pathname>
+#+end_example
+
+For npm users, initialize a new project with ~npx~
+
+#+begin_example sh
+npx create-amory <pathname>
+#+end_example
