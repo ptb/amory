@@ -1,6 +1,6 @@
-const { actions, client } = require ("@amory/schema")
 const pEachSeries = require ("p-each-series")
 const { Tapable, AsyncSeriesHook } = require ("tapable")
+const Config = require ("webpack-chain")
 
 const apis = ["setConfig"]
 
@@ -15,6 +15,7 @@ module.exports = class extends Tapable {
 
     this.name = "AmoryCore"
     this.plugins = options.plugins || []
+    this.webpack = new Config ()
   }
 
   run () {
@@ -25,7 +26,7 @@ module.exports = class extends Tapable {
           plugin[api] &&
           this.hooks[api].tap (
             plugin.name,
-            await plugin[api] ({ actions, client, ... this }, plugin.options)
+            await plugin[api] (this, plugin.options)
           )
       ))
   }

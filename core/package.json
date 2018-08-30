@@ -3,7 +3,6 @@
   "dependencies": {
     "@amory/merge": "latest",
     "@amory/merge-json": "latest",
-    "@amory/schema": "latest",
     "npm-run-all": "4.1.3",
     "p-each-series": "1.0.0",
     "tapable": "1.0.0",
@@ -27,5 +26,5 @@
     "access": "public"
   },
   "repository": "https://github.com/ptb/amory/tree/master/core",
-  "version": "2018.8.29-2"
+  "version": "2018.8.30-0"
 }
