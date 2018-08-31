@@ -13,14 +13,18 @@ A modular toolkit for web development.
 
 *** Quick Start
 
-For yarn users, initialize a new project with ~yarn create~
+To create a new project in the current directory, use ~yarn create~ or ~npx~:
 
 #+begin_example sh
-yarn create amory <pathname>
+yarn create amory && yarn
 #+end_example
-
-For npm users, initialize a new project with ~npx~
 
 #+begin_example sh
-npx create-amory <pathname>
+npx create-amory && npm install
 #+end_example
+
+** Troubleshooting
+
+=UnhandledPromiseRejectionWarning: Error: Invalid arguments to tap(options: Object, fn: function)=
+
+Each plugin needs to export a ~name~ as well as an API.
