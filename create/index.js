@@ -8,32 +8,51 @@ const { resolve } = require ("path")
 
 const cosmic = cosmiconfig ("amory")
 
-const defaults = {
-  "amory": {
-    "apis": [],
-    "plugins": []
-  },
-  "dependencies": {
-    "@amory/core": "latest",
-    "@amory/files": "latest",
-    "@amory/webpack": "latest",
-    "create-amory": "latest"
-  },
-  "license": "(Apache-2.0 OR MIT)",
-  "scripts": {
-    "start": "amory"
-  }
-}
-
 const result = cosmic.searchSync ()
 
 if (result === null) {
-  const dest = resolve ("package.json")
-  const src = resolve (".defaults.json")
+  const tmp = resolve ("tmp.json");
 
-  writeFileSync (src, JSON.stringify (defaults), "utf8")
-  mergeJSON (dest, [src])
-  unlinkSync (src)
+  [
+    {
+      "dest": "package.json",
+      "json": {
+        "amory": { "apis": [], "plugins": [] },
+        "dependencies": {
+          "@amory/core": "latest",
+          "@amory/files": "latest",
+          "@amory/webpack": "latest",
+          "create-amory": "latest"
+        },
+        "license": "(Apache-2.0 OR MIT)",
+        "scripts": {
+          "start": "amory"
+        }
+      }
+    },
+    {
+      "dest": ".vscode/launch.json",
+      "json": {
+        "configurations": [
+          {
+            "args": [],
+            "autoAttachChildProcesses": true,
+            "cwd": "${workspaceRoot}",
+            "env": { "NODE_ENV": "production" },
+            "name": "Amory",
+            "program": "/usr/local/bin/amory",
+            "request": "launch",
+            "type": "node"
+          }
+        ],
+        "version": "0.2.0"
+      }
+    }
+  ].map (({ dest, json }) => {
+    writeFileSync (tmp, JSON.stringify (json), "utf8")
+    mergeJSON (dest, [tmp])
+    unlinkSync (tmp)
+  })
 }
 
 cosmic.clearCaches ()
