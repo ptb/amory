@@ -5,6 +5,20 @@ const pEachSeries = require ("p-each-series")
 const { AsyncSeriesHook } = require ("tapable")
 const Config = require ("webpack-chain")
 
+const onError = (error) => {
+  switch (error.toString ()) {
+    case "Error: Invalid arguments to tap(options: Object, fn: function)":
+      console.error (`Export a "name" property from each plugin.\n`)
+      break
+    case "TypeError: Cannot destructure property `config` of 'undefined' or 'null'.":
+      console.error (`Add to "package.json":\n\n  "amory": { "apis": [], "plugins": [] },\n`)
+      break
+    default:
+      console.error (error)
+      break
+  }
+}
+
 class AmoryCore {
   constructor (options = {}) {
     this.apis = options.apis || []
@@ -22,12 +36,17 @@ class AmoryCore {
     pEachSeries (this.apis, (api) =>
       pEachSeries (
         this.plugins,
-        async (plugin) =>
-          plugin[api] &&
-          this.hooks[api].tap (
-            plugin.name,
-            await plugin[api] ({ ... options, ... this }, plugin.options)
-          )
+        async (plugin) => {
+          try {
+            plugin[api] &&
+            this.hooks[api].tap (
+              plugin.name,
+              await plugin[api] ({ ... options, ... this }, plugin.options)
+            )
+          } catch (error) {
+            onError (error)
+          }
+        }
       ))
   }
 }
@@ -39,20 +58,10 @@ if (require.main === module) {
     const apis = config.apis
     const plugins = config.plugins.map ((plugin) => require (plugin));
 
-    ["markup", "script"].map ((stage) => {
-      const define = { stage }
-
-      return new AmoryCore ({ apis, define, plugins }).run ()
-    })
+    ["markup", "script"].map ((stage) =>
+      new AmoryCore ({ apis, "define": { stage }, plugins }).run ())
   } catch (error) {
-    switch (error.toString ()) {
-      case "TypeError: Cannot destructure property `config` of 'undefined' or 'null'.":
-        console.error (`Add configuration to "package.json":\n\n  "amory": { "apis": [], "plugins": [] },\n`)
-        break
-      default:
-        console.error (error)
-        break
-    }
+    onError (error)
   }
 }
 
