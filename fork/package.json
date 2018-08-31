@@ -1,0 +1,18 @@
+{
+  "author": "Peter T Bosse II <ptb@ioutime.com> (http://ptb2.me/)",
+  "engines": {
+    "node": ">=8"
+  },
+  "keywords": [
+    "amory",
+    "fork"
+  ],
+  "license": "(Apache-2.0 OR MIT)",
+  "main": "index.js",
+  "name": "@amory/fork",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": "https://github.com/ptb/amory/tree/master/fork",
+  "version": "2018.8.31-0"
+}
