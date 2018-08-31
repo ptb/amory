@@ -64,6 +64,10 @@ let plugins =
     ? amory.plugins
     : config.plugins
 
-plugins = plugins.map ((plugin) => require (plugin))
+plugins = plugins.map ((plugin) => require (plugin));
 
-new Core ({ apis, plugins }).run ()
+["markup", "script"].map ((stage) => {
+  const define = { stage }
+
+  return new Core ({ apis, define, plugins }).run ()
+})
