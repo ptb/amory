@@ -10,9 +10,8 @@ const config = cosmiconfig ("amory")
 
 const defaults = {
   "amory": {
-    "plugins": [
-      "@amory/files"
-    ]
+    "apis": [],
+    "plugins": []
   },
   "dependencies": {
     "@amory/core": "latest",
@@ -25,7 +24,7 @@ const defaults = {
   }
 }
 
-let result = config.searchSync ()
+const result = config.searchSync ()
 
 if (result === null) {
   const dest = resolve ("package.json")
@@ -37,8 +36,19 @@ if (result === null) {
 }
 
 config.clearCaches ()
-result = config.searchSync ()
 
-const plugins = result.config.plugins.map ((plugin) => require (plugin))
+let { apis, plugins } = config.searchSync ()
 
-new Core ({ plugins }).run ()
+apis =
+  !Array.isArray (apis) || !apis.length
+    ? ["setConfig", "setDefaults", "runProcess"]
+    : apis
+
+plugins =
+  !Array.isArray (plugins) || !plugins.length
+    ? ["@amory/files"]
+    : plugins
+
+plugins = plugins.map ((plugin) => require (plugin))
+
+new Core ({ apis, plugins }).run ()
