@@ -10,6 +10,7 @@ const apis = [
 
 module.exports = class {
   constructor (options = {}) {
+    this.define = options.define || {}
     this.hooks = apis.reduce ((target, api) => {
       target[api] = new AsyncSeriesHook (["params", "options"])
       return target
