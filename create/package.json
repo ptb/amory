@@ -8,6 +8,7 @@
     "@amory/core": "latest",
     "@amory/files": "latest",
     "@amory/merge-json": "latest",
+    "@amory/plugin": "latest",
     "@amory/vscode": "latest",
     "@amory/webpack": "latest",
     "cosmiconfig": "5.0.6",
@@ -29,5 +30,5 @@
     "access": "public"
   },
   "repository": "https://github.com/ptb/amory/tree/master/create",
-  "version": "2018.8.31-7"
+  "version": "2018.8.31-8"
 }

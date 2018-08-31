@@ -8,7 +8,12 @@ const { dirname, resolve } = require ("path")
 
 const amory = {
   "apis": ["setConfig", "setDefaults", "runProcess"],
-  "plugins": ["@amory/files", "@amory/vscode", "@amory/webpack"]
+  "plugins": [
+    "@amory/files",
+    "@amory/plugin",
+    "@amory/vscode",
+    "@amory/webpack"
+  ]
 }
 
 const cosmic = cosmiconfig ("amory")
@@ -26,6 +31,7 @@ if (result === null) {
         "dependencies": {
           "@amory/core": "latest",
           "@amory/files": "latest",
+          "@amory/plugin": "latest",
           "@amory/vscode": "latest",
           "@amory/webpack": "latest",
           "create-amory": "latest"
