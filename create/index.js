@@ -16,6 +16,7 @@ const defaults = {
   "dependencies": {
     "@amory/core": "latest",
     "@amory/files": "latest",
+    "@amory/webpack": "latest",
     "create-amory": "latest"
   },
   "license": "(Apache-2.0 OR MIT)",
@@ -46,7 +47,7 @@ const apis =
 
 let plugins =
   !Array.isArray (config.plugins) || !config.plugins.length
-    ? ["@amory/files"]
+    ? ["@amory/files", "@amory/webpack"]
     : config.plugins
 
 plugins = plugins.map ((plugin) => require (plugin))
