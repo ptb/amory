@@ -6,6 +6,11 @@ const cosmiconfig = require ("cosmiconfig")
 const { ensureDir, unlinkSync, writeFileSync } = require ("fs-extra")
 const { dirname, resolve } = require ("path")
 
+const amory = {
+  "apis": ["setConfig", "setDefaults", "runProcess"],
+  "plugins": ["@amory/files", "@amory/webpack"]
+}
+
 const cosmic = cosmiconfig ("amory")
 
 const result = cosmic.searchSync ()
@@ -17,7 +22,7 @@ if (result === null) {
     {
       "dest": "package.json",
       "json": {
-        "amory": { "apis": [], "plugins": [] },
+        "amory": amory,
         "dependencies": {
           "@amory/core": "latest",
           "@amory/files": "latest",
@@ -38,9 +43,12 @@ if (result === null) {
             "args": [],
             "autoAttachChildProcesses": true,
             "cwd": "${workspaceRoot}",
-            "env": { "NODE_ENV": "production" },
+            "env": {
+              "DEBUG": "@amory:*",
+              "NODE_ENV": "production"
+            },
             "name": "Amory",
-            "program": "/usr/local/bin/amory",
+            "program": "${workspaceRoot}/node_modules/.bin/amory",
             "request": "launch",
             "type": "node"
           }
@@ -62,12 +70,12 @@ const { config } = cosmic.searchSync ()
 
 const apis =
   !Array.isArray (config.apis) || !config.apis.length
-    ? ["setConfig", "setDefaults", "runProcess"]
+    ? amory.apis
     : config.apis
 
 let plugins =
   !Array.isArray (config.plugins) || !config.plugins.length
-    ? ["@amory/files", "@amory/webpack"]
+    ? amory.plugins
     : config.plugins
 
 plugins = plugins.map ((plugin) => require (plugin))
