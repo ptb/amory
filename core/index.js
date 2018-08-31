@@ -7,6 +7,7 @@ module.exports = class extends Tapable {
     super (options)
 
     this.apis = options.apis || []
+    this.define = options.define || {}
     this.hooks = this.apis.reduce ((hooks, api) => {
       hooks[api] = new AsyncSeriesHook (["params", "options"])
       return hooks
