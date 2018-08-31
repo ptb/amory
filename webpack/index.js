@@ -1,31 +1,27 @@
-const fork = require ("@amory/fork")
-const merge = require ("@amory/merge")
 const debug = require ("debug") ("@amory:webpack")
-const { resolve } = require ("path").posix
+const webpack = require ("webpack")
 const Config = require ("webpack-chain")
 
-const AmoryCorePlugin = require ("./plugin.js")
+let compiler
 
-const addWebpackConfig = ({
-  plugins = [],
-  webpack = new Config ()
-}) =>
-  /* eslint-disable indent */
-  webpack
-    .plugin ("amory")
-      .use (AmoryCorePlugin)
-      .tap ((options = []) => merge (options, [{ plugins }]))
-      .end ()
+const runWebpack = ({
+  "webpack": config = new Config ()
+}) => {
+  compiler = webpack (config.toConfig ())
 
-const runWebpack = ({ webpack }) => {
-  const script = resolve (__dirname, "webpack.js")
-  const thread = fork (debug, script)
+  compiler.run ((err, stats) => {
+    const errors = stats.hasErrors ()
+      ? stats.toJson ().errors
+      : err
 
-  thread.send ({ "cmd": "build", "config": webpack.toConfig () })
+    if (errors) {
+      debug (errors)
+      throw new Error (errors)
+    }
+  })
 }
 
 module.exports = {
   "name": "@amory/webpack",
-  "runProcess": runWebpack,
-  "setConfig": addWebpackConfig
+  "runProcess": runWebpack
 }
