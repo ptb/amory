@@ -6,7 +6,7 @@ const cosmiconfig = require ("cosmiconfig")
 const { unlinkSync, writeFileSync } = require ("fs")
 const { resolve } = require ("path")
 
-const config = cosmiconfig ("amory")
+const cosmic = cosmiconfig ("amory")
 
 const defaults = {
   "amory": {
@@ -24,7 +24,7 @@ const defaults = {
   }
 }
 
-const result = config.searchSync ()
+const result = cosmic.searchSync ()
 
 if (result === null) {
   const dest = resolve ("package.json")
@@ -35,19 +35,19 @@ if (result === null) {
   unlinkSync (src)
 }
 
-config.clearCaches ()
+cosmic.clearCaches ()
 
-let { apis, plugins } = config.searchSync ()
+const { config } = cosmic.searchSync ()
 
-apis =
-  !Array.isArray (apis) || !apis.length
+const apis =
+  !Array.isArray (config.apis) || !config.apis.length
     ? ["setConfig", "setDefaults", "runProcess"]
-    : apis
+    : config.apis
 
-plugins =
-  !Array.isArray (plugins) || !plugins.length
+let plugins =
+  !Array.isArray (config.plugins) || !config.plugins.length
     ? ["@amory/files"]
-    : plugins
+    : config.plugins
 
 plugins = plugins.map ((plugin) => require (plugin))
 
