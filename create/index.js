@@ -3,7 +3,7 @@
 const Core = require ("@amory/core")
 const mergeJSON = require ("@amory/merge-json")
 const cosmiconfig = require ("cosmiconfig")
-const { ensureDir, unlinkSync, writeFileSync } = require ("fs")
+const { ensureDir, unlinkSync, writeFileSync } = require ("fs-extra")
 const { dirname, resolve } = require ("path")
 
 const cosmic = cosmiconfig ("amory")

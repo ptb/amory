@@ -9,7 +9,8 @@
     "@amory/files": "latest",
     "@amory/merge-json": "latest",
     "@amory/webpack": "latest",
-    "cosmiconfig": "5.0.6"
+    "cosmiconfig": "5.0.6",
+    "fs-extra": "7.0.0"
   },
   "description": "Amory CLI",
   "engines": {
@@ -27,5 +28,5 @@
     "access": "public"
   },
   "repository": "https://github.com/ptb/amory/tree/master/create",
-  "version": "2018.8.31-4"
+  "version": "2018.8.31-5"
 }
