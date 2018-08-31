@@ -8,7 +8,7 @@ const { dirname, resolve } = require ("path")
 
 const amory = {
   "apis": ["setConfig", "setDefaults", "runProcess"],
-  "plugins": ["@amory/files", "@amory/webpack"]
+  "plugins": ["@amory/files", "@amory/vscode", "@amory/webpack"]
 }
 
 const cosmic = cosmiconfig ("amory")
@@ -26,6 +26,7 @@ if (result === null) {
         "dependencies": {
           "@amory/core": "latest",
           "@amory/files": "latest",
+          "@amory/vscode": "latest",
           "@amory/webpack": "latest",
           "create-amory": "latest"
         },
@@ -33,27 +34,6 @@ if (result === null) {
         "scripts": {
           "start": "amory"
         }
-      }
-    },
-    {
-      "dest": ".vscode/launch.json",
-      "json": {
-        "configurations": [
-          {
-            "args": [],
-            "autoAttachChildProcesses": true,
-            "cwd": "${workspaceRoot}",
-            "env": {
-              "DEBUG": "@amory:*",
-              "NODE_ENV": "production"
-            },
-            "name": "Amory",
-            "program": "${workspaceRoot}/node_modules/.bin/amory",
-            "request": "launch",
-            "type": "node"
-          }
-        ],
-        "version": "0.2.0"
       }
     }
   ].map (({ dest, json }) => {
