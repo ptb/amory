@@ -2,11 +2,7 @@
   "author": "Peter T Bosse II <ptb@ioutime.com> (http://ptb2.me/)",
   "dependencies": {
     "@amory/fork": "latest",
-    "@amory/merge": "latest",
-    "@amory/store": "latest",
     "debug": "3.1.0",
-    "p-each-series": "1.0.0",
-    "tapable": "1.0.0",
     "webpack": "4.17.1",
     "webpack-chain": "4.9.0"
   },
@@ -24,5 +20,5 @@
     "access": "public"
   },
   "repository": "https://github.com/ptb/amory/tree/master/webpack",
-  "version": "2018.8.31-2"
+  "version": "2018.8.31-3"
 }
