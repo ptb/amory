@@ -3,8 +3,8 @@
 const Core = require ("@amory/core")
 const mergeJSON = require ("@amory/merge-json")
 const cosmiconfig = require ("cosmiconfig")
-const { unlinkSync, writeFileSync } = require ("fs")
-const { resolve } = require ("path")
+const { ensureDir, unlinkSync, writeFileSync } = require ("fs")
+const { dirname, resolve } = require ("path")
 
 const cosmic = cosmiconfig ("amory")
 
@@ -50,6 +50,7 @@ if (result === null) {
     }
   ].map (({ dest, json }) => {
     writeFileSync (tmp, JSON.stringify (json), "utf8")
+    ensureDir (dirname (dest))
     mergeJSON (dest, [tmp])
     unlinkSync (tmp)
   })
