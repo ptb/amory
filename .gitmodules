@@ -1,0 +1,3 @@
+[submodule "chokidar"]
+	path = chokidar
+	url = https://github.com/ptb/chokidar
