@@ -56,9 +56,10 @@ if (require.main === module) {
     const { config } = cosmiconfig ("amory").searchSync ()
 
     const apis = config.apis
-    const plugins = config.plugins.map ((plugin) => require (plugin));
+    const plugins = config.plugins.map ((plugin) => require (plugin))
+    const stages = config.stages || ["main"]
 
-    ["markup", "script"].map ((stage) =>
+    stages.map ((stage) =>
       new AmoryCore ({ apis, "define": { stage }, plugins }).run ())
   } catch (error) {
     onError (error)
