@@ -22,7 +22,8 @@ const {
   flushSync,
   hydrate,
   render,
-  unmountComponentAtNode
+  unmountComponentAtNode,
+  unstable_batchedUpdates
 } = ReactDOM
 const {
   renderToNodeStream,
@@ -54,5 +55,6 @@ export {
   renderToStaticNodeStream,
   renderToString,
   StrictMode,
-  unmountComponentAtNode
+  unmountComponentAtNode,
+  unstable_batchedUpdates
 }

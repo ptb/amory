@@ -31,5 +31,5 @@
     "build": "rollup -c",
     "serve": "serve example"
   },
-  "version": "2018.9.2-0"
+  "version": "2018.9.2-1"
 }
