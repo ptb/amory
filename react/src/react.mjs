@@ -1,6 +1,6 @@
-import React from "./react.js"
-import ReactDOM from "./react-dom.js"
-import ReactDOMServer from "./react-dom-server.js"
+import React from "react"
+import ReactDOM from "react-dom"
+import ReactDOMServer from "react-dom/server"
 
 const {
   Children,

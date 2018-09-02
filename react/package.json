@@ -1,43 +1,35 @@
 {
   "author": "Peter T Bosse II <ptb@ioutime.com> (http://ptb2.me/)",
-  "babel": {
-    "presets": [
-      "@babel/preset-react"
-    ]
-  },
   "dependencies": {
-    "@amory/merge": "latest",
-    "@babel/core": "latest",
-    "@babel/preset-react": "latest",
-    "babel-loader": "next",
     "react": "16.4.2",
-    "react-dom": "16.4.2",
-    "webpack": "4.17.1",
-    "webpack-chain": "4.9.0"
+    "react-dom": "16.4.2"
   },
   "devDependencies": {
     "rollup": "0.65.0",
+    "rollup-plugin-commonjs": "9.1.6",
+    "rollup-plugin-node-resolve": "3.3.0",
     "rollup-plugin-replace": "2.0.0",
     "rollup-plugin-terser": "2.0.2",
-    "rollup-plugin-uglify-es": "0.0.1"
+    "rollup-plugin-uglify-es": "0.0.1",
+    "serve": "10.0.0"
   },
   "engines": {
     "node": ">=8"
   },
   "keywords": [
     "amory",
-    "react",
-    "webpack"
+    "react"
   ],
   "license": "(Apache-2.0 OR MIT)",
-  "main": "index.mjs",
+  "module": "esm/react.mjs",
   "name": "@amory/react",
   "publishConfig": {
     "access": "public"
   },
   "repository": "https://github.com/ptb/amory/tree/master/react",
   "scripts": {
-    "build": "rollup -c"
+    "build": "rollup -c",
+    "serve": "serve example"
   },
-  "version": "2018.8.16-2"
+  "version": "2018.9.2-0"
 }
