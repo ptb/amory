@@ -6,7 +6,7 @@
     "Peter T Bosse II <ptb@ioutime.com> (http://ptb2.me/)"
   ],
   "dependencies": {
-    "inline-style-prefixer": "4.0.2",
+    "inline-style-prefixer": "5.0.1",
     "styletron-engine-atomic": "1.0.8",
     "styletron-standard": "1.0.6"
   },
