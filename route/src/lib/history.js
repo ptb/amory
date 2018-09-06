@@ -1,141 +1,131 @@
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-////////////////////////////////////////////////////////////////////////////////
 // createHistory(source) - wraps a history source
-var getLocation = function getLocation(source) {
-  return _extends({}, source.location, {
-    state: source.history.state,
-    key: source.history.state && source.history.state.key || "initial"
-  });
-};
+const getLocation = (source) => ({
+  ... source.location,
+  "key": source.history.state && source.history.state.key || "initial",
+  "state": source.history.state
+})
 
-var createHistory = function createHistory(source, options) {
-  var listeners = [];
-  var location = getLocation(source);
-  var transitioning = false;
-  var resolveTransition = function resolveTransition() {};
+const createHistory = (source) => {
+  let listeners = []
+  let location = getLocation (source)
+  let transitioning = false
+  let resolveTransition = () => {}
 
   return {
-    get location() {
-      return location;
+    _onTransitionComplete () {
+      transitioning = false
+      resolveTransition ()
     },
 
-    get transitioning() {
-      return transitioning;
+    listen (listener) {
+      listeners.push (listener)
+
+      const popstateListener = () => {
+        location = getLocation (source)
+        listener ()
+      }
+
+      source.addEventListener ("popstate", popstateListener)
+
+      return () => {
+        source.removeEventListener ("popstate", popstateListener)
+        listeners = listeners.filter ((fn) => fn !== listener)
+      }
     },
 
-    _onTransitionComplete: function _onTransitionComplete() {
-      transitioning = false;
-      resolveTransition();
+    get "location" () {
+      return location
     },
-    listen: function listen(listener) {
-      listeners.push(listener);
 
-      var popstateListener = function popstateListener() {
-        location = getLocation(source);
-        listener();
-      };
+    navigate (to, { state, replace = false } = {}) {
+      state = { ... state, "key": String (Date.now ()) }
 
-      source.addEventListener("popstate", popstateListener);
-
-      return function () {
-        source.removeEventListener("popstate", popstateListener);
-        listeners = listeners.filter(function (fn) {
-          return fn !== listener;
-        });
-      };
-    },
-    navigate: function navigate(to) {
-      var _ref = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {},
-          state = _ref.state,
-          _ref$replace = _ref.replace,
-          replace = _ref$replace === undefined ? false : _ref$replace;
-
-      state = _extends({}, state, { key: Date.now() + "" });
       // try...catch iOS Safari limits to 100 pushState calls
       try {
         if (transitioning || replace) {
-          source.history.replaceState(state, null, to);
+          source.history.replaceState (state, null, to)
         } else {
-          source.history.pushState(state, null, to);
+          source.history.pushState (state, null, to)
         }
       } catch (e) {
-        source.location[replace ? "replace" : "assign"](to);
+        source.location[replace ? "replace" : "assign"] (to)
       }
 
-      location = getLocation(source);
-      transitioning = true;
-      var transition = new Promise(function (res) {
-        return resolveTransition = res;
-      });
-      listeners.forEach(function (fn) {
-        return fn();
-      });
-      return transition;
+      location = getLocation (source)
+      transitioning = true
+      const transition = new Promise (
+        (resolve) => {
+          resolveTransition = resolve
+        }
+      )
+
+      listeners.forEach ((fn) => fn ())
+      return transition
+    },
+
+    get "transitioning" () {
+      return transitioning
     }
-  };
-};
 
-////////////////////////////////////////////////////////////////////////////////
+  }
+}
+
 // Stores history entries in memory for testing or other platforms like Native
-var createMemorySource = function createMemorySource() {
-  var initialPathname = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "/";
-
-  var index = 0;
-  var stack = [{ pathname: initialPathname, search: "" }];
-  var states = [];
+const createMemorySource = (initialPathname = "/") => {
+  let index = 0
+  const stack = [{ "pathname": initialPathname, "search": "" }]
+  const states = []
 
   return {
-    get location() {
-      return stack[index];
-    },
-    addEventListener: function addEventListener(name, fn) {},
-    removeEventListener: function removeEventListener(name, fn) {},
+    addEventListener () {},
 
-    history: {
-      get entries() {
-        return stack;
+    "history": {
+      get "entries" () {
+        return stack
       },
-      get index() {
-        return index;
-      },
-      get state() {
-        return states[index];
-      },
-      pushState: function pushState(state, _, uri) {
-        var _uri$split = uri.split("?"),
-            pathname = _uri$split[0],
-            _uri$split$ = _uri$split[1],
-            search = _uri$split$ === undefined ? "" : _uri$split$;
 
-        index++;
-        stack.push({ pathname: pathname, search: search });
-        states.push(state);
+      get "index" () {
+        return index
       },
-      replaceState: function replaceState(state, _, uri) {
-        var _uri$split2 = uri.split("?"),
-            pathname = _uri$split2[0],
-            _uri$split2$ = _uri$split2[1],
-            search = _uri$split2$ === undefined ? "" : _uri$split2$;
 
-        stack[index] = { pathname: pathname, search: search };
-        states[index] = state;
+      pushState (state, _, uri) {
+        const [pathname, search = ""] = uri.split ("?")
+
+        index++
+        stack.push ({ pathname, search })
+        states.push (state)
+      },
+
+      replaceState (state, _, uri) {
+        const [pathname, search = ""] = uri.split ("?")
+
+        stack[index] = { pathname, search }
+        states[index] = state
+      },
+
+      get "state" () {
+        return states[index]
       }
-    }
-  };
-};
+    },
 
-////////////////////////////////////////////////////////////////////////////////
-// global history - uses window.history as the source if available, otherwise a
-// memory history
-var canUseDOM = !!(typeof window !== "undefined" && window.document && window.document.createElement);
-var getSource = function getSource() {
-  return canUseDOM ? window : createMemorySource();
-};
+    get "location" () {
+      return stack[index]
+    },
 
-var globalHistory = createHistory(getSource());
-var navigate = globalHistory.navigate;
+    removeEventListener () {}
+  }
+}
 
-////////////////////////////////////////////////////////////////////////////////
+// global history - uses window.history as the source if available,
+// otherwise a memory history
+const canUseDOM = Boolean (
+  typeof window !== "undefined" &&
+    window.document &&
+    window.document.createElement
+)
+const getSource = () => (canUseDOM ? window : createMemorySource ())
 
-export { globalHistory, navigate, createHistory, createMemorySource };
+const globalHistory = createHistory (getSource ())
+const { navigate } = globalHistory
+
+export { globalHistory, navigate, createHistory, createMemorySource }

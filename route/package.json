@@ -4,6 +4,9 @@
     "Peter T Bosse II <ptb@ioutime.com> (http://ptb2.me/)"
   ],
   "description": "Reach Router converted to browser-ready ES modules",
+  "devDependencies": {
+    "rollup": "^0.65.2"
+  },
   "engines": {
     "node": ">=8"
   },
@@ -16,11 +19,11 @@
     "routing"
   ],
   "license": "MIT",
-  "module": "esm/route.js",
+  "module": "esm/route.min.js",
   "name": "@amory/route",
   "publishConfig": {
     "access": "public"
   },
   "repository": "https://github.com/ptb/amory/tree/master/route",
-  "version": "2018.9.6-0"
+  "version": "2018.9.6-1"
 }

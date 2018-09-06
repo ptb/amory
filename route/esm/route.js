@@ -1,1 +1,778 @@
-import{createContext,Component,createElement as h,unstable_deferredUpdates,forwardRef,Children,cloneElement,PureComponent}from"./react.js";const createNamedContext=(e,t)=>{const{Consumer:n,Provider:r}=createContext(t);return n.displayName=`${e}.Consumer`,r.displayName=`${e}.Provider`,{Consumer:n,Provider:r}},BaseContext=createNamedContext("Base",{basepath:"/",baseuri:"/"}),FocusContext=createNamedContext("Focus"),LocationContext=createNamedContext("Location");var _extends=Object.assign||function(e){for(var t=1;t<arguments.length;t++){var n=arguments[t];for(var r in n)Object.prototype.hasOwnProperty.call(n,r)&&(e[r]=n[r])}return e},getLocation=function(e){return _extends({},e.location,{state:e.history.state,key:e.history.state&&e.history.state.key||"initial"})},createHistory=function(e,t){var n=[],r=getLocation(e),o=!1,a=function(){};return{get location(){return r},get transitioning(){return o},_onTransitionComplete:function(){o=!1,a()},listen:function(t){n.push(t);var o=function(){r=getLocation(e),t()};return e.addEventListener("popstate",o),function(){e.removeEventListener("popstate",o),n=n.filter(function(e){return e!==t})}},navigate:function(t){var i=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},s=i.state,c=i.replace,u=void 0!==c&&c;s=_extends({},s,{key:Date.now()+""});try{o||u?e.history.replaceState(s,null,t):e.history.pushState(s,null,t)}catch(n){e.location[u?"replace":"assign"](t)}r=getLocation(e),o=!0;var l=new Promise(function(e){return a=e});return n.forEach(function(e){return e()}),l}}},createMemorySource=function(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:"/",t=0,n=[{pathname:e,search:""}],r=[];return{get location(){return n[t]},addEventListener:function(e,t){},removeEventListener:function(e,t){},history:{get entries(){return n},get index(){return t},get state(){return r[t]},pushState:function(e,o,a){var i=a.split("?"),s=i[0],c=i[1],u=void 0===c?"":c;t++,n.push({pathname:s,search:u}),r.push(e)},replaceState:function(e,o,a){var i=a.split("?"),s=i[0],c=i[1],u=void 0===c?"":c;n[t]={pathname:s,search:u},r[t]=e}}}},canUseDOM=!("undefined"==typeof window||!window.document||!window.document.createElement),getSource=function(){return canUseDOM?window:createMemorySource()},globalHistory=createHistory(getSource()),navigate=globalHistory.navigate;let startsWith=function(e,t){return e.substr(0,t.length)===t},pick=function(e,t){let n=void 0;var r=void 0,o=t.split("?")[0],a=segmentize(o),i=""===a[0],s=rankRoutes(e);for(let e=0,o=s.length;e<o;e++){let o=!1;var c=s[e].route;if(c.default){r={route:c,params:{},uri:t};continue}let m=segmentize(c.path);for(var u={},l=Math.max(a.length,m.length),p=0;p<l;p++){let e=m[p];var d=a[p];if("*"===e){u["*"]=a.slice(p).map(decodeURIComponent).join("/");break}if(void 0===d){o=!0;break}let t=paramRe.exec(e);if(t&&!i){reservedNames.indexOf(t[1]);var h=decodeURIComponent(d);u[t[1]]=h}else if(e!==d){o=!0;break}}if(!o){n={route:c,params:u,uri:`/${a.slice(0,p).join("/")}`};break}}return n||r||null},match=function(e,t){return pick([{path:e}],t)},resolve=function(e,t){if(startsWith(e,"/"))return e;let n=e.split("?");var r=n[0],o=n[1],a=t.split("?")[0],i=segmentize(r),s=segmentize(a);if(""===i[0])return addQuery(a,o);if(!startsWith(i[0],".")){let e=s.concat(i).join("/");return addQuery(("/"===a?"":"/")+e,o)}let c=s.concat(i);var u=[];for(let e=0,t=c.length;e<t;e++){let t=c[e];".."===t?u.pop():"."!==t&&u.push(t)}return addQuery(`/${u.join("/")}`,o)},insertParams=function(e,t){return`/${segmentize(e).map(function(e){var n=paramRe.exec(e);return n?t[n[1]]:e}).join("/")}`};var paramRe=/^:(.+)/,SEGMENT_POINTS=4,STATIC_POINTS=3,DYNAMIC_POINTS=2,SPLAT_PENALTY=1,ROOT_POINTS=1,isRootSegment=function(e){return""===e},isDynamic=function(e){return paramRe.test(e)};let isSplat=function(e){return"*"===e},rankRoute=function(e,t){return{route:e,score:e.default?0:segmentize(e.path).reduce(function(e,t){return e+=SEGMENT_POINTS,isRootSegment(t)?e+=ROOT_POINTS:isDynamic(t)?e+=DYNAMIC_POINTS:isSplat(t)?e-=SEGMENT_POINTS+SPLAT_PENALTY:e+=STATIC_POINTS,e},0),index:t}};var rankRoutes=function(e){return e.map(rankRoute).sort(function(e,t){return e.score<t.score?1:e.score>t.score?-1:e.index-t.index})},segmentize=function(e){return e.replace(/(^\/+|\/+$)/g,"").split("/")},addQuery=function(e,t){return e+(t?`?${t}`:"")},reservedNames=["uri","path"];function RedirectRequest(e){this.uri=e}const redirectTo=e=>{throw new RedirectRequest(e)};class RedirectImpl extends Component{componentDidMount(){const{navigate:e,replace:t=!0,state:n,to:r,...o}=this.props;Promise.resolve().then(()=>{e(insertParams(r,o),{replace:t,state:n})})}render(){const{noThrow:e,to:t,...n}=this.props;return e||redirectTo(insertParams(t,n)),null}}const Redirect=e=>h(Location,{},t=>h(RedirectImpl,{...t,...e})),isRedirect=e=>e instanceof RedirectRequest;class LocationProvider extends Component{constructor(e){super(e),this.state={context:this.getContext(),refs:{unlisten:null}}}componentDidMount(){const{history:e}=this.props,{refs:t}=this.state;t.unlisten=e.listen(()=>{Promise.resolve().then(()=>{unstable_deferredUpdates(()=>{this.unmounted||this.setState(()=>({context:this.getContext()}))})})})}componentDidUpdate(e,t){const{history:n}=this.props,{context:r}=this.state;t.context.location!==r.location&&n._onTransitionComplete()}componentDidCatch(e){if(!isRedirect(e))throw new Error(e);{const{navigate:t}=this.props.history;t(e.uri,{replace:!0})}}componentWillUnmount(){const{refs:e}=this.state;this.unmounted=!0,e.unlisten()}getContext(){const{location:e,navigate:t}=this.props.history;return{location:e,navigate:t}}render(){const{children:e}=this.props,{context:t}=this.state;return h(LocationContext.Provider,{value:t},"function"==typeof e?e(t):e||null)}}LocationProvider.defaultProps={history:globalHistory};const Location$1=({children:e})=>h(LocationContext.Consumer,{},t=>t?e(t):h(LocationProvider,{},e)),ServerLocation=({children:e,url:t})=>h(LocationContext.Provider,{value:{location:{pathname:t},navigate:()=>{throw new Error("You can't call navigate on the server.")}}},e),shouldNavigate=e=>!e.defaultPrevented&&0===e.button&&!(e.altKey||e.ctrlKey||e.metaKey||e.shiftKey),Link=forwardRef(({innerRef:e,...t},n)=>h(BaseContext.Consumer,{},({baseuri:r})=>h(Location$1,{},({location:o,navigate:a})=>{const{getProps:i=(()=>{}),replace:s,state:c,to:u,...l}=t,p=resolve(u,r),d=o.pathname===p,h=startsWith(o.pathname,p);return h("a",{...i({href:p,isCurrent:d,isPartiallyCurrent:h,location:o}),...l,"aria-current":d?"page":null,href:p,onClick:e=>{l.onClick&&l.onClick(e),shouldNavigate(e)&&(e.preventDefault(),a(p,{replace:s,state:c}))},ref:n||e})}))),Match=({children:e,path:t})=>h(BaseContext.Consumer,{},({baseuri:n})=>h(Location,{},({location:r,navigate:o})=>{const a=resolve(t,n),i=match(a,r.pathname);return e({location:r,match:i?{...i.params,path:t,uri:i.uri}:null,navigate:o})}));class FocusHandlerImpl extends Component{constructor(e){super(e),this.state={initialRender:!0},this.requestFocus=(e=>{const{shouldFocus:t}=this.state;t||e.focus()})}static getDerivedStateFromProps({location:e,uri:t,...n},r){if(void 0===r.uri)return{shouldFocus:!0,...n};const o=t!==r.uri,a=e.pathname===t&&r.location.pathname!==e.pathname;return{shouldFocus:o||a,...n}}componentDidMount(){this.setState(e=>({...e,focusHandlerCount:e.focusHandlerCount+1})),this.focus()}componentDidUpdate(e){const{location:t}=this.props,{shouldFocus:n}=this.state;e.location!==t&&n&&this.focus()}componentWillUnmount(){this.setState(e=>({...e,focusHandlerCount:e.focusHandlerCount-1,initialRender:1===e.focusHandlerCount||e.initialRender}))}focus(){const{requestFocus:e}=this.props,{initialRender:t}=this.state;e?e(this.node):t?this.setState({initialRender:!1}):this.node.focus()}render(){const{children:e,component:t="div",role:n="group",style:r,...o}=this.props;return["location","requestFocus","uri"].forEach(e=>delete o[e]),h(t,{ref:e=>{this.node=e},role:n,style:{outline:"none",...r},tabIndex:"-1",...o},h(FocusContext.Provider,{value:this.requestFocus},e))}}const FocusHandler=e=>h(FocusContext.Consumer,{},t=>h(FocusHandlerImpl,{...e,requestFocus:t})),stripSlashes=e=>e.replace(/(^\/+|\/+$)/g,""),createRoute=e=>t=>{if(t.props.default)return{default:!0,value:t};const n=t.type===Redirect?t.props.from:t.props.path,r="/"===n?e:`${stripSlashes(e)}/${stripSlashes(n)}`;return{default:t.props.default,path:t.props.children?`${stripSlashes(r)}/*`:r,value:t}};class RouterImpl extends PureComponent{render(){const{children:e,component:t="div",location:n,navigate:r,primary:o,...a}=this.props;let{basepath:i}=this.props;const s=Children.map(e,createRoute(i)),{pathname:c}=n,u=pick(s,c);if(u){const{params:e,route:s,route:{value:c},uri:l}=u;i=s.default?i:s.path.replace(/\*$/,"");const p=o?FocusHandler:t,d=o?{component:t,location:n,uri:l,...a}:a,h={...e,location:n,navigate:(e,t)=>r(resolve(e,l),t),uri:l},m=cloneElement(c,h,c.props.children?h(Router,{primary:o},c.props.children):null);return h(BaseContext.Provider,{value:{basepath:i,baseuri:l}},h(p,d,m))}return null}}RouterImpl.defaultProps={primary:!0};const Router=e=>h(BaseContext.Consumer,{},t=>h(Location$1,{},n=>h(RouterImpl,{...t,...n,...e})));export{Link,isRedirect,Location$1 as Location,LocationProvider,ServerLocation,Match,Redirect,redirectTo,Router,createHistory,createMemorySource,navigate};
+import { createContext, Component, createElement as h, unstable_deferredUpdates, forwardRef, Children, cloneElement, PureComponent } from "./react.js"
+
+/* eslint-disable no-shadow */
+
+const createNamedContext = (name, defaultValue) => {
+  const { Consumer, Provider } = createContext (defaultValue)
+
+  Consumer.displayName = `${name}.Consumer`
+  Provider.displayName = `${name}.Provider`
+  return { Consumer, Provider }
+}
+
+const BaseContext = createNamedContext ("Base", {
+  "basepath": "/",
+  "baseuri": "/"
+})
+const FocusContext = createNamedContext ("Focus")
+const LocationContext = createNamedContext ("Location")
+
+// createHistory(source) - wraps a history source
+const getLocation = (source) => ({
+  ... source.location,
+  "key": source.history.state && source.history.state.key || "initial",
+  "state": source.history.state
+})
+
+const createHistory = (source) => {
+  let listeners = []
+  let location = getLocation (source)
+  let transitioning = false
+  let resolveTransition = () => {}
+
+  return {
+    _onTransitionComplete () {
+      transitioning = false
+      resolveTransition ()
+    },
+
+    listen (listener) {
+      listeners.push (listener)
+
+      const popstateListener = () => {
+        location = getLocation (source)
+        listener ()
+      }
+
+      source.addEventListener ("popstate", popstateListener)
+
+      return () => {
+        source.removeEventListener ("popstate", popstateListener)
+        listeners = listeners.filter ((fn) => fn !== listener)
+      }
+    },
+
+    get "location" () {
+      return location
+    },
+
+    navigate (to, { state, replace = false } = {}) {
+      state = { ... state, "key": String (Date.now ()) }
+
+      // try...catch iOS Safari limits to 100 pushState calls
+      try {
+        if (transitioning || replace) {
+          source.history.replaceState (state, null, to)
+        } else {
+          source.history.pushState (state, null, to)
+        }
+      } catch (e) {
+        source.location[replace ? "replace" : "assign"] (to)
+      }
+
+      location = getLocation (source)
+      transitioning = true
+      const transition = new Promise (
+        (resolve) => {
+          resolveTransition = resolve
+        }
+      )
+
+      listeners.forEach ((fn) => fn ())
+      return transition
+    },
+
+    get "transitioning" () {
+      return transitioning
+    }
+
+  }
+}
+
+// Stores history entries in memory for testing or other platforms like Native
+const createMemorySource = (initialPathname = "/") => {
+  let index = 0
+  const stack = [{ "pathname": initialPathname, "search": "" }]
+  const states = []
+
+  return {
+    addEventListener () {},
+
+    "history": {
+      get "entries" () {
+        return stack
+      },
+
+      get "index" () {
+        return index
+      },
+
+      pushState (state, _, uri) {
+        const [pathname, search = ""] = uri.split ("?")
+
+        index++
+        stack.push ({ pathname, search })
+        states.push (state)
+      },
+
+      replaceState (state, _, uri) {
+        const [pathname, search = ""] = uri.split ("?")
+
+        stack[index] = { pathname, search }
+        states[index] = state
+      },
+
+      get "state" () {
+        return states[index]
+      }
+    },
+
+    get "location" () {
+      return stack[index]
+    },
+
+    removeEventListener () {}
+  }
+}
+
+// global history - uses window.history as the source if available,
+// otherwise a memory history
+const canUseDOM = Boolean (
+  typeof window !== "undefined" &&
+    window.document &&
+    window.document.createElement
+)
+const getSource = () => (canUseDOM ? window : createMemorySource ())
+
+const globalHistory = createHistory (getSource ())
+const { navigate } = globalHistory
+
+// startsWith(string, search) - Check if `string` starts with `search`
+const startsWith = (string, search) =>
+  string.substr (0, search.length) === search
+
+// pick(routes, uri)
+//
+// Ranks and picks the best route to match. Each segment gets the highest
+// amount of points, then the type of segment gets an additional amount of
+// points where
+//
+//     static > dynamic > splat > root
+//
+// This way we don't have to worry about the order of our routes, let the
+// computers do it.
+//
+// A route looks like this
+//
+//     { path, default, value }
+//
+// And a returned match looks like:
+//
+//     { route, params, uri }
+//
+// I know, I should use TypeScript not comments for these types.
+const pick = (routes, uri) => {
+  let default_, match
+
+  const [uriPathname] = uri.split ("?")
+  const uriSegments = segmentize (uriPathname)
+  const isRootUri = uriSegments[0] === ""
+  const ranked = rankRoutes (routes)
+
+  for (let i = 0, l = ranked.length; i < l; i++) {
+    let missed = false
+    const route = ranked[i].route
+
+    if (route.default) {
+      default_ = {
+        "params": {},
+        route,
+        uri
+      }
+      continue
+    }
+
+    const routeSegments = segmentize (route.path)
+    const params = {}
+    const max = Math.max (uriSegments.length, routeSegments.length)
+    let index = 0
+
+    for (; index < max; index++) {
+      const routeSegment = routeSegments[index]
+      const uriSegment = uriSegments[index]
+
+      const isSplat = routeSegment === "*"
+
+      if (isSplat) {
+        // Hit a splat, just grab the rest, and return a match
+        // uri:   /files/documents/work
+        // route: /files/*
+        params["*"] = uriSegments
+          .slice (index)
+          .map (decodeURIComponent)
+          .join ("/")
+        break
+      }
+
+      if (uriSegment === undefined) {
+        // URI is shorter than the route, no match
+        // uri:   /users
+        // route: /users/:userId
+        missed = true
+        break
+      }
+
+      const dynamicMatch = paramRe.exec (routeSegment)
+
+      if (dynamicMatch && !isRootUri) {
+        const matchIsNotReserved =
+          reservedNames.indexOf (dynamicMatch[1]) === -1
+        const value = decodeURIComponent (uriSegment)
+
+        params[dynamicMatch[1]] = value
+      } else if (routeSegment !== uriSegment) {
+        // Current segments don't match, not dynamic, not splat, so no match
+        // uri:   /users/123/settings
+        // route: /users/:id/profile
+        missed = true
+        break
+      }
+    }
+
+    if (!missed) {
+      match = {
+        params,
+        route,
+        "uri": `/${uriSegments.slice (0, index).join ("/")}`
+      }
+      break
+    }
+  }
+
+  return match || default_ || null
+}
+
+// match(path, uri) - Matches just one path to a uri, also lol
+const match = (path, uri) => pick ([{ path }], uri)
+
+// resolve(to, basepath)
+//
+// Resolves URIs as though every path is a directory, no files.  Relative URIs
+// in the browser can feel awkward because not only can you be "in a directory"
+// you can be "at a file", too. For example
+//
+//     browserSpecResolve('foo', '/bar/') => /bar/foo
+//     browserSpecResolve('foo', '/bar') => /foo
+//
+// But on the command line of a file system, it's not as complicated, you can't
+// `cd` from a file, only directories.  This way, links have to know less about
+// their current path. To go deeper you can do this:
+//
+//     <Link to="deeper"/>
+//     // instead of
+//     <Link to=`{${props.uri}/deeper}`/>
+//
+// Just like `cd`, if you want to go deeper from the command line, you do this:
+//
+//     cd deeper
+//     # not
+//     cd $(pwd)/deeper
+//
+// By treating every path as a directory, linking to relative paths should
+// require less contextual information and (fingers crossed) be more intuitive.
+const resolve = (to, base) => {
+  // /foo/bar, /baz/qux => /foo/bar
+  if (startsWith (to, "/")) {
+    return to
+  }
+
+  const [toPathname, toQuery] = to.split ("?")
+  const [basePathname] = base.split ("?")
+
+  const toSegments = segmentize (toPathname)
+  const baseSegments = segmentize (basePathname)
+
+  // ?a=b, /users?b=c => /users?a=b
+  if (toSegments[0] === "") {
+    return addQuery (basePathname, toQuery)
+  }
+
+  // profile, /users/789 => /users/789/profile
+  if (!startsWith (toSegments[0], ".")) {
+    const pathname = baseSegments.concat (toSegments).join ("/")
+
+    return addQuery ((basePathname === "/" ? "" : "/") + pathname, toQuery)
+  }
+
+  // ./         /users/123  =>  /users/123
+  // ../        /users/123  =>  /users
+  // ../..      /users/123  =>  /
+  // ../../one  /a/b/c/d    =>  /a/b/one
+  // .././one   /a/b/c/d    =>  /a/b/c/one
+  const allSegments = baseSegments.concat (toSegments)
+  const segments = []
+
+  for (let i = 0, l = allSegments.length; i < l; i++) {
+    const segment = allSegments[i]
+
+    if (segment === "..") {
+      segments.pop ()
+    } else if (segment !== ".") {
+      segments.push (segment)
+    }
+  }
+
+  return addQuery (`/${segments.join ("/")}`, toQuery)
+}
+
+// insertParams(path, params)
+const insertParams = (path, params) => {
+  const segments = segmentize (path)
+
+  return `/${segments
+    .map ((segment) => {
+      const match = paramRe.exec (segment)
+
+      return match ? params[match[1]] : segment
+    })
+    .join ("/")}`
+}
+
+// Junk
+const paramRe = /^:(.+)/
+
+const SEGMENT_POINTS = 4
+const STATIC_POINTS = 3
+const DYNAMIC_POINTS = 2
+const SPLAT_PENALTY = 1
+const ROOT_POINTS = 1
+
+const isRootSegment = (segment) => segment === ""
+const isDynamic = (segment) => paramRe.test (segment)
+const isSplat = (segment) => segment === "*"
+
+const rankRoute = (route, index) => {
+  const score = route.default
+    ? 0
+    : segmentize (route.path).reduce ((score, segment) => {
+      score += SEGMENT_POINTS
+      if (isRootSegment (segment)) {
+        score += ROOT_POINTS
+      } else if (isDynamic (segment)) {
+        score += DYNAMIC_POINTS
+      } else if (isSplat (segment)) {
+        score -= SEGMENT_POINTS + SPLAT_PENALTY
+      } else {
+        score += STATIC_POINTS
+      }
+      return score
+    }, 0)
+
+  return { index, route, score }
+}
+
+const rankRoutes = (routes) =>
+  routes
+    .map (rankRoute)
+    .sort (
+      (a, b) =>
+        (a.score < b.score ? 1 : a.score > b.score ? -1 : a.index - b.index)
+    )
+
+const segmentize = (uri) =>
+  uri
+
+    // strip starting/ending slashes
+    .replace (/(^\/+|\/+$)/g, "")
+    .split ("/")
+
+const addQuery = (pathname, query) => pathname + (query ? `?${query}` : "")
+
+const reservedNames = ["uri", "path"]
+
+/* eslint-disable compat/compat, func-style, require-jsdoc */
+
+function RedirectRequest (uri) {
+  this.uri = uri
+}
+
+const redirectTo = (uri) => {
+  throw new RedirectRequest (uri)
+}
+
+class RedirectImpl extends Component {
+  // Support React < 16 with this hook
+  componentDidMount () {
+    const { navigate, replace = true, state, to, ... props } = this.props
+
+    Promise.resolve ().then (() => {
+      navigate (insertParams (to, props), { replace, state })
+    })
+  }
+
+  render () {
+    const { noThrow, to, ... props } = this.props
+
+    if (!noThrow) {
+      redirectTo (insertParams (to, props))
+    }
+    return null
+  }
+}
+
+const Redirect = (props) =>
+  h (Location, {}, (locationContext) =>
+    h (RedirectImpl, { ... locationContext, ... props }))
+
+/* eslint-disable camelcase, compat/compat, no-shadow,
+    react/destructuring-assignment, react/no-set-state, */
+
+const isRedirect = (redirect) => redirect instanceof RedirectRequest
+
+class LocationProvider extends Component {
+  constructor (props) {
+    super (props)
+
+    this.state = {
+      "context": this.getContext (),
+      "refs": {
+        "unlisten": null
+      }
+    }
+  }
+
+  componentDidMount () {
+    const { history } = this.props
+    const { refs } = this.state
+
+    refs.unlisten = history.listen (() => {
+      Promise.resolve ().then (() => {
+        unstable_deferredUpdates (() => {
+          if (!this.unmounted) {
+            this.setState (() => ({ "context": this.getContext () }))
+          }
+        })
+      })
+    })
+  }
+
+  componentDidUpdate (_, prevState) {
+    const { history } = this.props
+    const { context } = this.state
+
+    if (prevState.context.location !== context.location) {
+      history._onTransitionComplete ()
+    }
+  }
+
+  componentDidCatch (error) {
+    if (isRedirect (error)) {
+      const { "navigate": navigate$$1 } = this.props.history
+
+      navigate$$1 (error.uri, { "replace": true })
+    } else {
+      throw new Error (error)
+    }
+  }
+
+  componentWillUnmount () {
+    const { refs } = this.state
+
+    this.unmounted = true
+    refs.unlisten ()
+  }
+
+  getContext () {
+    const { location, "navigate": navigate$$1 } = this.props.history
+
+    return { location, "navigate": navigate$$1 }
+  }
+
+  render () {
+    const { children } = this.props
+    const { context } = this.state
+
+    return h (
+      LocationContext.Provider,
+      { "value": context },
+      typeof children === "function" ? children (context) : children || null
+    )
+  }
+}
+
+LocationProvider.defaultProps = {
+  "history": globalHistory
+}
+
+// sets up a listener if there isn't one already so apps don't need to be
+// wrapped in some top level provider
+const Location$1 = ({ children }) =>
+  h (
+    LocationContext.Consumer,
+    {},
+    (context) =>
+      (context ? children (context) : h (LocationProvider, {}, children))
+  )
+
+const ServerLocation = ({ children, url }) =>
+  h (
+    LocationContext.Provider,
+    {
+      "value": {
+        "location": { "pathname": url },
+        "navigate": () => {
+          throw new Error ("You can't call navigate on the server.")
+        }
+      }
+    },
+    children
+  )
+
+/* eslint-disable no-empty-function, no-magic-numbers, no-shadow */
+
+const shouldNavigate = (e) =>
+  !e.defaultPrevented &&
+  e.button === 0 &&
+  !(e.altKey || e.ctrlKey || e.metaKey || e.shiftKey)
+
+const Link = forwardRef (({ innerRef, ... props }, ref) =>
+  h (BaseContext.Consumer, {}, ({ baseuri }) =>
+    h (Location$1, {}, ({ location, navigate }) => {
+      const { getProps = () => {}, replace, state, to, ... linkProps } = props
+      const href = resolve (to, baseuri)
+      const isCurrent = location.pathname === href
+      const isPartiallyCurrent = startsWith (location.pathname, href)
+
+      return h ("a", {
+        ... getProps ({ href, isCurrent, isPartiallyCurrent, location }),
+        ... linkProps,
+        "aria-current": isCurrent ? "page" : null,
+        href,
+        "onClick": (e) => {
+          if (linkProps.onClick) {
+            linkProps.onClick (e)
+          }
+          if (shouldNavigate (e)) {
+            e.preventDefault ()
+            navigate (href, { replace, state })
+          }
+        },
+        "ref": ref || innerRef
+      })
+    })))
+
+const Match = ({ children, path }) =>
+  h (BaseContext.Consumer, {}, ({ baseuri }) =>
+    h (Location, {}, ({ location, navigate }) => {
+      const resolvedPath = resolve (path, baseuri)
+      const result = match (resolvedPath, location.pathname)
+
+      return children ({
+        location,
+        "match": result
+          ? { ... result.params, path, "uri": result.uri }
+          : null,
+        navigate
+      })
+    }))
+
+/* eslint-disable no-magic-numbers, no-undefined,
+    react/no-did-mount-set-state, react/no-set-state */
+
+class FocusHandlerImpl extends Component {
+  constructor (props) {
+    super (props)
+
+    this.state = {
+      "initialRender": true
+    }
+
+    this.requestFocus = (node) => {
+      const { shouldFocus } = this.state
+
+      if (!shouldFocus) {
+        node.focus ()
+      }
+    }
+  }
+
+  static getDerivedStateFromProps ({ location, uri, ... props }, state) {
+    if (state.uri === undefined) {
+      return { "shouldFocus": true, ... props }
+    }
+
+    const myURIChanged = uri !== state.uri
+    const navigatedUpToMe =
+      location.pathname === uri &&
+      state.location.pathname !== location.pathname
+
+    return { "shouldFocus": myURIChanged || navigatedUpToMe, ... props }
+  }
+
+  componentDidMount () {
+    this.setState ((state) => ({
+      ... state,
+      "focusHandlerCount": state.focusHandlerCount + 1
+    }))
+    this.focus ()
+  }
+
+  componentDidUpdate (prevProps) {
+    const { location } = this.props
+    const { shouldFocus } = this.state
+
+    if (prevProps.location !== location && shouldFocus) {
+      this.focus ()
+    }
+  }
+
+  componentWillUnmount () {
+    this.setState ((state) => ({
+      ... state,
+      "focusHandlerCount": state.focusHandlerCount - 1,
+      "initialRender":
+        state.focusHandlerCount === 1 ? true : state.initialRender
+    }))
+  }
+
+  focus () {
+    const { requestFocus } = this.props
+    const { initialRender } = this.state
+
+    if (requestFocus) {
+      requestFocus (this.node)
+    } else if (initialRender) {
+      this.setState ({ "initialRender": false })
+    } else {
+      this.node.focus ()
+    }
+  }
+
+  render () {
+    const {
+      children,
+      "component": Wrapper = "div",
+      role = "group",
+      style,
+      ... domProps
+    } = this.props;
+
+    ["location", "requestFocus", "uri"].forEach ((x) => delete domProps[x])
+
+    return h (
+      Wrapper,
+      {
+        "ref": (n) => {
+          this.node = n
+        },
+        "role": role,
+        "style": { "outline": "none", ... style },
+        "tabIndex": "-1",
+        ... domProps
+      },
+      h (FocusContext.Provider, { "value": this.requestFocus }, children)
+    )
+  }
+}
+
+const FocusHandler = (props) =>
+  h (FocusContext.Consumer, {}, (requestFocus) =>
+    h (FocusHandlerImpl, { ... props, requestFocus }))
+
+/* eslint-disable max-statements, no-shadow, no-use-before-define */
+
+const stripSlashes = (str) => str.replace (/(^\/+|\/+$)/g, "")
+
+const createRoute = (basepath) => (element) => {
+  if (element.props.default) {
+    return { "default": true, "value": element }
+  }
+
+  const elementPath =
+      element.type === Redirect ? element.props.from : element.props.path
+
+  const path =
+      elementPath === "/"
+        ? basepath
+        : `${stripSlashes (basepath)}/${stripSlashes (elementPath)}`
+
+  return {
+    "default": element.props.default,
+    "path": element.props.children ? `${stripSlashes (path)}/*` : path,
+    "value": element
+  }
+}
+
+class RouterImpl extends PureComponent {
+  render () {
+    const {
+      children,
+      component = "div",
+      location,
+      navigate,
+      primary,
+      ... domProps
+    } = this.props
+
+    let { basepath } = this.props
+
+    const routes = Children.map (children, createRoute (basepath))
+
+    const { pathname } = location
+
+    const match$$1 = pick (routes, pathname)
+
+    if (match$$1) {
+      const {
+        params,
+        route,
+        "route": { "value": element },
+        uri
+      } = match$$1
+
+      // remove the /* from the end for child routes relative paths
+      basepath = route.default ? basepath : route.path.replace (/\*$/, "")
+
+      // using 'div' for < 16.3 support
+      const FocusWrapper = primary ? FocusHandler : component
+
+      // don't pass any props to 'div'
+      const wrapperProps = primary
+        ? { component, location, uri, ... domProps }
+        : domProps
+
+      const props = {
+        ... params,
+        location,
+        "navigate": (to, options) => navigate (resolve (to, uri), options),
+        uri
+      }
+
+      const clone = cloneElement (
+        element,
+        props,
+        element.props.children
+          ? h (Router, { primary }, element.props.children)
+          : null
+      )
+
+      return h (
+        BaseContext.Provider,
+        { "value": { basepath, "baseuri": uri } },
+        h (FocusWrapper, wrapperProps, clone)
+      )
+    }
+    return null
+  }
+}
+
+RouterImpl.defaultProps = {
+  "primary": true
+}
+
+const Router = (props) =>
+  h (BaseContext.Consumer, {}, (baseCtx) =>
+    h (Location$1, {}, (locationCtx) =>
+      h (RouterImpl, { ... baseCtx, ... locationCtx, ... props })))
+
+export { Link, isRedirect, Location$1 as Location, LocationProvider, ServerLocation, Match, Redirect, redirectTo, Router, createHistory, createMemorySource, navigate }
