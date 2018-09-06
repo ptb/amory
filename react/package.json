@@ -21,7 +21,7 @@
     "react"
   ],
   "license": "(Apache-2.0 OR MIT)",
-  "module": "esm/react.mjs",
+  "module": "esm/react.js",
   "name": "@amory/react",
   "publishConfig": {
     "access": "public"
@@ -31,5 +31,5 @@
     "build": "rollup -c",
     "serve": "serve example"
   },
-  "version": "2018.9.2-1"
+  "version": "2018.9.6-0"
 }
