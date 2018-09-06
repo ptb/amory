@@ -1,1 +1,0 @@
-export default(a,b)=>{const c={};for(const d in a)b.indexOf(d)<0&&Object.prototype.hasOwnProperty.call(a,d)&&(c[d]=a[d]);return c} 

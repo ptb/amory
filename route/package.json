@@ -1,43 +1,26 @@
 {
-  "authors": [
-    "Michael Jackson <mj@mjackson.me> (https://mjackson.me/)",
-    "Ryan Florence <rpflorence@gmail.com> (https://reach.tech/)"
-  ],
+  "author": "Ryan Florence <rpflorence@gmail.com> (https://reach.tech/)",
   "contributors": [
     "Peter T Bosse II <ptb@ioutime.com> (http://ptb2.me/)"
   ],
-  "description": "React Router DOM converted to browser-ready ES modules",
-  "devDependencies": {
-    "rollup": "0.64.1",
-    "rollup-plugin-commonjs": "9.1.6",
-    "rollup-plugin-execute": "1.0.0",
-    "rollup-plugin-node-resolve": "3.4.0",
-    "rollup-plugin-replace": "2.0.0",
-    "rollup-plugin-terser": "2.0.2",
-    "rollup-plugin-uglify-es": "0.0.1"
-  },
+  "description": "Reach Router converted to browser-ready ES modules",
   "engines": {
     "node": ">=8"
   },
   "keywords": [
     "amory",
-    "history",
     "link",
     "react",
-    "rollup",
     "route",
     "router",
     "routing"
   ],
   "license": "MIT",
-  "module": "index.mjs",
+  "module": "esm/route.js",
   "name": "@amory/route",
   "publishConfig": {
     "access": "public"
   },
   "repository": "https://github.com/ptb/amory/tree/master/route",
-  "scripts": {
-    "build": "rollup -c"
-  },
-  "version": "2018.8.16-1"
+  "version": "2018.9.6-0"
 }
