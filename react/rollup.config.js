@@ -5,9 +5,9 @@ import { terser } from "rollup-plugin-terser"
 import uglify from "rollup-plugin-uglify-es"
 
 export default {
-  "input": "src/react.mjs",
+  "input": "src/react.js",
   "output": {
-    "file": "esm/react.mjs",
+    "file": "esm/react.js",
     "format": "esm"
   },
   "plugins": [
@@ -16,7 +16,7 @@ export default {
     }),
     nodeResolve ({
       "browser": true,
-      "extensions": [".mjs", ".js"],
+      "extensions": [".js"],
       "jsnext": true,
       "main": true,
       "module": true
