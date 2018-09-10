@@ -6,6 +6,12 @@
   "engines": {
     "node": ">=8"
   },
+  "files": [
+    "react/react.js",
+    "react-all/react.js",
+    "react-dom/react-dom.js",
+    "react-dom-server/react-dom-server.js"
+  ],
   "keywords": [
     "amory",
     "react"
@@ -20,5 +26,5 @@
   "scripts": {
     "serve": "serve example"
   },
-  "version": "2018.9.10-0"
+  "version": "2018.9.10-1"
 }
