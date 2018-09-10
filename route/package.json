@@ -5,7 +5,7 @@
   ],
   "description": "Reach Router converted to browser-ready ES modules",
   "devDependencies": {
-    "rollup": "^0.65.2"
+    "rollup": "0.65.2"
   },
   "engines": {
     "node": ">=8"
