@@ -1,7 +1,7 @@
 {
   "author": "Peter T Bosse II <ptb@ioutime.com> (http://ptb2.me/)",
   "devDependencies": {
-    "react": "16.5.0",
+    "react-dom": "16.5.0",
     "rollup": "0.65.2",
     "rollup-plugin-commonjs": "9.1.6",
     "rollup-plugin-execute": "1.0.0",
@@ -11,7 +11,7 @@
     "rollup-plugin-uglify-es": "0.0.1"
   },
   "license": "MIT",
-  "module": "react.js",
+  "module": "index.js",
   "scripts": {
     "build": "rollup -c"
   }

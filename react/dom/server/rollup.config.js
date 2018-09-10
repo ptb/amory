@@ -9,9 +9,9 @@ const file = "react-dom-server.js"
 
 export default {
   "external": ["react"],
-  "input": "index.js",
+  "input": file,
   "output": {
-    "file": file,
+    "file": "index.js",
     "format": "esm"
   },
   "plugins": [
@@ -33,7 +33,7 @@ export default {
     terser ({
       "module": true
     }),
-    execute (`sed -i "" -e '1s;^;/*! @copyright Facebook, Inc. | @license MIT | @link github.com/facebook/react | @version 16.5.0 */;' -e 's/from"react"/from".\\/react.js"/' ${file}`),
-    execute (`perl -pi -e 'chomp if eof' ${file}`)
+    execute (`sed -i "" -e '1s;^;/*! @copyright Facebook, Inc. | @license MIT | @link github.com/facebook/react | @version 16.5.0 */;' -e 's/from"react"/from".\\/react.js"/' index.js`),
+    execute (`perl -pi -e 'chomp if eof' index.js`)
   ]
 }
