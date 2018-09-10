@@ -1,4 +1,4 @@
-import { createElement as h } from "./react.mjs"
+import { createElement as h } from "./react.js"
 
 export default ({ count }) =>
   h ("div", { "className": "counter" }, `Current count: ${count}`)

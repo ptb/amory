@@ -1,9 +1,9 @@
-import { Component, Fragment, h } from "./react.mjs"
-import { Link, Prompt, Route } from "./route.mjs"
+import { Component, Fragment, h } from "./react.js"
+import { Link, Route } from "./route.js"
 
-import Counter from "./counter.mjs"
-import PlusButton from "./plus_button.mjs"
-import MinusButton from "./minus_button.mjs"
+import Counter from "./counter.js"
+import PlusButton from "./plus_button.js"
+import MinusButton from "./minus_button.js"
 
 export default class extends Component {
   constructor (props) {
@@ -18,7 +18,7 @@ export default class extends Component {
       }, "Stuff"),
       h (Route, {
         "path": "/stuff",
-        "render": (props) => h (Fragment, {}, h (Prompt, { "message": "Hi", "when": true }), h ("div", props, "Hi"))
+        "render": (props) => h (Fragment, {}, h ("div", props, "Hi"))
       }),
       h (Counter, {
         "count": this.state.count
