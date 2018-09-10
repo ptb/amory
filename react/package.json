@@ -1,5 +1,6 @@
 {
   "author": "Peter T Bosse II <ptb@ioutime.com> (http://ptb2.me/)",
+  "description": "React & React DOM re-packaged as an ES module(s).",
   "devDependencies": {
     "serve": "10.0.0"
   },
@@ -7,10 +8,10 @@
     "node": ">=8"
   },
   "files": [
-    "only/index.js",
     "all/index.js",
     "dom/index.js",
-    "dom/server/index.js"
+    "dom/server/index.js",
+    "only/index.js"
   ],
   "keywords": [
     "amory",
@@ -26,5 +27,5 @@
   "scripts": {
     "serve": "serve example"
   },
-  "version": "2018.9.10-2"
+  "version": "2018.9.10-3"
 }

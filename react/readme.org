@@ -1,0 +1,48 @@
+* 🛠 @amory/react
+#+startup: showall nohideblocks hidestars indent
+
+#+begin_quote
+React & React DOM re-packaged as native ES modules.
+#+end_quote
+
+** Overview
+
+*** Quick Start
+
+Use either ~yarn add~ or ~npm install~:
+
+#+begin_example sh
+yarn add @amory/react
+#+end_example
+
+#+begin_example sh
+npm install @amory/react
+#+end_example
+
+#+begin_example sh
+mkdir -p src/js
+cp node_modules/@amory/react/all/index.js src/js/react.js
+#+end_example
+
+*** Example ~src/index.html~
+
+#+begin_example html
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="initial-scale=1, width=device-width" name="viewport" />
+    <title> </title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module">
+      import { createElement as h, hydrate } from "./js/react.js"
+
+      const content = () => h ("div", {}, "Hello.")
+
+      hydrate (h (content), document.getElementById ("root"))
+    </script>
+  </body>
+</html>
+#+end_example
