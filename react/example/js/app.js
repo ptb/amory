@@ -1,5 +1,4 @@
 import { Component, Fragment, h } from "./react.js"
-import { Link, Route } from "./route.js"
 
 import Counter from "./counter.js"
 import PlusButton from "./plus_button.js"
@@ -13,13 +12,6 @@ export default class extends Component {
 
   render () {
     return h ("div", {},
-      h (Link, {
-        "to": "/stuff"
-      }, "Stuff"),
-      h (Route, {
-        "path": "/stuff",
-        "render": (props) => h (Fragment, {}, h ("div", props, "Hi"))
-      }),
       h (Counter, {
         "count": this.state.count
       }),
