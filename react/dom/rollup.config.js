@@ -31,9 +31,10 @@ export default {
     }),
     uglify (),
     terser ({
-      "module": true
+      "module": true,
+      "toplevel": true
     }),
-    execute (`sed -i "" -e '1s;^;/*! @copyright Facebook, Inc. | @license MIT | @link github.com/facebook/react | @version 16.5.0 */;' -e 's/from"react"/from".\\/react.js"/' index.js`),
+    execute (`sed -i "" -e '1s;^;/*! @copyright Facebook, Inc. | @license MIT | @link github.com/facebook/react | @version 16.5.1 */;' -e 's/from"react"/from".\/react.js"/' index.js`),
     execute (`perl -pi -e 'chomp if eof' index.js`)
   ]
 }
