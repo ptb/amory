@@ -6,7 +6,7 @@
   "dependencies": {
     "cosmiconfig": "5.0.6",
     "p-each-series": "1.0.0",
-    "tapable": "1.0.0",
+    "tapable": "1.1.0",
     "webpack-chain": "4.11.0"
   },
   "description": "Amory API runner",
