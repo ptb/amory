@@ -4,7 +4,7 @@
     "@amory/merge": "latest",
     "html-webpack-plugin": "next",
     "node-dir": "latest",
-    "webpack": "4.17.2",
+    "webpack": "4.19.0",
     "webpack-chain": "4.11.0"
   },
   "engines": {
