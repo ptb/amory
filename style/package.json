@@ -7,7 +7,7 @@
   ],
   "description": "Styletron converted to browser-ready ES modules",
   "devDependencies": {
-    "rollup": "0.66.0",
+    "rollup": "0.66.1",
     "rollup-plugin-commonjs": "9.1.8",
     "rollup-plugin-execute": "1.0.0",
     "rollup-plugin-node-resolve": "3.4.0",
