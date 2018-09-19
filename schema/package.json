@@ -5,7 +5,7 @@
     "apollo-cache-inmemory": "1.2.10",
     "apollo-client": "2.4.2",
     "apollo-link-http": "1.5.5",
-    "apollo-server": "2.0.8",
+    "apollo-server": "2.1.0",
     "graphql": "rc",
     "graphql-tag": "2.9.2",
     "node-fetch": "2.2.0"
