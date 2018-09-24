@@ -2,7 +2,7 @@
   "author": "Peter T Bosse II <ptb@ioutime.com> (http://ptb2.me/)",
   "description": "React & React DOM re-packaged as an ES module(s).",
   "devDependencies": {
-    "serve": "10.0.1"
+    "serve": "10.0.2"
   },
   "engines": {
     "node": ">=8"
