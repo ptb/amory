@@ -1,41 +1,26 @@
 {
-  "authors": [
-    "Ryan Tsao <ryan.j.tsao@gmail.com> (https://ryantsao.com/)"
-  ],
-  "contributors": [
-    "Peter T Bosse II <ptb@ioutime.com> (http://ptb2.me/)"
-  ],
-  "description": "Styletron converted to browser-ready ES modules",
-  "devDependencies": {
-    "rollup": "0.66.2",
-    "rollup-plugin-commonjs": "9.1.8",
-    "rollup-plugin-execute": "1.0.0",
-    "rollup-plugin-node-resolve": "3.4.0",
-    "rollup-plugin-replace": "2.0.0"
-  },
+  "author": "Peter T Bosse II <ptb@ioutime.com> (http://ptb2.me/)",
+  "description": "Atomic CSS-in-JS toolkit for browsers and server pre-rendering.",
   "engines": {
     "node": ">=8"
   },
   "files": [
-    "prefixer.js",
-    "style.js"
+    "inline-style-prefixer.mjs",
+    "style.mjs"
   ],
   "keywords": [
     "amory",
+    "atomic",
     "style",
-    "styletron",
     "react",
-    "rollup"
+    "ssr"
   ],
   "license": "MIT",
-  "module": "style.js",
+  "module": "style.mjs",
   "name": "@amory/style",
   "publishConfig": {
     "access": "public"
   },
   "repository": "https://github.com/ptb/amory/tree/master/style",
-  "scripts": {
-    "build": "rollup -c"
-  },
-  "version": "2018.9.10-0"
+  "version": "2018.9.25-0"
 }
