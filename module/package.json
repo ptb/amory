@@ -14,7 +14,7 @@
     "rollup-plugin-uglify-es": "0.0.1",
     "script-ext-html-webpack-plugin": "2.0.1",
     "webpack": "4.20.0",
-    "webpack-chain": "4.11.0"
+    "webpack-chain": "4.12.0"
   },
   "engines": {
     "node": ">=8"
