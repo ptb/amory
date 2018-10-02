@@ -7,7 +7,7 @@
     "apollo-link-http": "1.5.5",
     "apollo-server": "2.1.0",
     "graphql": "rc",
-    "graphql-tag": "2.9.2",
+    "graphql-tag": "2.10.0",
     "node-fetch": "2.2.0"
   },
   "engines": {
