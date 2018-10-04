@@ -40,17 +40,24 @@
     "safari >= 7",
     "samsung >= 4"
   ],
+  "description": "CSS-in-JS prefixer inspired by inline-style-prefixer",
   "devDependencies": {
     "ava": "next",
     "esm": "latest",
     "nodemon": "latest",
     "npm-run-all": "latest",
-    "nyc": "latest",
-    "puppeteer-core": "latest",
-    "sinon": "latest"
+    "nyc": "latest"
+  },
+  "engines": {
+    "node": ">=8"
   },
   "eslintIgnore": [
     "prefix.mjs"
+  ],
+  "keywords": [
+    "amory",
+    "css",
+    "prefix"
   ],
   "license": "MIT",
   "main": "index.js",
@@ -72,6 +79,10 @@
     ],
     "temp-directory": "/tmp/.nyc_output"
   },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": "https://github.com/ptb/amory/tree/master/prefix",
   "scripts": {
     "lint": "eslint --ext .mjs .",
     "start": "nodemon",
