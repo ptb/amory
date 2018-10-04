@@ -1,0 +1,80 @@
+{
+  "author": "Peter T Bosse II <ptb@ioutime.com> (http://ptb2.me/)",
+  "ava": {
+    "babel": false,
+    "extensions": [
+      "mjs"
+    ],
+    "failFast": false,
+    "files": [
+      "**/*.test.mjs"
+    ],
+    "require": [
+      "esm"
+    ],
+    "sources": [
+      "**/*.mjs"
+    ],
+    "verbose": false
+  },
+  "browser": "index.mjs",
+  "browserslist": [
+    "> 0.5%",
+    "and_chr >=29",
+    "and_ff >= 57",
+    "and_qq >= 1.2",
+    "and_uc >= 11.4",
+    "android >= 5",
+    "baidu >= 7.12",
+    "bb >= 10",
+    "chrome >= 29",
+    "edge >= 12",
+    "firefox >= 27",
+    "ie >= 11",
+    "ie_mob >= 11",
+    "ios_saf >= 5",
+    "last 2 versions",
+    "not dead",
+    "op_mob >= 12.1",
+    "opera >= 16",
+    "safari >= 7",
+    "samsung >= 4"
+  ],
+  "devDependencies": {
+    "ava": "next",
+    "esm": "latest",
+    "nodemon": "latest",
+    "npm-run-all": "latest",
+    "nyc": "latest",
+    "puppeteer-core": "latest",
+    "sinon": "latest"
+  },
+  "license": "(Apache-2.0 OR MIT)",
+  "main": "index.js",
+  "module": "index.mjs",
+  "name": "@amory/prefix",
+  "nodemonConfig": {
+    "events": {
+      "start": "echo \"\\x1Bc\""
+    },
+    "exec": "yarn watch",
+    "ext": "mjs"
+  },
+  "nyc": {
+    "exclude": [
+      "**/*.test.mjs"
+    ],
+    "extension": [
+      ".mjs"
+    ],
+    "temp-directory": "/tmp/.nyc_output"
+  },
+  "scripts": {
+    "lint": "eslint --ext .mjs .",
+    "start": "nodemon",
+    "test": "nyc ava",
+    "tidy:js": "prettier-eslint --write **/*.mjs",
+    "watch": "npm-run-all -s test lint"
+  },
+  "version": "2018.10.4-0"
+}
