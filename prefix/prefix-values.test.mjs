@@ -2,21 +2,15 @@ import test from "ava"
 
 import prefixValues from "./prefix-values.mjs"
 
-test ("1", (t) => {
+test ("2", (t) => {
   const actual = prefixValues ({
-    "transition": "200ms linear appearance, 100ms linear width"
+    "backgroundImage": "url(/img/logo.jpg)",
+    "display": ["-webkit-box", "-webkit-flex", "flex"],
+    "width": "max-content"
   })
   const expect = {
-    "transition":
-      "200ms linear -webkit-appearance,200ms linear -moz-appearance,200ms linear appearance,100ms linear width"
-  }
-
-  t.deepEqual (actual, expect)
-})
-
-test ("2", (t) => {
-  const actual = prefixValues ({ "width": "max-content" })
-  const expect = {
+    "backgroundImage": "url(/img/logo.jpg)",
+    "display": ["-webkit-box", "-webkit-flex", "flex"],
     "width": ["-webkit-max-content", "-moz-max-content", "max-content"]
   }
 

@@ -12,5 +12,5 @@ export default (value) => {
     ["Webkit", "Moz", "O"]
   ]
 
-  return match ? prefixes[match.slice (1, 5).findIndex ((e) => e)] : []
+  return prefixes[match.slice (1, 5).findIndex ((e) => e)]
 }

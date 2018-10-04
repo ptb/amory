@@ -29,10 +29,3 @@ test ("wmo", (t) => {
 
   t.deepEqual (actual, expect)
 })
-
-test ("none", (t) => {
-  const actual = vendorValues ("color")
-  const expect = []
-
-  t.deepEqual (actual, expect)
-})

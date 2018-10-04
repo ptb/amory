@@ -3,11 +3,16 @@ import test from "ava"
 import index from "./index.mjs"
 
 test ("1", (t) => {
-  const actual = index ({ "flexDirection": "column-reverse" })
+  const actual = index ({
+    "animationName": "ae",
+    "flexDirection": "column-reverse"
+  })
   const expect = {
+    "-webkit-animation-name": "ae",
     "-webkit-box-direction": "reverse",
     "-webkit-box-orient": "vertical",
     "-webkit-flex-direction": "column-reverse",
+    "animation-name": "ae",
     "flex-direction": "column-reverse"
   }
 
