@@ -1,7 +1,7 @@
 {
   "author": "Peter T Bosse II <ptb@ioutime.com> (http://ptb2.me/)",
   "dependencies": {
-    "browser-sync": "2.24.7",
+    "browser-sync": "2.26.0",
     "webpack": "4.20.2",
     "webpack-serve": "beta"
   },
