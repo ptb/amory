@@ -1,60 +1,87 @@
-import { createPortal, h, PureComponent } from "./react.mjs"
+import { Component, createPortal, h } from "../react.mjs"
 
-import cache from "./cache.mjs"
-import canUseDOM from "./can-use-dom.mjs"
+import css from "./driver.mjs"
 import getCss from "./get-css.mjs"
-import getRuleset from "./get-ruleset.mjs"
+import parseCss from "./parse-css.mjs"
+import pubSub from "./pub-sub.mjs"
 
-export default class extends PureComponent {
+export default class extends Component {
   constructor (props) {
     super (props)
 
-    if (canUseDOM) {
+    this.canUseDOM = Boolean (
+      typeof window !== "undefined" &&
+      window.document &&
+      window.document.createElement
+    )
+
+    if (this.canUseDOM) {
       this.nodes = document.head.querySelectorAll ("style.rehydrate")
+      parseCss (this.nodes)
+      window.css = css
     }
 
-    this.state = {}
+    this.state = {
+      "value": getCss ()
+    }
+
+    this._hasUnmounted = false
+    this.unsub = () => null
   }
 
   componentDidMount () {
-    const regexes = {
-      "font-face": /@font-face\{font-family:([^;]+)()?;([^}]*?)\}/g,
-      "keyframes": /@keyframes ([^{]+)()?\{((?:[^{]+\{[^}]*\})*?)\}/g,
-      "": /\.([^{:]+)(:[^{]+)?{(?:[^}]*;)?([^}]*?)}/g
+    this.nodes.forEach ((node) => node.remove ())
+    this.subscribe ()
+  }
+
+  componentWillUnmount () {
+    this.unsub ()
+    this._hasUnmounted = true
+  }
+
+  subscribe () {
+    const callback = (value) => {
+      if (this._hasUnmounted) {
+        return
+      }
+
+      /* eslint-disable-next-line react/no-set-state */
+      this.setState ((state) => {
+        if (value === state.value) {
+          return null
+        }
+
+        return { value }
+      })
     }
 
-    this.nodes.forEach ((node) => {
-      const { media, textContent } = node
+    this.unsub = pubSub.sub (callback)
 
-      Object.entries (regexes).reduce ((styles, [ruletype, regex]) => {
-        styles.replace (regex, (... results) => {
-          const [ruleset, id, pseudo = "", block] = results
-          const [i, r] = getRuleset ({ block, id, pseudo, ruleset, ruletype })
+    const v = getCss ()
 
-          cache (media) (`${pseudo}${block}`, { "id": i, "rule": r })
-        })
-
-        return styles.replace (regex, "")
-      }, textContent)
-
-      node.remove ()
-    })
+    /* eslint-disable-next-line react/destructuring-assignment */
+    if (v !== this.state.value) {
+      /* eslint-disable-next-line react/no-set-state */
+      this.setState ({ "value": v })
+    }
   }
 
   render () {
-    this.setState (getCss ())
-
     const { render } = this.props
-    const styles = Object.entries (getCss ())
-      .map (([media = null, rules]) =>
+    const { value } = this.state
+
+    const styles = Object.entries (value)
+      .map (([media, rules]) =>
         h ("style", {
           "className": "rehydrate",
-          "dangerouslySetInnerHTML": { "__html": rules },
+          "dangerouslySetInnerHTML": {
+            "__html": `/*<![CDATA[*/${rules}/*]]>*/`
+          },
           "media": media || null
         }))
 
     switch (true) {
-      case canUseDOM:
+      case this.canUseDOM:
         return createPortal (styles, document.head)
       case render:
         return styles

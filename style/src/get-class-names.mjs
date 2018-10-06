@@ -1,41 +1,52 @@
+/* eslint-disable default-case */
+
 import addClassName from "./add-class-name.mjs"
 import addCombinator from "./add-combinator.mjs"
-import cache from "./cache.mjs"
-import getDeclarations from "./get-declarations.mjs"
-import hyphenatePropertyName from "./hyphenate-property-name.mjs"
+import cacheStyle from "./cache-style.mjs"
+import prefixStyles from "./prefix-styles.mjs"
 
-const getClassNames = (declarations, media = "", pseudo = "") =>
-  Object.entries (declarations).reduce ((selectors, [property, value]) => {
-    if ((/^\$.*( |>|\+|~)\$.*$/).test (property)) {
-      addCombinator (property.split (/( |>|\+|~)/), value, media)
-    } else if ((/^\$(?:(?!( |>|\+|~|\$)).)*$/).test (property)) {
-      return selectors.concat (
-        addClassName (property, media, pseudo)
-      )
-    } else if (typeof value !== "object") {
-      const key = `${pseudo}${hyphenatePropertyName (property)}:${value}`
+/**
+ * @example
+ *
+ * @param {Object} declarations
+ * @param {string} [media=""]
+ * @param {string} [pseudo=""]
+ *
+ * @returns {string}
+ */
+const getClassNames = (declarations, media = "", pseudo = "") => {
+  if (typeof declarations !== "object") {
+    throw new TypeError ()
+  }
 
-      if (cache (media) (key)) {
-        return selectors.concat (
-          cache (media) (key)
-        )
+  return Object.entries (declarations)
+    .reduce ((ids, [property, value]) => {
+      const START = 0
+      const MEDIA = 6
+      const W_SPC = 7
+
+      switch (true) {
+        case (/^\$.*( |>|\+|~)\$.*$/).test (property):
+          addCombinator (property, value, media)
+          return ids
+        case (/^\$(?:(?!( |>|\+|~|\$)).)*$/).test (property):
+          return ids.concat (addClassName (property, media, pseudo).id)
+        case property.substring (START, MEDIA) === "@media":
+          return ids.concat (
+            getClassNames (value, property.substr (W_SPC), pseudo)
+          )
+        case property[0] === ":":
+          return ids.concat (
+            getClassNames (value, media, `${pseudo}${property}`)
+          )
+        case typeof value !== "object": {
+          const block = prefixStyles (property, value)
+
+          return ids.concat (cacheStyle (block, media, pseudo).id)
+        }
       }
-
-      return selectors.concat (
-        getDeclarations (property, value, media, pseudo)
-      )
-    } else if (property[0] === ":") {
-      return selectors.concat (
-        getClassNames (value, media, `${pseudo}${property}`)
-      )
-    } else if (property.substring (0, 6) === "@media") {
-      return selectors.concat (
-        getClassNames (value, property.substr (7), pseudo)
-      )
-    }
-
-    return selectors
-  }, [])
+    }, [])
     .join (" ")
+}
 
 export default getClassNames

@@ -1,11 +1,84 @@
 {
   "author": "Peter T Bosse II <ptb@ioutime.com> (http://ptb2.me/)",
+  "ava": {
+    "babel": false,
+    "extensions": [
+      "mjs"
+    ],
+    "failFast": false,
+    "files": [
+      "**/*.test.mjs"
+    ],
+    "require": [
+      "esm"
+    ],
+    "sources": [
+      "**/*.mjs"
+    ],
+    "verbose": false
+  },
+  "browser": "style.mjs",
+  "browserslist": [
+    "> 0.5%",
+    "and_chr >=29",
+    "and_ff >= 57",
+    "and_qq >= 1.2",
+    "and_uc >= 11.4",
+    "android >= 5",
+    "baidu >= 7.12",
+    "bb >= 10",
+    "chrome >= 29",
+    "edge >= 12",
+    "firefox >= 27",
+    "ie >= 11",
+    "ie_mob >= 11",
+    "ios_saf >= 5",
+    "last 2 versions",
+    "not dead",
+    "op_mob >= 12.1",
+    "opera >= 16",
+    "safari >= 7",
+    "samsung >= 4"
+  ],
   "description": "Atomic CSS-in-JS toolkit for browsers and server pre-rendering.",
+  "devDependencies": {
+    "@amory/eslint-config": "latest",
+    "ava": "next",
+    "esm": "latest",
+    "nodemon": "latest",
+    "npm-run-all": "latest",
+    "nyc": "latest",
+    "puppeteer-core": "latest",
+    "sinon": "latest"
+  },
   "engines": {
     "node": ">=8"
   },
+  "eslintConfig": {
+    "extends": [
+      "@amory"
+    ],
+    "rules": {
+      "jsdoc/require-example": "off",
+      "jsdoc/require-param-description": "off",
+      "jsdoc/require-returns-description": "off",
+      "valid-jsdoc": "off"
+    },
+    "settings": {
+      "react": {
+        "version": "16.5.2"
+      }
+    }
+  },
+  "eslintIgnore": [
+    "*.test.mjs",
+    "prefix.mjs",
+    "pub-sub.mjs",
+    "react.mjs",
+    "style.mjs"
+  ],
   "files": [
-    "inline-style-prefixer.mjs",
+    "prefix.mjs",
     "style.mjs"
   ],
   "keywords": [
@@ -16,11 +89,37 @@
     "ssr"
   ],
   "license": "MIT",
-  "module": "style.mjs",
+  "main": "src/index.js",
+  "module": "src/index.mjs",
   "name": "@amory/style",
+  "nodemonConfig": {
+    "events": {
+      "start": "echo \"\\x1Bc\""
+    },
+    "exec": "yarn watch",
+    "ext": "mjs"
+  },
+  "nyc": {
+    "exclude": [
+      "**/*.test.mjs",
+      "src/prefix.mjs",
+      "react.mjs"
+    ],
+    "extension": [
+      ".mjs"
+    ],
+    "temp-directory": "/tmp/.nyc_output"
+  },
   "publishConfig": {
     "access": "public"
   },
   "repository": "https://github.com/ptb/amory/tree/master/style",
-  "version": "2018.9.25-0"
+  "scripts": {
+    "lint": "eslint --ext .mjs .",
+    "start": "nodemon",
+    "test": "nyc ava",
+    "tidy:js": "prettier-eslint --write **/*.mjs",
+    "watch": "npm-run-all -s test lint"
+  },
+  "version": "2018.10.6-0"
 }

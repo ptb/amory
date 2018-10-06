@@ -1,9 +1,26 @@
 import cache from "./cache.mjs"
 import getNewId from "./get-new-id.mjs"
+import store from "./store.mjs"
 
-export default (property, media, pseudo) => {
-  const id = getNewId ()
+/**
+ * @example
+ *
+ * @param {string} property
+ * @param {string} [media=""]
+ * @param {string} [pseudo=""]
+ *
+ * @returns {Object}
+ */
+export default (property, media = "", pseudo = "") => {
+  const key = `${pseudo}${property}`
 
-  cache (media) (property, { "id": `${id}${pseudo}` })
-  return id
+  cache (media)
+
+  if (!store.get (media).has (key)) {
+    const id = getNewId ()
+
+    cache (media) (key, { id })
+  }
+
+  return store.get (media).get (key)
 }

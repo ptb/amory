@@ -1,0 +1,1 @@
+export default(a=>({pub:b=>a.map(c=>c(b)),sub:b=>{let c=a.push(b)-1;return()=>delete a[c]}}))([]);

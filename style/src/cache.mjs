@@ -1,19 +1,25 @@
-export default ((store) => (media = "") => {
+import getCss from "./get-css.mjs"
+import pubSub from "./pub-sub.mjs"
+import store from "./store.mjs"
+
+/**
+ * @example
+ *
+ * @param {string} [media=""]
+ *
+ * @returns {Function}
+ */
+export default (media = "") => {
   if (!store.has (media)) {
     store.set (media, new Map ())
   }
 
   return (key, { id, rule } = {}) => {
-    if (key && !id) {
-      return store.get (media).get (key)
+    if (!store.get (media).has (key) && typeof id !== "undefined") {
+      store.get (media).set (key, { id, key, media, rule })
+      pubSub.pub (getCss ())
     }
 
-    if (id) {
-      store.get (media).set (key, { id, rule })
-
-      return id
-    }
-
-    return store
+    return store.get (media).get (key)
   }
-}) (new Map ())
+}
