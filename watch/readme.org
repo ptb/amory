@@ -48,6 +48,11 @@ import watch, { pubSub } from "./watch.mjs"
 
 const directory = process.argv[2] || process.cwd ()
 
+const thread = watch (directory)
+
+// First option for listening for events:
 pubSub.sub ((msg) => console.log (msg))
-watch (directory)
+
+// Second option for listening for events:
+thread.on ("message", (msg) => console.log (msg))
 #+end_example
