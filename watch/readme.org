@@ -44,18 +44,10 @@ SOFTWARE.
 ** Example
 
 #+begin_example js
-import _debug from "debug"
-
 import watch, { pubSub } from "./watch.mjs"
 
-const debug = _debug ("@amory:watch")
-const watchdir = process.argv[2] || process.cwd ()
+const directory = process.argv[2] || process.cwd ()
 
-const thread = watch (debug, "./agent.mjs")
-
-pubSub.sub ((msg) => {
-  if (msg.evt === "start") {
-    thread.send ({ "cmd": "add", "opts": watchdir })
-  }
-})
+pubSub.sub ((msg) => console.log (msg))
+watch (directory)
 #+end_example
