@@ -2,12 +2,12 @@ import commonjs from "rollup-plugin-commonjs"
 import nodeResolve from "rollup-plugin-node-resolve"
 import replace from "rollup-plugin-replace"
 
-const file = "react.js"
+const file = "react.mjs"
 
 export default {
   "input": file,
   "output": {
-    "file": "index.js",
+    "file": "index.mjs",
     "format": "esm"
   },
   "plugins": [

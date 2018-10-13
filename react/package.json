@@ -8,13 +8,13 @@
     "node": ">=8"
   },
   "files": [
-    "all/index.js",
+    "all/index.mjs",
     "all/package.json",
-    "dom/index.js",
+    "dom/index.mjs",
     "dom/package.json",
-    "dom/server/index.js",
+    "dom/server/index.mjs",
     "dom/server/package.json",
-    "only/index.js",
+    "only/index.mjs",
     "only/package.json"
   ],
   "keywords": [
@@ -22,8 +22,8 @@
     "react"
   ],
   "license": "MIT",
-  "main": "all/index.js",
-  "module": "all/index.js",
+  "main": "all/index.mjs",
+  "module": "all/index.mjs",
   "name": "@amory/react",
   "publishConfig": {
     "access": "public"
@@ -32,5 +32,5 @@
   "scripts": {
     "serve": "serve example"
   },
-  "version": "2018.10.13-1"
+  "version": "2018.10.13-2"
 }

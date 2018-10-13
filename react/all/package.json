@@ -11,8 +11,8 @@
     "terser": "3.10.0"
   },
   "license": "MIT",
-  "main": "index.js",
-  "module": "index.js",
+  "main": "index.mjs",
+  "module": "index.mjs",
   "scripts": {
     "build": "run-s build:rollup build:terser build:header build:chomp clean",
     "build:chomp": "perl -pi -e 'chomp if eof' index.js",
