@@ -3,7 +3,7 @@
   "dependencies": {
     "@amory/merge": "latest",
     "lodash.clonedeep": "4.5.0",
-    "redux": "4.0.0",
+    "redux": "4.0.1",
     "uuid": "3.3.2"
   },
   "engines": {
