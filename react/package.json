@@ -18,6 +18,7 @@
     "react"
   ],
   "license": "MIT",
+  "main": "all/index.js",
   "module": "all/index.js",
   "name": "@amory/react",
   "publishConfig": {
@@ -27,5 +28,5 @@
   "scripts": {
     "serve": "serve example"
   },
-  "version": "2018.10.8-2"
+  "version": "2018.10.13-0"
 }
