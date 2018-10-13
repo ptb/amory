@@ -9,9 +9,13 @@
   },
   "files": [
     "all/index.js",
+    "all/package.json",
     "dom/index.js",
+    "dom/package.json",
     "dom/server/index.js",
-    "only/index.js"
+    "dom/server/package.json",
+    "only/index.js",
+    "only/package.json"
   ],
   "keywords": [
     "amory",
@@ -28,5 +32,5 @@
   "scripts": {
     "serve": "serve example"
   },
-  "version": "2018.10.13-0"
+  "version": "2018.10.13-1"
 }
