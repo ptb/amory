@@ -1,0 +1,37 @@
+{
+  "author": "Peter T Bosse II <ptb@ioutime.com> (http://ptb2.me/)",
+  "dependencies": {
+    "acorn": "6.0.2",
+    "acorn-dynamic-import": "4.0.0",
+    "acorn-import-meta": "0.3.0",
+    "esm": "3.0.84",
+    "resolve": "1.8.1"
+  },
+  "description": "Resolve, rewrite, and serve ES module dependencies using bare imports.",
+  "engines": {
+    "node": ">=8"
+  },
+  "files": [
+    "index.js",
+    "index.mjs"
+  ],
+  "keywords": [
+    "amory",
+    "bare",
+    "esm",
+    "import",
+    "koa",
+    "node_modules",
+    "npm",
+    "serve"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "module": "index.mjs",
+  "name": "@amory/npmfs",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": "https://github.com/ptb/amory/tree/master/npmfs",
+  "version": "2018.10.14-0"
+}
