@@ -2,6 +2,7 @@
 /* eslint-disable no-magic-numbers */
 
 import { fork } from "child_process"
+import { dirname, resolve } from "path"
 
 export const pubSub = ((a) =>
   ({
@@ -14,7 +15,8 @@ export const pubSub = ((a) =>
   })) ([])
 
 export default (directory) => {
-  const thread = fork ("agent.mjs", [], {
+  const agent = resolve (dirname (import.meta.url.slice (7)), "agent.mjs")
+  const thread = fork (agent, [], {
     "execArgv": ["--experimental-modules", "--no-warnings"]
   })
 
