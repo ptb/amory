@@ -27,7 +27,7 @@ export default (() => {
           "describe": "TCP port on which to listen for incoming requests",
           "type": "number"
         }),
-      ({ directory, host, port }) => serve (directory, host, port)
+      ({ path, host, port }) => serve (path, host, port)
     )
     .parse ()
 }) ()

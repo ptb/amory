@@ -4,11 +4,11 @@ import { resolve } from "path"
 
 import npmfs from "@amory/npmfs"
 
-export default (directory, host, port) => {
+export default (path, host, port) => {
   const serve = koaWebsocket (new Koa ())
 
   serve.use (({ state }, next) => {
-    state.root = resolve (directory)
+    state.root = resolve (path)
     next ()
   })
 
