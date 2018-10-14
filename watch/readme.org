@@ -14,7 +14,8 @@ Monitor file system changes with node and chokidar using a child process.
 #+begin_example sh :tangle no
 yarn add @amory/watch
 
-cp node_modules/@amory/watch/*.mjs .
+cp node_modules/@amory/watch/agent.mjs .
+cp node_modules/@amory/watch/watch.mjs .
 #+end_example
 
 ** License

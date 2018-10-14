@@ -15,7 +15,7 @@ export const pubSub = ((a) =>
 
 export default (directory) => {
   const thread = fork ("agent.mjs", [], {
-    "execArgv": ["--experimental-modules", "--inspect=9229", "--no-warnings"]
+    "execArgv": ["--experimental-modules", "--no-warnings"]
   })
 
   process.on ("exit", () => thread.kill ("SIGINT"))

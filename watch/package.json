@@ -5,15 +5,14 @@
     "esm": "3.0.84"
   },
   "description": "Monitor file system changes with node and chokidar using a child process.",
-  "devDependencies": {
-    "debug": "4.1.0"
-  },
   "engines": {
     "node": ">=8"
   },
   "files": [
     "agent.js",
     "agent.mjs",
+    "index.js",
+    "index.mjs",
     "watch.js",
     "watch.mjs"
   ],
@@ -23,15 +22,17 @@
     "child_process",
     "chokidar",
     "fork",
+    "koa",
+    "middleware",
     "watch"
   ],
   "license": "MIT",
-  "main": "watch.js",
-  "module": "watch.mjs",
+  "main": "index.js",
+  "module": "index.mjs",
   "name": "@amory/watch",
   "publishConfig": {
     "access": "public"
   },
   "repository": "https://github.com/ptb/amory/tree/master/watch",
-  "version": "2018.10.12-1"
+  "version": "2018.10.14-0"
 }

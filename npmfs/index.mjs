@@ -12,6 +12,7 @@ const parse = (source) =>
   acorn.Parser.extend (dynamicImport.default)
     .extend (importMeta)
     .parse (source, {
+      "allowHashBang": true,
       "sourceType": "module"
     })
 
