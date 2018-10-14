@@ -5,7 +5,7 @@ import acorn from "acorn"
 import dynamicImport from "acorn-dynamic-import"
 import importMeta from "acorn-import-meta"
 import { readFileSync } from "fs"
-import { join } from "path"
+import { join, resolve as _resolve } from "path"
 import resolve from "resolve"
 
 const parse = (source) =>
@@ -17,7 +17,7 @@ const parse = (source) =>
     })
 
 export default ({ request, response, state }, next) => {
-  let pkg, source
+  let file, pkg, source
 
   switch (true) {
     case (/\.m?js$/).test (request.url):
@@ -42,7 +42,8 @@ export default ({ request, response, state }, next) => {
         return next ()
       }
 
-      source = readFileSync (resolve.sync (pkg), "utf8")
+      file = resolve.sync (pkg, { "basedir": _resolve (state.root, "..") })
+      source = readFileSync (file, "utf8")
       break
     default:
       return next ()
