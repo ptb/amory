@@ -1,8 +1,6 @@
 import Koa from "koa"
-import koaRoute from "koa-route"
 import koaStatic from "koa-static"
 import koaWebsocket from "koa-websocket"
-import { resolve } from "path"
 
 import npmfs from "@amory/npmfs"
 import watch from "@amory/watch"
@@ -13,12 +11,17 @@ export default (path, host, port) => {
   serve.use (koaStatic (path, { "defer": true }))
 
   serve.use (({ state }, next) => {
-    state.root = resolve (path)
-    next ()
+    state.root = path
+    next ({ state })
+  })
+
+  serve.ws.use (({ state }, next) => {
+    state.root = path
+    next ({ state })
   })
 
   serve.use (npmfs)
-  serve.ws.use (koaRoute.all ("/@hot", watch))
+  serve.ws.use (watch)
   serve.listen (port, host)
   return serve
 }
