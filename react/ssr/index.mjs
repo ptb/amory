@@ -29,9 +29,9 @@ export default async ({ app, request, response, state }, next) => {
     bodyEnd = h ("script", {
       "dangerouslySetInnerHTML": {
         "__html": [
-          `import{h,hydrate}from"/js/react.mjs"`,
-          `import Root from"/${relative (state.root, filepath)}"`,
-          `hydrate(h(Root),document.getElementById("root"))`
+          `import{h,hydrate}from"/js/@amory/react.mjs"`,
+          `import root from"/${relative (state.root, filepath)}"`,
+          `hydrate(h(root),document.getElementById("root"))`
         ].join (";")
       },
       "type": "module"

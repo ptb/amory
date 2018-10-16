@@ -4,7 +4,7 @@
 import acorn from "acorn"
 import dynamicImport from "acorn-dynamic-import"
 import importMeta from "acorn-import-meta"
-import { readFileSync } from "fs"
+import { existsSync, readFileSync } from "fs"
 import { join, resolve as _resolve } from "path"
 import resolve from "resolve"
 
@@ -17,38 +17,39 @@ const parse = (source) =>
     })
 
 export default ({ request, response, state }, next) => {
-  let file, pkg, source
+  if (!(/\.m?js$/).test (request.url)) {
+    return next ()
+  }
 
-  switch (true) {
-    case (/\.m?js$/).test (request.url):
-      source = readFileSync (join (state.root, request.url), "utf8")
+  let file = join (state.root, request.url)
+  let pkg, source
 
-      for (const node of parse (source).body) {
-        if (
-          node.type === "ImportDeclaration" &&
+  if (existsSync (file)) {
+    source = readFileSync (file, "utf8")
+
+    for (const node of parse (source).body) {
+      if (
+        node.type === "ImportDeclaration" &&
           !(/^(\.|\/)/).test (node.source.value)
-        ) {
-          source = source.replace (
-            new RegExp (`( from ?")(${node.source.value}")`),
-            "$1/@npm/$2"
-          )
-        }
+      ) {
+        source = source.replace (
+          new RegExp (`( from ?")(${node.source.value})"`),
+          "$1/js/$2.mjs\""
+        )
       }
-      break
-    case (/^\/@npm\//).test (request.url):
-      pkg = request.url.match (/^\/@npm\/(.+)/)[1]
+    }
+  } else {
+    pkg = request.url.match (/^\/js\/(.+)\.mjs/)[1]
 
-      if (resolve.isCore (pkg)) {
-        return next ()
-      }
-
-      file = resolve.sync (pkg, { "basedir": _resolve (state.root, "..") })
-      source = readFileSync (file, "utf8")
-      break
-    default:
+    if (resolve.isCore (pkg)) {
       return next ()
+    }
+
+    file = resolve.sync (pkg, { "basedir": _resolve (state.root, "..") })
+    source = readFileSync (file, "utf8")
   }
 
   response.body = source
   response.type = "application/ecmascript"
+  return next ()
 }
