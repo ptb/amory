@@ -1,8 +1,12 @@
 {
   "author": "Peter T Bosse II <ptb@ioutime.com> (http://ptb2.me/)",
+  "dependencies": {
+    "esm": "3.0.84"
+  },
   "description": "React & React DOM re-packaged as an ES module(s).",
   "devDependencies": {
-    "serve": "10.0.2"
+    "@types/react": "16.4.16",
+    "@types/react-dom": "16.0.9"
   },
   "engines": {
     "node": ">=8"
@@ -15,11 +19,17 @@
     "dom/server/index.mjs",
     "dom/server/package.json",
     "only/index.mjs",
-    "only/package.json"
+    "only/package.json",
+    "ssr/html.mjs",
+    "ssr/index.js",
+    "ssr/index.mjs"
   ],
   "keywords": [
     "amory",
-    "react"
+    "koa",
+    "middleware",
+    "react",
+    "ssr"
   ],
   "license": "MIT",
   "main": "all/index.mjs",
@@ -29,8 +39,5 @@
     "access": "public"
   },
   "repository": "https://github.com/ptb/amory/tree/master/react",
-  "scripts": {
-    "serve": "serve example"
-  },
-  "version": "2018.10.13-2"
+  "version": "2018.10.16-0"
 }
