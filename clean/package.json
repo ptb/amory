@@ -3,7 +3,7 @@
   "dependencies": {
     "@amory/merge": "latest",
     "clean-webpack-plugin": "latest",
-    "webpack": "4.20.2",
+    "webpack": "4.21.0",
     "webpack-chain": "5.0.0"
   },
   "engines": {
