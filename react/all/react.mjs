@@ -15,6 +15,7 @@ const {
   isValidElement,
   lazy,
   memo,
+  Placeholder,
   PureComponent,
   StrictMode,
   Suspense,
