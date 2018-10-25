@@ -3,7 +3,7 @@
   "dependencies": {
     "acorn": "6.0.2",
     "acorn-dynamic-import": "4.0.0",
-    "acorn-import-meta": "0.3.0",
+    "acorn-import-meta": "1.0.0",
     "esm": "3.0.84",
     "resolve": "1.8.1"
   },
