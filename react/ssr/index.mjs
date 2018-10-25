@@ -44,5 +44,4 @@ export default async ({ app, request, response, state }, next) => {
     response.body = await html ({ bodyEnd, root })
     response.type = "text/html"
   }
-  return next ()
 }
