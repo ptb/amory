@@ -862,7 +862,7 @@
       "never"
     ],
     "use-isnan": "warn",
-    "valid-jsdoc": "warn",
+    "valid-jsdoc": "off",
     "valid-typeof": "warn",
     "vars-on-top": "warn",
     "wrap-iife": [
