@@ -1,3 +1,3 @@
 const _require = require ("esm") (module)
 
-module.exports = _require ("./style.mjs").default
+module.exports = _require ("./style.mjs")
