@@ -79,6 +79,8 @@
   ],
   "files": [
     "prefix.mjs",
+    "src/*",
+    "style.js",
     "style.mjs"
   ],
   "keywords": [
@@ -89,7 +91,7 @@
     "ssr"
   ],
   "license": "MIT",
-  "main": "src/index.js",
+  "main": "src/index",
   "module": "src/index.mjs",
   "name": "@amory/style",
   "nodemonConfig": {
@@ -121,5 +123,5 @@
     "tidy:js": "prettier-eslint --write **/*.mjs",
     "watch": "npm-run-all -s test lint"
   },
-  "version": "2018.10.8-2"
+  "version": "2018.10.26-0"
 }
