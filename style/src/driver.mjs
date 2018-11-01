@@ -13,4 +13,4 @@ import renderDeclarativeRules from "./render-declarative-rules.mjs"
  *   ClassNames (s).
  */
 export default (declarations, prefix = "") =>
-  getClassNames (renderDeclarativeRules (declarations, prefix), prefix)
+  getClassNames (renderDeclarativeRules (declarations, prefix), "", "", prefix)
