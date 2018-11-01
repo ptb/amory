@@ -1,12 +1,10 @@
 import test from "ava"
-import puppeteer from "puppeteer-core"
+// import puppeteer from "puppeteer-core"
 
 import { h, renderToStaticMarkup } from "../react.mjs"
 
 import driver from "./driver.mjs"
 import Styles from "./styles.mjs"
-
-test.todo ("todo")
 
 test.serial ("given", (t) => {
   const actual = driver ({ "color": "red" })
@@ -60,17 +58,17 @@ test.serial ("given (7)", (t) => {
   t.is (actual, expect)
 })
 
-test.serial ("given (8)", async (t) => {
-  await puppeteer
-    .launch ({
-      "defaultViewPort": { "height": 2048, "width": 1024 },
-      "devtools": true,
-      "executablePath":
-        "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
-      "timeout": 10000
-    })
-    .then (async (browser) => {
-      const context = await browser.createIncognitoBrowserContext ()
+// test.serial ("given (8)", async (t) => {
+//   await puppeteer
+//     .launch ({
+//       "defaultViewPort": { "height": 2048, "width": 1024 },
+//       "devtools": true,
+//       "executablePath":
+//         "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+//       "timeout": 10000
+//     })
+//     .then (async (browser) => {
+//       const context = await browser.createIncognitoBrowserContext ()
 
       // const page = await browser.newPage ()
 
@@ -95,7 +93,7 @@ test.serial ("given (8)", async (t) => {
       // await page.goto ("http://localhost:5000/")
       // console.log (await page.content ())
       // await context.close ()
-    })
+//     })
 
-  t.pass ()
-})
+//   t.pass ()
+// })

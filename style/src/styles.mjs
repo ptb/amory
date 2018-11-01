@@ -1,4 +1,5 @@
-import { Component, createPortal, h } from "../react.mjs"
+import { Component, createElement as h } from "../react.mjs"
+import { createPortal } from "../react.mjs"
 
 import css from "./driver.mjs"
 import getCss from "./get-css.mjs"

@@ -49,7 +49,9 @@
     "npm-run-all": "latest",
     "nyc": "latest",
     "puppeteer-core": "latest",
-    "sinon": "latest"
+    "rollup": "latest",
+    "sinon": "latest",
+    "terser": "3.10.8"
   },
   "engines": {
     "node": ">=8"
@@ -75,11 +77,12 @@
     "prefix.mjs",
     "pub-sub.mjs",
     "react.mjs",
+    "style.js",
     "style.mjs"
   ],
   "files": [
-    "prefix.mjs",
     "src/*",
+    "style.js",
     "style.mjs"
   ],
   "keywords": [
@@ -90,7 +93,7 @@
     "ssr"
   ],
   "license": "MIT",
-  "main": "style.mjs",
+  "main": "style.js",
   "module": "style.mjs",
   "name": "@amory/style",
   "nodemonConfig": {
@@ -116,11 +119,17 @@
   },
   "repository": "https://github.com/ptb/amory/tree/master/style",
   "scripts": {
+    "build": "run-s build:rollup build:terser build:header build:chomp clean",
+    "build:chomp": "perl -pi -e 'chomp if eof' style.mjs",
+    "build:header": "sed -i '' -e '1s;^;/*! @copyright Peter T Bosse II | @license MIT | @link github.com/ptb/amory *//* eslint-disable */;' style.mjs",
+    "build:rollup": "rollup -c",
+    "build:terser": "terser -c -m -o style.mjs --toplevel style.mjs",
+    "clean": "rm -rf node_modules yarn.lock",
     "lint": "eslint --ext .mjs .",
     "start": "nodemon",
     "test": "nyc ava",
     "tidy:js": "prettier-eslint --write **/*.mjs",
     "watch": "npm-run-all -s test lint"
   },
-  "version": "2018.10.26-1"
+  "version": "2018.11.1-0"
 }

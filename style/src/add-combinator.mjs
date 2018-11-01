@@ -14,7 +14,7 @@ import store from "./store.mjs"
  * @returns {Object}
  */
 export default (property, declarations, media = "") => {
-  const regex = /(?:(\$[^:{]+)(:[^ +>{~]+)?)([ +>~])(?:(\$[^:{]+)(:[^{]+)?)/
+  const regex = /(?:(\$[^[:{]+)([[:][^ +>{~]+]?)?)([ +>~])(?:(\$[^[:{]+)([[:][^{]+]?)?)/
   const parse = Array.from (regex.exec (property))
   const [, parent, pseudo1 = "", combinator, child, pseudo2 = ""] = parse
   const block = declarationsToBlock (declarations)

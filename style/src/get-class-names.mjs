@@ -36,6 +36,7 @@ const getClassNames = (declarations, media = "", pseudo = "") => {
             getClassNames (value, property.substr (W_SPC), pseudo)
           )
         case property[0] === ":":
+        case property[0] === "[":
           return ids.concat (
             getClassNames (value, media, `${pseudo}${property}`)
           )
