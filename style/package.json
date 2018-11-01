@@ -131,5 +131,5 @@
     "tidy:js": "prettier-eslint --write **/*.mjs",
     "watch": "npm-run-all -s test lint"
   },
-  "version": "2018.11.1-2"
+  "version": "2018.11.1-3"
 }

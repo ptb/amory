@@ -1,4 +1,4 @@
-import { Component, createElement as h } from "../react.mjs"
+import { createElement as h, PureComponent } from "../react.mjs"
 import { createPortal } from "../react.mjs"
 
 import css from "./driver.mjs"
@@ -6,7 +6,7 @@ import getCss from "./get-css.mjs"
 import parseCss from "./parse-css.mjs"
 import pubSub from "./pub-sub.mjs"
 
-export default class extends Component {
+export default class Style extends PureComponent {
   constructor (props) {
     super (props)
 
