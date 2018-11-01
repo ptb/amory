@@ -13,7 +13,7 @@ import store from "./store.mjs"
  *
  * @returns {Object}
  */
-export default (property, declarations, media = "") => {
+export default (property, declarations, media = "", prefix = "") => {
   const regex = /(?:(\$[^[:{]+)([[:][^ +>{~]+]?)?)([ +>~])(?:(\$[^[:{]+)([[:][^{]+]?)?)/
   const parse = Array.from (regex.exec (property))
   const [, parent, pseudo1 = "", combinator, child, pseudo2 = ""] = parse
@@ -21,15 +21,15 @@ export default (property, declarations, media = "") => {
 
   cache (media)
 
-  const ancestor = store.get (media).has (`${pseudo1}${parent}`)
-    ? store.get (media).get (`${pseudo1}${parent}`).id
-    : cache (media) (`${pseudo1}${parent}`, { "id": getNewId () }).id
+  const ancestor = store.get (media).has (`${prefix}${pseudo1}${parent}`)
+    ? store.get (media).get (`${prefix}${pseudo1}${parent}`).id
+    : cache (media) (`${prefix}${pseudo1}${parent}`, { "id": `${prefix}${getNewId ()}` }).id
 
-  const descendant = store.get (media).has (`${pseudo2}${child}`)
-    ? store.get (media).get (`${pseudo2}${child}`).id
-    : cache (media) (`${pseudo2}${child}`, { "id": getNewId () }).id
+  const descendant = store.get (media).has (`${prefix}${pseudo2}${child}`)
+    ? store.get (media).get (`${prefix}${pseudo2}${child}`).id
+    : cache (media) (`${prefix}${pseudo2}${child}`, { "id": `${prefix}${getNewId ()}` }).id
 
-  const key = [].concat (pseudo1, combinator, pseudo2, block).join ("")
+  const key = [].concat (prefix, pseudo1, combinator, prefix, pseudo2, block).join ("")
 
   const id = parse.slice (1, 6)
   const rule = `.${ancestor}${pseudo1}${combinator}.${descendant}${pseudo2}{${block}}`

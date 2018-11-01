@@ -14,7 +14,7 @@ import prefixStyles from "./prefix-styles.mjs"
  *
  * @returns {string}
  */
-const getClassNames = (declarations, media = "", pseudo = "") => {
+const getClassNames = (declarations, media = "", pseudo = "", prefix = "") => {
   if (typeof declarations !== "object") {
     throw new TypeError ()
   }
@@ -27,23 +27,23 @@ const getClassNames = (declarations, media = "", pseudo = "") => {
 
       switch (true) {
         case (/^\$.*( |>|\+|~)\$.*$/).test (property):
-          addCombinator (property, value, media)
+          addCombinator (property, value, media, prefix)
           return ids
         case (/^\$(?:(?!( |>|\+|~|\$)).)*$/).test (property):
-          return ids.concat (addClassName (property, media, pseudo).id)
+          return ids.concat (addClassName (property, media, pseudo, prefix).id)
         case property.substring (START, MEDIA) === "@media":
           return ids.concat (
-            getClassNames (value, property.substr (W_SPC), pseudo)
+            getClassNames (value, property.substr (W_SPC), pseudo, prefix)
           )
         case property[0] === ":":
         case property[0] === "[":
           return ids.concat (
-            getClassNames (value, media, `${pseudo}${property}`)
+            getClassNames (value, media, `${pseudo}${property}`, prefix)
           )
         case typeof value !== "object": {
           const block = prefixStyles (property, value)
 
-          return ids.concat (cacheStyle (block, media, pseudo).id)
+          return ids.concat (cacheStyle (block, media, pseudo, prefix).id)
         }
       }
     }, [])

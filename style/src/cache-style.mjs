@@ -14,13 +14,13 @@ import store from "./store.mjs"
  *
  * @returns {Object}
  */
-export default (declarations, media = "", pseudo = "") => {
-  const key = `${pseudo}${declarations}`
+export default (declarations, media = "", pseudo = "", prefix = "") => {
+  const key = `${prefix}${pseudo}${declarations}`
 
   cache (media)
 
   if (!store.get (media).has (key)) {
-    const id = getNewId ()
+    const id = `${prefix}${getNewId ()}`
     const rule = `.${id}${pseudo}{${declarations}}`
 
     cache (media) (key, { id, rule })

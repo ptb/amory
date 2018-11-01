@@ -10,14 +10,14 @@ import cacheKeyframes from "./cache-keyframes.mjs"
  * @returns {Object}
  *   Structure that groups declarations delimited by braces/curly brackets.
  */
-const renderDeclarativeRules = (declarations) =>
+const renderDeclarativeRules = (declarations, prefix = "") =>
   Object.entries (declarations).reduce ((block, [property, value]) => {
     if (property === "fontFamily" && typeof value !== "string") {
-      block.fontFamily = cacheFontFace (value).id
+      block.fontFamily = cacheFontFace (value, prefix).id
     } else if (property === "animationName" && typeof value !== "string") {
-      block.animationName = cacheKeyframes (value).id
+      block.animationName = cacheKeyframes (value, prefix).id
     } else if (typeof value === "object" && value !== null) {
-      renderDeclarativeRules (value)
+      renderDeclarativeRules (value, prefix)
     }
 
     return block

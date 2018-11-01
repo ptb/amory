@@ -11,13 +11,13 @@ import store from "./store.mjs"
  *
  * @returns {Object}
  */
-export default (declarations) => {
+export default (declarations, prefix = "") => {
   const block = declarationsToBlock (declarations)
 
   cache ()
 
   if (!store.get ("").has (block)) {
-    const id = getNewId ()
+    const id = `${prefix}${getNewId ()}`
     const rule = `@font-face{font-family:${id};${block}}`
 
     cache () (block, { id, rule })

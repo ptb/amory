@@ -11,13 +11,13 @@ import store from "./store.mjs"
  *
  * @returns {Object}
  */
-export default (keyframes) => {
+export default (keyframes, prefix = "") => {
   const block = keyframesToBlock (keyframes)
 
   cache ()
 
   if (!store.get ("").has (block)) {
-    const id = getNewId ()
+    const id = `${prefix}${getNewId ()}`
     const rule = `@keyframes ${id}{${block}}`
 
     cache () (block, { id, rule })

@@ -11,13 +11,13 @@ import store from "./store.mjs"
  *
  * @returns {Object}
  */
-export default (property, media = "", pseudo = "") => {
-  const key = `${pseudo}${property}`
+export default (property, media = "", pseudo = "", prefix = "") => {
+  const key = `${prefix}${pseudo}${property}`
 
   cache (media)
 
   if (!store.get (media).has (key)) {
-    const id = getNewId ()
+    const id = `${prefix}${getNewId ()}`
 
     cache (media) (key, { id })
   }

@@ -133,3 +133,106 @@ test.serial (
     )
   }
 )
+
+test.serial (
+  "given the function 'getClassNames', when called with a simple declaration (2)",
+  (t) => {
+    const actual = getClassNames ({ "color": "red" }, "", "", "ptb")
+    const expect = "ptbal"
+
+    t.is (actual, expect, "then should return the id string 'ptbal'")
+  }
+)
+
+test.serial (
+  "given the function 'getClassNames', when called with a @media object (2)",
+  (t) => {
+    const actual = getClassNames ({
+      "@media (min-width: 768px)": { "color": "red" }
+    }, "", "", "ptb")
+    const expect = "ptbam"
+
+    t.is (actual, expect, "then should return the id string 'ptbam'")
+  }
+)
+
+test.serial (
+  "given the function 'getClassNames', when called with a ':hover' object (2)",
+  (t) => {
+    const actual = getClassNames ({ ":hover": { "color": "red" } }, "", "", "ptb")
+    const expect = "ptban"
+
+    t.is (actual, expect, "then should return the id string 'ptban'")
+  }
+)
+
+test.serial (
+  "given the function 'getClassNames', when called with a '$child' property (5)",
+  (t) => {
+    const actual = getClassNames ({ "$child": null }, "", "", "ptb")
+    const expect = "ptbao"
+
+    t.is (actual, expect, "then should return the id string 'ptbao'")
+  }
+)
+
+test.serial (
+  "given the function 'getClassNames', when called with a '$child' property (6)",
+  (t) => {
+    const actual = getClassNames ({ "$child": null }, "(min-width: 768px)", "", "ptb")
+    const expect = "ptbap"
+
+    t.is (actual, expect, "then should return the id string 'ptbap'")
+  }
+)
+
+test.serial (
+  "given the function 'getClassNames', when called with a '$child' property (7)",
+  (t) => {
+    const actual = getClassNames (
+      { "$child": null },
+      "(min-width: 768px)",
+      ":hover",
+      "ptb"
+    )
+    const expect = "ptbaq"
+
+    t.is (actual, expect, "then should return the id string 'ptbaq'")
+  }
+)
+
+test.serial (
+  "given the function 'getClassNames', when called with a '$child' property (8)",
+  (t) => {
+    const actual = getClassNames (
+      { "$child": null },
+      "(min-width: 768px)",
+      ":hover",
+      "ptb"
+    )
+    const expect = "ptbaq"
+
+    t.is (actual, expect, "then should return the id string 'aq'")
+  }
+)
+
+test.serial (
+  "given a string representing a combinator and declaration (2)",
+  (t) => {
+    getClassNames ({ "$parent:hover>$child": { "color": "red" } }, "", "", "ptb")
+
+    const actual = store.get ("").get ("ptb:hover>ptbcolor:red")
+    const expect = {
+      "id": ["$parent", ":hover", ">", "$child", undefined],
+      "key": "ptb:hover>ptbcolor:red",
+      "media": "",
+      "rule": ".ptbar:hover>.ptbao{color:red}"
+    }
+
+    t.deepEqual (
+      actual,
+      expect,
+      "return an object with 'id' and 'rule' properties"
+    )
+  }
+)

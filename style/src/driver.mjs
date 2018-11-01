@@ -6,9 +6,11 @@ import renderDeclarativeRules from "./render-declarative-rules.mjs"
  *
  * @param {Object} declarations
  * - Collection of property name and property value pairs.
+ * @param {string} prefix
+ * -
  *
  * @returns {string}
  *   ClassNames (s).
  */
-export default (declarations) =>
-  getClassNames (renderDeclarativeRules (declarations))
+export default (declarations, prefix = "") =>
+  getClassNames (renderDeclarativeRules (declarations, prefix), prefix)
