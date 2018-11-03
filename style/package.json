@@ -51,7 +51,7 @@
     "puppeteer-core": "latest",
     "rollup": "latest",
     "sinon": "latest",
-    "terser": "3.10.8"
+    "terser": "3.10.9"
   },
   "engines": {
     "node": ">=8"
