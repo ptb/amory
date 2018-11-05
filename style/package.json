@@ -83,6 +83,7 @@
   ],
   "files": [
     "src/*",
+    "react.mjs",
     "style.js",
     "style.mjs"
   ],
@@ -94,7 +95,7 @@
     "ssr"
   ],
   "license": "MIT",
-  "main": "style",
+  "main": "style.js",
   "name": "@amory/style",
   "nodemonConfig": {
     "events": {
