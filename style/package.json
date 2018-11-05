@@ -124,7 +124,7 @@
     "build:chomp": "perl -pi -e 'chomp if eof' style.mjs",
     "build:header": "sed -i '' -e '1s;^;/*! @copyright Peter T Bosse II | @license MIT | @link github.com/ptb/amory *//* eslint-disable */;' style.mjs",
     "build:rollup": "rollup -c",
-    "build:terser": "terser -c -m -o style.mjs --toplevel style.mjs",
+    "build:terser": "terser -c -m -o style.mjs --module style.mjs",
     "clean": "rm -rf node_modules yarn.lock",
     "lint": "eslint --ext .mjs .",
     "start": "nodemon",
@@ -132,5 +132,5 @@
     "tidy:js": "prettier-eslint --write **/*.mjs",
     "watch": "npm-run-all -s test lint"
   },
-  "version": "2018.11.5-2"
+  "version": "2018.11.5-3"
 }
