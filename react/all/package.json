@@ -16,7 +16,7 @@
   "scripts": {
     "build": "run-s build:rollup build:terser build:header build:chomp clean",
     "build:chomp": "perl -pi -e 'chomp if eof' index.mjs",
-    "build:header": "sed -i '' -e '1s;^;/*! @copyright Facebook, Inc. | @license MIT | @link github.com/facebook/react | @version 16.6.0 */;' index.mjs",
+    "build:header": "sed -i '' -e '1s;^;/*! @copyright Facebook, Inc. | @license MIT | @link github.com/facebook/react | @version 16.6.0 *//* eslint-disable */;' index.mjs",
     "build:rollup": "rollup -c",
     "build:terser": "terser -c -m -o index.mjs --toplevel index.mjs",
     "clean": "rm -rf node_modules yarn.lock"
