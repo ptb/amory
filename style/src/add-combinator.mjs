@@ -1,38 +1,67 @@
+/* eslint-disable max-statements, max-len *//* @flow strict *//* @ts-check */
+
 import cache from "./cache.mjs"
 import getNewId from "./get-new-id.mjs"
 import declarationsToBlock from "./declarations-to-block.mjs"
 import store from "./store.mjs"
 
 /**
- * @example
- *
- * @param {string} property
- * @param {Object} declarations
+ * @param {string} selector
+ * - String identifing the elements to which a set of CSS rulesets apply.
+ * @param {any} declarations
+ * - Collection of property name and property value pairs.
  * @param {string} [media=""]
- * @param {string} [pseudo=""]
+ * - Media query consisting of a media type and test for a particular feature.
+ * @param {string} [prefix=""]
+ * - String which will be used to prefix all generated atomic identifiers.
  *
- * @returns {Object}
+ * @returns {{ id: string, key: string, media: string, rule: string }}
  */
-export default (property, declarations, media = "", prefix = "") => {
+
+const addCombinator = (
+  selector /* : string */,
+  declarations /* : any */,
+  media /* : string */ = "",
+  prefix /* : string */ = ""
+) /* : { id: string, key: string, media: string, rule: string } */ => {
   const regex = /(?:(\$[^[:{]+)([[:][^ +>{~]+]?)?)([ +>~])(?:(\$[^[:{]+)([[:][^{]+]?)?)/
-  const parse = Array.from (regex.exec (property))
-  const [, parent, pseudo1 = "", combinator, child, pseudo2 = ""] = parse
-  const block = declarationsToBlock (declarations)
+  const parse = Array.from (regex.exec (selector))
+  const [, left, pseudo1 = "", combinator, right, pseudo2 = ""] = parse
+
+  /** @type {string} */
+  const block /* : string */ = declarationsToBlock (declarations)
+  const key1 /* : string */ = `${prefix}${pseudo1}${left}`
+  const key2 /* : string */ = `${prefix}${pseudo2}${right}`
 
   cache (media)
 
-  const ancestor = store.get (media).has (`${prefix}${pseudo1}${parent}`)
-    ? store.get (media).get (`${prefix}${pseudo1}${parent}`).id
-    : cache (media) (`${prefix}${pseudo1}${parent}`, { "id": `${prefix}${getNewId ()}` }).id
+  const ancestor /* : string */ = store.get (media).has (key1)
+    ? store.get (media).get (key1).id
+    : cache (media) (key1, { "id": `${prefix}${getNewId ()}` }).id
 
-  const descendant = store.get (media).has (`${prefix}${pseudo2}${child}`)
-    ? store.get (media).get (`${prefix}${pseudo2}${child}`).id
-    : cache (media) (`${prefix}${pseudo2}${child}`, { "id": `${prefix}${getNewId ()}` }).id
+  const descendant /* : string */ = store.get (media).has (key2)
+    ? store.get (media).get (key2).id
+    : cache (media) (key2, { "id": `${prefix}${getNewId ()}` }).id
 
-  const key = [].concat (prefix, pseudo1, combinator, prefix, pseudo2, block).join ("")
+  const key = []
+    .concat (prefix, pseudo1, combinator, prefix, pseudo2, block)
+    .join ("")
 
   const id = parse.slice (1, 6)
-  const rule = `.${ancestor}${pseudo1}${combinator}.${descendant}${pseudo2}{${block}}`
+  const rule = [
+    ".",
+    ancestor,
+    pseudo1,
+    combinator,
+    ".",
+    descendant,
+    pseudo2,
+    "{",
+    block,
+    "}"
+  ].join ("")
 
   return cache (media) (key, { id, rule })
 }
+
+export default addCombinator

@@ -1,18 +1,29 @@
+/* @flow strict *//* @ts-check */
+
 import cache from "./cache.mjs"
 import getNewId from "./get-new-id.mjs"
 import store from "./store.mjs"
 
 /**
- * @example
- *
- * @param {string} property
+ * @param {string} selector
+ * - String identifing the elements to which a set of CSS rulesets apply.
  * @param {string} [media=""]
+ * - Media query consisting of a media type and test for a particular feature.
  * @param {string} [pseudo=""]
+ * - Keyword added to a selector that specifies a special state of an element.
+ * @param {string} [prefix=""]
+ * - String which will be used to prefix all generated atomic identifiers.
  *
- * @returns {Object}
+ * @returns {{ id: string, key: string, media: string, rule: string }}
  */
-export default (property, media = "", pseudo = "", prefix = "") => {
-  const key = `${prefix}${pseudo}${property}`
+
+const addClassName = (
+  selector /* : string */,
+  media /* : string */ = "",
+  pseudo /* : string */ = "",
+  prefix /* : string */ = ""
+) /* : { id: string, key: string, media: string, rule: string } */ => {
+  const key /* : string */ = `${prefix}${pseudo}${selector}`
 
   cache (media)
 
@@ -24,3 +35,5 @@ export default (property, media = "", pseudo = "", prefix = "") => {
 
   return store.get (media).get (key)
 }
+
+export default addClassName
