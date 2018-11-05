@@ -94,8 +94,7 @@
     "ssr"
   ],
   "license": "MIT",
-  "main": "style.js",
-  "module": "style.mjs",
+  "main": "style",
   "name": "@amory/style",
   "nodemonConfig": {
     "events": {
@@ -132,5 +131,5 @@
     "tidy:js": "prettier-eslint --write **/*.mjs",
     "watch": "npm-run-all -s test lint"
   },
-  "version": "2018.11.5-4"
+  "version": "2018.11.5-5"
 }
