@@ -8,7 +8,7 @@
     "apollo-server": "2.1.0",
     "graphql": "rc",
     "graphql-tag": "2.10.0",
-    "node-fetch": "2.2.0"
+    "node-fetch": "2.2.1"
   },
   "engines": {
     "node": ">=8"
