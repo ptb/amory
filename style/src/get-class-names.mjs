@@ -1,4 +1,4 @@
-/* eslint-disable default-case */
+/* eslint-disable default-case *//* @flow strict *//* @ts-check */
 
 import addClassName from "./add-class-name.mjs"
 import addCombinator from "./add-combinator.mjs"
@@ -6,44 +6,58 @@ import cacheStyle from "./cache-style.mjs"
 import prefixStyles from "./prefix-styles.mjs"
 
 /**
- * @example
- *
  * @param {Object} declarations
+ * - Collection of property name and property value pairs.
  * @param {string} [media=""]
+ * - Media query consisting of a media type and test for a particular feature.
  * @param {string} [pseudo=""]
+ * - Keyword added to a selector that specifies a special state of an element.
+ * @param {string} [prefix=""]
+ * - String which will be used to prefix all generated atomic identifiers.
  *
  * @returns {string}
+ *   String of classnames, identifiers, and/or selectors delimited by spaces.
  */
-const getClassNames = (declarations, media = "", pseudo = "", prefix = "") => {
+
+const getClassNames /* : Function */ = (
+  declarations /* : {| [string]: (boolean | number | Object | string) |} */,
+  media /* : string */ = "",
+  pseudo /* : string */ = "",
+  prefix /* : string */ = ""
+) /* : string */ => {
+  const W_SPC /* : number */ = 7
+
   if (typeof declarations !== "object") {
     throw new TypeError ()
   }
 
   return Object.entries (declarations)
-    .reduce ((ids, [property, value]) => {
-      const START = 0
-      const MEDIA = 6
-      const W_SPC = 7
-
+    .reduce ((
+      ids /* : Array < string > */,
+      [property, value] /* : [string, any] */
+    ) => {
       switch (true) {
-        case (/^\$.*( |>|\+|~)\$.*$/).test (property):
+        case (/^\$.*( |\+|>|~)/).test (property):
           addCombinator (property, value, media, prefix)
           return ids
-        case (/^\$(?:(?!( |>|\+|~|\$)).)*$/).test (property):
-          return ids.concat (addClassName (property, media, pseudo, prefix).id)
-        case property.substring (START, MEDIA) === "@media":
+        case (/^\$/).test (property):
+          return ids.concat (
+            addClassName (property, media, pseudo, prefix).id
+          )
+        case (/^@media/).test (property):
           return ids.concat (
             getClassNames (value, property.substr (W_SPC), pseudo, prefix)
           )
-        case property[0] === ":":
-        case property[0] === "[":
+        case (/^[[:]/).test (property):
           return ids.concat (
             getClassNames (value, media, `${pseudo}${property}`, prefix)
           )
         case typeof value !== "object": {
           const block = prefixStyles (property, value)
 
-          return ids.concat (cacheStyle (block, media, pseudo, prefix).id)
+          return ids.concat (
+            cacheStyle (block, media, pseudo, prefix).id
+          )
         }
       }
     }, [])
