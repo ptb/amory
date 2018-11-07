@@ -13,7 +13,7 @@ import cacheKeyframes from "./cache-keyframes.mjs"
 const renderDeclarativeRules = (declarations, prefix = "") =>
   Object.entries (declarations).reduce ((block, [property, value]) => {
     if (property === "fontFamily" && typeof value !== "string") {
-      block.fontFamily = cacheFontFace (value, prefix).id
+      block.fontFamily = cacheFontFace (value, prefix)
     } else if (property === "animationName" && typeof value !== "string") {
       block.animationName = cacheKeyframes (value, prefix).id
     } else if (typeof value === "object" && value !== null) {
