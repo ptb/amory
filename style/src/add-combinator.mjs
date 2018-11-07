@@ -28,7 +28,7 @@ const addCombinator = (
   media /* : string */ = "",
   prefix /* : string */ = ""
 ) /* : { id: string, key: string, media: string, rule: string } */ => {
-  const regex = /(?:(\$[^:[ +>~{]+)?([][*:_a-z]+)?)([ +>~])(?:(\$[^:[{]+)?([][*:_a-z]+)?)/
+  const regex = /(?:(\$[^:[ +>~]+)?([[\]*:=_a-z-]+)?)([ +>~])(?:(\$[^:[]+)?(.+)?)/
   const parse = Array.from (regex.exec (selector))
   const [, left, pseudo1 = "", combinator, right, pseudo2 = ""] = parse
 
@@ -53,12 +53,10 @@ const addCombinator = (
 
   const id = parse.slice (1, 6)
   const rule = [
-    (/^[*a-z]/).test (pseudo1) ? "" : ".",
-    (/^[*a-z]/).test (pseudo1) ? "" : ancestor,
+    typeof left === "undefined" ? "" : `.${ancestor}`,
     pseudo1,
     combinator,
-    (/^[*a-z]/).test (pseudo2) ? "" : ".",
-    (/^[*a-z]/).test (pseudo2) ? "" : descendant,
+    typeof right === "undefined" ? "" : `.${descendant}`,
     pseudo2,
     "{",
     block,

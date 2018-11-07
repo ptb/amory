@@ -38,7 +38,7 @@ const getClassNames /* : Function */ = (
     ) => {
       if (typeof value === "object") {
         switch (true) {
-          case (/^(?:(\$[^:[ +>~{]+)?([][*:_a-z]+)?)([ +>~])/).test (property):
+          case (/(?:(\$[^:[ +>~{]+)?([\][*:_a-z]+)?)([ +>~])/).test (property):
             addCombinator (property, value, media, prefix)
             return ids
           case (/^\$/).test (property):
