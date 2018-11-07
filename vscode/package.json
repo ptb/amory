@@ -2,7 +2,7 @@
   "author": "Peter T Bosse II <ptb@ioutime.com> (http://ptb2.me/)",
   "dependencies": {
     "@amory/merge-json": "latest",
-    "fs-extra": "7.0.0"
+    "fs-extra": "7.0.1"
   },
   "engines": {
     "node": ">=8"
