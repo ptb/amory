@@ -32,7 +32,7 @@ const getClassNames /* : Function */ = (
   const W_SPC /* : number */ = 7
 
   if (typeof declarations !== "object") {
-    throw new TypeError ()
+    throw new TypeError (typeof declarations)
   }
 
   return Object.entries (declarations)
