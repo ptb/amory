@@ -1,4 +1,8 @@
-/* eslint-disable max-statements, max-len *//* @flow strict *//* @ts-check */
+/* eslint-disable
+  max-len,
+  max-statements,
+  no-empty-character-class */
+/* @flow strict *//* @ts-check */
 
 import cache from "./cache.mjs"
 import getNewId from "./get-new-id.mjs"
@@ -24,7 +28,7 @@ const addCombinator = (
   media /* : string */ = "",
   prefix /* : string */ = ""
 ) /* : { id: string, key: string, media: string, rule: string } */ => {
-  const regex = /(?:(\$[^:[ +>~{]+)?([[\]*:_a-z]+)?)([ +>~])(?:(\$[^:[{]+)?([[\]*:_a-z]+)?)/
+  const regex = /(?:(\$[^:[ +>~{]+)?([][*:_a-z]+)?)([ +>~])(?:(\$[^:[{]+)?([][*:_a-z]+)?)/
   const parse = Array.from (regex.exec (selector))
   const [, left, pseudo1 = "", combinator, right, pseudo2 = ""] = parse
 
