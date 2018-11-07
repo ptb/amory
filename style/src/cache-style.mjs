@@ -21,7 +21,9 @@ export default (declarations, media = "", pseudo = "", prefix = "") => {
 
   if (!store.get (media).has (key)) {
     const id = `${prefix}${getNewId ()}`
-    const rule = `.${id}${pseudo}{${declarations}}`
+    const rule = (/^[\*a-z]/).test (pseudo)
+      ? `${pseudo}{${declarations}}`
+      : `.${id}${pseudo}{${declarations}}`
 
     cache (media) (key, { id, rule })
   }

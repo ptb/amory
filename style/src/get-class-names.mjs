@@ -36,29 +36,30 @@ const getClassNames /* : Function */ = (
       ids /* : Array < string > */,
       [property, value] /* : [string, any] */
     ) => {
-      switch (true) {
-        case (/^(?:(\$[^:[ +>~{]+)|([[\]*:_a-z]+))([ +>~])/).test (property):
-          addCombinator (property, value, media, prefix)
-          return ids
-        case (/^\$/).test (property):
-          return ids.concat (
-            addClassName (property, media, pseudo, prefix).id
-          )
-        case (/^@media/).test (property):
-          return ids.concat (
-            getClassNames (value, property.substr (W_SPC), pseudo, prefix)
-          )
-        case (/^[[*:a-z]/).test (property):
-          return ids.concat (
-            getClassNames (value, media, `${pseudo}${property}`, prefix)
-          )
-        case typeof value !== "object": {
-          const block = prefixStyles (property, value)
-
-          return ids.concat (
-            cacheStyle (block, media, pseudo, prefix).id
-          )
+      if (typeof value === "object") {
+        switch (true) {
+          case (/^(?:(\$[^:[ +>~{]+)?([[\]*:_a-z]+)?)([ +>~])/).test (property):
+            addCombinator (property, value, media, prefix)
+            return ids
+          case (/^\$/).test (property):
+            return ids.concat (
+              addClassName (property, media, pseudo, prefix).id
+            )
+          case (/^@media/).test (property):
+            return ids.concat (
+              getClassNames (value, property.substr (W_SPC), pseudo, prefix)
+            )
+          case (/^[[\*:a-z]/).test (property) && typeof value === "object":
+            return ids.concat (
+              getClassNames (value, media, `${pseudo}${property}`, prefix)
+            )
         }
+      } else {
+        const block = prefixStyles (property, value)
+
+        return ids.concat (
+          cacheStyle (block, media, pseudo, prefix).id
+        )
       }
     }, [])
     .join (" ")
