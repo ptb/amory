@@ -13,7 +13,7 @@ import store from "./store.mjs"
  */
 const cacheFontFace = (declarations, prefix = "") => {
   if (typeof declarations === "string") {
-    return `'${declarations}'`
+    return declarations
   } else if (Array.isArray (declarations)) {
     return declarations.map ((f) => cacheFontFace (f)).join ()
   } else {
