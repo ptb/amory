@@ -37,7 +37,7 @@ const getClassNames /* : Function */ = (
       [property, value] /* : [string, any] */
     ) => {
       switch (true) {
-        case (/^\$.*( |\+|>|~)/).test (property):
+        case (/^(?:(\$[^:[ +>~{]+)|([[\]*:_a-z]+))([ +>~])/).test (property):
           addCombinator (property, value, media, prefix)
           return ids
         case (/^\$/).test (property):
@@ -48,7 +48,7 @@ const getClassNames /* : Function */ = (
           return ids.concat (
             getClassNames (value, property.substr (W_SPC), pseudo, prefix)
           )
-        case (/^[[:]/).test (property):
+        case (/^[[*:a-z]/).test (property):
           return ids.concat (
             getClassNames (value, media, `${pseudo}${property}`, prefix)
           )

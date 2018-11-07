@@ -34,12 +34,6 @@ export default (nodes) => {
     const { media } = node
     let { textContent } = node
 
-    // textContent = textContent
-    //   .replace (/[\r\n\t]+/g, "")
-    //   .replace (/ {2,}/g, " ")
-    //   .replace (/ *([({:})]) */g, "$1")
-    //   .replace (/([;,]) /g, "$1")
-
     return regexps.reduce ((styles, regex) => {
       while (regex.exec (textContent)) {
         const parse = Array.from (regex.exec (textContent))

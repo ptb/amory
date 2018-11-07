@@ -120,11 +120,13 @@
   },
   "repository": "https://github.com/ptb/amory/tree/master/style",
   "scripts": {
-    "build": "run-s build:rollup build:terser build:header build:chomp clean",
+    "build": "run-s build:rollup build:uncomment1 build:terser build:uncomment2 build:header build:chomp",
     "build:chomp": "perl -pi -e 'chomp if eof' style.mjs",
-    "build:header": "sed -i '' -e '1s;^;/*! @copyright Peter T Bosse II | @license MIT | @link github.com/ptb/amory *//* eslint-disable */;' style.mjs",
+    "build:header": "sed -i '' -e '1s;^;/*! @copyright Peter T Bosse II | @license MIT | @link github.com/ptb/amory *//* eslint-disable *//* @flow */;' style.mjs",
     "build:rollup": "rollup -c",
-    "build:terser": "terser -c -m -o style.mjs --module style.mjs",
+    "build:terser": "terser -c -m -o style.mjs --comments all --module style.mjs",
+    "build:uncomment1": "sed -i '' -e 's;\\s*?//.*$;;' style.mjs",
+    "build:uncomment2": "perl -00 -i -pe 's/(\\/(?:\\*)[^:*]*\\*+(?:[^*\\/][^*]*\\*+)*\\/|[^\\*]\\/(?:\\/)|\\n)//sg' style.mjs",
     "clean": "rm -rf node_modules yarn.lock",
     "lint": "eslint --ext .mjs .",
     "start": "nodemon",
@@ -132,5 +134,5 @@
     "tidy:js": "prettier-eslint --write **/*.mjs",
     "watch": "npm-run-all -s test lint"
   },
-  "version": "2018.11.5-6"
+  "version": "2018.11.7-0"
 }

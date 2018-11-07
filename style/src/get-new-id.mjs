@@ -12,11 +12,11 @@ const getNewId = (() => {
   const INC /* : number */ = 1
   const radix /* : number */ = 36
   const ad /* : number */ = parseInt ("ad", radix)
-  const zz /* number */ = parseInt ("zz", radix)
-  const aaa /* number */ = parseInt ("aaa", radix)
-  const zzz /* number */ = parseInt ("zzz", radix)
+  const zz /* : number */ = parseInt ("zz", radix)
+  const aaa /* : number */ = parseInt ("aaa", radix)
+  const zzz /* : number */ = parseInt ("zzz", radix)
 
-  let n /* number */ = ad
+  let n /* : number */ = ad
 
   return (id /* : (string | void) */) => {
     if (id) {
