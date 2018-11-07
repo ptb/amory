@@ -1,10 +1,17 @@
 import { createElement as h, PureComponent } from "../react.mjs"
 import { createPortal } from "../react.mjs"
 
+/* import React from "react" */
+/* import ReactDOM from "react-dom" */
+
 import css from "./driver.mjs"
 import getCss from "./get-css.mjs"
 import parseCss from "./parse-css.mjs"
 import pubSub from "./pub-sub.mjs"
+
+/* const h = React.createElement */
+/* const PureComponent = React.PureComponent */
+/* const createPortal = ReactDOM.createPortal */
 
 export default class Style extends PureComponent {
   constructor (props) {

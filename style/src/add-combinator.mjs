@@ -39,13 +39,20 @@ const addCombinator = (
 
   cache (media)
 
-  const ancestor /* : string */ = store.get (media).has (key1)
-    ? store.get (media).get (key1).id
-    : cache (media) (key1, { "id": `${prefix}${getNewId ()}` }).id
+  let ancestor /* : string */ = ""
+  let descendant /* : string */ = ""
 
-  const descendant /* : string */ = store.get (media).has (key2)
-    ? store.get (media).get (key2).id
-    : cache (media) (key2, { "id": `${prefix}${getNewId ()}` }).id
+  if (typeof left !== "undefined") {
+    ancestor = store.get (media).has (key1)
+      ? store.get (media).get (key1).id
+      : cache (media) (key1, { "id": `${prefix}${getNewId ()}` }).id
+  }
+
+  if (typeof right !== "undefined") {
+    descendant = store.get (media).has (key2)
+      ? store.get (media).get (key2).id
+      : cache (media) (key2, { "id": `${prefix}${getNewId ()}` }).id
+  }
 
   const key = []
     .concat (prefix, pseudo1, combinator, prefix, pseudo2, block)
