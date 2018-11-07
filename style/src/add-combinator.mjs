@@ -49,12 +49,12 @@ const addCombinator = (
 
   const id = parse.slice (1, 6)
   const rule = [
-    ".",
-    ancestor,
+    (/^[*a-z]/).test (pseudo1) ? "" : ".",
+    (/^[*a-z]/).test (pseudo1) ? "" : ancestor,
     pseudo1,
     combinator,
-    ".",
-    descendant,
+    (/^[*a-z]/).test (pseudo2) ? "" : ".",
+    (/^[*a-z]/).test (pseudo2) ? "" : descendant,
     pseudo2,
     "{",
     block,

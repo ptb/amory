@@ -49,7 +49,7 @@ const getClassNames /* : Function */ = (
             return ids.concat (
               getClassNames (value, property.substr (W_SPC), pseudo, prefix)
             )
-          case (/^[[\*:a-z]/).test (property) && typeof value === "object":
+          case (/^[[*:a-z]/).test (property) && typeof value === "object":
             return ids.concat (
               getClassNames (value, media, `${pseudo}${property}`, prefix)
             )
