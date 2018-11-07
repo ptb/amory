@@ -31,10 +31,6 @@ const getClassNames /* : Function */ = (
 ) /* : string */ => {
   const W_SPC /* : number */ = 7
 
-  if (typeof declarations !== "object") {
-    throw new TypeError (typeof declarations)
-  }
-
   return Object.entries (declarations)
     .reduce ((
       ids /* : Array < string > */,
