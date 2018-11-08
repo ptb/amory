@@ -11,7 +11,7 @@
     "@amory/plugin": "latest",
     "@amory/vscode": "latest",
     "@amory/webpack": "latest",
-    "cosmiconfig": "5.0.6",
+    "cosmiconfig": "5.0.7",
     "fs-extra": "7.0.1"
   },
   "description": "Amory CLI",
