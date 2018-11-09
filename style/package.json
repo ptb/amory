@@ -30,7 +30,6 @@
       ]
     ]
   },
-  "browser": "style.mjs",
   "browserslist": [
     "> 0.5%",
     "and_chr >=29",
@@ -103,9 +102,9 @@
   ],
   "files": [
     "src/*",
-    "index.mjs",
     "react.mjs",
-    "style.js"
+    "style.js",
+    "style.mjs"
   ],
   "keywords": [
     "amory",
@@ -154,5 +153,5 @@
     "tidy:js": "prettier-eslint --write **/*.mjs",
     "watch": "npm-run-all -s test lint"
   },
-  "version": "2018.11.9-1"
+  "version": "2018.11.9-2"
 }

@@ -85,6 +85,7 @@ export default class Style extends PureComponent {
           "dangerouslySetInnerHTML": {
             "__html": `/*<![CDATA[*/${rules}/*]]>*/`
           },
+          "key": media || "",
           "media": media || null
         }))
 
