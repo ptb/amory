@@ -17,6 +17,19 @@
     ],
     "verbose": false
   },
+  "babel": {
+    "presets": [
+      [
+        "@babel/preset-env",
+        {
+          "modules": false,
+          "shippedProposals": true,
+          "spec": true,
+          "useBuiltIns": "usage"
+        }
+      ]
+    ]
+  },
   "browser": "style.mjs",
   "browserslist": [
     "> 0.5%",
@@ -43,6 +56,10 @@
   "description": "Atomic CSS-in-JS toolkit for browsers and server pre-rendering.",
   "devDependencies": {
     "@amory/eslint-config": "latest",
+    "@babel/cli": "^7.1.5",
+    "@babel/core": "^7.1.5",
+    "@babel/plugin-transform-runtime": "^7.1.0",
+    "@babel/preset-env": "^7.1.5",
     "ava": "next",
     "esm": "latest",
     "flow-bin": "0.86.0",
@@ -51,6 +68,9 @@
     "nyc": "latest",
     "puppeteer-core": "latest",
     "rollup": "latest",
+    "rollup-plugin-babel": "^4.0.3",
+    "rollup-plugin-commonjs": "^9.2.0",
+    "rollup-plugin-node-resolve": "^3.4.0",
     "sinon": "latest",
     "terser": "3.10.11"
   },
@@ -134,5 +154,5 @@
     "tidy:js": "prettier-eslint --write **/*.mjs",
     "watch": "npm-run-all -s test lint"
   },
-  "version": "2018.11.9-0"
+  "version": "2018.11.9-1"
 }
