@@ -8,11 +8,12 @@ import store from "./store.mjs"
  */
 export default () =>
   Array.from (store.entries ()).reduce (
-    (styles, [media, rules]) => ({
-      ... styles,
-      [media]: Array.from (rules.values ())
-        .map (({ rule }) => rule)
-        .join ("")
-    }),
-    {}
-  )
+    (styles, [media, rules]) => (Object.assign (
+      {},
+      styles,
+      {
+        [media]: Array.from (rules.values ())
+          .map (({ rule }) => rule)
+          .join ("")
+      }
+    )), {})

@@ -83,9 +83,9 @@
   ],
   "files": [
     "src/*",
+    "index.mjs",
     "react.mjs",
-    "style.js",
-    "style.mjs"
+    "style.js"
   ],
   "keywords": [
     "amory",
@@ -134,5 +134,5 @@
     "tidy:js": "prettier-eslint --write **/*.mjs",
     "watch": "npm-run-all -s test lint"
   },
-  "version": "2018.11.7-11"
+  "version": "2018.11.9-0"
 }
