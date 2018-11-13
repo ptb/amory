@@ -7,7 +7,7 @@
     "@amory/npmfs": "latest",
     "@amory/watch": "latest",
     "esm": "3.0.84",
-    "koa": "2.6.1",
+    "koa": "2.6.2",
     "koa-static": "5.0.0",
     "koa-websocket": "5.0.1",
     "yargs": "12.0.2"
