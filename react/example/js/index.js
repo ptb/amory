@@ -1,4 +1,6 @@
-import { createElement as h, hydrate } from "./react.js"
+/** @jsx h @jsxFrag Fragment */
+
+import { createElement as h, Fragment, hydrate } from "./react.js"
 
 import App from "./app.js"
 
