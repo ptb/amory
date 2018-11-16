@@ -2,8 +2,8 @@
   "author": "Peter T Bosse II <ptb@ioutime.com> (http://ptb2.me/)",
   "dependencies": {
     "@amory/store": "latest",
-    "apollo-cache-inmemory": "1.3.9",
-    "apollo-client": "2.4.5",
+    "apollo-cache-inmemory": "1.3.10",
+    "apollo-client": "2.4.6",
     "apollo-link-http": "1.5.5",
     "apollo-server": "2.2.2",
     "graphql": "rc",
