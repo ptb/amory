@@ -8,7 +8,7 @@
     "fs-extra": "7.0.1",
     "imagemin-svgo": "7.0.0",
     "loader-utils": "1.1.0",
-    "mini-svg-data-uri": "1.0.1",
+    "mini-svg-data-uri": "1.0.2",
     "node-vibrant": "3.0.0",
     "p-map": "2.0.0",
     "p-pipe": "1.2.0",
