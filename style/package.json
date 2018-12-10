@@ -44,7 +44,7 @@
     "@amory/eslint-config": "latest",
     "ava": "next",
     "esm": "latest",
-    "flow-bin": "0.87.0",
+    "flow-bin": "0.88.0",
     "nodemon": "latest",
     "npm-run-all": "latest",
     "nyc": "latest",
