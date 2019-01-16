@@ -2,7 +2,7 @@
   "author": "Peter T Bosse II <ptb@ioutime.com> (http://ptb2.me/)",
   "dependencies": {
     "@amory/chokidar": "2.0.4",
-    "esm": "3.0.84",
+    "esm": "3.1.0",
     "koa-route": "3.2.0"
   },
   "description": "Monitor file system changes with node and chokidar using a child process.",
