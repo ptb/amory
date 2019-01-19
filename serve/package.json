@@ -6,7 +6,7 @@
   "dependencies": {
     "@amory/npmfs": "latest",
     "@amory/watch": "latest",
-    "esm": "3.1.0",
+    "esm": "3.1.1",
     "koa": "2.6.2",
     "koa-static": "5.0.0",
     "koa-websocket": "5.0.1",

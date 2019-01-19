@@ -3,7 +3,7 @@
   "dependencies": {
     "@amory/react": "latest",
     "@amory/scrub": "latest",
-    "esm": "3.1.0",
+    "esm": "3.1.1",
     "html-webpack-plugin": "next",
     "node-dir": "latest",
     "react": "16.7.0",
