@@ -32,5 +32,9 @@
     "access": "public"
   },
   "repository": "https://github.com/ptb/amory/tree/master/eslint",
-  "version": "2019.2.11-3"
+  "scripts": {
+    "lint:file": "f () { eslint --config node_modules/@amory/eslint-config/.eslintrc.json \"${1}\" || exit 0; }; f",
+    "tidy:file": "f () { prettier-eslint --eslint-config-path @amory --write \"${1}\" || exit 0; }; f"
+  },
+  "version": "2019.2.11-4"
 }
