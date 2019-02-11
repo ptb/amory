@@ -1,0 +1,78 @@
+{
+  "rules": {
+    "arrow-body-style": [
+      "warn",
+      "as-needed"
+    ],
+    "arrow-parens": [
+      "warn",
+      "always"
+    ],
+    "arrow-spacing": [
+      "warn",
+      {
+        "after": true,
+        "before": true
+      }
+    ],
+    "constructor-super": "warn",
+    "generator-star-spacing": [
+      "warn",
+      {
+        "after": true,
+        "before": true
+      }
+    ],
+    "no-class-assign": "warn",
+    "no-confusing-arrow": [
+      "warn",
+      {
+        "allowParens": true
+      }
+    ],
+    "no-const-assign": "warn",
+    "no-dupe-class-members": "warn",
+    "no-duplicate-imports": [
+      "warn",
+      {
+        "includeExports": true
+      }
+    ],
+    "no-new-symbol": "warn",
+    "no-restricted-imports": "off",
+    "no-this-before-super": "warn",
+    "no-useless-computed-key": "warn",
+    "no-useless-constructor": "warn",
+    "no-useless-rename": "warn",
+    "no-var": "warn",
+    "object-shorthand": [
+      "warn",
+      "always",
+      {
+        "avoidQuotes": true
+      }
+    ],
+    "prefer-arrow-callback": "off",
+    "prefer-const": "warn",
+    "prefer-destructuring": "off",
+    "prefer-numeric-literals": "warn",
+    "prefer-rest-params": "warn",
+    "prefer-spread": "warn",
+    "prefer-template": "warn",
+    "require-yield": "off",
+    "rest-spread-spacing": [
+      "warn",
+      "always"
+    ],
+    "sort-imports": "off",
+    "symbol-description": "off",
+    "template-curly-spacing": [
+      "warn",
+      "never"
+    ],
+    "yield-star-spacing": [
+      "warn",
+      "both"
+    ]
+  }
+}

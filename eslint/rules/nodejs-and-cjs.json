@@ -1,0 +1,24 @@
+{
+  "rules": {
+    "callback-return": "warn",
+    "global-require": "warn",
+    "handle-callback-err": [
+      "warn",
+      "^(err|error)$"
+    ],
+    "no-buffer-constructor": "warn",
+    "no-mixed-requires": [
+      "warn",
+      {
+        "allowCall": true,
+        "grouping": true
+      }
+    ],
+    "no-new-require": "warn",
+    "no-path-concat": "warn",
+    "no-process-env": "warn",
+    "no-process-exit": "warn",
+    "no-restricted-modules": "off",
+    "no-sync": "off"
+  }
+}

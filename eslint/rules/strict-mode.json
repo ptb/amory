@@ -1,0 +1,8 @@
+{
+  "rules": {
+    "strict": [
+      "warn",
+      "safe"
+    ]
+  }
+}

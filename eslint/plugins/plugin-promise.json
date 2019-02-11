@@ -1,0 +1,8 @@
+{
+  "plugins": [
+    "promise"
+  ],
+  "rules": {
+    "promise/param-names": "warn"
+  }
+}

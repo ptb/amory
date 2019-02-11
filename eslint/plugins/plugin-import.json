@@ -1,0 +1,13 @@
+{
+  "plugins": [
+    "import"
+  ],
+  "rules": {
+    "import/export": "off",
+    "import/no-amd": "off",
+    "import/no-commonjs": [
+      "off",
+      "allow-primitive-modules"
+    ]
+  }
+}

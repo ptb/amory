@@ -1,0 +1,19 @@
+{
+  "plugins": [
+    "standard"
+  ],
+  "rules": {
+    "standard/array-bracket-even-spacing": [
+      "warn",
+      "either"
+    ],
+    "standard/computed-property-even-spacing": [
+      "warn",
+      "even"
+    ],
+    "standard/object-curly-even-spacing": [
+      "warn",
+      "either"
+    ]
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "plugins": [
+    "compat"
+  ],
+  "rules": {
+    "compat/compat": "warn"
+  }
+}

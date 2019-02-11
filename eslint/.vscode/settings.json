@@ -1,0 +1,8 @@
+{
+  "editor.formatOnType": true,
+  "eslint.options": {
+    "configFile": ".eslintrc.json"
+  },
+  "eslint.runtime": "/usr/local/node/shims/node",
+  "prettier.eslintIntegration": true
+}

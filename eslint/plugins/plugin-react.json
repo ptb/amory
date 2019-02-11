@@ -1,0 +1,104 @@
+{
+  "plugins": [
+    "react"
+  ],
+  "rules": {
+    "react/boolean-prop-naming": "warn",
+    "react/button-has-type": "warn",
+    "react/default-props-match-prop-types": "warn",
+    "react/destructuring-assignment": "warn",
+    "react/display-name": "off",
+    "react/forbid-component-props": "off",
+    "react/forbid-elements": "warn",
+    "react/forbid-foreign-prop-types": "warn",
+    "react/forbid-prop-types": "warn",
+    "react/jsx-boolean-value": "warn",
+    "react/jsx-closing-bracket-location": "warn",
+    "react/jsx-closing-tag-location": "warn",
+    "react/jsx-curly-brace-presence": "warn",
+    "react/jsx-curly-spacing": "warn",
+    "react/jsx-equals-spacing": "warn",
+    "react/jsx-filename-extension": "warn",
+    "react/jsx-first-prop-new-line": [
+      "warn",
+      "always"
+    ],
+    "react/jsx-handler-names": "warn",
+    "react/jsx-indent": [
+      "warn",
+      2
+    ],
+    "react/jsx-indent-props": [
+      "warn",
+      2
+    ],
+    "react/jsx-key": "warn",
+    "react/jsx-max-props-per-line": "warn",
+    "react/jsx-no-bind": [
+      "warn",
+      {
+        "allowArrowFunctions": true
+      }
+    ],
+    "react/jsx-no-comment-textnodes": "warn",
+    "react/jsx-no-duplicate-props": "warn",
+    "react/jsx-no-literals": "off",
+    "react/jsx-no-target-blank": "warn",
+    "react/jsx-no-undef": "warn",
+    "react/jsx-pascal-case": "warn",
+    "react/jsx-sort-props": "warn",
+    "react/jsx-tag-spacing": [
+      "warn",
+      {
+        "afterOpening": "never",
+        "beforeClosing": "never",
+        "beforeSelfClosing": "always",
+        "closingSlash": "never"
+      }
+    ],
+    "react/jsx-uses-react": "warn",
+    "react/jsx-uses-vars": "warn",
+    "react/jsx-wrap-multilines": "warn",
+    "react/no-access-state-in-setstate": "warn",
+    "react/no-array-index-key": "warn",
+    "react/no-children-prop": "warn",
+    "react/no-danger": "warn",
+    "react/no-danger-with-children": "warn",
+    "react/no-deprecated": "warn",
+    "react/no-did-mount-set-state": "warn",
+    "react/no-did-update-set-state": "warn",
+    "react/no-direct-mutation-state": "warn",
+    "react/no-find-dom-node": "warn",
+    "react/no-is-mounted": "warn",
+    "react/no-multi-comp": "warn",
+    "react/no-redundant-should-component-update": "warn",
+    "react/no-render-return-value": "warn",
+    "react/no-set-state": "warn",
+    "react/no-string-refs": "warn",
+    "react/no-typos": "warn",
+    "react/no-unescaped-entities": "warn",
+    "react/no-unknown-property": [
+      "warn",
+      {
+        "ignore": [
+          "charset"
+        ]
+      }
+    ],
+    "react/no-unused-prop-types": "warn",
+    "react/no-unused-state": "warn",
+    "react/no-will-update-set-state": "warn",
+    "react/prefer-es6-class": "warn",
+    "react/prefer-stateless-function": "warn",
+    "react/prop-types": "off",
+    "react/react-in-jsx-scope": "warn",
+    "react/require-default-props": "warn",
+    "react/require-optimization": "warn",
+    "react/require-render-return": "warn",
+    "react/self-closing-comp": "warn",
+    "react/sort-comp": "warn",
+    "react/sort-prop-types": "warn",
+    "react/style-prop-object": "warn",
+    "react/void-dom-elements-no-children": "warn"
+  }
+}

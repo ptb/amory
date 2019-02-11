@@ -1,0 +1,100 @@
+{
+  "rules": {
+    "for-direction": "error",
+    "getter-return": [
+      "error",
+      {
+        "allowImplicit": true
+      }
+    ],
+    "no-async-promise-executor": "warn",
+    "no-await-in-loop": "warn",
+    "no-compare-neg-zero": "error",
+    "no-cond-assign": "error",
+    "no-console": [
+      "error",
+      {
+        "allow": [
+          "error",
+          "info",
+          "warn"
+        ]
+      }
+    ],
+    "no-constant-condition": "error",
+    "no-control-regex": "error",
+    "no-debugger": "error",
+    "no-dupe-args": "error",
+    "no-dupe-keys": "error",
+    "no-duplicate-case": "error",
+    "no-empty": [
+      "error",
+      {
+        "allowEmptyCatch": true
+      }
+    ],
+    "no-empty-character-class": "error",
+    "no-ex-assign": "error",
+    "no-extra-boolean-cast": "error",
+    "no-extra-parens": [
+      "warn",
+      "all",
+      {
+        "enforceForArrowConditionals": false,
+        "ignoreJSX": "all",
+        "returnAssign": false
+      }
+    ],
+    "no-extra-semi": "error",
+    "no-func-assign": "error",
+    "no-inner-declarations": [
+      "error",
+      "both"
+    ],
+    "no-invalid-regexp": "error",
+    "no-irregular-whitespace": [
+      "error",
+      {
+        "skipRegExps": true,
+        "skipStrings": true,
+        "skipTemplates": true
+      }
+    ],
+    "no-misleading-character-class": "warn",
+    "no-obj-calls": "error",
+    "no-prototype-builtins": "warn",
+    "no-regex-spaces": "error",
+    "no-sparse-arrays": "error",
+    "no-template-curly-in-string": "warn",
+    "no-unexpected-multiline": "error",
+    "no-unreachable": "error",
+    "no-unsafe-finally": "error",
+    "no-unsafe-negation": "error",
+    "require-atomic-updates": "warn",
+    "use-isnan": "error",
+    "valid-jsdoc": [
+      "off",
+      {
+        "prefer": {
+          "arg": "param",
+          "argument": "param",
+          "class": "constructor",
+          "return": "returns",
+          "virtual": "abstract"
+        },
+        "preferType": {
+          "Boolean": "boolean",
+          "Number": "number",
+          "String": "string",
+          "object": "Object"
+        },
+        "requireParamDescription": false,
+        "requireParamType": true,
+        "requireReturn": true,
+        "requireReturnDescription": false,
+        "requireReturnType": true
+      }
+    ],
+    "valid-typeof": "error"
+  }
+}
