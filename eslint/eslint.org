@@ -64,7 +64,7 @@ module.exports = require ("./.eslintrc.json")
   "extends": [
     "./rules/possible-errors.json",
     "./rules/best-practices.json",
-    "./rules/strict.json",
+    "./rules/strict-mode.json",
     "./rules/variables.json",
     "./rules/nodejs-and-commonjs.json",
     "./rules/stylistic-issues.json",
@@ -150,7 +150,7 @@ module.exports = require ("./.eslintrc.json")
     "access": "public"
   },
   "repository": "https://github.com/ptb/amory/tree/master/eslint",
-  "version": "2019.2.11-2"
+  "version": "2019.2.11-3"
 }
 #+end_src
 #+HTML: </details>
