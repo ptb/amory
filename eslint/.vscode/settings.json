@@ -1,7 +1,7 @@
 {
   "editor.formatOnType": true,
   "eslint.options": {
-    "configFile": ".eslintrc.json"
+    "configFile": "node_modules/@amory/eslint-config/.eslintrc.json"
   },
   "eslint.runtime": "/usr/local/node/shims/node",
   "prettier.eslintIntegration": true
