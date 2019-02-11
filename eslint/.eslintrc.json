@@ -9,7 +9,7 @@
     "./rules/best-practices.json",
     "./rules/strict.json",
     "./rules/variables.json",
-    "./rules/nodejs-and-cjs.json",
+    "./rules/nodejs-and-commonjs.json",
     "./rules/stylistic-issues.json",
     "./rules/ecmascript-6.json",
     "./plugins/plugin-compat.json",

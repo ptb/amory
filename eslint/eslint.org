@@ -6,7 +6,7 @@
 
 ** Setup
 
-*** .eslintignore
+*** [[https://eslint.org/docs/user-guide/configuring#ignoring-files-and-directories][.eslintignore]]
 
 #+HTML: <details>
 #+begin_src gitignore :noweb-ref ".eslintignore" :tangle ".eslintignore"
@@ -16,7 +16,7 @@ node_modules/
 #+end_src
 #+HTML: </details>
 
-*** .eslintrc.js
+*** [[https://eslint.org/docs/user-guide/configuring#configuration-file-formats][.eslintrc.js]]
 
 #+HTML: <details>
 #+begin_src js :noweb-ref ".eslintrc.js" :tangle ".eslintrc.js"
@@ -24,7 +24,7 @@ module.exports = require ("./.eslintrc.json")
 #+end_src
 #+HTML: </details>
 
-*** .eslintrc.json
+*** [[https://eslint.org/docs/user-guide/configuring#configuration-file-formats][.eslintrc.json]]
 
 #+HTML: <details>
 #+begin_src json :noweb-ref ".eslintrc.json" :tangle ".eslintrc.json"
@@ -39,7 +39,7 @@ module.exports = require ("./.eslintrc.json")
     "./rules/best-practices.json",
     "./rules/strict.json",
     "./rules/variables.json",
-    "./rules/nodejs-and-cjs.json",
+    "./rules/nodejs-and-commonjs.json",
     "./rules/stylistic-issues.json",
     "./rules/ecmascript-6.json",
     "./plugins/plugin-compat.json",
@@ -70,7 +70,7 @@ module.exports = require ("./.eslintrc.json")
 #+end_src
 #+HTML: </details>
 
-*** .vscode/settings.json
+*** [[https://code.visualstudio.com/docs/getstarted/settings][.vscode/settings.json]]
 
 #+HTML: <details>
 #+begin_src json :noweb-ref ".vscode/settings.json" :tangle ".vscode/settings.json"
@@ -85,7 +85,7 @@ module.exports = require ("./.eslintrc.json")
 #+end_src
 #+HTML: </details>
 
-*** package.json
+*** [[https://docs.npmjs.com/creating-a-package-json-file][package.json]]
 
 #+HTML: <details>
 #+begin_src json :noweb-ref "package.json" :tangle "package.json"
@@ -131,7 +131,7 @@ module.exports = require ("./.eslintrc.json")
 
 ** Rules
 
-*** Possible Errors
+*** [[https://eslint.org/docs/rules/#possible-errors][Possible Errors]]
 
 #+HTML: <details>
 #+begin_src json :noweb-ref "rules/possible-errors.json" :tangle "rules/possible-errors.json"
@@ -238,7 +238,7 @@ module.exports = require ("./.eslintrc.json")
 #+end_src
 #+HTML: </details>
 
-*** Best Practices
+*** [[https://eslint.org/docs/rules/#best-practices][Best Practices]]
 
 #+HTML: <details>
 #+begin_src json :noweb-ref "rules/best-practices.json" :tangle "rules/best-practices.json"
@@ -386,7 +386,7 @@ module.exports = require ("./.eslintrc.json")
 #+end_src
 #+HTML: </details>
 
-*** Strict Mode
+*** [[https://eslint.org/docs/rules/#strict-mode][Strict Mode]]
 
 #+HTML: <details>
 #+begin_src json :noweb-ref "rules/strict-mode.json" :tangle "rules/strict-mode.json"
@@ -401,7 +401,7 @@ module.exports = require ("./.eslintrc.json")
 #+end_src
 #+HTML: </details>
 
-*** Variables
+*** [[https://eslint.org/docs/rules/#variables][Variables]]
 
 #+HTML: <details>
 #+begin_src json :noweb-ref "rules/variables.json" :tangle "rules/variables.json"
@@ -440,10 +440,10 @@ module.exports = require ("./.eslintrc.json")
 #+end_src
 #+HTML: </details>
 
-*** Node.js and CommonJS
+*** [[https://eslint.org/docs/rules/#nodejs-and-commonjs][Node.js and CommonJS]]
 
 #+HTML: <details>
-#+begin_src json :noweb-ref "rules/nodejs-and-cjs.json" :tangle "rules/nodejs-and-cjs.json"
+#+begin_src json :noweb-ref "rules/nodejs-and-commonjs.json" :tangle "rules/nodejs-and-commonjs.json"
 {
   "rules": {
     "callback-return": "warn",
@@ -471,7 +471,7 @@ module.exports = require ("./.eslintrc.json")
 #+end_src
 #+HTML: </details>
 
-*** Stylistic Issues
+*** [[https://eslint.org/docs/rules/#stylistic-issues][Stylistic Issues]]
 
 #+HTML: <details>
 #+begin_src json :noweb-ref "rules/stylistic-issues.json" :tangle "rules/stylistic-issues.json"
@@ -847,7 +847,7 @@ module.exports = require ("./.eslintrc.json")
 #+end_src
 #+HTML: </details>
 
-*** ECMAScript 6
+*** [[https://eslint.org/docs/rules/#ecmascript-6][ECMAScript 6]]
 
 #+HTML: <details>
 #+begin_src json :noweb-ref "rules/ecmascript-6.json" :tangle "rules/ecmascript-6.json"
@@ -935,7 +935,7 @@ module.exports = require ("./.eslintrc.json")
 
 ** Plugins
 
-*** eslint-plugin-compat
+*** [[https://github.com/amilajack/eslint-plugin-compat][eslint-plugin-compat]]
 
 #+HTML: <details>
 #+begin_src json :noweb-ref "plugins/plugin-compat.json" :tangle "plugins/plugin-compat.json"
@@ -950,7 +950,7 @@ module.exports = require ("./.eslintrc.json")
 #+end_src
 #+HTML: </details>
 
-*** eslint-plugin-fp
+*** [[https://github.com/jfmengels/eslint-plugin-fp][eslint-plugin-fp]]
 
 #+HTML: <details>
 #+begin_src json :noweb-ref "plugins/plugin-fp.json" :tangle "plugins/plugin-fp.json"
@@ -991,7 +991,7 @@ module.exports = require ("./.eslintrc.json")
 #+end_src
 #+HTML: </details>
 
-*** eslint-plugin-graphql
+*** [[https://github.com/apollographql/eslint-plugin-graphql][eslint-plugin-graphql]]
 
 #+HTML: <details>
 #+begin_src json :noweb-ref "plugins/plugin-graphql.json" :tangle "plugins/plugin-graphql.json"
@@ -1003,7 +1003,7 @@ module.exports = require ("./.eslintrc.json")
 #+end_src
 #+HTML: </details>
 
-*** eslint-plugin-import
+*** [[https://github.com/benmosher/eslint-plugin-import][eslint-plugin-import]]
 
 #+HTML: <details>
 #+begin_src json :noweb-ref "plugins/plugin-import.json" :tangle "plugins/plugin-import.json"
@@ -1023,7 +1023,7 @@ module.exports = require ("./.eslintrc.json")
 #+end_src
 #+HTML: </details>
 
-*** eslint-plugin-json
+*** [[https://github.com/azeemba/eslint-plugin-json][eslint-plugin-json]]
 
 #+HTML: <details>
 #+begin_src json :noweb-ref "plugins/plugin-json.json" :tangle "plugins/plugin-json.json"
@@ -1035,7 +1035,7 @@ module.exports = require ("./.eslintrc.json")
 #+end_src
 #+HTML: </details>
 
-*** eslint-plugin-jsx-a11y
+*** [[https://github.com/evcohen/eslint-plugin-jsx-a11y][eslint-plugin-jsx-a11y]]
 
 #+HTML: <details>
 #+begin_src json :noweb-ref "plugins/plugin-jsx-a11y.json" :tangle "plugins/plugin-jsx-a11y.json"
@@ -1082,7 +1082,7 @@ module.exports = require ("./.eslintrc.json")
 #+end_src
 #+HTML: </details>
 
-*** eslint-plugin-promise
+*** [[https://github.com/xjamundx/eslint-plugin-promise][eslint-plugin-promise]]
 
 #+HTML: <details>
 #+begin_src json :noweb-ref "plugins/plugin-promise.json" :tangle "plugins/plugin-promise.json"
@@ -1097,7 +1097,7 @@ module.exports = require ("./.eslintrc.json")
 #+end_src
 #+HTML: </details>
 
-*** eslint-plugin-react
+*** [[https://github.com/yannickcr/eslint-plugin-react][eslint-plugin-react]]
 
 #+HTML: <details>
 #+begin_src json :noweb-ref "plugins/plugin-react.json" :tangle "plugins/plugin-react.json"
@@ -1208,7 +1208,7 @@ module.exports = require ("./.eslintrc.json")
 #+end_src
 #+HTML: </details>
 
-*** eslint-plugin-standard
+*** [[https://github.com/standard/eslint-plugin-standard][eslint-plugin-standard]]
 
 #+HTML: <details>
 #+begin_src json :noweb-ref "plugins/plugin-standard.json" :tangle "plugins/plugin-standard.json"
