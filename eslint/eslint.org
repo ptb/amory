@@ -150,7 +150,7 @@ module.exports = require ("./.eslintrc.json")
     "access": "public"
   },
   "repository": "https://github.com/ptb/amory/tree/master/eslint",
-  "version": "2019.2.11-0"
+  "version": "2019.2.11-1"
 }
 #+end_src
 #+HTML: </details>
