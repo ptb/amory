@@ -4,6 +4,33 @@
 :end:
 #+startup: showall hideblocks hidestars indent
 
+** Table of Contents                                                   :TOC:
+- [[#eslint][ESLint]]
+  - [[#setup][Setup]]
+    - [[#eslintignore][.eslintignore]]
+    - [[#eslintrcjs][.eslintrc.js]]
+    - [[#eslintrcjson][.eslintrc.json]]
+    - [[#vscodesettingsjson][.vscode/settings.json]]
+    - [[#packagejson][package.json]]
+  - [[#rules][Rules]]
+    - [[#possible-errors][Possible Errors]]
+    - [[#best-practices][Best Practices]]
+    - [[#strict-mode][Strict Mode]]
+    - [[#variables][Variables]]
+    - [[#nodejs-and-commonjs][Node.js and CommonJS]]
+    - [[#stylistic-issues][Stylistic Issues]]
+    - [[#ecmascript-6][ECMAScript 6]]
+  - [[#plugins][Plugins]]
+    - [[#eslint-plugin-compat][eslint-plugin-compat]]
+    - [[#eslint-plugin-fp][eslint-plugin-fp]]
+    - [[#eslint-plugin-graphql][eslint-plugin-graphql]]
+    - [[#eslint-plugin-import][eslint-plugin-import]]
+    - [[#eslint-plugin-json][eslint-plugin-json]]
+    - [[#eslint-plugin-jsx-a11y][eslint-plugin-jsx-a11y]]
+    - [[#eslint-plugin-promise][eslint-plugin-promise]]
+    - [[#eslint-plugin-react][eslint-plugin-react]]
+    - [[#eslint-plugin-standard][eslint-plugin-standard]]
+
 ** Setup
 
 *** [[https://eslint.org/docs/user-guide/configuring#ignoring-files-and-directories][.eslintignore]]
