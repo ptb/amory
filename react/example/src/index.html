@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title> </title>
+    <style></style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module">
+      Promise.all ([
+        import ("/js/react.mjs"),
+        import ("/js/react-dom.mjs")
+      ]).then (([{ createElement: h }, { hydrate }]) => {
+        const content = () => h ("div", {}, "Hello.")
+
+        hydrate (h (content), document.getElementById ("root"))
+      })
+    </script>
+  </body>
+</html>
