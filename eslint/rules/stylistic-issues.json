@@ -120,7 +120,7 @@
         "allowBlockStart": true,
         "allowObjectEnd": true,
         "allowObjectStart": true,
-        "beforeBlockComment": false,
+        "beforeBlockComment": true,
         "beforeLineComment": true,
         "ignorePattern": "^ ?[*|:]:? "
       }

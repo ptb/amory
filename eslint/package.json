@@ -4,6 +4,8 @@
     "babel-eslint": "10.0.1",
     "eslint": "5.15.1",
     "eslint-plugin-compat": "2.7.0",
+    "eslint-plugin-flowtype": "3.4.2",
+    "eslint-plugin-flowtype-comment": "1.0.0",
     "eslint-plugin-fp": "2.3.0",
     "eslint-plugin-graphql": "3.0.3",
     "eslint-plugin-import": "2.16.0",
@@ -36,5 +38,5 @@
     "lint:file": "f () { eslint --config ./node_modules/@amory/eslint-config/.eslintrc.json \"${1}\" || exit 0; }; f",
     "tidy:file": "f () { prettier-eslint --eslint-config-path @amory --write \"${1}\" || exit 0; }; f"
   },
-  "version": "2019.3.12-0"
+  "version": "2019.3.13-0"
 }
