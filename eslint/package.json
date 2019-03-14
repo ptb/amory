@@ -3,7 +3,7 @@
   "dependencies": {
     "babel-eslint": "10.0.1",
     "eslint": "5.15.1",
-    "eslint-plugin-compat": "2.7.0",
+    "eslint-plugin-compat": "3.0.0",
     "eslint-plugin-flowtype": "3.4.2",
     "eslint-plugin-flowtype-comment": "1.0.0",
     "eslint-plugin-fp": "2.3.0",
@@ -35,8 +35,9 @@
   },
   "repository": "https://github.com/ptb/amory/tree/master/eslint",
   "scripts": {
-    "lint:file": "f () { eslint --config ./node_modules/@amory/eslint-config/.eslintrc.json \"${1}\" || exit 0; }; f",
-    "tidy:file": "f () { prettier-eslint --eslint-config-path @amory --write \"${1}\" || exit 0; }; f"
+    "lint": "f () { eslint --plugin flowtype-comment src || exit 0; }; f",
+    "lint:file": "f () { eslint --fix \"${1}\" || exit 0; }; f",
+    "lint:fix": "f () { eslint --fix src || exit 0; }; f"
   },
-  "version": "2019.3.14-1"
+  "version": "2019.3.14-2"
 }
