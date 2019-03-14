@@ -241,8 +241,8 @@
       {
         "overrides": {
           ":": "before",
-          "?": "before",
-          "=": "ignore"
+          "=": "ignore",
+          "?": "before"
         }
       }
     ],

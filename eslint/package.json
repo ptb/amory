@@ -38,5 +38,5 @@
     "lint:file": "f () { eslint --config ./node_modules/@amory/eslint-config/.eslintrc.json \"${1}\" || exit 0; }; f",
     "tidy:file": "f () { prettier-eslint --eslint-config-path @amory --write \"${1}\" || exit 0; }; f"
   },
-  "version": "2019.3.14-0"
+  "version": "2019.3.14-1"
 }
