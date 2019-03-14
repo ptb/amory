@@ -1,7 +1,6 @@
 {
   "plugins": [
-    "flowtype",
-    "flowtype-comment"
+    "flowtype"
   ],
   "rules": {
     "flowtype/array-style-complex-type": [

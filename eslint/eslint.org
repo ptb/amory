@@ -22,6 +22,7 @@
     - [[#ecmascript-6][ECMAScript 6]]
   - [[#plugins][Plugins]]
     - [[#eslint-plugin-compat][eslint-plugin-compat]]
+    - [[#eslint-plugin-flowtype][eslint-plugin-flowtype]]
     - [[#eslint-plugin-fp][eslint-plugin-fp]]
     - [[#eslint-plugin-graphql][eslint-plugin-graphql]]
     - [[#eslint-plugin-import][eslint-plugin-import]]
@@ -71,6 +72,7 @@ module.exports = require ("./.eslintrc.json")
     "./rules/ecmascript-6.json",
     "./plugins/plugin-compat.json",
     "./plugins/plugin-fp.json",
+    "./plugins/plugin-flowtype.json",
     "./plugins/plugin-graphql.json",
     "./plugins/plugin-import.json",
     "./plugins/plugin-json.json",
@@ -121,12 +123,14 @@ module.exports = require ("./.eslintrc.json")
   "author": "Peter T Bosse II <ptb@ioutime.com> (http://ptb2.me/)",
   "dependencies": {
     "babel-eslint": "10.0.1",
-    "eslint": "5.13.0",
+    "eslint": "5.15.1",
     "eslint-plugin-compat": "2.7.0",
+    "eslint-plugin-flowtype": "3.4.2",
+    "eslint-plugin-flowtype-comment": "1.0.0",
     "eslint-plugin-fp": "2.3.0",
     "eslint-plugin-graphql": "3.0.3",
     "eslint-plugin-import": "2.16.0",
-    "eslint-plugin-json": "1.3.2",
+    "eslint-plugin-json": "1.4.0",
     "eslint-plugin-jsx-a11y": "6.2.1",
     "eslint-plugin-promise": "4.0.1",
     "eslint-plugin-react": "7.12.4",
@@ -155,7 +159,7 @@ module.exports = require ("./.eslintrc.json")
     "lint:file": "f () { eslint --config ./node_modules/@amory/eslint-config/.eslintrc.json \"${1}\" || exit 0; }; f",
     "tidy:file": "f () { prettier-eslint --eslint-config-path @amory --write \"${1}\" || exit 0; }; f"
   },
-  "version": "2019.2.11-6"
+  "version": "2019.3.14-0"
 }
 #+end_src
 #+HTML: </details>
@@ -353,6 +357,9 @@ module.exports = require ("./.eslintrc.json")
     "no-multi-spaces": [
       "warn",
       {
+        "exceptions": {
+          "ImportDeclaration": true
+        },
         "ignoreEOLComments": true
       }
     ],
@@ -702,7 +709,12 @@ module.exports = require ("./.eslintrc.json")
     "no-restricted-syntax": "off",
     "no-tabs": "warn",
     "no-ternary": "off",
-    "no-trailing-spaces": "warn",
+    "no-trailing-spaces": [
+      "warn",
+      {
+        "ignoreComments": true
+      }
+    ],
     "no-underscore-dangle": "off",
     "no-unneeded-ternary": [
       "warn",
@@ -745,7 +757,8 @@ module.exports = require ("./.eslintrc.json")
       {
         "overrides": {
           ":": "before",
-          "?": "before"
+          "?": "before",
+          "=": "ignore"
         }
       }
     ],
@@ -977,6 +990,122 @@ module.exports = require ("./.eslintrc.json")
   ],
   "rules": {
     "compat/compat": "warn"
+  }
+}
+#+end_src
+#+HTML: </details>
+
+*** [[https://github.com/gajus/eslint-plugin-flowtype][eslint-plugin-flowtype]]
+
+#+HTML: <details>
+#+begin_src json :noweb-ref "plugins/plugin-flowtype.json" :tangle "plugins/plugin-flowtype.json"
+{
+  "plugins": [
+    "flowtype"
+  ],
+  "rules": {
+    "flowtype/array-style-complex-type": [
+      "warn",
+      "verbose"
+    ],
+    "flowtype/array-style-simple-type": [
+      "warn",
+      "verbose"
+    ],
+    "flowtype/boolean-style": [
+      "warn",
+      "boolean"
+    ],
+    "flowtype/define-flow-type": "warn",
+    "flowtype/delimiter-dangle": [
+      "warn",
+      "never"
+    ],
+    "flowtype/generic-spacing": [
+      "warn",
+      "always"
+    ],
+    "flowtype/newline-after-flow-annotation": [
+      "warn",
+      "always"
+    ],
+    "flowtype/no-dupe-keys": "warn",
+    "flowtype/no-existential-type": "off",
+    "flowtype/no-flow-fix-me-comments": "warn",
+    "flowtype/no-mutable-array": "off",
+    "flowtype/no-primitive-constructor-types": "warn",
+    "flowtype/no-types-missing-file-annotation": "off",
+    "flowtype/no-unused-expressions": "warn",
+    "flowtype/no-weak-types": [
+      "warn",
+      {
+        "Function": false,
+        "Object": true,
+        "any": true
+      }
+    ],
+    "flowtype/object-type-delimiter": [
+      "warn",
+      "comma"
+    ],
+    "flowtype/require-compound-type-alias": [
+      "warn",
+      "always"
+    ],
+    "flowtype/require-exact-type": "warn",
+    "flowtype/require-parameter-type": "warn",
+    "flowtype/require-return-type": "warn",
+    "flowtype/require-types-at-top": [
+      "warn",
+      "always"
+    ],
+    "flowtype/require-valid-file-annotation": [
+      "warn",
+      "never",
+      {
+        "annotationStyle": "block"
+      }
+    ],
+    "flowtype/require-variable-type": "off",
+    "flowtype/semi": [
+      "warn",
+      "never"
+    ],
+    "flowtype/sort-keys": [
+      "warn",
+      "asc",
+      {
+        "caseSensitive": false,
+        "natural": true
+      }
+    ],
+    "flowtype/space-after-type-colon": [
+      "warn",
+      "always",
+      {
+        "allowLineBreak": true
+      }
+    ],
+    "flowtype/space-before-generic-bracket": [
+      "warn",
+      "always"
+    ],
+    "flowtype/space-before-type-colon": "off",
+    "flowtype/type-id-match": [
+      "warn",
+      "^([A-Z][a-z0-9]+)+Type$"
+    ],
+    "flowtype/type-import-style": "off",
+    "flowtype/union-intersection-spacing": [
+      "warn",
+      "always"
+    ],
+    "flowtype/use-flow-type": "warn"
+  },
+  "settings": {
+    "flowtype": {
+      "onlyFilesWithFlowAnnotation": false
+    }
   }
 }
 #+end_src
