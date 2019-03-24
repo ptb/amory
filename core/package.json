@@ -4,7 +4,7 @@
     "amory": "index.js"
   },
   "dependencies": {
-    "cosmiconfig": "5.0.7",
+    "cosmiconfig": "5.2.0",
     "p-each-series": "1.0.0",
     "tapable": "1.1.1",
     "webpack-chain": "5.1.0"
