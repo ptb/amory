@@ -14,6 +14,7 @@
     "./rules/ecmascript-6.json",
     "./plugins/plugin-compat.json",
     "./plugins/plugin-fp.json",
+    "./plugins/plugin-flowtype.json",
     "./plugins/plugin-graphql.json",
     "./plugins/plugin-import.json",
     "./plugins/plugin-json.json",

@@ -193,7 +193,12 @@
     "no-restricted-syntax": "off",
     "no-tabs": "warn",
     "no-ternary": "off",
-    "no-trailing-spaces": "warn",
+    "no-trailing-spaces": [
+      "warn",
+      {
+        "ignoreComments": true
+      }
+    ],
     "no-underscore-dangle": "off",
     "no-unneeded-ternary": [
       "warn",
@@ -236,7 +241,8 @@
       {
         "overrides": {
           ":": "before",
-          "?": "before"
+          "?": "before",
+          "=": "ignore"
         }
       }
     ],
