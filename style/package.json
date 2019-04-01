@@ -54,7 +54,7 @@
     "rollup-plugin-commonjs": "9.2.0",
     "rollup-plugin-node-resolve": "4.0.0",
     "sinon": "latest",
-    "terser": "3.14.1"
+    "terser": "3.17.0"
   },
   "engines": {
     "node": ">=8"
