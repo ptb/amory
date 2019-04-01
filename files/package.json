@@ -3,7 +3,7 @@
   "dependencies": {
     "fs-extra": "7.0.1",
     "webpack": "4.29.0",
-    "webpack-chain": "5.1.0"
+    "webpack-chain": "5.2.4"
   },
   "engines": {
     "node": ">=8"
