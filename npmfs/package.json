@@ -1,10 +1,10 @@
 {
   "author": "Peter T Bosse II <ptb@ioutime.com> (http://ptb2.me/)",
   "dependencies": {
-    "acorn": "6.0.5",
+    "acorn": "6.1.1",
     "acorn-dynamic-import": "4.0.0",
     "acorn-import-meta": "1.0.0",
-    "esm": "3.1.1",
+    "esm": "3.2.22",
     "resolve": "1.10.0"
   },
   "description": "Resolve, rewrite, and serve ES module dependencies using bare imports.",
