@@ -35,7 +35,7 @@
     "@babel/preset-env": "latest",
     "@babel/runtime": "latest",
     "babel-loader": "next",
-    "webpack": "4.29.0"
+    "webpack": "4.29.6"
   },
   "engines": {
     "node": ">=8"
