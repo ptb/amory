@@ -8,7 +8,7 @@
     "eslint-plugin-flowtype-comment": "1.0.0",
     "eslint-plugin-fp": "2.3.0",
     "eslint-plugin-graphql": "3.0.3",
-    "eslint-plugin-import": "2.16.0",
+    "eslint-plugin-import": "2.17.1",
     "eslint-plugin-json": "1.4.0",
     "eslint-plugin-jsx-a11y": "6.2.1",
     "eslint-plugin-promise": "4.0.1",
