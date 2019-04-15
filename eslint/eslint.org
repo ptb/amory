@@ -72,7 +72,6 @@ module.exports = require ("./.eslintrc.json")
     "./rules/ecmascript-6.json",
     "./plugins/plugin-compat.json",
     "./plugins/plugin-fp.json",
-    "./plugins/plugin-flowtype.json",
     "./plugins/plugin-graphql.json",
     "./plugins/plugin-import.json",
     "./plugins/plugin-json.json",
@@ -109,8 +108,7 @@ module.exports = require ("./.eslintrc.json")
   "eslint.options": {
     "configFile": "node_modules/@amory/eslint-config/.eslintrc.json"
   },
-  "eslint.runtime": "/usr/local/node/shims/node",
-  "prettier.eslintIntegration": true
+  "eslint.runtime": "/usr/local/node/shims/node"
 }
 #+end_src
 #+HTML: </details>
@@ -120,25 +118,24 @@ module.exports = require ("./.eslintrc.json")
 #+HTML: <details>
 #+begin_src json :noweb-ref "package.json" :tangle "package.json"
 {
-  "author": "Peter T Bosse II <ptb@ioutime.com> (http://ptb2.me/)",
-  "dependencies": {
+  "author": "Peter T Bosse II <pbosse@gmail.com> (https://ptb.dev/)",
+  "description": "Lint JavaScript code with @ptb's personal preferences",
+  "devDependencies": {
     "babel-eslint": "10.0.1",
-    "eslint": "5.15.1",
-    "eslint-plugin-compat": "3.0.0",
-    "eslint-plugin-flowtype": "3.4.2",
+    "eslint": "5.16.0",
+    "eslint-plugin-compat": "3.1.1",
+    "eslint-plugin-flowtype": "3.6.1",
     "eslint-plugin-flowtype-comment": "1.0.0",
     "eslint-plugin-fp": "2.3.0",
     "eslint-plugin-graphql": "3.0.3",
-    "eslint-plugin-import": "2.16.0",
+    "eslint-plugin-import": "2.17.1",
     "eslint-plugin-json": "1.4.0",
     "eslint-plugin-jsx-a11y": "6.2.1",
-    "eslint-plugin-promise": "4.0.1",
+    "eslint-plugin-promise": "4.1.1",
     "eslint-plugin-react": "7.12.4",
     "eslint-plugin-standard": "4.0.0",
-    "graphql": "14.1.1",
-    "prettier-eslint-cli": "4.7.1"
+    "graphql": "14.2.1"
   },
-  "description": "Lint JavaScript code with @ptb's personal preferences",
   "eslintConfig": {
     "extends": [
       "./.eslintrc.json"
@@ -156,11 +153,12 @@ module.exports = require ("./.eslintrc.json")
   },
   "repository": "https://github.com/ptb/amory/tree/master/eslint",
   "scripts": {
-    "lint": "f () { eslint --plugin flowtype-comment src || exit 0; }; f",
+    "lint": "f () { eslint src || exit 0; }; f",
     "lint:file": "f () { eslint --fix \"${1}\" || exit 0; }; f",
-    "lint:fix": "f () { eslint --fix src || exit 0; }; f"
+    "lint:fix": "f () { eslint --fix src || exit 0; }; f",
+    "lint:flow": "f () { eslint --plugin flowtype-comment src || exit 0; }; f"
   },
-  "version": "2019.3.14-2"
+  "version": "2019.4.15-0"
 }
 #+end_src
 #+HTML: </details>
