@@ -1,7 +1,7 @@
 {
   "author": "Peter T Bosse II <ptb@ioutime.com> (http://ptb2.me/)",
   "dependencies": {
-    "webpack": "4.29.6"
+    "webpack": "4.30.0"
   },
   "engines": {
     "node": ">=8"
