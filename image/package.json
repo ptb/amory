@@ -15,7 +15,7 @@
     "sharp": "0.22.0",
     "smartcrop-sharp": "2.0.3",
     "sqip": "0.3.3",
-    "temp-write": "3.4.0",
+    "temp-write": "4.0.0",
     "tempy": "0.3.0",
     "webpack": "4.30.0"
   },
