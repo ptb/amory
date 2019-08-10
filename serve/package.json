@@ -10,7 +10,7 @@
     "koa": "2.7.0",
     "koa-static": "5.0.0",
     "koa-websocket": "5.0.1",
-    "yargs": "13.2.2"
+    "yargs": "13.3.0"
   },
   "description": "",
   "engines": {
