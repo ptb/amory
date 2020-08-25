@@ -17,7 +17,7 @@
     "sqip": "0.3.3",
     "temp-write": "3.4.0",
     "tempy": "0.3.0",
-    "webpack": "4.30.0"
+    "webpack": "4.44.1"
   },
   "description": "Webpack 4 loader to create images of various resolutions",
   "engines": {
