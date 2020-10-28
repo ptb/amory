@@ -6,7 +6,7 @@
   "description": "React & React DOM re-packaged as an ES module(s).",
   "devDependencies": {
     "@types/react": "16.8.13",
-    "@types/react-dom": "16.8.4"
+    "@types/react-dom": "16.9.9"
   },
   "engines": {
     "node": ">=8"
