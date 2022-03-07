@@ -12,7 +12,7 @@
     "node-vibrant": "3.1.1",
     "p-map": "2.1.0",
     "p-pipe": "3.0.0",
-    "sharp": "0.22.0",
+    "sharp": "0.30.2",
     "smartcrop-sharp": "2.0.3",
     "sqip": "0.3.3",
     "temp-write": "3.4.0",
