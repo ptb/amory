@@ -5,7 +5,7 @@
     "acorn-dynamic-import": "4.0.0",
     "acorn-import-meta": "1.0.0",
     "esm": "3.2.22",
-    "resolve": "1.10.0"
+    "resolve": "1.22.0"
   },
   "description": "Resolve, rewrite, and serve ES module dependencies using bare imports.",
   "engines": {
